@@ -9,7 +9,10 @@
       "games": [
         { "id": "make-ten", "title": "凑十法", "icon": "🍎", "priority": "P0" },
         { "id": "plus-minus-link", "title": "加减连连看", "icon": "➕", "priority": "P0" },
-        { "id": "number-merge", "title": "数字合成", "icon": "🔢", "priority": "P1" }
+        { "id": "number-merge", "title": "数字合成", "icon": "🔢", "priority": "P1" },
+        { "id": "sudoku", "title": "数独", "icon": "🔢", "priority": "P1" },
+        { "id": "sudoku-letter", "title": "字母数独", "icon": "🔠", "priority": "P1" },
+        { "id": "sudoku-math", "title": "算术数独", "icon": "➕", "priority": "P1" }
       ]
     },
     {
