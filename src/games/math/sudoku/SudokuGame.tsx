@@ -23,7 +23,7 @@ import {
   cloneBoard,
   emptyBoard,
 } from './engine';
-import { loadUnlock, unlockNine, saveBest } from './progress';
+import { saveBest } from './progress';
 
 /** 各模式的进入语音提示。 */
 const TTS_TEXT: Record<SudokuMode, string> = {
@@ -66,8 +66,6 @@ export function SudokuCore(props: SudokuCoreProps) {
   const startRef = useRef<number>(Date.now());
   const endedRef = useRef<boolean>(false);
 
-  const [nineUnlocked, setNineUnlocked] = useState<boolean>(() => loadUnlock().nineUnlocked);
-
   // 进入玩法时朗读规则。
   useEffect(() => {
     if (phase === 'play') tts.speak(TTS_TEXT[mode]);
@@ -101,12 +99,8 @@ export function SudokuCore(props: SudokuCoreProps) {
     const durationMs = Date.now() - startRef.current;
     const stars = computeStars({ passed: true, mistakes, durationMs });
     sound.play('win');
-    // 首次完成 6×6 解锁 9×9 并记录最佳成绩。
-    if (size === 6) {
-      unlockNine();
-      saveBest(gameKey, stars, durationMs);
-      setNineUnlocked(true);
-    }
+    // 任何尺寸完成都记录最佳成绩（9×9 不再强制先通关 6×6 才能解锁）。
+    saveBest(gameKey, stars, durationMs);
     onComplete({ score: 0, passed: true, stars, durationMs });
   };
 
@@ -178,23 +172,19 @@ export function SudokuCore(props: SudokuCoreProps) {
 
         <div className="flex gap-3">
           {([6, 9] as SudokuSize[]).map((s) => {
-            const locked = s === 9 && !nineUnlocked;
             const active = size === s;
             return (
               <button
                 key={s}
-                disabled={locked}
                 onClick={() => {
                   sound.play('click');
                   setSize(s);
                 }}
                 className={[
                   'px-5 py-3 rounded-3xl font-bold shadow-soft transition-all',
-                  locked
-                    ? 'bg-mint/30 text-inkSoft cursor-not-allowed'
-                    : active
-                      ? 'bg-mint text-ink scale-105'
-                      : 'bg-white text-ink hover:bg-mint/30 cursor-pointer',
+                  active
+                    ? 'bg-mint text-ink scale-105'
+                    : 'bg-white text-ink hover:bg-mint/30 cursor-pointer',
                 ].join(' ')}
               >
                 {s} × {s}
@@ -202,9 +192,6 @@ export function SudokuCore(props: SudokuCoreProps) {
             );
           })}
         </div>
-        {size === 9 && !nineUnlocked && (
-          <div className="text-peach text-sm font-bold">先完成 6×6 解锁 9×9！</div>
-        )}
 
         <div className="flex gap-3">
           {(['few', 'many'] as const).map((d) => {

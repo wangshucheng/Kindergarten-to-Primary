@@ -9,9 +9,16 @@
  * 与 tts.test.ts 的浏览器全局 mock 约定保持一致。
  */
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { createElement } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { generateSudoku, makeCages } from '../games/math/sudoku/engine';
 import { loadUnlock, saveBest, unlockNine } from '../games/math/sudoku/progress';
 import type { SudokuSize } from '../games/math/sudoku/types';
+import { ScoreProvider } from '../state/ScoreContext';
+import { SudokuGame } from '../games/math/sudoku/SudokuGame';
+import type { GameConfig, GameProps } from '../games/types';
+import type { SoundManager } from '../sound/SoundManager';
+import type { TtsManager } from '../sound/TtsManager';
 
 /** 内存版 localStorage，供 node 环境测试 progress 逻辑。 */
 class MemoryStorage {
@@ -128,5 +135,45 @@ describe('progress 持久化（localStorage）', () => {
     const best = loadUnlock().best;
     expect(best['sudoku'].stars).toBe(3);
     expect(best['sudoku-letter'].stars).toBe(2);
+  });
+});
+
+describe('SudokuGame：尺寸选择（9×9 解锁门槛回归）', () => {
+  it('未通关 6×6 时，9×9 按钮也可选、无锁定提示', () => {
+    // 构造最小可用的 GameProps 桩，仅渲染「选尺寸」阶段，无需真实音效/TTS。
+    const noop = (): void => {};
+    const sound = {
+      play: noop,
+      resume: noop,
+      toggle: () => true,
+      isEnabled: () => true,
+    } as unknown as SoundManager;
+    const tts = {
+      speak: noop,
+      toggle: () => true,
+      isEnabled: () => true,
+      stop: noop,
+    } as unknown as TtsManager;
+    const config: GameConfig = {
+      id: 'sudoku',
+      module: 'math',
+      title: '数独',
+      icon: '🧩',
+      priority: 'P0',
+      component: SudokuGame,
+    };
+    const props: GameProps = { config, sound, tts, onComplete: noop, onExit: noop };
+
+    const html = renderToStaticMarkup(
+      createElement(ScoreProvider, null, createElement(SudokuGame, props)),
+    );
+
+    // 6×6 与 9×9 两种尺寸均展示。
+    expect(html).toContain('9 × 9');
+    expect(html).toContain('6 × 6');
+    // 9×9 不再被 disabled（旧逻辑：未解锁时 disabled 置灰）。
+    expect(html).not.toContain('disabled');
+    // 不再显示「先完成 6×6 解锁 9×9！」锁定提示。
+    expect(html).not.toContain('先完成 6×6 解锁 9×9！');
   });
 });

@@ -21,6 +21,32 @@ function cellSize(size: SudokuSize): number {
   return size === 6 ? 60 : 44;
 }
 
+/**
+ * 算术数独 cages 的柔和配色（适合幼儿、彼此可区分）。
+ * 至少 10 色，足以覆盖一个 9×9 算术数独的全部 cage（通常 10+ 个）。
+ * 颜色偏浅、对比适中，保证彩色虚线边框旁的深色 sum 角标仍清晰可读。
+ */
+const CAGE_COLORS: readonly string[] = [
+  '#7FD8C0', // 薄荷绿
+  '#FFE08A', // 柠檬黄
+  '#FFB3C6', // 桃粉
+  '#8EC9FF', // 天蓝
+  '#C9B6FF', // 淡紫
+  '#FFC59E', // 蜜橙
+  '#B5E48C', // 草绿
+  '#FFA6C9', // 玫瑰红
+  '#8ED6D6', // 青绿
+  '#D8B4F0', // 丁香紫
+  '#FFB59E', // 珊瑚橙
+  '#A8E6A3', // 嫩芽绿
+];
+
+/** 按 cage id 取模映射到配色，使每个 cage 边框颜色不同。 */
+function cageColor(id: number): string {
+  const idx = ((id % CAGE_COLORS.length) + CAGE_COLORS.length) % CAGE_COLORS.length;
+  return CAGE_COLORS[idx];
+}
+
 export function Board({ size, board, selected, onCellClick, cages, letterMode }: BoardProps) {
   const box = BOX[size];
   const CELL = cellSize(size);
@@ -41,6 +67,7 @@ export function Board({ size, board, selected, onCellClick, cages, letterMode }:
     return {
       id: cage.id,
       sum: cage.sum,
+      color: cageColor(cage.id),
       left: minC * CELL,
       top: minR * CELL,
       width: (maxC - minC + 1) * CELL,
@@ -96,7 +123,7 @@ export function Board({ size, board, selected, onCellClick, cages, letterMode }:
         )}
       </div>
 
-      {/* 算术数独：cage 虚线区域 + 区域和角标 */}
+      {/* 算术数独：cage 虚线区域 + 区域和角标（不同 cage 用不同柔和配色） */}
       {cageRects.map((rect) => (
         <div
           key={`cage-${rect.id}`}
@@ -106,7 +133,7 @@ export function Board({ size, board, selected, onCellClick, cages, letterMode }:
             top: rect.top + 3,
             width: rect.width - 6,
             height: rect.height - 6,
-            border: '2px dashed #FFB3C6',
+            border: `2px dashed ${rect.color}`,
           }}
         >
           <span
