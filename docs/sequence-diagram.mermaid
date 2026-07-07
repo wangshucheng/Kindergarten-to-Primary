@@ -1,34 +1,79 @@
+%% 消消乐（选关 -> 进行 -> 星级结算）
 sequenceDiagram
-    actor 儿童 as 小朋友
-    participant HP as HomePage
+    participant U as 用户
     participant MP as ModulePage
     participant GP as GamePage
-    participant SH as GameShell
-    participant G as 具体游戏(如MakeTen)
-    participant SM as SoundManager
+    participant GS as GameShell
+    participant G as Match3Game
+    participant QG as QuestionGenerator
+    participant DL as DataLoader
+    participant MD as MatchDetector
     participant SC as ScoreContext
-    participant PS as ProgressStore
+    participant TTS as useTTS
 
-    儿童->>HP: 打开网页(首页)
-    HP->>HP: 读取 config.json 渲染 4 模块入口
-    儿童->>HP: 点击「数学乐园」
-    HP->>MP: navigate(/module/math)
-    MP->>MP: 列出该模块游戏卡片
-    儿童->>MP: 点击「凑十法」
-    MP->>GP: navigate(/game/make-ten)
-    GP->>GP: 按 id 查 GameConfig
-    GP->>SH: <GameShell config=.../>
-    SH->>SH: 初始化 ScoreContext / 读取 PS 历史最佳
-    SH->>G: 渲染 <MakeTenGame props/>  (注入 sound/onComplete/onExit)
-    loop 游戏交互
-        儿童->>G: 点击/拖动瓷砖
-        G->>SM: play('click'/'correct'/'wrong')
-        G->>SC: addScore() / comboUp()
-        G->>G: 校验过关条件
+    U->>MP: 点击「消消乐」(模块 hanzi)
+    MP->>GP: navigate(/hanzi/match-3)
+    GP->>GS: getGame('match-3') -> GameShell(config)
+    GS->>GS: ScoreProvider 包裹 + 创建 sound/tts
+    GS->>G: 渲染 <Component config sound tts onComplete onExit/>
+    Note over G: 读取 config.subject='hanzi', config.mode='hanzi-pinyin'
+    G->>QG: hanzi({level, mode:'hanzi-pinyin', count})
+    QG->>DL: loadHanzi() (合并 hanzi.json+hanzi-ext.json)
+    DL-->>QG: HanziEntry[]
+    QG->>QG: sampler.pickByLevel + 构建 char/pinyin 配对题
+    QG-->>G: HanziQuestion[] (目标字+拼音块)
+    G->>G: 用 GridBoard 拼棋盘(混入干扰块)
+    U->>G: 交换相邻两块
+    G->>MD: detectMatch3(grid)
+    alt 形成三连
+        MD-->>G: 匹配坐标
+        G->>SC: addScore / bumpCombo
+        G->>TTS: speakZh(pinyin)
+        G->>SC: collectKnowledge('hanzi:妈')
+        G->>G: 消除并判定是否全部目标字消除
+    else 无三连
+        G->>G: 回退动画
     end
-    G->>SH: onComplete({score,passed,stars})
-    SH->>SM: play('win')
-    SH->>PS: saveResult('make-ten', result)  // localStorage 存档(A-005)
-    SH->>SH: 显示过关 Modal(星级/再玩/返回)
-    儿童->>SH: 点击「返回首页」
-    SH->>HP: navigate(/)
+    alt 目标字全部消除
+        G->>SC: 读 mistakes/rounds/knowledgePoints/medals
+        G->>G: computeStars({passed:true, mistakes, durationMs})
+        G->>GS: onComplete(GameResult)
+        GS->>GS: handleComplete -> 收割 knowledgePoints/medals
+        GS->>GS: saveResult({...r, knowledgePoints, medals})
+        GS->>U: Modal 弹出 StarRating + 知识点小结
+    end
+
+%% 数字扫雷（生成算式 -> 按答案布雷 -> 翻开判定）
+sequenceDiagram
+    participant U as 用户
+    participant GS as GameShell
+    participant G as NumberMinesGame
+    participant QG as QuestionGenerator(math)
+    participant DL as DataLoader
+    participant L as minesLogic(本玩法)
+    participant SC as ScoreContext
+
+    GS->>G: 渲染 (config.subject='math')
+    Note over G: 依关卡 level 选规则
+    G->>QG: math({level, rule:'within10'|'carry20'|'borrow20'|'mixedChain'})
+    QG->>DL: loadMathContent() (合并 math.json+math-content.json)
+    DL-->>QG: MathContent
+    QG-->>G: MathExpr {text:'8+?=15', answer:7, hint?}
+    G->>L: buildBoard(expr, answer)  // 按"周围8格雷数=答案"布雷
+    L-->>G: 雷区二维数组(每格含 expr + 实际雷数)
+    G->>G: GridBoard 渲染每格算式
+    U->>G: 点击格子
+    G->>G: 玩家推算答案 == 该格周围雷数?
+    alt 推算正确 -> 安全格
+        G->>G: 翻开(显示周围雷数)
+        G->>SC: addScore / bumpCombo
+        G->>G: 是否全部安全格翻开?
+    else 点中"算式雷"/推算错
+        G->>G: 弹出 hint 微课(凑十/破十法)
+        G->>SC: addMistake / resetCombo
+    end
+    alt 全部安全格翻开
+        G->>GS: onComplete(GameResult)
+        GS->>GS: 收割 knowledgePoints/medals -> saveResult
+        GS->>U: Modal 星级 + 加减法小结
+    end

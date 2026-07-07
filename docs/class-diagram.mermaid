@@ -1,143 +1,88 @@
 classDiagram
-    %% ---------- 共享接口 ----------
-    class GameConfig {
-        +string id
-        +ModuleKey module
-        +string title
-        +string icon
-        +Priority priority
-        +ComponentType~GameProps~ component
+    direction LR
+    class GameShell {
+        +config: GameConfig
+        +render()
     }
     class GameProps {
-        +GameConfig config
-        +SoundManager sound
-        +onComplete(result: GameResult): void
-        +onExit(): void
+        +config: GameConfig
+        +sound: SoundManager
+        +tts: TtsManager
+        +onComplete(r: GameResult)
+        +onExit()
     }
-    class GameResult {
-        +number score
-        +boolean passed
-        +number stars
-        +number durationMs
-    }
-    class ModuleKey {
-        <<enumeration>>
-        math
-        pinyin
-        hanzi
-        english
-    }
-
-    %% ---------- 音效 ----------
-    class SoundManager {
-        -AudioContext ctx
-        -boolean enabled
-        +play(type: SoundType): void
-        +setEnabled(b: boolean): void
-        +toggle(): boolean
-    }
-    class SoundType {
-        <<enumeration>>
-        click
-        correct
-        wrong
-        win
-        levelup
-    }
-
-    %% ---------- 状态 ----------
     class ScoreContext {
-        -ScoreState state
-        +addScore(n: number): void
-        +comboUp(): void
-        +levelUp(): void
-        +reset(): void
-    }
-    class ScoreState {
-        +number current
-        +number best
-        +number level
-        +number combo
-    }
-    class ProgressStore {
-        -Record~string,GameProgress~ progress
-        +saveResult(id: string, r: GameResult): void
-        +getProgress(id: string): GameProgress
-        +getAchievements(): Achievement[]
-        +exportReport(): ParentReport
-    }
-    class GameProgress {
-        +number bestScore
-        +number stars
-        +number plays
-        +boolean cleared
-    }
-
-    %% ---------- 共享 UI ----------
-    class GameShell {
-        +GameConfig config
-        +render(): void
-    }
-    class HUD {
         +score: number
-        +level: number
-        +onExit(): void
-        +onToggleSound(): void
+        +combo: number
+        +mistakes: number
+        +rounds: number
+        +knowledgePoints: string[]
+        +medals: string[]
+        +addScore(n)
+        +bumpCombo()
+        +addMistake()
+        +collectKnowledge(id)
+        +unlockMedal(id)
     }
-    class CardGrid {
-        +CardItem[] items
-        +onMatch(a: CardItem, b: CardItem): void
-        +render(): void
+    class TtsManager {
+        +speak(text, opts)
+        +toggle(): boolean
+        +isEnabled(): boolean
     }
-    class Card {
-        +CardItem data
-        +selected: boolean
-        +matched: boolean
-        +onClick(): void
+    class useTTS {
+        +speakZh(text)
+        +speakEn(text)
+        +toggle()
     }
-    class CardItem {
-        +string id
-        +string label
-        +string pinyin
-        +string emoji
-        +string group
+    class DataLoader {
+        +loadHanzi(): HanziEntry[]
+        +loadEnglish(): EnglishWord[]
+        +loadPinyin(): PinyinData
+        +loadMathContent(): MathContent
+    }
+    class Sampler {
+        +pickRandom(arr, rng)
+        +pickN(arr, n, rng)
+        +pickByLevel(arr, level, rng)
+        +pickByTag(arr, tag, rng)
+    }
+    class QuestionGenerator {
+        +hanzi(opts): HanziQuestion[]
+        +english(opts): EnglishQuestion[]
+        +pinyin(opts): PinyinQuestion[]
+        +math(opts): MathExpr[]
+        +logic(opts): LogicPuzzle[]
+    }
+    class MatchDetector {
+        +detectMatch3(grid): Coord[]
+        +isAdjacent(a, b): boolean
+        +findRuns(line): number[][]
+    }
+    class GridBoard {
+        +rows: number
+        +cols: number
+        +renderCell(pos): ReactNode
+    }
+    class Brick {
+        +emoji/label/sub/tone
+        +onClick()
+    }
+    class Slider {
+        +content: ReactNode
+        +onTap()
+        +onDragTo(dir)
+    }
+    class useDrag {
+        +bind: onPointerDown
+        +state: DragState
     }
 
-    %% ---------- 各游戏逻辑(节选) ----------
-    class MakeTenLogic {
-        +Tile[][] layers
-        +popTile(t: Tile): boolean
-        +isCleared(): boolean
-        +genLevel(cfg: object): Tile[][]
-    }
-    class LinkLogic {
-        +Node[] nodes
-        +canLink(a: Node, b: Node): boolean
-        +removePair(a: Node, b: Node): void
-    }
-    class FlipLogic {
-        +CardItem[] deck
-        +flip(id: string): void
-        +checkMatch(): boolean
-    }
-    class MergeLogic {
-        +number[][] board
-        +move(dir: Dir): boolean
-        +spawn(): void
-    }
-
-    %% ---------- 关系 ----------
-    GameProps "1" *-- "1" GameConfig
-    GameProps "1" *-- "1" SoundManager
-    GameProps ..> GameResult : onComplete
-    GameShell "1" *-- "1" HUD
-    GameShell "1" *-- "1" ScoreContext
-    GameShell ..> ProgressStore : saveResult
-    CardGrid "1" *-- "0..*" Card
-    Card "1" *-- "1" CardItem
-    MakeTenGame ..> MakeTenLogic
-    PlusMinusLinkGame ..> LinkLogic
-    FlipMemoryGame ..> FlipLogic
-    NumberMergeGame ..> MergeLogic
-    ScoreContext "1" *-- "1" ScoreState
-    ProgressStore ..> GameProgress
+    GameShell --> GameProps : provides
+    GameProps --> ScoreContext : uses(useScore)
+    GameProps --> TtsManager : uses(tts)
+    useTTS ..> TtsManager : wraps
+    QuestionGenerator --> DataLoader : reads
+    QuestionGenerator --> Sampler : picks
+    MatchDetector .. GameProps : used by play logic
+    GridBoard ..> Brick : renders
+    Slider ..> useDrag : uses
