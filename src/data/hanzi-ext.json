@@ -65,7 +65,7 @@
       "emoji": "🌙",
       "meaning": "月亮",
       "initial": "y",
-      "final": "ue",
+      "final": "üe",
       "tone": 4,
       "level": 1,
       "tags": [
@@ -77,7 +77,7 @@
     },
     {
       "char": "水",
-      "pinyin": "shǔi",
+      "pinyin": "shuǐ",
       "emoji": "💧",
       "meaning": "喝水",
       "initial": "sh",
@@ -571,7 +571,7 @@
     },
     {
       "char": "龟",
-      "pinyin": "gūi",
+      "pinyin": "guī",
       "emoji": "🐢",
       "meaning": "乌龟",
       "initial": "g",
@@ -1929,7 +1929,7 @@
     },
     {
       "char": "灰",
-      "pinyin": "hūi",
+      "pinyin": "huī",
       "emoji": "⬜",
       "meaning": "灰色",
       "initial": "h",
@@ -3639,7 +3639,7 @@
       "emoji": "❄️",
       "meaning": "雪",
       "initial": "x",
-      "final": "ue",
+      "final": "üe",
       "tone": 3,
       "level": 1,
       "tags": [
@@ -8045,19 +8045,6 @@
         "反义词"
       ],
       "antonym": "乘"
-    },
-    {
-      "char": "等于",
-      "pinyin": "děngyu",
-      "emoji": "🟰",
-      "meaning": "等于",
-      "initial": "d",
-      "final": "engyu",
-      "tone": 3,
-      "level": 2,
-      "tags": [
-        "数学"
-      ]
     },
     {
       "char": "比",

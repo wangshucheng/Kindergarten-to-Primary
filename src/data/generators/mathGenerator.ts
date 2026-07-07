@@ -61,16 +61,27 @@ function genCarry20(rng: () => number, rule: AddSubtractRule): ExprCore {
   return { text: `${a}+${b}`, answer, strategy: 'make-ten', hint };
 }
 
-/** 20 以内退位减（破十）：a - b，需借位，携带破十提示 */
+/**
+ * 20 以内退位减（破十）：a - b，需借位，携带破十提示。
+ * 关键约束：退位减要求「被减数个位 < 减数个位」（整十时个位为 0 亦满足）。
+ * 当 a%10 === 9（即 a=19）时，个位数已是最大，无法再用个位数 b 借位，
+ * 原实现 randomInt(rng, 10, 9) 因 min>max 退化为恒返回 10，生成了 19-10 这类
+ * 非退位、且减数越界的非法式。
+ * 修复：被减数个位 aOnes 取 1~8（彻底避开 a%10===9 的退化分支），a=10+aOnes∈[11,18]；
+ * 减数 b 在 [aOnes+1, 9] 取（保证 b>aOnes 且为个位数），则 a%10<b%10 必借位，
+ * r=a-b 自然落在 [2,9] 且为真实退位减。整十 a=20 单独处理（个位 0<b 必借位，结果 11~19）。
+ */
 function genBorrow20(rng: () => number, rule: AddSubtractRule): ExprCore {
-  const a = randomInt(rng, 11, 20);
+  const mode = randomInt(rng, 1, 9); // 1..8 → 11..18；9 → 20（整十单独分支）
+  let a: number;
   let b: number;
-  if (a % 10 === 0) {
-    b = randomInt(rng, 1, Math.min(9, a - 1));
+  if (mode === 9) {
+    a = 20;
+    b = randomInt(rng, 1, 9); // 个位 0 < b，必借位，结果 20-b ∈ [11,19]
   } else {
-    const aOnes = a % 10;
-    const bOnes = randomInt(rng, aOnes + 1, 9); // b 个位 > a 个位 → 必借位
-    b = bOnes; // bOnes <= 9 < a(>=11)
+    const aOnes = mode; // 1..8，杜绝 a%10===9 的退化
+    a = 10 + aOnes; // 11..18
+    b = randomInt(rng, aOnes + 1, 9); // b > aOnes 且为个位数 → 必借位
   }
   const answer = a - b;
   const tens = a - 10;
