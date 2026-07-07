@@ -36,6 +36,16 @@
     { "char": "多", "pinyin": "duō", "emoji": "➕", "meaning": "多少" },
     { "char": "少", "pinyin": "shǎo", "emoji": "➖", "meaning": "多少" },
     { "char": "中", "pinyin": "zhōng", "emoji": "🎯", "meaning": "中间" },
-    { "char": "工", "pinyin": "gōng", "emoji": "🔧", "meaning": "工人" }
+    { "char": "工", "pinyin": "gōng", "emoji": "🔧", "meaning": "工人" },
+    { "char": "天", "pinyin": "tiān", "emoji": "🌌", "meaning": "天空" },
+    { "char": "地", "pinyin": "dì", "emoji": "🟩", "meaning": "大地" },
+    { "char": "王", "pinyin": "wáng", "emoji": "👑", "meaning": "国王" },
+    { "char": "牙", "pinyin": "yá", "emoji": "🦷", "meaning": "牙齿" },
+    { "char": "足", "pinyin": "zú", "emoji": "🦶", "meaning": "脚丫" },
+    { "char": "头", "pinyin": "tóu", "emoji": "🧑", "meaning": "脑袋" },
+    { "char": "毛", "pinyin": "máo", "emoji": "🧶", "meaning": "毛发" },
+    { "char": "红", "pinyin": "hóng", "emoji": "🔴", "meaning": "红色" },
+    { "char": "飞", "pinyin": "fēi", "emoji": "✈️", "meaning": "飞翔" },
+    { "char": "笑", "pinyin": "xiào", "emoji": "😄", "meaning": "笑脸" }
   ]
 }

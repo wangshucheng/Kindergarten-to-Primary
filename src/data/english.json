@@ -39,7 +39,17 @@
     { "word": "egg", "emoji": "🥚", "meaning": "鸡蛋" },
     { "word": "cake", "emoji": "🍰", "meaning": "蛋糕" },
     { "word": "boat", "emoji": "⛵", "meaning": "小船" },
-    { "word": "sky", "emoji": "☁️", "meaning": "天空" }
+    { "word": "sky", "emoji": "☁️", "meaning": "天空" },
+    { "word": "bear", "emoji": "🐻", "meaning": "熊" },
+    { "word": "rabbit", "emoji": "🐰", "meaning": "兔子" },
+    { "word": "elephant", "emoji": "🐘", "meaning": "大象" },
+    { "word": "banana", "emoji": "🍌", "meaning": "香蕉" },
+    { "word": "orange", "emoji": "🍊", "meaning": "橙子" },
+    { "word": "pear", "emoji": "🍐", "meaning": "梨" },
+    { "word": "water", "emoji": "💧", "meaning": "水" },
+    { "word": "school", "emoji": "🏫", "meaning": "学校" },
+    { "word": "happy", "emoji": "😊", "meaning": "开心" },
+    { "word": "sleep", "emoji": "😴", "meaning": "睡觉" }
   ],
   "sentences": [
     { "template": "I see a {blank}.", "options": ["cat", "sun", "book"], "answer": 0 },
@@ -52,6 +62,16 @@
     { "template": "The {blank} is yellow.", "options": ["sun", "moon", "star"], "answer": 0 },
     { "template": "I read a {blank}.", "options": ["book", "cow", "egg"], "answer": 0 },
     { "template": "A {blank} goes in water.", "options": ["boat", "hand", "red"], "answer": 0 },
-    { "template": "The {blank} is green.", "options": ["tree", "cake", "eye"], "answer": 0 }
+    { "template": "The {blank} is green.", "options": ["tree", "cake", "eye"], "answer": 0 },
+    { "template": "The {blank} is sweet.", "options": ["apple", "car", "dog"], "answer": 0 },
+    { "template": "A {blank} can swim.", "options": ["fish", "bird", "star"], "answer": 0 },
+    { "template": "The {blank} is big.", "options": ["elephant", "cat", "egg"], "answer": 0 },
+    { "template": "I want a {blank}.", "options": ["cake", "fish", "tree"], "answer": 0 },
+    { "template": "The {blank} is small.", "options": ["rabbit", "elephant", "sun"], "answer": 0 },
+    { "template": "A {blank} says moo.", "options": ["cow", "pig", "duck"], "answer": 0 },
+    { "template": "I see the {blank}.", "options": ["moon", "ball", "red"], "answer": 0 },
+    { "template": "A {blank} has long ears.", "options": ["rabbit", "bear", "star"], "answer": 0 },
+    { "template": "The {blank} is orange.", "options": ["orange", "sky", "milk"], "answer": 0 },
+    { "template": "I go to {blank}.", "options": ["school", "boat", "cake"], "answer": 0 }
   ]
 }

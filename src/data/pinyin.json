@@ -38,6 +38,16 @@
     { "initial": "g", "final": "ou", "pinyin": "gǒu", "tone": 3, "char": "狗", "emoji": "🐶", "meaning": "小狗" },
     { "initial": "h", "final": "ua", "pinyin": "huā", "tone": 1, "char": "花", "emoji": "🌸", "meaning": "花朵" },
     { "initial": "n", "final": "iu", "pinyin": "niú", "tone": 2, "char": "牛", "emoji": "🐮", "meaning": "黄牛" },
-    { "initial": "m", "final": "ao", "pinyin": "māo", "tone": 1, "char": "猫", "emoji": "🐱", "meaning": "小猫" }
+    { "initial": "m", "final": "ao", "pinyin": "māo", "tone": 1, "char": "猫", "emoji": "🐱", "meaning": "小猫" },
+    { "initial": "b", "final": "o", "pinyin": "bō", "tone": 1, "char": "波", "emoji": "🌊", "meaning": "波浪" },
+    { "initial": "p", "final": "a", "pinyin": "pà", "tone": 4, "char": "怕", "emoji": "😨", "meaning": "害怕" },
+    { "initial": "m", "final": "o", "pinyin": "mō", "tone": 1, "char": "摸", "emoji": "✋", "meaning": "抚摸" },
+    { "initial": "f", "final": "a", "pinyin": "fā", "tone": 1, "char": "发", "emoji": "💇", "meaning": "头发" },
+    { "initial": "d", "final": "i", "pinyin": "dī", "tone": 1, "char": "滴", "emoji": "💧", "meaning": "水滴" },
+    { "initial": "t", "final": "a", "pinyin": "tā", "tone": 1, "char": "他", "emoji": "🧍", "meaning": "他们" },
+    { "initial": "n", "final": "a", "pinyin": "nà", "tone": 4, "char": "那", "emoji": "👉", "meaning": "那里" },
+    { "initial": "l", "final": "a", "pinyin": "lā", "tone": 1, "char": "拉", "emoji": "🤝", "meaning": "拉手" },
+    { "initial": "h", "final": "e", "pinyin": "hē", "tone": 1, "char": "喝", "emoji": "🥤", "meaning": "喝水" },
+    { "initial": "k", "final": "a", "pinyin": "kǎ", "tone": 3, "char": "卡", "emoji": "💳", "meaning": "卡片" }
   ]
 }

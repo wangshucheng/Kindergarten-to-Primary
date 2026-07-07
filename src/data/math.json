@@ -14,14 +14,17 @@
     "levels": [
       { "rows": 3, "cols": 4, "layers": 1, "pairsPerLayer": 6 },
       { "rows": 4, "cols": 4, "layers": 2, "pairsPerLayer": 7 },
-      { "rows": 4, "cols": 5, "layers": 3, "pairsPerLayer": 8 }
+      { "rows": 4, "cols": 5, "layers": 3, "pairsPerLayer": 8 },
+      { "rows": 5, "cols": 5, "layers": 3, "pairsPerLayer": 10 }
     ]
   },
   "plusMinusLink": {
     "levels": [
       { "count": 5, "ops": ["+"], "max": 10 },
       { "count": 6, "ops": ["+", "-"], "max": 15 },
-      { "count": 8, "ops": ["+", "-"], "max": 20 }
+      { "count": 8, "ops": ["+", "-"], "max": 20 },
+      { "count": 10, "ops": ["+", "-"], "max": 30 },
+      { "count": 12, "ops": ["+", "-"], "max": 50 }
     ]
   },
   "numberMerge": {
