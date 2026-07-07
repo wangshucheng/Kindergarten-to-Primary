@@ -10,6 +10,10 @@ export interface GameProgressRecord {
   stars: number;
   plays: number;
   lastPlayed: number;
+  /** 该游戏累计收集的知识点 id */
+  knowledgePoints?: string[];
+  /** 该游戏累计解锁的勋章 id */
+  medals?: string[];
 }
 
 export interface AchievementDef {
@@ -24,10 +28,16 @@ export interface ProgressState {
   unlocked: string[];
   totalStars: number;
   recent: string[];
+  /** 跨游戏累计收集的知识点 id（去重） */
+  knowledgePoints: string[];
+  /** 跨游戏累计解锁的勋章 id（去重，如 "final:a"） */
+  medals: string[];
 }
 
 export interface SaveInput extends GameResult {
   gameId: string;
+  knowledgePoints?: string[];
+  medals?: string[];
 }
 
 interface ConfigShape {
@@ -38,7 +48,7 @@ const config = configData as unknown as ConfigShape;
 export const ACHIEVEMENTS: AchievementDef[] = config.achievements ?? [];
 
 function emptyState(): ProgressState {
-  return { records: {}, unlocked: [], totalStars: 0, recent: [] };
+  return { records: {}, unlocked: [], totalStars: 0, recent: [], knowledgePoints: [], medals: [] };
 }
 
 function load(): ProgressState {
@@ -51,6 +61,8 @@ function load(): ProgressState {
       unlocked: parsed.unlocked ?? [],
       totalStars: parsed.totalStars ?? 0,
       recent: parsed.recent ?? [],
+      knowledgePoints: parsed.knowledgePoints ?? [],
+      medals: parsed.medals ?? [],
     };
   } catch {
     return emptyState();
@@ -88,7 +100,18 @@ function evaluateAchievements(state: ProgressState): string[] {
   const perfect = records.some((r) => r.stars >= 3 && r.plays >= 1);
   if (perfect) unlocked.add('perfect');
 
+  // 勋章类成就：基于跨游戏累计的 medals / knowledgePoints
+  if (state.medals.length >= 1) unlocked.add('medal-first');
+  if (state.medals.length >= 5) unlocked.add('medal-collector');
+  if (state.knowledgePoints.length >= 10) unlocked.add('scholar');
+
   return Array.from(unlocked);
+}
+
+function uniqueConcat(a: readonly string[] = [], b: readonly string[] = []): string[] {
+  const set = new Set(a);
+  for (const x of b) set.add(x);
+  return Array.from(set);
 }
 
 function applyResult(state: ProgressState, input: SaveInput): ProgressState {
@@ -99,12 +122,24 @@ function applyResult(state: ProgressState, input: SaveInput): ProgressState {
     stars: Math.max(prev?.stars ?? 0, input.stars),
     plays: (prev?.plays ?? 0) + 1,
     lastPlayed: Date.now(),
+    knowledgePoints: uniqueConcat(prev?.knowledgePoints, input.knowledgePoints),
+    medals: uniqueConcat(prev?.medals, input.medals),
   };
   const records = { ...state.records, [input.gameId]: nextRecord };
   const recent = [input.gameId, ...state.recent.filter((g) => g !== input.gameId)].slice(0, 6);
   const totalStars = Object.values(records).reduce((s, r) => s + r.stars, 0);
 
-  let next: ProgressState = { records, unlocked: state.unlocked, totalStars, recent };
+  const knowledgePoints = uniqueConcat(state.knowledgePoints, input.knowledgePoints);
+  const medals = uniqueConcat(state.medals, input.medals);
+
+  let next: ProgressState = {
+    records,
+    unlocked: state.unlocked,
+    totalStars,
+    recent,
+    knowledgePoints,
+    medals,
+  };
   next = { ...next, unlocked: evaluateAchievements(next) };
   return next;
 }

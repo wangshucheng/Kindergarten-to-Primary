@@ -1,0 +1,122 @@
+{
+  "version": 1,
+  "addSubtract": {
+    "within10": {
+      "ops": [
+        "+"
+      ],
+      "max": 10,
+      "strategies": [],
+      "hint": "十以内加法"
+    },
+    "carry20": {
+      "ops": [
+        "+"
+      ],
+      "max": 20,
+      "strategies": [
+        "make-ten"
+      ],
+      "hint": "凑十法"
+    },
+    "borrow20": {
+      "ops": [
+        "-"
+      ],
+      "max": 20,
+      "strategies": [
+        "break-ten"
+      ],
+      "hint": "破十法"
+    },
+    "mixedChain": {
+      "ops": [
+        "+",
+        "-"
+      ],
+      "terms": 3,
+      "max": 20,
+      "strategies": [
+        "chain"
+      ],
+      "hint": "连加连减"
+    }
+  },
+  "logic": {
+    "sort": {
+      "types": [
+        "number",
+        "letter",
+        "size"
+      ],
+      "orders": [
+        "asc",
+        "desc"
+      ]
+    },
+    "classify": {
+      "dimensions": [
+        {
+          "key": "fly",
+          "values": [
+            "会飞",
+            "不会飞"
+          ]
+        }
+      ],
+      "examples": [
+        {
+          "id": "bird",
+          "label": "鸟",
+          "emoji": "🐦",
+          "group": "会飞"
+        },
+        {
+          "id": "bee",
+          "label": "蜜蜂",
+          "emoji": "🐝",
+          "group": "会飞"
+        },
+        {
+          "id": "plane",
+          "label": "飞机",
+          "emoji": "✈️",
+          "group": "会飞"
+        },
+        {
+          "id": "fish",
+          "label": "鱼",
+          "emoji": "🐟",
+          "group": "不会飞"
+        },
+        {
+          "id": "cat",
+          "label": "猫",
+          "emoji": "🐱",
+          "group": "不会飞"
+        },
+        {
+          "id": "elephant",
+          "label": "大象",
+          "emoji": "🐘",
+          "group": "不会飞"
+        }
+      ]
+    },
+    "pattern": {
+      "shapes": [
+        "▲",
+        "●",
+        "■"
+      ],
+      "rules": [
+        "AB",
+        "AAB",
+        "ABAB"
+      ]
+    },
+    "reason": {
+      "gridSize": 2
+    }
+  }
+}

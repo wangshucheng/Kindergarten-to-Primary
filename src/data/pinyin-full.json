@@ -1,0 +1,1702 @@
+{
+  "version": 1,
+  "initials": [
+    "b",
+    "p",
+    "m",
+    "f",
+    "d",
+    "t",
+    "n",
+    "l",
+    "g",
+    "k",
+    "h",
+    "j",
+    "q",
+    "x",
+    "zh",
+    "ch",
+    "sh",
+    "r",
+    "z",
+    "c",
+    "s",
+    "y",
+    "w"
+  ],
+  "finals": [
+    "a",
+    "o",
+    "e",
+    "i",
+    "u",
+    "ü",
+    "ai",
+    "ei",
+    "ui",
+    "ao",
+    "ou",
+    "iu",
+    "ie",
+    "üe",
+    "er",
+    "an",
+    "en",
+    "in",
+    "un",
+    "ün",
+    "ang",
+    "eng",
+    "ing",
+    "ong"
+  ],
+  "wholeSyllables": [
+    "zhi",
+    "chi",
+    "shi",
+    "ri",
+    "zi",
+    "ci",
+    "si",
+    "yi",
+    "wu",
+    "yu",
+    "ye",
+    "yue",
+    "yuan",
+    "yin",
+    "yun",
+    "ying"
+  ],
+  "syllables": [
+    {
+      "initial": "b",
+      "final": "a",
+      "pinyin": "bā",
+      "tone": 1,
+      "char": "八",
+      "emoji": "8️⃣",
+      "meaning": "数字8",
+      "level": 1
+    },
+    {
+      "initial": "p",
+      "final": "i",
+      "pinyin": "pí",
+      "tone": 2,
+      "char": "皮",
+      "emoji": "🧥",
+      "meaning": "皮肤",
+      "level": 1
+    },
+    {
+      "initial": "m",
+      "final": "a",
+      "pinyin": "mā",
+      "tone": 1,
+      "char": "妈",
+      "emoji": "👩",
+      "meaning": "妈妈",
+      "level": 1
+    },
+    {
+      "initial": "f",
+      "final": "ei",
+      "pinyin": "fēi",
+      "tone": 1,
+      "char": "飞",
+      "emoji": "✈️",
+      "meaning": "飞翔",
+      "level": 1
+    },
+    {
+      "initial": "d",
+      "final": "a",
+      "pinyin": "dà",
+      "tone": 4,
+      "char": "大",
+      "emoji": "🐘",
+      "meaning": "大小",
+      "level": 1
+    },
+    {
+      "initial": "t",
+      "final": "u",
+      "pinyin": "tù",
+      "tone": 4,
+      "char": "兔",
+      "emoji": "🐰",
+      "meaning": "兔子",
+      "level": 1
+    },
+    {
+      "initial": "n",
+      "final": "ai",
+      "pinyin": "nǎi",
+      "tone": 3,
+      "char": "奶",
+      "emoji": "🥛",
+      "meaning": "牛奶",
+      "level": 1
+    },
+    {
+      "initial": "l",
+      "final": "u",
+      "pinyin": "lù",
+      "tone": 4,
+      "char": "路",
+      "emoji": "🛣️",
+      "meaning": "道路",
+      "level": 1
+    },
+    {
+      "initial": "g",
+      "final": "e",
+      "pinyin": "gē",
+      "tone": 1,
+      "char": "哥",
+      "emoji": "👦",
+      "meaning": "哥哥",
+      "level": 1
+    },
+    {
+      "initial": "k",
+      "final": "ao",
+      "pinyin": "kǎo",
+      "tone": 3,
+      "char": "考",
+      "emoji": "📝",
+      "meaning": "考试",
+      "level": 1
+    },
+    {
+      "initial": "h",
+      "final": "ao",
+      "pinyin": "hǎo",
+      "tone": 3,
+      "char": "好",
+      "emoji": "👍",
+      "meaning": "好坏",
+      "level": 1
+    },
+    {
+      "initial": "j",
+      "final": "u",
+      "pinyin": "jú",
+      "tone": 2,
+      "char": "橘",
+      "emoji": "🍊",
+      "meaning": "橘子",
+      "level": 1
+    },
+    {
+      "initial": "q",
+      "final": "iu",
+      "pinyin": "qiú",
+      "tone": 2,
+      "char": "球",
+      "emoji": "⚽",
+      "meaning": "皮球",
+      "level": 1
+    },
+    {
+      "initial": "x",
+      "final": "iao",
+      "pinyin": "xiǎo",
+      "tone": 3,
+      "char": "小",
+      "emoji": "🐭",
+      "meaning": "大小",
+      "level": 1
+    },
+    {
+      "initial": "zh",
+      "final": "u",
+      "pinyin": "zhū",
+      "tone": 1,
+      "char": "猪",
+      "emoji": "🐷",
+      "meaning": "小猪",
+      "level": 1
+    },
+    {
+      "initial": "ch",
+      "final": "e",
+      "pinyin": "chē",
+      "tone": 1,
+      "char": "车",
+      "emoji": "🚗",
+      "meaning": "汽车",
+      "level": 1
+    },
+    {
+      "initial": "sh",
+      "final": "u",
+      "pinyin": "shù",
+      "tone": 4,
+      "char": "树",
+      "emoji": "🌳",
+      "meaning": "大树",
+      "level": 1
+    },
+    {
+      "initial": "r",
+      "final": "i",
+      "pinyin": "rì",
+      "tone": 4,
+      "char": "日",
+      "emoji": "☀️",
+      "meaning": "太阳",
+      "level": 1
+    },
+    {
+      "initial": "z",
+      "final": "u",
+      "pinyin": "zǔ",
+      "tone": 3,
+      "char": "祖",
+      "emoji": "🏠",
+      "meaning": "祖先",
+      "level": 1
+    },
+    {
+      "initial": "c",
+      "final": "ao",
+      "pinyin": "cāo",
+      "tone": 1,
+      "char": "草",
+      "emoji": "🌿",
+      "meaning": "小草",
+      "level": 1
+    },
+    {
+      "initial": "s",
+      "final": "i",
+      "pinyin": "sī",
+      "tone": 1,
+      "char": "丝",
+      "emoji": "🧵",
+      "meaning": "丝线",
+      "level": 1
+    },
+    {
+      "initial": "b",
+      "final": "o",
+      "pinyin": "bō",
+      "tone": 1,
+      "char": "波",
+      "emoji": "🌊",
+      "meaning": "波浪",
+      "level": 1
+    },
+    {
+      "initial": "p",
+      "final": "o",
+      "pinyin": "pó",
+      "tone": 2,
+      "char": "婆",
+      "emoji": "👵",
+      "meaning": "婆婆",
+      "level": 1
+    },
+    {
+      "initial": "m",
+      "final": "o",
+      "pinyin": "mō",
+      "tone": 1,
+      "char": "摸",
+      "emoji": "✋",
+      "meaning": "摸",
+      "level": 1
+    },
+    {
+      "initial": "f",
+      "final": "o",
+      "pinyin": "fó",
+      "tone": 2,
+      "char": "佛",
+      "emoji": "🧘",
+      "meaning": "佛像",
+      "level": 1
+    },
+    {
+      "initial": "d",
+      "final": "e",
+      "pinyin": "dé",
+      "tone": 2,
+      "char": "德",
+      "emoji": "🏅",
+      "meaning": "道德",
+      "level": 1
+    },
+    {
+      "initial": "t",
+      "final": "e",
+      "pinyin": "tè",
+      "tone": 4,
+      "char": "特",
+      "emoji": "⭐",
+      "meaning": "特别",
+      "level": 1
+    },
+    {
+      "initial": "n",
+      "final": "e",
+      "pinyin": "nè",
+      "tone": 4,
+      "char": "呢",
+      "emoji": "💬",
+      "meaning": "呢",
+      "level": 1
+    },
+    {
+      "initial": "l",
+      "final": "e",
+      "pinyin": "lè",
+      "tone": 4,
+      "char": "乐",
+      "emoji": "😄",
+      "meaning": "快乐",
+      "level": 1
+    },
+    {
+      "initial": "g",
+      "final": "u",
+      "pinyin": "gū",
+      "tone": 1,
+      "char": "姑",
+      "emoji": "👩",
+      "meaning": "姑姑",
+      "level": 1
+    },
+    {
+      "initial": "k",
+      "final": "u",
+      "pinyin": "kù",
+      "tone": 4,
+      "char": "裤",
+      "emoji": "👖",
+      "meaning": "裤子",
+      "level": 1
+    },
+    {
+      "initial": "h",
+      "final": "u",
+      "pinyin": "hū",
+      "tone": 1,
+      "char": "呼",
+      "emoji": "💨",
+      "meaning": "呼吸",
+      "level": 1
+    },
+    {
+      "initial": "j",
+      "final": "i",
+      "pinyin": "jī",
+      "tone": 1,
+      "char": "鸡",
+      "emoji": "🐔",
+      "meaning": "小鸡",
+      "level": 1
+    },
+    {
+      "initial": "q",
+      "final": "i",
+      "pinyin": "qí",
+      "tone": 2,
+      "char": "旗",
+      "emoji": "🚩",
+      "meaning": "旗帜",
+      "level": 1
+    },
+    {
+      "initial": "x",
+      "final": "i",
+      "pinyin": "xī",
+      "tone": 1,
+      "char": "西",
+      "emoji": "➡️",
+      "meaning": "西方",
+      "level": 1
+    },
+    {
+      "initial": "zh",
+      "final": "a",
+      "pinyin": "zhā",
+      "tone": 1,
+      "char": "渣",
+      "emoji": "🍵",
+      "meaning": "渣",
+      "level": 1
+    },
+    {
+      "initial": "ch",
+      "final": "a",
+      "pinyin": "chá",
+      "tone": 2,
+      "char": "茶",
+      "emoji": "🍵",
+      "meaning": "茶叶",
+      "level": 1
+    },
+    {
+      "initial": "sh",
+      "final": "a",
+      "pinyin": "shā",
+      "tone": 1,
+      "char": "沙",
+      "emoji": "🏖️",
+      "meaning": "沙子",
+      "level": 1
+    },
+    {
+      "initial": "z",
+      "final": "a",
+      "pinyin": "zā",
+      "tone": 1,
+      "char": "杂",
+      "emoji": "🗂️",
+      "meaning": "杂",
+      "level": 1
+    },
+    {
+      "initial": "c",
+      "final": "e",
+      "pinyin": "cè",
+      "tone": 4,
+      "char": "册",
+      "emoji": "📒",
+      "meaning": "册子",
+      "level": 1
+    },
+    {
+      "initial": "s",
+      "final": "a",
+      "pinyin": "sā",
+      "tone": 1,
+      "char": "撒",
+      "emoji": "✋",
+      "meaning": "撒",
+      "level": 1
+    },
+    {
+      "initial": "b",
+      "final": "ai",
+      "pinyin": "bài",
+      "tone": 4,
+      "char": "白",
+      "emoji": "⚪",
+      "meaning": "白色",
+      "level": 1
+    },
+    {
+      "initial": "p",
+      "final": "ai",
+      "pinyin": "pái",
+      "tone": 2,
+      "char": "排",
+      "emoji": "🪑",
+      "meaning": "排队",
+      "level": 1
+    },
+    {
+      "initial": "m",
+      "final": "ai",
+      "pinyin": "mái",
+      "tone": 2,
+      "char": "买",
+      "emoji": "🛒",
+      "meaning": "买",
+      "level": 1
+    },
+    {
+      "initial": "d",
+      "final": "ai",
+      "pinyin": "dài",
+      "tone": 4,
+      "char": "带",
+      "emoji": "🎀",
+      "meaning": "带子",
+      "level": 1
+    },
+    {
+      "initial": "t",
+      "final": "ai",
+      "pinyin": "tái",
+      "tone": 2,
+      "char": "台",
+      "emoji": "📺",
+      "meaning": "台子",
+      "level": 1
+    },
+    {
+      "initial": "n",
+      "final": "ao",
+      "pinyin": "nǎo",
+      "tone": 3,
+      "char": "脑",
+      "emoji": "🧠",
+      "meaning": "脑子",
+      "level": 1
+    },
+    {
+      "initial": "l",
+      "final": "ao",
+      "pinyin": "láo",
+      "tone": 2,
+      "char": "劳",
+      "emoji": "💪",
+      "meaning": "劳动",
+      "level": 1
+    },
+    {
+      "initial": "g",
+      "final": "ai",
+      "pinyin": "gāi",
+      "tone": 1,
+      "char": "该",
+      "emoji": "📌",
+      "meaning": "应该",
+      "level": 2
+    },
+    {
+      "initial": "k",
+      "final": "ai",
+      "pinyin": "kāi",
+      "tone": 1,
+      "char": "开",
+      "emoji": "🔓",
+      "meaning": "打开",
+      "level": 2
+    },
+    {
+      "initial": "h",
+      "final": "ai",
+      "pinyin": "hǎi",
+      "tone": 3,
+      "char": "海",
+      "emoji": "🌊",
+      "meaning": "大海",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "ai",
+      "pinyin": "zǎi",
+      "tone": 3,
+      "char": "在",
+      "emoji": "📍",
+      "meaning": "在",
+      "level": 2
+    },
+    {
+      "initial": "c",
+      "final": "ai",
+      "pinyin": "cài",
+      "tone": 4,
+      "char": "菜",
+      "emoji": "🥬",
+      "meaning": "蔬菜",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "ai",
+      "pinyin": "sài",
+      "tone": 4,
+      "char": "赛",
+      "emoji": "🏁",
+      "meaning": "比赛",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "ei",
+      "pinyin": "bèi",
+      "tone": 4,
+      "char": "贝",
+      "emoji": "🐚",
+      "meaning": "贝壳",
+      "level": 2
+    },
+    {
+      "initial": "p",
+      "final": "ei",
+      "pinyin": "péi",
+      "tone": 2,
+      "char": "陪",
+      "emoji": "🤝",
+      "meaning": "陪伴",
+      "level": 2
+    },
+    {
+      "initial": "m",
+      "final": "ei",
+      "pinyin": "méi",
+      "tone": 2,
+      "char": "梅",
+      "emoji": "🍓",
+      "meaning": "梅花",
+      "level": 2
+    },
+    {
+      "initial": "d",
+      "final": "ui",
+      "pinyin": "dùi",
+      "tone": 4,
+      "char": "对",
+      "emoji": "✔️",
+      "meaning": "对",
+      "level": 2
+    },
+    {
+      "initial": "t",
+      "final": "ui",
+      "pinyin": "túi",
+      "tone": 2,
+      "char": "推",
+      "emoji": "✊",
+      "meaning": "推",
+      "level": 2
+    },
+    {
+      "initial": "g",
+      "final": "ui",
+      "pinyin": "gūi",
+      "tone": 1,
+      "char": "归",
+      "emoji": "🏠",
+      "meaning": "回归",
+      "level": 2
+    },
+    {
+      "initial": "k",
+      "final": "ui",
+      "pinyin": "kùi",
+      "tone": 4,
+      "char": "愧",
+      "emoji": "😟",
+      "meaning": "惭愧",
+      "level": 2
+    },
+    {
+      "initial": "h",
+      "final": "ui",
+      "pinyin": "hūi",
+      "tone": 1,
+      "char": "回",
+      "emoji": "↩️",
+      "meaning": "回来",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "ui",
+      "pinyin": "zǔi",
+      "tone": 3,
+      "char": "嘴",
+      "emoji": "👄",
+      "meaning": "嘴巴",
+      "level": 2
+    },
+    {
+      "initial": "c",
+      "final": "ui",
+      "pinyin": "cùi",
+      "tone": 4,
+      "char": "脆",
+      "emoji": "🥖",
+      "meaning": "脆",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "ui",
+      "pinyin": "sǔi",
+      "tone": 3,
+      "char": "岁",
+      "emoji": "🎂",
+      "meaning": "岁",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "ao",
+      "pinyin": "bāo",
+      "tone": 1,
+      "char": "包",
+      "emoji": "🥟",
+      "meaning": "包子",
+      "level": 2
+    },
+    {
+      "initial": "p",
+      "final": "ao",
+      "pinyin": "pào",
+      "tone": 4,
+      "char": "泡",
+      "emoji": "🫧",
+      "meaning": "泡泡",
+      "level": 2
+    },
+    {
+      "initial": "m",
+      "final": "ao",
+      "pinyin": "māo",
+      "tone": 1,
+      "char": "猫",
+      "emoji": "🐱",
+      "meaning": "小猫",
+      "level": 2
+    },
+    {
+      "initial": "d",
+      "final": "ao",
+      "pinyin": "dāo",
+      "tone": 1,
+      "char": "刀",
+      "emoji": "🔪",
+      "meaning": "刀",
+      "level": 2
+    },
+    {
+      "initial": "t",
+      "final": "ao",
+      "pinyin": "táo",
+      "tone": 2,
+      "char": "桃",
+      "emoji": "🍑",
+      "meaning": "桃子",
+      "level": 2
+    },
+    {
+      "initial": "g",
+      "final": "ao",
+      "pinyin": "gāo",
+      "tone": 1,
+      "char": "高",
+      "emoji": "📏",
+      "meaning": "高",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "ao",
+      "pinyin": "zāo",
+      "tone": 1,
+      "char": "早",
+      "emoji": "🌅",
+      "meaning": "早",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "ao",
+      "pinyin": "sǎo",
+      "tone": 3,
+      "char": "扫",
+      "emoji": "🧹",
+      "meaning": "扫地",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "an",
+      "pinyin": "bān",
+      "tone": 1,
+      "char": "班",
+      "emoji": "🏫",
+      "meaning": "班级",
+      "level": 2
+    },
+    {
+      "initial": "p",
+      "final": "an",
+      "pinyin": "pán",
+      "tone": 2,
+      "char": "盘",
+      "emoji": "🍽️",
+      "meaning": "盘子",
+      "level": 2
+    },
+    {
+      "initial": "m",
+      "final": "an",
+      "pinyin": "mán",
+      "tone": 2,
+      "char": "满",
+      "emoji": "🈵",
+      "meaning": "满",
+      "level": 2
+    },
+    {
+      "initial": "f",
+      "final": "an",
+      "pinyin": "fán",
+      "tone": 2,
+      "char": "凡",
+      "emoji": "📋",
+      "meaning": "平凡",
+      "level": 2
+    },
+    {
+      "initial": "d",
+      "final": "an",
+      "pinyin": "dān",
+      "tone": 1,
+      "char": "单",
+      "emoji": "📄",
+      "meaning": "单个",
+      "level": 2
+    },
+    {
+      "initial": "t",
+      "final": "an",
+      "pinyin": "tán",
+      "tone": 2,
+      "char": "谈",
+      "emoji": "💬",
+      "meaning": "谈话",
+      "level": 2
+    },
+    {
+      "initial": "n",
+      "final": "an",
+      "pinyin": "nán",
+      "tone": 2,
+      "char": "南",
+      "emoji": "⬇️",
+      "meaning": "南方",
+      "level": 2
+    },
+    {
+      "initial": "l",
+      "final": "an",
+      "pinyin": "lán",
+      "tone": 2,
+      "char": "蓝",
+      "emoji": "🔵",
+      "meaning": "蓝色",
+      "level": 2
+    },
+    {
+      "initial": "g",
+      "final": "an",
+      "pinyin": "gān",
+      "tone": 1,
+      "char": "干",
+      "emoji": "🌵",
+      "meaning": "干",
+      "level": 2
+    },
+    {
+      "initial": "k",
+      "final": "an",
+      "pinyin": "kàn",
+      "tone": 4,
+      "char": "看",
+      "emoji": "👀",
+      "meaning": "看",
+      "level": 2
+    },
+    {
+      "initial": "h",
+      "final": "an",
+      "pinyin": "hàn",
+      "tone": 4,
+      "char": "汉",
+      "emoji": "🀄",
+      "meaning": "汉字",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "an",
+      "pinyin": "zǎn",
+      "tone": 3,
+      "char": "咱",
+      "emoji": "🙋",
+      "meaning": "咱们",
+      "level": 2
+    },
+    {
+      "initial": "c",
+      "final": "an",
+      "pinyin": "cán",
+      "tone": 2,
+      "char": "残",
+      "emoji": "🥀",
+      "meaning": "残",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "an",
+      "pinyin": "sǎn",
+      "tone": 3,
+      "char": "散",
+      "emoji": "✋",
+      "meaning": "散",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "en",
+      "pinyin": "bēn",
+      "tone": 1,
+      "char": "奔",
+      "emoji": "🏃",
+      "meaning": "奔跑",
+      "level": 2
+    },
+    {
+      "initial": "p",
+      "final": "en",
+      "pinyin": "pén",
+      "tone": 2,
+      "char": "盆",
+      "emoji": "🪣",
+      "meaning": "盆",
+      "level": 2
+    },
+    {
+      "initial": "m",
+      "final": "en",
+      "pinyin": "mén",
+      "tone": 2,
+      "char": "门",
+      "emoji": "🚪",
+      "meaning": "门",
+      "level": 2
+    },
+    {
+      "initial": "f",
+      "final": "en",
+      "pinyin": "fēn",
+      "tone": 1,
+      "char": "分",
+      "emoji": "⏱️",
+      "meaning": "分钟",
+      "level": 2
+    },
+    {
+      "initial": "d",
+      "final": "en",
+      "pinyin": "dēn",
+      "tone": 1,
+      "char": "灯",
+      "emoji": "💡",
+      "meaning": "灯",
+      "level": 2
+    },
+    {
+      "initial": "t",
+      "final": "en",
+      "pinyin": "tén",
+      "tone": 2,
+      "char": "疼",
+      "emoji": "🤕",
+      "meaning": "疼",
+      "level": 2
+    },
+    {
+      "initial": "n",
+      "final": "en",
+      "pinyin": "nén",
+      "tone": 2,
+      "char": "嫩",
+      "emoji": "🌱",
+      "meaning": "嫩",
+      "level": 2
+    },
+    {
+      "initial": "g",
+      "final": "en",
+      "pinyin": "gēn",
+      "tone": 1,
+      "char": "跟",
+      "emoji": "👣",
+      "meaning": "跟",
+      "level": 2
+    },
+    {
+      "initial": "k",
+      "final": "en",
+      "pinyin": "kěn",
+      "tone": 3,
+      "char": "肯",
+      "emoji": "✔️",
+      "meaning": "肯定",
+      "level": 2
+    },
+    {
+      "initial": "h",
+      "final": "en",
+      "pinyin": "hěn",
+      "tone": 3,
+      "char": "很",
+      "emoji": "💯",
+      "meaning": "很",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "en",
+      "pinyin": "zěn",
+      "tone": 3,
+      "char": "怎",
+      "emoji": "❓",
+      "meaning": "怎么",
+      "level": 2
+    },
+    {
+      "initial": "c",
+      "final": "en",
+      "pinyin": "cēn",
+      "tone": 1,
+      "char": "参",
+      "emoji": "🤝",
+      "meaning": "参加",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "en",
+      "pinyin": "sēn",
+      "tone": 1,
+      "char": "森",
+      "emoji": "🌲",
+      "meaning": "森林",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "ang",
+      "pinyin": "bāng",
+      "tone": 1,
+      "char": "帮",
+      "emoji": "🤝",
+      "meaning": "帮助",
+      "level": 2
+    },
+    {
+      "initial": "p",
+      "final": "ang",
+      "pinyin": "páng",
+      "tone": 2,
+      "char": "旁",
+      "emoji": "↔️",
+      "meaning": "旁边",
+      "level": 2
+    },
+    {
+      "initial": "m",
+      "final": "ang",
+      "pinyin": "máng",
+      "tone": 2,
+      "char": "忙",
+      "emoji": "🏃",
+      "meaning": "忙",
+      "level": 2
+    },
+    {
+      "initial": "f",
+      "final": "ang",
+      "pinyin": "fáng",
+      "tone": 2,
+      "char": "房",
+      "emoji": "🏠",
+      "meaning": "房子",
+      "level": 2
+    },
+    {
+      "initial": "d",
+      "final": "ang",
+      "pinyin": "dāng",
+      "tone": 1,
+      "char": "当",
+      "emoji": "📌",
+      "meaning": "当",
+      "level": 2
+    },
+    {
+      "initial": "t",
+      "final": "ang",
+      "pinyin": "táng",
+      "tone": 2,
+      "char": "糖",
+      "emoji": "🍬",
+      "meaning": "糖",
+      "level": 2
+    },
+    {
+      "initial": "n",
+      "final": "ang",
+      "pinyin": "náng",
+      "tone": 2,
+      "char": "囊",
+      "emoji": "🎒",
+      "meaning": "行囊",
+      "level": 2
+    },
+    {
+      "initial": "l",
+      "final": "ang",
+      "pinyin": "láng",
+      "tone": 2,
+      "char": "狼",
+      "emoji": "🐺",
+      "meaning": "狼",
+      "level": 2
+    },
+    {
+      "initial": "g",
+      "final": "ang",
+      "pinyin": "gāng",
+      "tone": 1,
+      "char": "刚",
+      "emoji": "✅",
+      "meaning": "刚",
+      "level": 2
+    },
+    {
+      "initial": "k",
+      "final": "ang",
+      "pinyin": "kàng",
+      "tone": 4,
+      "char": "抗",
+      "emoji": "🛡️",
+      "meaning": "抗",
+      "level": 2
+    },
+    {
+      "initial": "h",
+      "final": "ang",
+      "pinyin": "háng",
+      "tone": 2,
+      "char": "航",
+      "emoji": "✈️",
+      "meaning": "航行",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "ang",
+      "pinyin": "zāng",
+      "tone": 1,
+      "char": "脏",
+      "emoji": "🤢",
+      "meaning": "脏",
+      "level": 2
+    },
+    {
+      "initial": "c",
+      "final": "ang",
+      "pinyin": "cáng",
+      "tone": 2,
+      "char": "藏",
+      "emoji": "📦",
+      "meaning": "藏",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "ang",
+      "pinyin": "sāng",
+      "tone": 1,
+      "char": "桑",
+      "emoji": "🌿",
+      "meaning": "桑",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "ing",
+      "pinyin": "bīng",
+      "tone": 1,
+      "char": "冰",
+      "emoji": "🧊",
+      "meaning": "冰",
+      "level": 2
+    },
+    {
+      "initial": "p",
+      "final": "ing",
+      "pinyin": "píng",
+      "tone": 2,
+      "char": "平",
+      "emoji": "🕊️",
+      "meaning": "平安",
+      "level": 2
+    },
+    {
+      "initial": "m",
+      "final": "ing",
+      "pinyin": "míng",
+      "tone": 2,
+      "char": "明",
+      "emoji": "☀️",
+      "meaning": "明天",
+      "level": 2
+    },
+    {
+      "initial": "d",
+      "final": "ing",
+      "pinyin": "dīng",
+      "tone": 1,
+      "char": "丁",
+      "emoji": "🔔",
+      "meaning": "丁",
+      "level": 2
+    },
+    {
+      "initial": "t",
+      "final": "ing",
+      "pinyin": "tíng",
+      "tone": 2,
+      "char": "亭",
+      "emoji": "⛲",
+      "meaning": "亭子",
+      "level": 2
+    },
+    {
+      "initial": "n",
+      "final": "ing",
+      "pinyin": "níng",
+      "tone": 2,
+      "char": "宁",
+      "emoji": "🕊️",
+      "meaning": "宁静",
+      "level": 2
+    },
+    {
+      "initial": "l",
+      "final": "ing",
+      "pinyin": "líng",
+      "tone": 2,
+      "char": "铃",
+      "emoji": "🔔",
+      "meaning": "铃铛",
+      "level": 2
+    },
+    {
+      "initial": "j",
+      "final": "ing",
+      "pinyin": "jīng",
+      "tone": 1,
+      "char": "京",
+      "emoji": "🏙️",
+      "meaning": "北京",
+      "level": 2
+    },
+    {
+      "initial": "q",
+      "final": "ing",
+      "pinyin": "qīng",
+      "tone": 1,
+      "char": "青",
+      "emoji": "🌿",
+      "meaning": "青色",
+      "level": 2
+    },
+    {
+      "initial": "x",
+      "final": "ing",
+      "pinyin": "xīng",
+      "tone": 1,
+      "char": "星",
+      "emoji": "⭐",
+      "meaning": "星星",
+      "level": 2
+    },
+    {
+      "initial": "zh",
+      "final": "ang",
+      "pinyin": "zhāng",
+      "tone": 1,
+      "char": "张",
+      "emoji": "🪪",
+      "meaning": "张开",
+      "level": 2
+    },
+    {
+      "initial": "ch",
+      "final": "ang",
+      "pinyin": "cháng",
+      "tone": 2,
+      "char": "长",
+      "emoji": "📏",
+      "meaning": "长",
+      "level": 2
+    },
+    {
+      "initial": "sh",
+      "final": "ang",
+      "pinyin": "shàng",
+      "tone": 4,
+      "char": "上",
+      "emoji": "⬆️",
+      "meaning": "上面",
+      "level": 2
+    },
+    {
+      "initial": "r",
+      "final": "ang",
+      "pinyin": "rǎng",
+      "tone": 3,
+      "char": "嚷",
+      "emoji": "🔊",
+      "meaning": "嚷",
+      "level": 2
+    },
+    {
+      "initial": "z",
+      "final": "eng",
+      "pinyin": "zēng",
+      "tone": 1,
+      "char": "曾",
+      "emoji": "🙋",
+      "meaning": "曾经",
+      "level": 2
+    },
+    {
+      "initial": "c",
+      "final": "eng",
+      "pinyin": "céng",
+      "tone": 2,
+      "char": "层",
+      "emoji": "🏢",
+      "meaning": "层",
+      "level": 2
+    },
+    {
+      "initial": "s",
+      "final": "eng",
+      "pinyin": "sēng",
+      "tone": 1,
+      "char": "僧",
+      "emoji": "🧘",
+      "meaning": "僧",
+      "level": 2
+    },
+    {
+      "initial": "b",
+      "final": "o",
+      "pinyin": "bó",
+      "tone": 2,
+      "char": "伯",
+      "emoji": "👴",
+      "meaning": "伯伯",
+      "level": 3
+    },
+    {
+      "initial": "p",
+      "final": "o",
+      "pinyin": "pò",
+      "tone": 4,
+      "char": "破",
+      "emoji": "🪨",
+      "meaning": "破",
+      "level": 3
+    },
+    {
+      "initial": "m",
+      "final": "o",
+      "pinyin": "mò",
+      "tone": 4,
+      "char": "墨",
+      "emoji": "🖋️",
+      "meaning": "墨水",
+      "level": 3
+    },
+    {
+      "initial": "f",
+      "final": "u",
+      "pinyin": "fū",
+      "tone": 1,
+      "char": "夫",
+      "emoji": "👨",
+      "meaning": "农夫",
+      "level": 3
+    },
+    {
+      "initial": "d",
+      "final": "u",
+      "pinyin": "dū",
+      "tone": 1,
+      "char": "都",
+      "emoji": "🏙️",
+      "meaning": "都",
+      "level": 3
+    },
+    {
+      "initial": "t",
+      "final": "u",
+      "pinyin": "tǔ",
+      "tone": 3,
+      "char": "土",
+      "emoji": "🟫",
+      "meaning": "土地",
+      "level": 3
+    },
+    {
+      "initial": "n",
+      "final": "u",
+      "pinyin": "nǔ",
+      "tone": 3,
+      "char": "努",
+      "emoji": "💪",
+      "meaning": "努力",
+      "level": 3
+    },
+    {
+      "initial": "g",
+      "final": "u",
+      "pinyin": "gǔ",
+      "tone": 3,
+      "char": "古",
+      "emoji": "🏛️",
+      "meaning": "古老",
+      "level": 3
+    },
+    {
+      "initial": "k",
+      "final": "u",
+      "pinyin": "kǔ",
+      "tone": 3,
+      "char": "苦",
+      "emoji": "🌿",
+      "meaning": "苦",
+      "level": 3
+    },
+    {
+      "initial": "h",
+      "final": "u",
+      "pinyin": "hǔ",
+      "tone": 3,
+      "char": "虎",
+      "emoji": "🐯",
+      "meaning": "老虎",
+      "level": 3
+    },
+    {
+      "initial": "j",
+      "final": "u",
+      "pinyin": "jū",
+      "tone": 1,
+      "char": "居",
+      "emoji": "🏠",
+      "meaning": "居住",
+      "level": 3
+    },
+    {
+      "initial": "q",
+      "final": "u",
+      "pinyin": "qū",
+      "tone": 1,
+      "char": "区",
+      "emoji": "🗺️",
+      "meaning": "区",
+      "level": 3
+    },
+    {
+      "initial": "x",
+      "final": "u",
+      "pinyin": "xū",
+      "tone": 1,
+      "char": "须",
+      "emoji": "💡",
+      "meaning": "必须",
+      "level": 3
+    },
+    {
+      "initial": "zh",
+      "final": "u",
+      "pinyin": "zhù",
+      "tone": 4,
+      "char": "住",
+      "emoji": "🏠",
+      "meaning": "住",
+      "level": 3
+    },
+    {
+      "initial": "ch",
+      "final": "u",
+      "pinyin": "chū",
+      "tone": 1,
+      "char": "出",
+      "emoji": "⬅️",
+      "meaning": "出来",
+      "level": 3
+    },
+    {
+      "initial": "sh",
+      "final": "u",
+      "pinyin": "shū",
+      "tone": 1,
+      "char": "书",
+      "emoji": "📚",
+      "meaning": "书",
+      "level": 3
+    },
+    {
+      "initial": "r",
+      "final": "u",
+      "pinyin": "rù",
+      "tone": 4,
+      "char": "入",
+      "emoji": "➡️",
+      "meaning": "进入",
+      "level": 3
+    },
+    {
+      "initial": "c",
+      "final": "u",
+      "pinyin": "cù",
+      "tone": 4,
+      "char": "促",
+      "emoji": "⏩",
+      "meaning": "促进",
+      "level": 3
+    },
+    {
+      "initial": "s",
+      "final": "u",
+      "pinyin": "sù",
+      "tone": 4,
+      "char": "速",
+      "emoji": "💨",
+      "meaning": "速度",
+      "level": 3
+    },
+    {
+      "pinyin": "zhi",
+      "tone": 1,
+      "char": "知",
+      "emoji": "💡",
+      "meaning": "知道",
+      "level": 1
+    },
+    {
+      "pinyin": "chi",
+      "tone": 1,
+      "char": "吃",
+      "emoji": "😋",
+      "meaning": "吃",
+      "level": 1
+    },
+    {
+      "pinyin": "shi",
+      "tone": 4,
+      "char": "是",
+      "emoji": "✔️",
+      "meaning": "是",
+      "level": 1
+    },
+    {
+      "pinyin": "ri",
+      "tone": 4,
+      "char": "日",
+      "emoji": "☀️",
+      "meaning": "太阳",
+      "level": 1
+    },
+    {
+      "pinyin": "zi",
+      "tone": 4,
+      "char": "字",
+      "emoji": "🔤",
+      "meaning": "字",
+      "level": 1
+    },
+    {
+      "pinyin": "ci",
+      "tone": 2,
+      "char": "词",
+      "emoji": "🔡",
+      "meaning": "词",
+      "level": 1
+    },
+    {
+      "pinyin": "si",
+      "tone": 1,
+      "char": "四",
+      "emoji": "4️⃣",
+      "meaning": "四",
+      "level": 1
+    },
+    {
+      "pinyin": "yi",
+      "tone": 1,
+      "char": "一",
+      "emoji": "1️⃣",
+      "meaning": "一",
+      "level": 1
+    },
+    {
+      "pinyin": "wu",
+      "tone": 3,
+      "char": "五",
+      "emoji": "5️⃣",
+      "meaning": "五",
+      "level": 1
+    },
+    {
+      "pinyin": "yu",
+      "tone": 2,
+      "char": "鱼",
+      "emoji": "🐟",
+      "meaning": "鱼",
+      "level": 1
+    },
+    {
+      "pinyin": "ye",
+      "tone": 4,
+      "char": "叶",
+      "emoji": "🍃",
+      "meaning": "叶子",
+      "level": 1
+    },
+    {
+      "pinyin": "yue",
+      "tone": 4,
+      "char": "月",
+      "emoji": "🌙",
+      "meaning": "月亮",
+      "level": 1
+    },
+    {
+      "pinyin": "yuan",
+      "tone": 2,
+      "char": "圆",
+      "emoji": "⚪",
+      "meaning": "圆",
+      "level": 1
+    },
+    {
+      "pinyin": "yin",
+      "tone": 1,
+      "char": "音",
+      "emoji": "🎵",
+      "meaning": "音乐",
+      "level": 1
+    },
+    {
+      "pinyin": "yun",
+      "tone": 2,
+      "char": "云",
+      "emoji": "☁️",
+      "meaning": "云",
+      "level": 1
+    },
+    {
+      "pinyin": "ying",
+      "tone": 1,
+      "char": "鹰",
+      "emoji": "🦅",
+      "meaning": "老鹰",
+      "level": 1
+    }
+  ]
+}

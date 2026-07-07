@@ -1,0 +1,8352 @@
+{
+  "version": 1,
+  "chars": [
+    {
+      "char": "人",
+      "pinyin": "rén",
+      "emoji": "👤",
+      "meaning": "人们",
+      "initial": "r",
+      "final": "en",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "人体",
+        "常用字"
+      ]
+    },
+    {
+      "char": "口",
+      "pinyin": "kǒu",
+      "emoji": "👄",
+      "meaning": "嘴巴",
+      "initial": "k",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "人体",
+        "常用字"
+      ]
+    },
+    {
+      "char": "手",
+      "pinyin": "shǒu",
+      "emoji": "✋",
+      "meaning": "小手",
+      "initial": "sh",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "人体",
+        "常用字"
+      ]
+    },
+    {
+      "char": "日",
+      "pinyin": "rì",
+      "emoji": "☀️",
+      "meaning": "太阳",
+      "initial": "r",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "自然",
+        "常用字"
+      ],
+      "antonym": "月"
+    },
+    {
+      "char": "月",
+      "pinyin": "yuè",
+      "emoji": "🌙",
+      "meaning": "月亮",
+      "initial": "y",
+      "final": "ue",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "自然",
+        "常用字"
+      ],
+      "antonym": "日"
+    },
+    {
+      "char": "水",
+      "pinyin": "shǔi",
+      "emoji": "💧",
+      "meaning": "喝水",
+      "initial": "sh",
+      "final": "ui",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "自然",
+        "常用字"
+      ],
+      "antonym": "火"
+    },
+    {
+      "char": "火",
+      "pinyin": "huǒ",
+      "emoji": "🔥",
+      "meaning": "火苗",
+      "initial": "h",
+      "final": "uo",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "自然",
+        "常用字"
+      ],
+      "antonym": "水"
+    },
+    {
+      "char": "山",
+      "pinyin": "shān",
+      "emoji": "⛰️",
+      "meaning": "高山",
+      "initial": "sh",
+      "final": "an",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "座"
+    },
+    {
+      "char": "石",
+      "pinyin": "shí",
+      "emoji": "🪨",
+      "meaning": "石头",
+      "initial": "sh",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "田",
+      "pinyin": "tián",
+      "emoji": "🌾",
+      "meaning": "田地",
+      "initial": "t",
+      "final": "ian",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "土",
+      "pinyin": "tǔ",
+      "emoji": "🟫",
+      "meaning": "土地",
+      "initial": "t",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "自然",
+        "常用字"
+      ]
+    },
+    {
+      "char": "木",
+      "pinyin": "mù",
+      "emoji": "🌳",
+      "meaning": "树木",
+      "initial": "m",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "棵"
+    },
+    {
+      "char": "花",
+      "pinyin": "huā",
+      "emoji": "🌸",
+      "meaning": "花朵",
+      "initial": "h",
+      "final": "ua",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "朵"
+    },
+    {
+      "char": "鸟",
+      "pinyin": "niǎo",
+      "emoji": "🐦",
+      "meaning": "小鸟",
+      "initial": "n",
+      "final": "iao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "虫",
+      "pinyin": "chóng",
+      "emoji": "🐛",
+      "meaning": "虫子",
+      "initial": "ch",
+      "final": "ong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "鱼",
+      "pinyin": "yú",
+      "emoji": "🐟",
+      "meaning": "小鱼",
+      "initial": "y",
+      "final": "u",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "马",
+      "pinyin": "mǎ",
+      "emoji": "🐴",
+      "meaning": "马儿",
+      "initial": "m",
+      "final": "a",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "匹"
+    },
+    {
+      "char": "牛",
+      "pinyin": "niú",
+      "emoji": "🐮",
+      "meaning": "黄牛",
+      "initial": "n",
+      "final": "iu",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "头"
+    },
+    {
+      "char": "羊",
+      "pinyin": "yáng",
+      "emoji": "🐑",
+      "meaning": "山羊",
+      "initial": "y",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "犬",
+      "pinyin": "quǎn",
+      "emoji": "🐶",
+      "meaning": "小狗",
+      "initial": "q",
+      "final": "uan",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "狗",
+      "pinyin": "gǒu",
+      "emoji": "🐶",
+      "meaning": "小狗",
+      "initial": "g",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "猫",
+      "pinyin": "māo",
+      "emoji": "🐱",
+      "meaning": "小猫",
+      "initial": "m",
+      "final": "ao",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "兔",
+      "pinyin": "tù",
+      "emoji": "🐰",
+      "meaning": "兔子",
+      "initial": "t",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "猪",
+      "pinyin": "zhū",
+      "emoji": "🐷",
+      "meaning": "小猪",
+      "initial": "zh",
+      "final": "u",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "头"
+    },
+    {
+      "char": "鸡",
+      "pinyin": "jī",
+      "emoji": "🐔",
+      "meaning": "小鸡",
+      "initial": "j",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "鸭",
+      "pinyin": "yā",
+      "emoji": "🦆",
+      "meaning": "鸭子",
+      "initial": "y",
+      "final": "a",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "鹅",
+      "pinyin": "é",
+      "emoji": "🦢",
+      "meaning": "白鹅",
+      "initial": "",
+      "final": "e",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "鼠",
+      "pinyin": "shǔ",
+      "emoji": "🐭",
+      "meaning": "老鼠",
+      "initial": "sh",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "虎",
+      "pinyin": "hǔ",
+      "emoji": "🐯",
+      "meaning": "老虎",
+      "initial": "h",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "狮",
+      "pinyin": "shī",
+      "emoji": "🦁",
+      "meaning": "狮子",
+      "initial": "sh",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "象",
+      "pinyin": "xiàng",
+      "emoji": "🐘",
+      "meaning": "大象",
+      "initial": "x",
+      "final": "iang",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "头"
+    },
+    {
+      "char": "鹿",
+      "pinyin": "lù",
+      "emoji": "🦌",
+      "meaning": "小鹿",
+      "initial": "l",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "猴",
+      "pinyin": "hóu",
+      "emoji": "🐵",
+      "meaning": "猴子",
+      "initial": "h",
+      "final": "ou",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "熊",
+      "pinyin": "xióng",
+      "emoji": "🐻",
+      "meaning": "熊",
+      "initial": "x",
+      "final": "iong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "蛇",
+      "pinyin": "shé",
+      "emoji": "🐍",
+      "meaning": "蛇",
+      "initial": "sh",
+      "final": "e",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "龙",
+      "pinyin": "lóng",
+      "emoji": "🐉",
+      "meaning": "龙",
+      "initial": "l",
+      "final": "ong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "龟",
+      "pinyin": "gūi",
+      "emoji": "🐢",
+      "meaning": "乌龟",
+      "initial": "g",
+      "final": "ui",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "蛙",
+      "pinyin": "wā",
+      "emoji": "🐸",
+      "meaning": "青蛙",
+      "initial": "w",
+      "final": "a",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "蜂",
+      "pinyin": "fēng",
+      "emoji": "🐝",
+      "meaning": "蜜蜂",
+      "initial": "f",
+      "final": "eng",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "蝶",
+      "pinyin": "dié",
+      "emoji": "🦋",
+      "meaning": "蝴蝶",
+      "initial": "d",
+      "final": "ie",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "蚁",
+      "pinyin": "yǐ",
+      "emoji": "🐜",
+      "meaning": "蚂蚁",
+      "initial": "y",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "虾",
+      "pinyin": "xiā",
+      "emoji": "🦐",
+      "meaning": "虾",
+      "initial": "x",
+      "final": "ia",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "蟹",
+      "pinyin": "xiè",
+      "emoji": "🦀",
+      "meaning": "螃蟹",
+      "initial": "x",
+      "final": "ie",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "动物",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "贝",
+      "pinyin": "bèi",
+      "emoji": "🐚",
+      "meaning": "贝壳",
+      "initial": "b",
+      "final": "ei",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "果",
+      "pinyin": "guǒ",
+      "emoji": "🍎",
+      "meaning": "水果",
+      "initial": "g",
+      "final": "uo",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "桃",
+      "pinyin": "táo",
+      "emoji": "🍑",
+      "meaning": "桃子",
+      "initial": "t",
+      "final": "ao",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "梨",
+      "pinyin": "lí",
+      "emoji": "🍐",
+      "meaning": "梨",
+      "initial": "l",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "瓜",
+      "pinyin": "guā",
+      "emoji": "🍉",
+      "meaning": "瓜",
+      "initial": "g",
+      "final": "ua",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "蕉",
+      "pinyin": "jiāo",
+      "emoji": "🍌",
+      "meaning": "香蕉",
+      "initial": "j",
+      "final": "iao",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "根"
+    },
+    {
+      "char": "草",
+      "pinyin": "cǎo",
+      "emoji": "🌿",
+      "meaning": "草",
+      "initial": "c",
+      "final": "ao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "棵"
+    },
+    {
+      "char": "莓",
+      "pinyin": "méi",
+      "emoji": "🍓",
+      "meaning": "草莓",
+      "initial": "m",
+      "final": "ei",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "植物",
+        "常用字"
+      ],
+      "measureWord": "颗"
+    },
+    {
+      "char": "米",
+      "pinyin": "mǐ",
+      "emoji": "🍚",
+      "meaning": "米饭",
+      "initial": "m",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "粒"
+    },
+    {
+      "char": "饭",
+      "pinyin": "fàn",
+      "emoji": "🍚",
+      "meaning": "吃饭",
+      "initial": "f",
+      "final": "an",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "碗"
+    },
+    {
+      "char": "面",
+      "pinyin": "miàn",
+      "emoji": "🍜",
+      "meaning": "面条",
+      "initial": "m",
+      "final": "ian",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "碗"
+    },
+    {
+      "char": "包",
+      "pinyin": "bāo",
+      "emoji": "🥟",
+      "meaning": "包子",
+      "initial": "b",
+      "final": "ao",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "蛋",
+      "pinyin": "dàn",
+      "emoji": "🥚",
+      "meaning": "鸡蛋",
+      "initial": "d",
+      "final": "an",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "肉",
+      "pinyin": "ròu",
+      "emoji": "🍖",
+      "meaning": "肉",
+      "initial": "r",
+      "final": "ou",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "菜",
+      "pinyin": "cài",
+      "emoji": "🥬",
+      "meaning": "蔬菜",
+      "initial": "c",
+      "final": "ai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "棵"
+    },
+    {
+      "char": "汤",
+      "pinyin": "tāng",
+      "emoji": "🍲",
+      "meaning": "汤",
+      "initial": "t",
+      "final": "ang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "碗"
+    },
+    {
+      "char": "茶",
+      "pinyin": "chá",
+      "emoji": "🍵",
+      "meaning": "茶",
+      "initial": "ch",
+      "final": "a",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "杯"
+    },
+    {
+      "char": "奶",
+      "pinyin": "nǎi",
+      "emoji": "🥛",
+      "meaning": "牛奶",
+      "initial": "n",
+      "final": "ai",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "杯"
+    },
+    {
+      "char": "糖",
+      "pinyin": "táng",
+      "emoji": "🍬",
+      "meaning": "糖",
+      "initial": "t",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "颗"
+    },
+    {
+      "char": "盐",
+      "pinyin": "yán",
+      "emoji": "🧂",
+      "meaning": "盐",
+      "initial": "y",
+      "final": "an",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "勺"
+    },
+    {
+      "char": "油",
+      "pinyin": "yóu",
+      "emoji": "🫗",
+      "meaning": "油",
+      "initial": "y",
+      "final": "ou",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "滴"
+    },
+    {
+      "char": "醋",
+      "pinyin": "cù",
+      "emoji": "🧴",
+      "meaning": "醋",
+      "initial": "c",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "食物",
+        "常用字"
+      ],
+      "measureWord": "勺"
+    },
+    {
+      "char": "锅",
+      "pinyin": "guō",
+      "emoji": "🍳",
+      "meaning": "锅",
+      "initial": "g",
+      "final": "uo",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "口"
+    },
+    {
+      "char": "碗",
+      "pinyin": "wǎn",
+      "emoji": "🥣",
+      "meaning": "碗",
+      "initial": "w",
+      "final": "an",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "筷",
+      "pinyin": "kuài",
+      "emoji": "🥢",
+      "meaning": "筷子",
+      "initial": "k",
+      "final": "uai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "双"
+    },
+    {
+      "char": "刀",
+      "pinyin": "dāo",
+      "emoji": "🔪",
+      "meaning": "刀",
+      "initial": "d",
+      "final": "ao",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "把"
+    },
+    {
+      "char": "叉",
+      "pinyin": "chā",
+      "emoji": "🍴",
+      "meaning": "叉子",
+      "initial": "ch",
+      "final": "a",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "把"
+    },
+    {
+      "char": "杯",
+      "pinyin": "bēi",
+      "emoji": "🥤",
+      "meaning": "杯子",
+      "initial": "b",
+      "final": "ei",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "壶",
+      "pinyin": "hú",
+      "emoji": "🫖",
+      "meaning": "水壶",
+      "initial": "h",
+      "final": "u",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "把"
+    },
+    {
+      "char": "盘",
+      "pinyin": "pán",
+      "emoji": "🍽️",
+      "meaning": "盘子",
+      "initial": "p",
+      "final": "an",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "瓶",
+      "pinyin": "píng",
+      "emoji": "🍾",
+      "meaning": "瓶子",
+      "initial": "p",
+      "final": "ing",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "车",
+      "pinyin": "chē",
+      "emoji": "🚗",
+      "meaning": "汽车",
+      "initial": "ch",
+      "final": "e",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "交通",
+        "常用字"
+      ],
+      "measureWord": "辆"
+    },
+    {
+      "char": "船",
+      "pinyin": "chuán",
+      "emoji": "🚢",
+      "meaning": "船",
+      "initial": "ch",
+      "final": "uan",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "交通",
+        "常用字"
+      ],
+      "measureWord": "艘"
+    },
+    {
+      "char": "机",
+      "pinyin": "jī",
+      "emoji": "✈️",
+      "meaning": "飞机",
+      "initial": "j",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "交通",
+        "常用字"
+      ],
+      "measureWord": "架"
+    },
+    {
+      "char": "路",
+      "pinyin": "lù",
+      "emoji": "🛣️",
+      "meaning": "道路",
+      "initial": "l",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "交通",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "桥",
+      "pinyin": "qiáo",
+      "emoji": "🌉",
+      "meaning": "桥",
+      "initial": "q",
+      "final": "iao",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "交通",
+        "常用字"
+      ],
+      "measureWord": "座"
+    },
+    {
+      "char": "门",
+      "pinyin": "mén",
+      "emoji": "🚪",
+      "meaning": "大门",
+      "initial": "m",
+      "final": "en",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "扇"
+    },
+    {
+      "char": "窗",
+      "pinyin": "chuāng",
+      "emoji": "🪟",
+      "meaning": "窗户",
+      "initial": "ch",
+      "final": "uang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "扇"
+    },
+    {
+      "char": "房",
+      "pinyin": "fáng",
+      "emoji": "🏠",
+      "meaning": "房子",
+      "initial": "f",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "间"
+    },
+    {
+      "char": "家",
+      "pinyin": "jiā",
+      "emoji": "🏠",
+      "meaning": "家",
+      "initial": "j",
+      "final": "ia",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "屋",
+      "pinyin": "wū",
+      "emoji": "🏠",
+      "meaning": "屋子",
+      "initial": "w",
+      "final": "u",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "间"
+    },
+    {
+      "char": "墙",
+      "pinyin": "qiáng",
+      "emoji": "🧱",
+      "meaning": "墙",
+      "initial": "q",
+      "final": "iang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "面"
+    },
+    {
+      "char": "桌",
+      "pinyin": "zhuō",
+      "emoji": "🪑",
+      "meaning": "桌子",
+      "initial": "zh",
+      "final": "uo",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "家具",
+        "常用字"
+      ],
+      "measureWord": "张"
+    },
+    {
+      "char": "椅",
+      "pinyin": "yǐ",
+      "emoji": "🪑",
+      "meaning": "椅子",
+      "initial": "y",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "家具",
+        "常用字"
+      ],
+      "measureWord": "把"
+    },
+    {
+      "char": "床",
+      "pinyin": "chuáng",
+      "emoji": "🛏️",
+      "meaning": "床",
+      "initial": "ch",
+      "final": "uang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "家具",
+        "常用字"
+      ],
+      "measureWord": "张"
+    },
+    {
+      "char": "灯",
+      "pinyin": "dēng",
+      "emoji": "💡",
+      "meaning": "灯",
+      "initial": "d",
+      "final": "eng",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "家具",
+        "常用字"
+      ],
+      "measureWord": "盏"
+    },
+    {
+      "char": "钟",
+      "pinyin": "zhōng",
+      "emoji": "🕰️",
+      "meaning": "钟",
+      "initial": "zh",
+      "final": "ong",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "家具",
+        "常用字"
+      ],
+      "measureWord": "座"
+    },
+    {
+      "char": "书",
+      "pinyin": "shū",
+      "emoji": "📚",
+      "meaning": "书",
+      "initial": "sh",
+      "final": "u",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "本"
+    },
+    {
+      "char": "笔",
+      "pinyin": "bǐ",
+      "emoji": "🖊️",
+      "meaning": "笔",
+      "initial": "b",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "支"
+    },
+    {
+      "char": "纸",
+      "pinyin": "zhǐ",
+      "emoji": "📄",
+      "meaning": "纸",
+      "initial": "zh",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "张"
+    },
+    {
+      "char": "画",
+      "pinyin": "huà",
+      "emoji": "🎨",
+      "meaning": "画",
+      "initial": "h",
+      "final": "ua",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "幅"
+    },
+    {
+      "char": "字",
+      "pinyin": "zì",
+      "emoji": "🔤",
+      "meaning": "字",
+      "initial": "z",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "词",
+      "pinyin": "cí",
+      "emoji": "🔡",
+      "meaning": "词",
+      "initial": "c",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "句",
+      "pinyin": "jù",
+      "emoji": "💬",
+      "meaning": "句子",
+      "initial": "j",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "句"
+    },
+    {
+      "char": "文",
+      "pinyin": "wén",
+      "emoji": "📄",
+      "meaning": "文字",
+      "initial": "w",
+      "final": "en",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "学习",
+        "常用字"
+      ],
+      "measureWord": "篇"
+    },
+    {
+      "char": "歌",
+      "pinyin": "gē",
+      "emoji": "🎵",
+      "meaning": "歌",
+      "initial": "g",
+      "final": "e",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "艺术",
+        "常用字"
+      ],
+      "measureWord": "首"
+    },
+    {
+      "char": "舞",
+      "pinyin": "wǔ",
+      "emoji": "💃",
+      "meaning": "跳舞",
+      "initial": "w",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "艺术",
+        "常用字"
+      ],
+      "measureWord": "支"
+    },
+    {
+      "char": "球",
+      "pinyin": "qiú",
+      "emoji": "⚽",
+      "meaning": "球",
+      "initial": "q",
+      "final": "iu",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "运动",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "旗",
+      "pinyin": "qí",
+      "emoji": "🚩",
+      "meaning": "旗",
+      "initial": "q",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "面"
+    },
+    {
+      "char": "鼓",
+      "pinyin": "gǔ",
+      "emoji": "🥁",
+      "meaning": "鼓",
+      "initial": "g",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "乐器",
+        "常用字"
+      ],
+      "measureWord": "面"
+    },
+    {
+      "char": "琴",
+      "pinyin": "qín",
+      "emoji": "🎹",
+      "meaning": "琴",
+      "initial": "q",
+      "final": "in",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "乐器",
+        "常用字"
+      ],
+      "measureWord": "架"
+    },
+    {
+      "char": "伞",
+      "pinyin": "sǎn",
+      "emoji": "☂️",
+      "meaning": "伞",
+      "initial": "s",
+      "final": "an",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "把"
+    },
+    {
+      "char": "帽",
+      "pinyin": "mào",
+      "emoji": "🧢",
+      "meaning": "帽子",
+      "initial": "m",
+      "final": "ao",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "衣物",
+        "常用字"
+      ],
+      "measureWord": "顶"
+    },
+    {
+      "char": "鞋",
+      "pinyin": "xié",
+      "emoji": "👟",
+      "meaning": "鞋",
+      "initial": "x",
+      "final": "ie",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "衣物",
+        "常用字"
+      ],
+      "measureWord": "双"
+    },
+    {
+      "char": "衣",
+      "pinyin": "yī",
+      "emoji": "👕",
+      "meaning": "衣服",
+      "initial": "y",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "衣物",
+        "常用字"
+      ],
+      "measureWord": "件"
+    },
+    {
+      "char": "裤",
+      "pinyin": "kù",
+      "emoji": "👖",
+      "meaning": "裤子",
+      "initial": "k",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "衣物",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "袜",
+      "pinyin": "wà",
+      "emoji": "🧦",
+      "meaning": "袜子",
+      "initial": "w",
+      "final": "a",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "衣物",
+        "常用字"
+      ],
+      "measureWord": "双"
+    },
+    {
+      "char": "裙",
+      "pinyin": "qún",
+      "emoji": "👗",
+      "meaning": "裙子",
+      "initial": "q",
+      "final": "un",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "衣物",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "牙",
+      "pinyin": "yá",
+      "emoji": "🦷",
+      "meaning": "牙齿",
+      "initial": "y",
+      "final": "a",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "颗"
+    },
+    {
+      "char": "镜",
+      "pinyin": "jìng",
+      "emoji": "🪞",
+      "meaning": "镜子",
+      "initial": "j",
+      "final": "ing",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "用品",
+        "常用字"
+      ],
+      "measureWord": "面"
+    },
+    {
+      "char": "红",
+      "pinyin": "hóng",
+      "emoji": "🔴",
+      "meaning": "红色",
+      "initial": "h",
+      "final": "ong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "黄",
+      "pinyin": "huáng",
+      "emoji": "🟡",
+      "meaning": "黄色",
+      "initial": "h",
+      "final": "uang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "蓝",
+      "pinyin": "lán",
+      "emoji": "🔵",
+      "meaning": "蓝色",
+      "initial": "l",
+      "final": "an",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "绿",
+      "pinyin": "lǜ",
+      "emoji": "🟢",
+      "meaning": "绿色",
+      "initial": "l",
+      "final": "ü",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "白",
+      "pinyin": "bái",
+      "emoji": "⚪",
+      "meaning": "白色",
+      "initial": "b",
+      "final": "ai",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "黑",
+      "pinyin": "hēi",
+      "emoji": "⚫",
+      "meaning": "黑色",
+      "initial": "h",
+      "final": "ei",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "粉",
+      "pinyin": "fěn",
+      "emoji": "💗",
+      "meaning": "粉色",
+      "initial": "f",
+      "final": "en",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "紫",
+      "pinyin": "zǐ",
+      "emoji": "🟣",
+      "meaning": "紫色",
+      "initial": "z",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "橙",
+      "pinyin": "chéng",
+      "emoji": "🟠",
+      "meaning": "橙色",
+      "initial": "ch",
+      "final": "eng",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "灰",
+      "pinyin": "hūi",
+      "emoji": "⬜",
+      "meaning": "灰色",
+      "initial": "h",
+      "final": "ui",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "色",
+      "pinyin": "sè",
+      "emoji": "🎨",
+      "meaning": "颜色",
+      "initial": "s",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "颜色",
+        "常用字"
+      ]
+    },
+    {
+      "char": "大",
+      "pinyin": "dà",
+      "emoji": "🐘",
+      "meaning": "大小",
+      "initial": "d",
+      "final": "a",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "小"
+    },
+    {
+      "char": "小",
+      "pinyin": "xiǎo",
+      "emoji": "🐭",
+      "meaning": "大小",
+      "initial": "x",
+      "final": "iao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "大"
+    },
+    {
+      "char": "多",
+      "pinyin": "duō",
+      "emoji": "➕",
+      "meaning": "多少",
+      "initial": "d",
+      "final": "uo",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "少"
+    },
+    {
+      "char": "少",
+      "pinyin": "shǎo",
+      "emoji": "➖",
+      "meaning": "多少",
+      "initial": "sh",
+      "final": "ao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "多"
+    },
+    {
+      "char": "上",
+      "pinyin": "shàng",
+      "emoji": "⬆️",
+      "meaning": "上面",
+      "initial": "sh",
+      "final": "ang",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "下"
+    },
+    {
+      "char": "下",
+      "pinyin": "xià",
+      "emoji": "⬇️",
+      "meaning": "下面",
+      "initial": "x",
+      "final": "ia",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "上"
+    },
+    {
+      "char": "左",
+      "pinyin": "zuǒ",
+      "emoji": "⬅️",
+      "meaning": "左边",
+      "initial": "z",
+      "final": "uo",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "右"
+    },
+    {
+      "char": "右",
+      "pinyin": "yòu",
+      "emoji": "➡️",
+      "meaning": "右边",
+      "initial": "y",
+      "final": "ou",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "左"
+    },
+    {
+      "char": "前",
+      "pinyin": "qián",
+      "emoji": "👉",
+      "meaning": "前面",
+      "initial": "q",
+      "final": "ian",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "后"
+    },
+    {
+      "char": "后",
+      "pinyin": "hòu",
+      "emoji": "👈",
+      "meaning": "后面",
+      "initial": "h",
+      "final": "ou",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "前"
+    },
+    {
+      "char": "里",
+      "pinyin": "lǐ",
+      "emoji": "📦",
+      "meaning": "里面",
+      "initial": "l",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "外"
+    },
+    {
+      "char": "外",
+      "pinyin": "wài",
+      "emoji": "🌍",
+      "meaning": "外面",
+      "initial": "w",
+      "final": "ai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "里"
+    },
+    {
+      "char": "中",
+      "pinyin": "zhōng",
+      "emoji": "🎯",
+      "meaning": "中间",
+      "initial": "zh",
+      "final": "ong",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "方位",
+        "常用字"
+      ]
+    },
+    {
+      "char": "高",
+      "pinyin": "gāo",
+      "emoji": "📏",
+      "meaning": "高",
+      "initial": "g",
+      "final": "ao",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "低"
+    },
+    {
+      "char": "低",
+      "pinyin": "dī",
+      "emoji": "📉",
+      "meaning": "低",
+      "initial": "d",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "高"
+    },
+    {
+      "char": "长",
+      "pinyin": "cháng",
+      "emoji": "📏",
+      "meaning": "长",
+      "initial": "ch",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "短"
+    },
+    {
+      "char": "短",
+      "pinyin": "duǎn",
+      "emoji": "✂️",
+      "meaning": "短",
+      "initial": "d",
+      "final": "uan",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "长"
+    },
+    {
+      "char": "远",
+      "pinyin": "yuǎn",
+      "emoji": "🌅",
+      "meaning": "远",
+      "initial": "y",
+      "final": "uan",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "近"
+    },
+    {
+      "char": "近",
+      "pinyin": "jìn",
+      "emoji": "👀",
+      "meaning": "近",
+      "initial": "j",
+      "final": "in",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "远"
+    },
+    {
+      "char": "快",
+      "pinyin": "kuài",
+      "emoji": "⚡",
+      "meaning": "快",
+      "initial": "k",
+      "final": "uai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "慢"
+    },
+    {
+      "char": "慢",
+      "pinyin": "màn",
+      "emoji": "🐢",
+      "meaning": "慢",
+      "initial": "m",
+      "final": "an",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "快"
+    },
+    {
+      "char": "新",
+      "pinyin": "xīn",
+      "emoji": "✨",
+      "meaning": "新",
+      "initial": "x",
+      "final": "in",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "旧"
+    },
+    {
+      "char": "旧",
+      "pinyin": "jiù",
+      "emoji": "🕰️",
+      "meaning": "旧",
+      "initial": "j",
+      "final": "iu",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "新"
+    },
+    {
+      "char": "冷",
+      "pinyin": "lěng",
+      "emoji": "❄️",
+      "meaning": "冷",
+      "initial": "l",
+      "final": "eng",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "热"
+    },
+    {
+      "char": "热",
+      "pinyin": "rè",
+      "emoji": "🔥",
+      "meaning": "热",
+      "initial": "r",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "冷"
+    },
+    {
+      "char": "干",
+      "pinyin": "gān",
+      "emoji": "🌵",
+      "meaning": "干",
+      "initial": "g",
+      "final": "an",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "湿"
+    },
+    {
+      "char": "湿",
+      "pinyin": "shī",
+      "emoji": "💦",
+      "meaning": "湿",
+      "initial": "sh",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "干"
+    },
+    {
+      "char": "轻",
+      "pinyin": "qīng",
+      "emoji": "🪶",
+      "meaning": "轻",
+      "initial": "q",
+      "final": "ing",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "重"
+    },
+    {
+      "char": "重",
+      "pinyin": "zhòng",
+      "emoji": "🏋️",
+      "meaning": "重",
+      "initial": "zh",
+      "final": "ong",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "轻"
+    },
+    {
+      "char": "甜",
+      "pinyin": "tián",
+      "emoji": "🍬",
+      "meaning": "甜",
+      "initial": "t",
+      "final": "ian",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "苦"
+    },
+    {
+      "char": "苦",
+      "pinyin": "kǔ",
+      "emoji": "🌿",
+      "meaning": "苦",
+      "initial": "k",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "甜"
+    },
+    {
+      "char": "香",
+      "pinyin": "xiāng",
+      "emoji": "👃",
+      "meaning": "香",
+      "initial": "x",
+      "final": "iang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "臭"
+    },
+    {
+      "char": "臭",
+      "pinyin": "chòu",
+      "emoji": "💨",
+      "meaning": "臭",
+      "initial": "ch",
+      "final": "ou",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "香"
+    },
+    {
+      "char": "开",
+      "pinyin": "kāi",
+      "emoji": "🔓",
+      "meaning": "打开",
+      "initial": "k",
+      "final": "ai",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "关"
+    },
+    {
+      "char": "关",
+      "pinyin": "guān",
+      "emoji": "🔒",
+      "meaning": "关闭",
+      "initial": "g",
+      "final": "uan",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "开"
+    },
+    {
+      "char": "进",
+      "pinyin": "jìn",
+      "emoji": "➡️",
+      "meaning": "进去",
+      "initial": "j",
+      "final": "in",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "出"
+    },
+    {
+      "char": "出",
+      "pinyin": "chū",
+      "emoji": "⬅️",
+      "meaning": "出来",
+      "initial": "ch",
+      "final": "u",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "进"
+    },
+    {
+      "char": "来",
+      "pinyin": "lái",
+      "emoji": "🚶",
+      "meaning": "来",
+      "initial": "l",
+      "final": "ai",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "去"
+    },
+    {
+      "char": "去",
+      "pinyin": "qù",
+      "emoji": "🏃",
+      "meaning": "去",
+      "initial": "q",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "来"
+    },
+    {
+      "char": "生",
+      "pinyin": "shēng",
+      "emoji": "🐣",
+      "meaning": "生",
+      "initial": "sh",
+      "final": "eng",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "死"
+    },
+    {
+      "char": "死",
+      "pinyin": "sǐ",
+      "emoji": "💀",
+      "meaning": "死",
+      "initial": "s",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "生"
+    },
+    {
+      "char": "男",
+      "pinyin": "nán",
+      "emoji": "👦",
+      "meaning": "男孩",
+      "initial": "n",
+      "final": "an",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "女"
+    },
+    {
+      "char": "女",
+      "pinyin": "nǚ",
+      "emoji": "👧",
+      "meaning": "女孩",
+      "initial": "n",
+      "final": "ü",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "男"
+    },
+    {
+      "char": "老",
+      "pinyin": "lǎo",
+      "emoji": "👴",
+      "meaning": "老",
+      "initial": "l",
+      "final": "ao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "少"
+    },
+    {
+      "char": "哭",
+      "pinyin": "kū",
+      "emoji": "😢",
+      "meaning": "哭",
+      "initial": "k",
+      "final": "u",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "笑"
+    },
+    {
+      "char": "笑",
+      "pinyin": "xiào",
+      "emoji": "😊",
+      "meaning": "笑",
+      "initial": "x",
+      "final": "iao",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "哭"
+    },
+    {
+      "char": "问",
+      "pinyin": "wèn",
+      "emoji": "❓",
+      "meaning": "问",
+      "initial": "w",
+      "final": "en",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "答"
+    },
+    {
+      "char": "答",
+      "pinyin": "dá",
+      "emoji": "✅",
+      "meaning": "回答",
+      "initial": "d",
+      "final": "a",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "问"
+    },
+    {
+      "char": "买",
+      "pinyin": "mǎi",
+      "emoji": "🛒",
+      "meaning": "买",
+      "initial": "m",
+      "final": "ai",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "卖"
+    },
+    {
+      "char": "卖",
+      "pinyin": "mài",
+      "emoji": "💰",
+      "meaning": "卖",
+      "initial": "m",
+      "final": "ai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "买"
+    },
+    {
+      "char": "好",
+      "pinyin": "hǎo",
+      "emoji": "👍",
+      "meaning": "好坏",
+      "initial": "h",
+      "final": "ao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "坏"
+    },
+    {
+      "char": "坏",
+      "pinyin": "huài",
+      "emoji": "👎",
+      "meaning": "坏",
+      "initial": "h",
+      "final": "uai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "好"
+    },
+    {
+      "char": "美",
+      "pinyin": "měi",
+      "emoji": "🌸",
+      "meaning": "美丽",
+      "initial": "m",
+      "final": "ei",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "丑"
+    },
+    {
+      "char": "丑",
+      "pinyin": "chǒu",
+      "emoji": "🤢",
+      "meaning": "丑",
+      "initial": "ch",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "美"
+    },
+    {
+      "char": "真",
+      "pinyin": "zhēn",
+      "emoji": "✔️",
+      "meaning": "真",
+      "initial": "zh",
+      "final": "en",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "假"
+    },
+    {
+      "char": "假",
+      "pinyin": "jiǎ",
+      "emoji": "❌",
+      "meaning": "假",
+      "initial": "j",
+      "final": "ia",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "真"
+    },
+    {
+      "char": "对",
+      "pinyin": "dùi",
+      "emoji": "✔️",
+      "meaning": "对",
+      "initial": "d",
+      "final": "ui",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "错"
+    },
+    {
+      "char": "错",
+      "pinyin": "cuò",
+      "emoji": "❌",
+      "meaning": "错",
+      "initial": "c",
+      "final": "uo",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "对"
+    },
+    {
+      "char": "是",
+      "pinyin": "shì",
+      "emoji": "✔️",
+      "meaning": "是",
+      "initial": "sh",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "非"
+    },
+    {
+      "char": "非",
+      "pinyin": "fēi",
+      "emoji": "❌",
+      "meaning": "非",
+      "initial": "f",
+      "final": "ei",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "是"
+    },
+    {
+      "char": "有",
+      "pinyin": "yǒu",
+      "emoji": "✅",
+      "meaning": "有",
+      "initial": "y",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "无"
+    },
+    {
+      "char": "无",
+      "pinyin": "wú",
+      "emoji": "❌",
+      "meaning": "无",
+      "initial": "w",
+      "final": "u",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "有"
+    },
+    {
+      "char": "爱",
+      "pinyin": "ài",
+      "emoji": "❤️",
+      "meaning": "爱",
+      "initial": "",
+      "final": "ai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "情感",
+        "常用字"
+      ]
+    },
+    {
+      "char": "和",
+      "pinyin": "hé",
+      "emoji": "🤝",
+      "meaning": "和",
+      "initial": "h",
+      "final": "e",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "连接",
+        "常用字"
+      ]
+    },
+    {
+      "char": "同",
+      "pinyin": "tóng",
+      "emoji": "👫",
+      "meaning": "同",
+      "initial": "t",
+      "final": "ong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "关系",
+        "常用字"
+      ]
+    },
+    {
+      "char": "友",
+      "pinyin": "yǒu",
+      "emoji": "👫",
+      "meaning": "朋友",
+      "initial": "y",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "关系",
+        "常用字"
+      ]
+    },
+    {
+      "char": "亲",
+      "pinyin": "qīn",
+      "emoji": "👪",
+      "meaning": "亲",
+      "initial": "q",
+      "final": "in",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "关系",
+        "常用字"
+      ]
+    },
+    {
+      "char": "师",
+      "pinyin": "shī",
+      "emoji": "👩‍🏫",
+      "meaning": "老师",
+      "initial": "sh",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "医",
+      "pinyin": "yī",
+      "emoji": "🩺",
+      "meaning": "医生",
+      "initial": "y",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "护",
+      "pinyin": "hù",
+      "emoji": "🧑‍⚕️",
+      "meaning": "护士",
+      "initial": "h",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "警",
+      "pinyin": "jǐng",
+      "emoji": "👮",
+      "meaning": "警察",
+      "initial": "j",
+      "final": "ing",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "军",
+      "pinyin": "jūn",
+      "emoji": "🪖",
+      "meaning": "军人",
+      "initial": "j",
+      "final": "un",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "工",
+      "pinyin": "gōng",
+      "emoji": "🔧",
+      "meaning": "工人",
+      "initial": "g",
+      "final": "ong",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "农",
+      "pinyin": "nóng",
+      "emoji": "🚜",
+      "meaning": "农民",
+      "initial": "n",
+      "final": "ong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "职业",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "王",
+      "pinyin": "wáng",
+      "emoji": "👑",
+      "meaning": "国王",
+      "initial": "w",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "身份",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "主",
+      "pinyin": "zhǔ",
+      "emoji": "🧍",
+      "meaning": "主人",
+      "initial": "zh",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "身份",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "客",
+      "pinyin": "kè",
+      "emoji": "🧑",
+      "meaning": "客人",
+      "initial": "k",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "身份",
+        "常用字"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "宝",
+      "pinyin": "bǎo",
+      "emoji": "💎",
+      "meaning": "宝贝",
+      "initial": "b",
+      "final": "ao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "金",
+      "pinyin": "jīn",
+      "emoji": "🥇",
+      "meaning": "金",
+      "initial": "j",
+      "final": "in",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "银",
+      "pinyin": "yín",
+      "emoji": "🥈",
+      "meaning": "银",
+      "initial": "y",
+      "final": "in",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "铜",
+      "pinyin": "tóng",
+      "emoji": "🥉",
+      "meaning": "铜",
+      "initial": "t",
+      "final": "ong",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "玉",
+      "pinyin": "yù",
+      "emoji": "💎",
+      "meaning": "玉",
+      "initial": "y",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "珠",
+      "pinyin": "zhū",
+      "emoji": "📿",
+      "meaning": "珠子",
+      "initial": "zh",
+      "final": "u",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "颗"
+    },
+    {
+      "char": "钱",
+      "pinyin": "qián",
+      "emoji": "💰",
+      "meaning": "钱",
+      "initial": "q",
+      "final": "ian",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "元"
+    },
+    {
+      "char": "票",
+      "pinyin": "piào",
+      "emoji": "🎫",
+      "meaning": "票",
+      "initial": "p",
+      "final": "iao",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "物品",
+        "常用字"
+      ],
+      "measureWord": "张"
+    },
+    {
+      "char": "国",
+      "pinyin": "guó",
+      "emoji": "🇨🇳",
+      "meaning": "国家",
+      "initial": "g",
+      "final": "uo",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "城",
+      "pinyin": "chéng",
+      "emoji": "🏙️",
+      "meaning": "城市",
+      "initial": "ch",
+      "final": "eng",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "座"
+    },
+    {
+      "char": "村",
+      "pinyin": "cūn",
+      "emoji": "🏡",
+      "meaning": "村庄",
+      "initial": "c",
+      "final": "un",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "街",
+      "pinyin": "jiē",
+      "emoji": "🛣️",
+      "meaning": "街道",
+      "initial": "j",
+      "final": "ie",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "园",
+      "pinyin": "yuán",
+      "emoji": "🌳",
+      "meaning": "公园",
+      "initial": "y",
+      "final": "uan",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "校",
+      "pinyin": "xiào",
+      "emoji": "🏫",
+      "meaning": "学校",
+      "initial": "x",
+      "final": "iao",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "所"
+    },
+    {
+      "char": "店",
+      "pinyin": "diàn",
+      "emoji": "🏪",
+      "meaning": "商店",
+      "initial": "d",
+      "final": "ian",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "家"
+    },
+    {
+      "char": "市",
+      "pinyin": "shì",
+      "emoji": "🛒",
+      "meaning": "市场",
+      "initial": "sh",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "厂",
+      "pinyin": "chǎng",
+      "emoji": "🏭",
+      "meaning": "工厂",
+      "initial": "ch",
+      "final": "ang",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "社会",
+        "常用字"
+      ],
+      "measureWord": "家"
+    },
+    {
+      "char": "库",
+      "pinyin": "kù",
+      "emoji": "📦",
+      "meaning": "仓库",
+      "initial": "k",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "仓",
+      "pinyin": "cāng",
+      "emoji": "📦",
+      "meaning": "仓库",
+      "initial": "c",
+      "final": "ang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "建筑",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "地",
+      "pinyin": "dì",
+      "emoji": "🟫",
+      "meaning": "土地",
+      "initial": "d",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "天",
+      "pinyin": "tiān",
+      "emoji": "🌌",
+      "meaning": "天空",
+      "initial": "t",
+      "final": "ian",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "自然",
+        "常用字"
+      ]
+    },
+    {
+      "char": "空",
+      "pinyin": "kōng",
+      "emoji": "🌌",
+      "meaning": "天空",
+      "initial": "k",
+      "final": "ong",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "自然",
+        "常用字"
+      ]
+    },
+    {
+      "char": "星",
+      "pinyin": "xīng",
+      "emoji": "⭐",
+      "meaning": "星星",
+      "initial": "x",
+      "final": "ing",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "颗"
+    },
+    {
+      "char": "光",
+      "pinyin": "guāng",
+      "emoji": "💡",
+      "meaning": "光",
+      "initial": "g",
+      "final": "uang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "束"
+    },
+    {
+      "char": "阳",
+      "pinyin": "yáng",
+      "emoji": "☀️",
+      "meaning": "太阳",
+      "initial": "y",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "阴",
+      "pinyin": "yīn",
+      "emoji": "☁️",
+      "meaning": "阴",
+      "initial": "y",
+      "final": "in",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "自然",
+        "常用字"
+      ]
+    },
+    {
+      "char": "风",
+      "pinyin": "fēng",
+      "emoji": "🌬️",
+      "meaning": "风",
+      "initial": "f",
+      "final": "eng",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "阵"
+    },
+    {
+      "char": "云",
+      "pinyin": "yún",
+      "emoji": "☁️",
+      "meaning": "云",
+      "initial": "y",
+      "final": "un",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "朵"
+    },
+    {
+      "char": "雨",
+      "pinyin": "yǔ",
+      "emoji": "🌧️",
+      "meaning": "雨",
+      "initial": "y",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "滴"
+    },
+    {
+      "char": "雪",
+      "pinyin": "xuě",
+      "emoji": "❄️",
+      "meaning": "雪",
+      "initial": "x",
+      "final": "ue",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "场"
+    },
+    {
+      "char": "冰",
+      "pinyin": "bīng",
+      "emoji": "🧊",
+      "meaning": "冰",
+      "initial": "b",
+      "final": "ing",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "雷",
+      "pinyin": "léi",
+      "emoji": "⚡",
+      "meaning": "雷",
+      "initial": "l",
+      "final": "ei",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "声"
+    },
+    {
+      "char": "电",
+      "pinyin": "diàn",
+      "emoji": "⚡",
+      "meaning": "电",
+      "initial": "d",
+      "final": "ian",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "自然",
+        "常用字"
+      ]
+    },
+    {
+      "char": "闪",
+      "pinyin": "shǎn",
+      "emoji": "🌩️",
+      "meaning": "闪电",
+      "initial": "sh",
+      "final": "an",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "道"
+    },
+    {
+      "char": "河",
+      "pinyin": "hé",
+      "emoji": "🌊",
+      "meaning": "河",
+      "initial": "h",
+      "final": "e",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "海",
+      "pinyin": "hǎi",
+      "emoji": "🌊",
+      "meaning": "海",
+      "initial": "h",
+      "final": "ai",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "片"
+    },
+    {
+      "char": "湖",
+      "pinyin": "hú",
+      "emoji": "🏞️",
+      "meaning": "湖",
+      "initial": "h",
+      "final": "u",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "江",
+      "pinyin": "jiāng",
+      "emoji": "🌊",
+      "meaning": "江",
+      "initial": "j",
+      "final": "iang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "池",
+      "pinyin": "chí",
+      "emoji": "💧",
+      "meaning": "池",
+      "initial": "ch",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "泉",
+      "pinyin": "quán",
+      "emoji": "💧",
+      "meaning": "泉",
+      "initial": "q",
+      "final": "uan",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "眼"
+    },
+    {
+      "char": "波",
+      "pinyin": "bō",
+      "emoji": "🌊",
+      "meaning": "波浪",
+      "initial": "b",
+      "final": "o",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "层"
+    },
+    {
+      "char": "浪",
+      "pinyin": "làng",
+      "emoji": "🌊",
+      "meaning": "浪",
+      "initial": "l",
+      "final": "ang",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "层"
+    },
+    {
+      "char": "沙",
+      "pinyin": "shā",
+      "emoji": "🏖️",
+      "meaning": "沙",
+      "initial": "sh",
+      "final": "a",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "粒"
+    },
+    {
+      "char": "泥",
+      "pinyin": "ní",
+      "emoji": "🟤",
+      "meaning": "泥",
+      "initial": "n",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "尘",
+      "pinyin": "chén",
+      "emoji": "💨",
+      "meaning": "尘",
+      "initial": "ch",
+      "final": "en",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "自然",
+        "常用字"
+      ],
+      "measureWord": "粒"
+    },
+    {
+      "char": "春",
+      "pinyin": "chūn",
+      "emoji": "🌸",
+      "meaning": "春天",
+      "initial": "ch",
+      "final": "un",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "季节",
+        "常用字"
+      ]
+    },
+    {
+      "char": "夏",
+      "pinyin": "xià",
+      "emoji": "☀️",
+      "meaning": "夏天",
+      "initial": "x",
+      "final": "ia",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "季节",
+        "常用字"
+      ]
+    },
+    {
+      "char": "秋",
+      "pinyin": "qiū",
+      "emoji": "🍂",
+      "meaning": "秋天",
+      "initial": "q",
+      "final": "iu",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "季节",
+        "常用字"
+      ]
+    },
+    {
+      "char": "冬",
+      "pinyin": "dōng",
+      "emoji": "❄️",
+      "meaning": "冬天",
+      "initial": "d",
+      "final": "ong",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "季节",
+        "常用字"
+      ]
+    },
+    {
+      "char": "年",
+      "pinyin": "nián",
+      "emoji": "📅",
+      "meaning": "年",
+      "initial": "n",
+      "final": "ian",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "岁",
+      "pinyin": "sùi",
+      "emoji": "🎂",
+      "meaning": "岁",
+      "initial": "s",
+      "final": "ui",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "岁"
+    },
+    {
+      "char": "季",
+      "pinyin": "jì",
+      "emoji": "🍂",
+      "meaning": "季节",
+      "initial": "j",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "早",
+      "pinyin": "zǎo",
+      "emoji": "🌅",
+      "meaning": "早",
+      "initial": "z",
+      "final": "ao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "晚"
+    },
+    {
+      "char": "晚",
+      "pinyin": "wǎn",
+      "emoji": "🌙",
+      "meaning": "晚",
+      "initial": "w",
+      "final": "an",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "反义词",
+        "反义词",
+        "常用字"
+      ],
+      "antonym": "早"
+    },
+    {
+      "char": "午",
+      "pinyin": "wǔ",
+      "emoji": "🌞",
+      "meaning": "中午",
+      "initial": "w",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "时间",
+        "常用字"
+      ]
+    },
+    {
+      "char": "晨",
+      "pinyin": "chén",
+      "emoji": "🌅",
+      "meaning": "早晨",
+      "initial": "ch",
+      "final": "en",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "时间",
+        "常用字"
+      ]
+    },
+    {
+      "char": "夜",
+      "pinyin": "yè",
+      "emoji": "🌃",
+      "meaning": "夜晚",
+      "initial": "y",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "时间",
+        "常用字"
+      ]
+    },
+    {
+      "char": "今",
+      "pinyin": "jīn",
+      "emoji": "📆",
+      "meaning": "今天",
+      "initial": "j",
+      "final": "in",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "时间",
+        "常用字"
+      ]
+    },
+    {
+      "char": "明",
+      "pinyin": "míng",
+      "emoji": "📅",
+      "meaning": "明天",
+      "initial": "m",
+      "final": "ing",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "时间",
+        "常用字"
+      ]
+    },
+    {
+      "char": "昨",
+      "pinyin": "zuó",
+      "emoji": "📅",
+      "meaning": "昨天",
+      "initial": "z",
+      "final": "uo",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "时间",
+        "常用字"
+      ]
+    },
+    {
+      "char": "周",
+      "pinyin": "zhōu",
+      "emoji": "🗓️",
+      "meaning": "周",
+      "initial": "zh",
+      "final": "ou",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "周"
+    },
+    {
+      "char": "时",
+      "pinyin": "shí",
+      "emoji": "⏰",
+      "meaning": "时间",
+      "initial": "sh",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "分",
+      "pinyin": "fēn",
+      "emoji": "⏱️",
+      "meaning": "分钟",
+      "initial": "f",
+      "final": "en",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "秒",
+      "pinyin": "miǎo",
+      "emoji": "⏱️",
+      "meaning": "秒",
+      "initial": "m",
+      "final": "iao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "点",
+      "pinyin": "diǎn",
+      "emoji": "🕐",
+      "meaning": "点",
+      "initial": "d",
+      "final": "ian",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "点"
+    },
+    {
+      "char": "刻",
+      "pinyin": "kè",
+      "emoji": "⏳",
+      "meaning": "刻",
+      "initial": "k",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "时间",
+        "常用字"
+      ],
+      "measureWord": "刻"
+    },
+    {
+      "char": "半",
+      "pinyin": "bàn",
+      "emoji": "½",
+      "meaning": "一半",
+      "initial": "b",
+      "final": "an",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "数量",
+        "常用字"
+      ]
+    },
+    {
+      "char": "百",
+      "pinyin": "bǎi",
+      "emoji": "💯",
+      "meaning": "百",
+      "initial": "b",
+      "final": "ai",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "数量",
+        "常用字"
+      ]
+    },
+    {
+      "char": "千",
+      "pinyin": "qiān",
+      "emoji": "🔢",
+      "meaning": "千",
+      "initial": "q",
+      "final": "ian",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "数量",
+        "常用字"
+      ]
+    },
+    {
+      "char": "万",
+      "pinyin": "wàn",
+      "emoji": "🔢",
+      "meaning": "万",
+      "initial": "w",
+      "final": "an",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "数量",
+        "常用字"
+      ]
+    },
+    {
+      "char": "零",
+      "pinyin": "líng",
+      "emoji": "0️⃣",
+      "meaning": "零",
+      "initial": "l",
+      "final": "ing",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "数量",
+        "常用字"
+      ]
+    },
+    {
+      "char": "一",
+      "pinyin": "yī",
+      "emoji": "1️⃣",
+      "meaning": "一",
+      "initial": "y",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "二",
+      "pinyin": "èr",
+      "emoji": "2️⃣",
+      "meaning": "二",
+      "initial": "",
+      "final": "er",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "三",
+      "pinyin": "sān",
+      "emoji": "3️⃣",
+      "meaning": "三",
+      "initial": "s",
+      "final": "an",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "四",
+      "pinyin": "sì",
+      "emoji": "4️⃣",
+      "meaning": "四",
+      "initial": "s",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "五",
+      "pinyin": "wǔ",
+      "emoji": "5️⃣",
+      "meaning": "五",
+      "initial": "w",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "六",
+      "pinyin": "liù",
+      "emoji": "6️⃣",
+      "meaning": "六",
+      "initial": "l",
+      "final": "iu",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "七",
+      "pinyin": "qī",
+      "emoji": "7️⃣",
+      "meaning": "七",
+      "initial": "q",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "八",
+      "pinyin": "bā",
+      "emoji": "8️⃣",
+      "meaning": "八",
+      "initial": "b",
+      "final": "a",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "九",
+      "pinyin": "jiǔ",
+      "emoji": "9️⃣",
+      "meaning": "九",
+      "initial": "j",
+      "final": "iu",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "十",
+      "pinyin": "shí",
+      "emoji": "🔟",
+      "meaning": "十",
+      "initial": "sh",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "数字",
+        "常用字"
+      ]
+    },
+    {
+      "char": "两",
+      "pinyin": "liǎng",
+      "emoji": "2️⃣",
+      "meaning": "两",
+      "initial": "l",
+      "final": "iang",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "数量",
+        "常用字"
+      ]
+    },
+    {
+      "char": "只",
+      "pinyin": "zhī",
+      "emoji": "🐾",
+      "meaning": "只",
+      "initial": "zh",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "个",
+      "pinyin": "gè",
+      "emoji": "🔘",
+      "meaning": "个",
+      "initial": "g",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "把",
+      "pinyin": "bǎ",
+      "emoji": "🔧",
+      "meaning": "把",
+      "initial": "b",
+      "final": "a",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "把"
+    },
+    {
+      "char": "本",
+      "pinyin": "běn",
+      "emoji": "📕",
+      "meaning": "本",
+      "initial": "b",
+      "final": "en",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "本"
+    },
+    {
+      "char": "朵",
+      "pinyin": "duǒ",
+      "emoji": "🌸",
+      "meaning": "朵",
+      "initial": "d",
+      "final": "uo",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "朵"
+    },
+    {
+      "char": "条",
+      "pinyin": "tiáo",
+      "emoji": "📏",
+      "meaning": "条",
+      "initial": "t",
+      "final": "iao",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "张",
+      "pinyin": "zhāng",
+      "emoji": "🪪",
+      "meaning": "张",
+      "initial": "zh",
+      "final": "ang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "张"
+    },
+    {
+      "char": "件",
+      "pinyin": "jiàn",
+      "emoji": "🧥",
+      "meaning": "件",
+      "initial": "j",
+      "final": "ian",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "件"
+    },
+    {
+      "char": "双",
+      "pinyin": "shuāng",
+      "emoji": "👥",
+      "meaning": "双",
+      "initial": "sh",
+      "final": "uang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "双"
+    },
+    {
+      "char": "棵",
+      "pinyin": "kē",
+      "emoji": "🌳",
+      "meaning": "棵",
+      "initial": "k",
+      "final": "e",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "棵"
+    },
+    {
+      "char": "根",
+      "pinyin": "gēn",
+      "emoji": "🌿",
+      "meaning": "根",
+      "initial": "g",
+      "final": "en",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "根"
+    },
+    {
+      "char": "块",
+      "pinyin": "kuài",
+      "emoji": "🧱",
+      "meaning": "块",
+      "initial": "k",
+      "final": "uai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "片",
+      "pinyin": "piàn",
+      "emoji": "🍃",
+      "meaning": "片",
+      "initial": "p",
+      "final": "ian",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "片"
+    },
+    {
+      "char": "头",
+      "pinyin": "tóu",
+      "emoji": "🐮",
+      "meaning": "头",
+      "initial": "t",
+      "final": "ou",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "头"
+    },
+    {
+      "char": "匹",
+      "pinyin": "pǐ",
+      "emoji": "🐴",
+      "meaning": "匹",
+      "initial": "p",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "匹"
+    },
+    {
+      "char": "支",
+      "pinyin": "zhī",
+      "emoji": "🖊️",
+      "meaning": "支",
+      "initial": "zh",
+      "final": "i",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "支"
+    },
+    {
+      "char": "台",
+      "pinyin": "tái",
+      "emoji": "📺",
+      "meaning": "台",
+      "initial": "t",
+      "final": "ai",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "台"
+    },
+    {
+      "char": "辆",
+      "pinyin": "liàng",
+      "emoji": "🚗",
+      "meaning": "辆",
+      "initial": "l",
+      "final": "iang",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "辆"
+    },
+    {
+      "char": "艘",
+      "pinyin": "sōu",
+      "emoji": "🚢",
+      "meaning": "艘",
+      "initial": "s",
+      "final": "ou",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "艘"
+    },
+    {
+      "char": "顶",
+      "pinyin": "dǐng",
+      "emoji": "🧢",
+      "meaning": "顶",
+      "initial": "d",
+      "final": "ing",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "顶"
+    },
+    {
+      "char": "盏",
+      "pinyin": "zhǎn",
+      "emoji": "💡",
+      "meaning": "盏",
+      "initial": "zh",
+      "final": "an",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "盏"
+    },
+    {
+      "char": "盆",
+      "pinyin": "pén",
+      "emoji": "🪣",
+      "meaning": "盆",
+      "initial": "p",
+      "final": "en",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "盆"
+    },
+    {
+      "char": "桶",
+      "pinyin": "tǒng",
+      "emoji": "🪣",
+      "meaning": "桶",
+      "initial": "t",
+      "final": "ong",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "桶"
+    },
+    {
+      "char": "袋",
+      "pinyin": "dài",
+      "emoji": "🛍️",
+      "meaning": "袋",
+      "initial": "d",
+      "final": "ai",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "袋"
+    },
+    {
+      "char": "束",
+      "pinyin": "shù",
+      "emoji": "💐",
+      "meaning": "束",
+      "initial": "sh",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "束"
+    },
+    {
+      "char": "层",
+      "pinyin": "céng",
+      "emoji": "🏢",
+      "meaning": "层",
+      "initial": "c",
+      "final": "eng",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "层"
+    },
+    {
+      "char": "行",
+      "pinyin": "háng",
+      "emoji": "📐",
+      "meaning": "行",
+      "initial": "h",
+      "final": "ang",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "行"
+    },
+    {
+      "char": "排",
+      "pinyin": "pái",
+      "emoji": "🪑",
+      "meaning": "排",
+      "initial": "p",
+      "final": "ai",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "排"
+    },
+    {
+      "char": "列",
+      "pinyin": "liè",
+      "emoji": "🚃",
+      "meaning": "列",
+      "initial": "l",
+      "final": "ie",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "列"
+    },
+    {
+      "char": "组",
+      "pinyin": "zǔ",
+      "emoji": "🧩",
+      "meaning": "组",
+      "initial": "z",
+      "final": "u",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "组"
+    },
+    {
+      "char": "套",
+      "pinyin": "tào",
+      "emoji": "🧰",
+      "meaning": "套",
+      "initial": "t",
+      "final": "ao",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "套"
+    },
+    {
+      "char": "副",
+      "pinyin": "fù",
+      "emoji": "🕶️",
+      "meaning": "副",
+      "initial": "f",
+      "final": "u",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "副"
+    },
+    {
+      "char": "幅",
+      "pinyin": "fú",
+      "emoji": "🖼️",
+      "meaning": "幅",
+      "initial": "f",
+      "final": "u",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "幅"
+    },
+    {
+      "char": "首",
+      "pinyin": "shǒu",
+      "emoji": "🎵",
+      "meaning": "首",
+      "initial": "sh",
+      "final": "ou",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "首"
+    },
+    {
+      "char": "篇",
+      "pinyin": "piān",
+      "emoji": "📄",
+      "meaning": "篇",
+      "initial": "p",
+      "final": "ian",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "篇"
+    },
+    {
+      "char": "页",
+      "pinyin": "yè",
+      "emoji": "📄",
+      "meaning": "页",
+      "initial": "y",
+      "final": "e",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "页"
+    },
+    {
+      "char": "段",
+      "pinyin": "duàn",
+      "emoji": "📏",
+      "meaning": "段",
+      "initial": "d",
+      "final": "uan",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "段"
+    },
+    {
+      "char": "节",
+      "pinyin": "jié",
+      "emoji": "🚃",
+      "meaning": "节",
+      "initial": "j",
+      "final": "ie",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "节"
+    },
+    {
+      "char": "份",
+      "pinyin": "fèn",
+      "emoji": "📑",
+      "meaning": "份",
+      "initial": "f",
+      "final": "en",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "份"
+    },
+    {
+      "char": "种",
+      "pinyin": "zhǒng",
+      "emoji": "🌱",
+      "meaning": "种",
+      "initial": "zh",
+      "final": "ong",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "量词",
+        "常用字"
+      ],
+      "measureWord": "种"
+    },
+    {
+      "char": "类",
+      "pinyin": "lèi",
+      "emoji": "🗂️",
+      "meaning": "类",
+      "initial": "l",
+      "final": "ei",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "分类",
+        "常用字"
+      ],
+      "measureWord": "类"
+    },
+    {
+      "char": "样",
+      "pinyin": "yàng",
+      "emoji": "🎨",
+      "meaning": "样",
+      "initial": "y",
+      "final": "ang",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "分类",
+        "常用字"
+      ],
+      "measureWord": "样"
+    },
+    {
+      "char": "形",
+      "pinyin": "xíng",
+      "emoji": "⬜",
+      "meaning": "形状",
+      "initial": "x",
+      "final": "ing",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "形状",
+        "常用字"
+      ]
+    },
+    {
+      "char": "状",
+      "pinyin": "zhuàng",
+      "emoji": "⬛",
+      "meaning": "形状",
+      "initial": "zh",
+      "final": "uang",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "形状",
+        "常用字"
+      ]
+    },
+    {
+      "char": "圆",
+      "pinyin": "yuán",
+      "emoji": "⚪",
+      "meaning": "圆",
+      "initial": "y",
+      "final": "uan",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "形状",
+        "常用字"
+      ]
+    },
+    {
+      "char": "方",
+      "pinyin": "fāng",
+      "emoji": "⬛",
+      "meaning": "方",
+      "initial": "f",
+      "final": "ang",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "形状",
+        "常用字"
+      ]
+    },
+    {
+      "char": "角",
+      "pinyin": "jiǎo",
+      "emoji": "🔺",
+      "meaning": "角",
+      "initial": "j",
+      "final": "iao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "形状",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "边",
+      "pinyin": "biān",
+      "emoji": "➡️",
+      "meaning": "边",
+      "initial": "b",
+      "final": "ian",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "方位",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "心",
+      "pinyin": "xīn",
+      "emoji": "❤️",
+      "meaning": "心",
+      "initial": "x",
+      "final": "in",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "人体",
+        "常用字"
+      ]
+    },
+    {
+      "char": "脚",
+      "pinyin": "jiǎo",
+      "emoji": "🦶",
+      "meaning": "脚",
+      "initial": "j",
+      "final": "iao",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "眼",
+      "pinyin": "yǎn",
+      "emoji": "👀",
+      "meaning": "眼睛",
+      "initial": "y",
+      "final": "an",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "耳",
+      "pinyin": "ěr",
+      "emoji": "👂",
+      "meaning": "耳朵",
+      "initial": "",
+      "final": "er",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "只"
+    },
+    {
+      "char": "鼻",
+      "pinyin": "bí",
+      "emoji": "👃",
+      "meaning": "鼻子",
+      "initial": "b",
+      "final": "i",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "舌",
+      "pinyin": "shé",
+      "emoji": "👅",
+      "meaning": "舌头",
+      "initial": "sh",
+      "final": "e",
+      "tone": 2,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "脸",
+      "pinyin": "liǎn",
+      "emoji": "🙂",
+      "meaning": "脸",
+      "initial": "l",
+      "final": "ian",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "张"
+    },
+    {
+      "char": "身",
+      "pinyin": "shēn",
+      "emoji": "🧍",
+      "meaning": "身体",
+      "initial": "sh",
+      "final": "en",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "体",
+      "pinyin": "tǐ",
+      "emoji": "🧍",
+      "meaning": "身体",
+      "initial": "t",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "指",
+      "pinyin": "zhǐ",
+      "emoji": "👆",
+      "meaning": "手指",
+      "initial": "zh",
+      "final": "i",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "根"
+    },
+    {
+      "char": "掌",
+      "pinyin": "zhǎng",
+      "emoji": "✋",
+      "meaning": "手掌",
+      "initial": "zh",
+      "final": "ang",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "臂",
+      "pinyin": "bì",
+      "emoji": "💪",
+      "meaning": "手臂",
+      "initial": "b",
+      "final": "i",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "腿",
+      "pinyin": "tǔi",
+      "emoji": "🦵",
+      "meaning": "腿",
+      "initial": "t",
+      "final": "ui",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "背",
+      "pinyin": "bèi",
+      "emoji": "🔙",
+      "meaning": "背",
+      "initial": "b",
+      "final": "ei",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "腰",
+      "pinyin": "yāo",
+      "emoji": "➰",
+      "meaning": "腰",
+      "initial": "y",
+      "final": "ao",
+      "tone": 1,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "血",
+      "pinyin": "xiě",
+      "emoji": "🩸",
+      "meaning": "血",
+      "initial": "x",
+      "final": "ie",
+      "tone": 3,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "滴"
+    },
+    {
+      "char": "汗",
+      "pinyin": "hàn",
+      "emoji": "💦",
+      "meaning": "汗",
+      "initial": "h",
+      "final": "an",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "滴"
+    },
+    {
+      "char": "泪",
+      "pinyin": "lèi",
+      "emoji": "😢",
+      "meaning": "泪",
+      "initial": "l",
+      "final": "ei",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "人体",
+        "常用字"
+      ],
+      "measureWord": "滴"
+    },
+    {
+      "char": "梦",
+      "pinyin": "mèng",
+      "emoji": "😴",
+      "meaning": "梦",
+      "initial": "m",
+      "final": "eng",
+      "tone": 4,
+      "level": 1,
+      "tags": [
+        "量词",
+        "心理",
+        "常用字"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "想",
+      "pinyin": "xiǎng",
+      "emoji": "💭",
+      "meaning": "想",
+      "initial": "x",
+      "final": "iang",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "思",
+      "pinyin": "sī",
+      "emoji": "💭",
+      "meaning": "思",
+      "initial": "s",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "念",
+      "pinyin": "niàn",
+      "emoji": "💭",
+      "meaning": "念",
+      "initial": "n",
+      "final": "ian",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "忘",
+      "pinyin": "wàng",
+      "emoji": "🤔",
+      "meaning": "忘",
+      "initial": "w",
+      "final": "ang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "记",
+      "pinyin": "jì",
+      "emoji": "📝",
+      "meaning": "记",
+      "initial": "j",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "认",
+      "pinyin": "rèn",
+      "emoji": "✔️",
+      "meaning": "认",
+      "initial": "r",
+      "final": "en",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "识",
+      "pinyin": "shí",
+      "emoji": "👀",
+      "meaning": "认识",
+      "initial": "sh",
+      "final": "i",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "懂",
+      "pinyin": "dǒng",
+      "emoji": "🧠",
+      "meaning": "懂",
+      "initial": "d",
+      "final": "ong",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "知",
+      "pinyin": "zhī",
+      "emoji": "💡",
+      "meaning": "知道",
+      "initial": "zh",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "道",
+      "pinyin": "dào",
+      "emoji": "🛤️",
+      "meaning": "知道",
+      "initial": "d",
+      "final": "ao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "理",
+      "pinyin": "lǐ",
+      "emoji": "💡",
+      "meaning": "道理",
+      "initial": "l",
+      "final": "i",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "会",
+      "pinyin": "hùi",
+      "emoji": "✅",
+      "meaning": "会",
+      "initial": "h",
+      "final": "ui",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "能力"
+      ]
+    },
+    {
+      "char": "能",
+      "pinyin": "néng",
+      "emoji": "💪",
+      "meaning": "能",
+      "initial": "n",
+      "final": "eng",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "能力"
+      ]
+    },
+    {
+      "char": "可",
+      "pinyin": "kě",
+      "emoji": "✔️",
+      "meaning": "可以",
+      "initial": "k",
+      "final": "e",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "以",
+      "pinyin": "yǐ",
+      "emoji": "➡️",
+      "meaning": "以",
+      "initial": "y",
+      "final": "i",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "该",
+      "pinyin": "gāi",
+      "emoji": "📌",
+      "meaning": "该",
+      "initial": "g",
+      "final": "ai",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "应",
+      "pinyin": "yīng",
+      "emoji": "✔️",
+      "meaning": "应该",
+      "initial": "y",
+      "final": "ing",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "要",
+      "pinyin": "yào",
+      "emoji": "🙋",
+      "meaning": "要",
+      "initial": "y",
+      "final": "ao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "需",
+      "pinyin": "xū",
+      "emoji": "🔑",
+      "meaning": "需要",
+      "initial": "x",
+      "final": "u",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "必",
+      "pinyin": "bì",
+      "emoji": "⚠️",
+      "meaning": "必须",
+      "initial": "b",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "愿",
+      "pinyin": "yuàn",
+      "emoji": "🤝",
+      "meaning": "愿意",
+      "initial": "y",
+      "final": "uan",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "能愿"
+      ]
+    },
+    {
+      "char": "敢",
+      "pinyin": "gǎn",
+      "emoji": "💪",
+      "meaning": "敢",
+      "initial": "g",
+      "final": "an",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "怕",
+      "pinyin": "pà",
+      "emoji": "😨",
+      "meaning": "怕",
+      "initial": "p",
+      "final": "a",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "喜",
+      "pinyin": "xǐ",
+      "emoji": "❤️",
+      "meaning": "喜欢",
+      "initial": "x",
+      "final": "i",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "欢",
+      "pinyin": "huān",
+      "emoji": "🥳",
+      "meaning": "欢",
+      "initial": "h",
+      "final": "uan",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "厌",
+      "pinyin": "yàn",
+      "emoji": "🤢",
+      "meaning": "厌",
+      "initial": "y",
+      "final": "an",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "怒",
+      "pinyin": "nù",
+      "emoji": "😡",
+      "meaning": "怒",
+      "initial": "n",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "哀",
+      "pinyin": "āi",
+      "emoji": "😢",
+      "meaning": "哀",
+      "initial": "",
+      "final": "ai",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "乐",
+      "pinyin": "lè",
+      "emoji": "😄",
+      "meaning": "乐",
+      "initial": "l",
+      "final": "e",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "悲",
+      "pinyin": "bēi",
+      "emoji": "😢",
+      "meaning": "悲",
+      "initial": "b",
+      "final": "ei",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "忧",
+      "pinyin": "yōu",
+      "emoji": "😟",
+      "meaning": "忧",
+      "initial": "y",
+      "final": "ou",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "伤",
+      "pinyin": "shāng",
+      "emoji": "🤕",
+      "meaning": "伤",
+      "initial": "sh",
+      "final": "ang",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "病",
+      "pinyin": "bìng",
+      "emoji": "🤒",
+      "meaning": "病",
+      "initial": "b",
+      "final": "ing",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "痛",
+      "pinyin": "tòng",
+      "emoji": "🤕",
+      "meaning": "痛",
+      "initial": "t",
+      "final": "ong",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "累",
+      "pinyin": "lèi",
+      "emoji": "😩",
+      "meaning": "累",
+      "initial": "l",
+      "final": "ei",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "饿",
+      "pinyin": "è",
+      "emoji": "🍽️",
+      "meaning": "饿",
+      "initial": "",
+      "final": "e",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "饱",
+      "pinyin": "bǎo",
+      "emoji": "🍔",
+      "meaning": "饱",
+      "initial": "b",
+      "final": "ao",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "渴",
+      "pinyin": "kě",
+      "emoji": "🥤",
+      "meaning": "渴",
+      "initial": "k",
+      "final": "e",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "困",
+      "pinyin": "kùn",
+      "emoji": "😴",
+      "meaning": "困",
+      "initial": "k",
+      "final": "un",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "醒",
+      "pinyin": "xǐng",
+      "emoji": "⏰",
+      "meaning": "醒",
+      "initial": "x",
+      "final": "ing",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "眠",
+      "pinyin": "mián",
+      "emoji": "😴",
+      "meaning": "眠",
+      "initial": "m",
+      "final": "ian",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "健康"
+      ]
+    },
+    {
+      "char": "休",
+      "pinyin": "xiū",
+      "emoji": "😌",
+      "meaning": "休息",
+      "initial": "x",
+      "final": "iu",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "息",
+      "pinyin": "xī",
+      "emoji": "😌",
+      "meaning": "息",
+      "initial": "x",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "忙",
+      "pinyin": "máng",
+      "emoji": "🏃",
+      "meaning": "忙",
+      "initial": "m",
+      "final": "ang",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "闲",
+      "pinyin": "xián",
+      "emoji": "🧘",
+      "meaning": "闲",
+      "initial": "x",
+      "final": "ian",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "静",
+      "pinyin": "jìng",
+      "emoji": "🤫",
+      "meaning": "静",
+      "initial": "j",
+      "final": "ing",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "闹",
+      "pinyin": "nào",
+      "emoji": "🔊",
+      "meaning": "闹",
+      "initial": "n",
+      "final": "ao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "安",
+      "pinyin": "ān",
+      "emoji": "✅",
+      "meaning": "安全",
+      "initial": "",
+      "final": "an",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "危",
+      "pinyin": "wēi",
+      "emoji": "⚠️",
+      "meaning": "危险",
+      "initial": "w",
+      "final": "ei",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "险",
+      "pinyin": "xiǎn",
+      "emoji": "⚠️",
+      "meaning": "险",
+      "initial": "x",
+      "final": "ian",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "难",
+      "pinyin": "nán",
+      "emoji": "😣",
+      "meaning": "难",
+      "initial": "n",
+      "final": "an",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "易"
+    },
+    {
+      "char": "易",
+      "pinyin": "yì",
+      "emoji": "✅",
+      "meaning": "易",
+      "initial": "y",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "难"
+    },
+    {
+      "char": "简",
+      "pinyin": "jiǎn",
+      "emoji": "✅",
+      "meaning": "简",
+      "initial": "j",
+      "final": "ian",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "繁",
+      "pinyin": "fán",
+      "emoji": "🌿",
+      "meaning": "繁",
+      "initial": "f",
+      "final": "an",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "强",
+      "pinyin": "qiáng",
+      "emoji": "💪",
+      "meaning": "强",
+      "initial": "q",
+      "final": "iang",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "弱"
+    },
+    {
+      "char": "弱",
+      "pinyin": "ruò",
+      "emoji": "🥀",
+      "meaning": "弱",
+      "initial": "r",
+      "final": "uo",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "强"
+    },
+    {
+      "char": "勇",
+      "pinyin": "yǒng",
+      "emoji": "🦸",
+      "meaning": "勇敢",
+      "initial": "y",
+      "final": "ong",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "智",
+      "pinyin": "zhì",
+      "emoji": "🧠",
+      "meaning": "智慧",
+      "initial": "zh",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "慧",
+      "pinyin": "hùi",
+      "emoji": "🧠",
+      "meaning": "慧",
+      "initial": "h",
+      "final": "ui",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "聪",
+      "pinyin": "cōng",
+      "emoji": "🧠",
+      "meaning": "聪明",
+      "initial": "c",
+      "final": "ong",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "笨",
+      "pinyin": "bèn",
+      "emoji": "🐢",
+      "meaning": "笨",
+      "initial": "b",
+      "final": "en",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "懒",
+      "pinyin": "lǎn",
+      "emoji": "😴",
+      "meaning": "懒",
+      "initial": "l",
+      "final": "an",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "勤",
+      "pinyin": "qín",
+      "emoji": "💪",
+      "meaning": "勤",
+      "initial": "q",
+      "final": "in",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "劳",
+      "pinyin": "láo",
+      "emoji": "💪",
+      "meaning": "劳",
+      "initial": "l",
+      "final": "ao",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "品质"
+      ]
+    },
+    {
+      "char": "酸",
+      "pinyin": "suān",
+      "emoji": "🍋",
+      "meaning": "酸",
+      "initial": "s",
+      "final": "uan",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "味道"
+      ]
+    },
+    {
+      "char": "辣",
+      "pinyin": "là",
+      "emoji": "🌶️",
+      "meaning": "辣",
+      "initial": "l",
+      "final": "a",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "味道"
+      ]
+    },
+    {
+      "char": "咸",
+      "pinyin": "xián",
+      "emoji": "🧂",
+      "meaning": "咸",
+      "initial": "x",
+      "final": "ian",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "味道"
+      ]
+    },
+    {
+      "char": "淡",
+      "pinyin": "dàn",
+      "emoji": "💧",
+      "meaning": "淡",
+      "initial": "d",
+      "final": "an",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "味道"
+      ]
+    },
+    {
+      "char": "软",
+      "pinyin": "ruǎn",
+      "emoji": "🛏️",
+      "meaning": "软",
+      "initial": "r",
+      "final": "uan",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "硬"
+    },
+    {
+      "char": "硬",
+      "pinyin": "yìng",
+      "emoji": "🪨",
+      "meaning": "硬",
+      "initial": "y",
+      "final": "ing",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "软"
+    },
+    {
+      "char": "亮",
+      "pinyin": "liàng",
+      "emoji": "💡",
+      "meaning": "亮",
+      "initial": "l",
+      "final": "iang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "暗"
+    },
+    {
+      "char": "暗",
+      "pinyin": "àn",
+      "emoji": "🌑",
+      "meaning": "暗",
+      "initial": "",
+      "final": "an",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "亮"
+    },
+    {
+      "char": "暖",
+      "pinyin": "nuǎn",
+      "emoji": "🔥",
+      "meaning": "暖",
+      "initial": "n",
+      "final": "uan",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "凉"
+    },
+    {
+      "char": "凉",
+      "pinyin": "liáng",
+      "emoji": "❄️",
+      "meaning": "凉",
+      "initial": "l",
+      "final": "iang",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "暖"
+    },
+    {
+      "char": "温",
+      "pinyin": "wēn",
+      "emoji": "🌡️",
+      "meaning": "温",
+      "initial": "w",
+      "final": "en",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "温度"
+      ]
+    },
+    {
+      "char": "净",
+      "pinyin": "jìng",
+      "emoji": "🧼",
+      "meaning": "净",
+      "initial": "j",
+      "final": "ing",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "脏",
+      "pinyin": "zāng",
+      "emoji": "🤢",
+      "meaning": "脏",
+      "initial": "z",
+      "final": "ang",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "满",
+      "pinyin": "mǎn",
+      "emoji": "🈵",
+      "meaning": "满",
+      "initial": "m",
+      "final": "an",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "空"
+    },
+    {
+      "char": "深",
+      "pinyin": "shēn",
+      "emoji": "🌊",
+      "meaning": "深",
+      "initial": "sh",
+      "final": "en",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "浅"
+    },
+    {
+      "char": "浅",
+      "pinyin": "qiǎn",
+      "emoji": "💧",
+      "meaning": "浅",
+      "initial": "q",
+      "final": "ian",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "深"
+    },
+    {
+      "char": "宽",
+      "pinyin": "kuān",
+      "emoji": "↔️",
+      "meaning": "宽",
+      "initial": "k",
+      "final": "uan",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "窄"
+    },
+    {
+      "char": "窄",
+      "pinyin": "zhǎi",
+      "emoji": "↕️",
+      "meaning": "窄",
+      "initial": "zh",
+      "final": "ai",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "宽"
+    },
+    {
+      "char": "厚",
+      "pinyin": "hòu",
+      "emoji": "📚",
+      "meaning": "厚",
+      "initial": "h",
+      "final": "ou",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "薄"
+    },
+    {
+      "char": "薄",
+      "pinyin": "báo",
+      "emoji": "📄",
+      "meaning": "薄",
+      "initial": "b",
+      "final": "ao",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "厚"
+    },
+    {
+      "char": "直",
+      "pinyin": "zhí",
+      "emoji": "➡️",
+      "meaning": "直",
+      "initial": "zh",
+      "final": "i",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "弯"
+    },
+    {
+      "char": "弯",
+      "pinyin": "wān",
+      "emoji": "↪️",
+      "meaning": "弯",
+      "initial": "w",
+      "final": "an",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "直"
+    },
+    {
+      "char": "尖",
+      "pinyin": "jiān",
+      "emoji": "⚠️",
+      "meaning": "尖",
+      "initial": "j",
+      "final": "ian",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "钝"
+    },
+    {
+      "char": "钝",
+      "pinyin": "dùn",
+      "emoji": "🔨",
+      "meaning": "钝",
+      "initial": "d",
+      "final": "un",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "尖"
+    },
+    {
+      "char": "影",
+      "pinyin": "yǐng",
+      "emoji": "👥",
+      "meaning": "影",
+      "initial": "y",
+      "final": "ing",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "自然"
+      ]
+    },
+    {
+      "char": "声",
+      "pinyin": "shēng",
+      "emoji": "🔊",
+      "meaning": "声",
+      "initial": "sh",
+      "final": "eng",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "感知"
+      ]
+    },
+    {
+      "char": "音",
+      "pinyin": "yīn",
+      "emoji": "🎵",
+      "meaning": "音",
+      "initial": "y",
+      "final": "in",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "感知"
+      ]
+    },
+    {
+      "char": "韵",
+      "pinyin": "yùn",
+      "emoji": "🎶",
+      "meaning": "韵",
+      "initial": "y",
+      "final": "un",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "感知"
+      ]
+    },
+    {
+      "char": "调",
+      "pinyin": "diào",
+      "emoji": "🎛️",
+      "meaning": "调",
+      "initial": "d",
+      "final": "iao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "感知"
+      ]
+    },
+    {
+      "char": "曲",
+      "pinyin": "qǔ",
+      "emoji": "🎵",
+      "meaning": "曲",
+      "initial": "q",
+      "final": "u",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "艺术"
+      ]
+    },
+    {
+      "char": "图",
+      "pinyin": "tú",
+      "emoji": "🖼️",
+      "meaning": "图",
+      "initial": "t",
+      "final": "u",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "学习"
+      ]
+    },
+    {
+      "char": "像",
+      "pinyin": "xiàng",
+      "emoji": "🖼️",
+      "meaning": "像",
+      "initial": "x",
+      "final": "iang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "学习"
+      ]
+    },
+    {
+      "char": "照",
+      "pinyin": "zhào",
+      "emoji": "📸",
+      "meaning": "照",
+      "initial": "zh",
+      "final": "ao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "相",
+      "pinyin": "xiàng",
+      "emoji": "📸",
+      "meaning": "相",
+      "initial": "x",
+      "final": "iang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "学习"
+      ]
+    },
+    {
+      "char": "录",
+      "pinyin": "lù",
+      "emoji": "🎥",
+      "meaning": "录",
+      "initial": "l",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "视",
+      "pinyin": "shì",
+      "emoji": "📺",
+      "meaning": "视",
+      "initial": "sh",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "感知"
+      ]
+    },
+    {
+      "char": "频",
+      "pinyin": "pín",
+      "emoji": "📺",
+      "meaning": "频",
+      "initial": "p",
+      "final": "in",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "感知"
+      ]
+    },
+    {
+      "char": "屏",
+      "pinyin": "píng",
+      "emoji": "📺",
+      "meaning": "屏",
+      "initial": "p",
+      "final": "ing",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "用品"
+      ]
+    },
+    {
+      "char": "幕",
+      "pinyin": "mù",
+      "emoji": "🎬",
+      "meaning": "幕",
+      "initial": "m",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "用品"
+      ]
+    },
+    {
+      "char": "蜡",
+      "pinyin": "là",
+      "emoji": "🕯️",
+      "meaning": "蜡",
+      "initial": "l",
+      "final": "a",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "物品"
+      ]
+    },
+    {
+      "char": "烛",
+      "pinyin": "zhú",
+      "emoji": "🕯️",
+      "meaning": "烛",
+      "initial": "zh",
+      "final": "u",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "物品"
+      ]
+    },
+    {
+      "char": "烟",
+      "pinyin": "yān",
+      "emoji": "💨",
+      "meaning": "烟",
+      "initial": "y",
+      "final": "an",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "自然"
+      ]
+    },
+    {
+      "char": "看",
+      "pinyin": "kàn",
+      "emoji": "👀",
+      "meaning": "看",
+      "initial": "k",
+      "final": "an",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "听",
+      "pinyin": "tīng",
+      "emoji": "👂",
+      "meaning": "听",
+      "initial": "t",
+      "final": "ing",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "说",
+      "pinyin": "shuō",
+      "emoji": "🗣️",
+      "meaning": "说",
+      "initial": "sh",
+      "final": "uo",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "读",
+      "pinyin": "dú",
+      "emoji": "📖",
+      "meaning": "读",
+      "initial": "d",
+      "final": "u",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "写",
+      "pinyin": "xiě",
+      "emoji": "✍️",
+      "meaning": "写",
+      "initial": "x",
+      "final": "ie",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "吃",
+      "pinyin": "chī",
+      "emoji": "😋",
+      "meaning": "吃",
+      "initial": "ch",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "喝",
+      "pinyin": "hē",
+      "emoji": "🥤",
+      "meaning": "喝",
+      "initial": "h",
+      "final": "e",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "走",
+      "pinyin": "zǒu",
+      "emoji": "🚶",
+      "meaning": "走",
+      "initial": "z",
+      "final": "ou",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "跑",
+      "pinyin": "pǎo",
+      "emoji": "🏃",
+      "meaning": "跑",
+      "initial": "p",
+      "final": "ao",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "跳",
+      "pinyin": "tiào",
+      "emoji": "⤴️",
+      "meaning": "跳",
+      "initial": "t",
+      "final": "iao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "站",
+      "pinyin": "zhàn",
+      "emoji": "🧍",
+      "meaning": "站",
+      "initial": "zh",
+      "final": "an",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "坐",
+      "pinyin": "zuò",
+      "emoji": "🪑",
+      "meaning": "坐",
+      "initial": "z",
+      "final": "uo",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "飞",
+      "pinyin": "fēi",
+      "emoji": "✈️",
+      "meaning": "飞",
+      "initial": "f",
+      "final": "ei",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "游",
+      "pinyin": "yóu",
+      "emoji": "🏊",
+      "meaning": "游泳",
+      "initial": "y",
+      "final": "ou",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "唱",
+      "pinyin": "chàng",
+      "emoji": "🎤",
+      "meaning": "唱",
+      "initial": "ch",
+      "final": "ang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "玩",
+      "pinyin": "wán",
+      "emoji": "🧸",
+      "meaning": "玩",
+      "initial": "w",
+      "final": "an",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "睡",
+      "pinyin": "shùi",
+      "emoji": "😴",
+      "meaning": "睡",
+      "initial": "sh",
+      "final": "ui",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "拿",
+      "pinyin": "ná",
+      "emoji": "✊",
+      "meaning": "拿",
+      "initial": "n",
+      "final": "a",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "放",
+      "pinyin": "fàng",
+      "emoji": "📤",
+      "meaning": "放",
+      "initial": "f",
+      "final": "ang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "找",
+      "pinyin": "zhǎo",
+      "emoji": "🔍",
+      "meaning": "找",
+      "initial": "zh",
+      "final": "ao",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "给",
+      "pinyin": "gěi",
+      "emoji": "🎁",
+      "meaning": "给",
+      "initial": "g",
+      "final": "ei",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "借",
+      "pinyin": "jiè",
+      "emoji": "🤝",
+      "meaning": "借",
+      "initial": "j",
+      "final": "ie",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "还",
+      "pinyin": "hái",
+      "emoji": "↩️",
+      "meaning": "还",
+      "initial": "h",
+      "final": "ai",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "在",
+      "pinyin": "zài",
+      "emoji": "📍",
+      "meaning": "在",
+      "initial": "z",
+      "final": "ai",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "到",
+      "pinyin": "dào",
+      "emoji": "🏁",
+      "meaning": "到",
+      "initial": "d",
+      "final": "ao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "动作"
+      ]
+    },
+    {
+      "char": "父",
+      "pinyin": "fù",
+      "emoji": "👨",
+      "meaning": "父亲",
+      "initial": "f",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "母",
+      "pinyin": "mǔ",
+      "emoji": "👩",
+      "meaning": "母亲",
+      "initial": "m",
+      "final": "u",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "儿",
+      "pinyin": "ér",
+      "emoji": "👦",
+      "meaning": "儿子",
+      "initial": "",
+      "final": "er",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "兄",
+      "pinyin": "xiōng",
+      "emoji": "👦",
+      "meaning": "兄弟",
+      "initial": "x",
+      "final": "iong",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "弟",
+      "pinyin": "dì",
+      "emoji": "👦",
+      "meaning": "弟弟",
+      "initial": "d",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "姐",
+      "pinyin": "jiě",
+      "emoji": "👧",
+      "meaning": "姐姐",
+      "initial": "j",
+      "final": "ie",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "妹",
+      "pinyin": "mèi",
+      "emoji": "👧",
+      "meaning": "妹妹",
+      "initial": "m",
+      "final": "ei",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "爷",
+      "pinyin": "yé",
+      "emoji": "👴",
+      "meaning": "爷爷",
+      "initial": "y",
+      "final": "e",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "量词",
+        "亲属"
+      ],
+      "measureWord": "位"
+    },
+    {
+      "char": "公",
+      "pinyin": "gōng",
+      "emoji": "🤝",
+      "meaning": "公共",
+      "initial": "g",
+      "final": "ong",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "关系"
+      ]
+    },
+    {
+      "char": "平",
+      "pinyin": "píng",
+      "emoji": "🕊️",
+      "meaning": "平安",
+      "initial": "p",
+      "final": "ing",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "状态"
+      ]
+    },
+    {
+      "char": "幸",
+      "pinyin": "xìng",
+      "emoji": "🍀",
+      "meaning": "幸福",
+      "initial": "x",
+      "final": "ing",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "福",
+      "pinyin": "fú",
+      "emoji": "🧧",
+      "meaning": "福",
+      "initial": "f",
+      "final": "u",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "希",
+      "pinyin": "xī",
+      "emoji": "🌟",
+      "meaning": "希望",
+      "initial": "x",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "望",
+      "pinyin": "wàng",
+      "emoji": "🔭",
+      "meaning": "希望",
+      "initial": "w",
+      "final": "ang",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "心理"
+      ]
+    },
+    {
+      "char": "信",
+      "pinyin": "xìn",
+      "emoji": "✉️",
+      "meaning": "信",
+      "initial": "x",
+      "final": "in",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "沟通"
+      ],
+      "measureWord": "封"
+    },
+    {
+      "char": "话",
+      "pinyin": "huà",
+      "emoji": "💬",
+      "meaning": "话",
+      "initial": "h",
+      "final": "ua",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "沟通"
+      ],
+      "measureWord": "句"
+    },
+    {
+      "char": "语",
+      "pinyin": "yǔ",
+      "emoji": "🗣️",
+      "meaning": "语言",
+      "initial": "y",
+      "final": "u",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "量词",
+        "沟通"
+      ],
+      "measureWord": "种"
+    },
+    {
+      "char": "言",
+      "pinyin": "yán",
+      "emoji": "💬",
+      "meaning": "言语",
+      "initial": "y",
+      "final": "an",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "沟通"
+      ]
+    },
+    {
+      "char": "名",
+      "pinyin": "míng",
+      "emoji": "🏷️",
+      "meaning": "名字",
+      "initial": "m",
+      "final": "ing",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "量词",
+        "称谓"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "姓",
+      "pinyin": "xìng",
+      "emoji": "🏷️",
+      "meaning": "姓",
+      "initial": "x",
+      "final": "ing",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "称谓"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "号",
+      "pinyin": "hào",
+      "emoji": "🔢",
+      "meaning": "号",
+      "initial": "h",
+      "final": "ao",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "称谓"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "法",
+      "pinyin": "fǎ",
+      "emoji": "💡",
+      "meaning": "方法",
+      "initial": "f",
+      "final": "a",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "量词",
+        "认知"
+      ],
+      "measureWord": "种"
+    },
+    {
+      "char": "式",
+      "pinyin": "shì",
+      "emoji": "🔣",
+      "meaning": "方式",
+      "initial": "sh",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "认知"
+      ],
+      "measureWord": "种"
+    },
+    {
+      "char": "例",
+      "pinyin": "lì",
+      "emoji": "📋",
+      "meaning": "例子",
+      "initial": "l",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "认知"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "原",
+      "pinyin": "yuán",
+      "emoji": "❓",
+      "meaning": "原因",
+      "initial": "y",
+      "final": "uan",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "因",
+      "pinyin": "yīn",
+      "emoji": "❓",
+      "meaning": "原因",
+      "initial": "y",
+      "final": "in",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "故",
+      "pinyin": "gù",
+      "emoji": "📖",
+      "meaning": "故事",
+      "initial": "g",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "认知"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "事",
+      "pinyin": "shì",
+      "emoji": "📝",
+      "meaning": "事情",
+      "initial": "sh",
+      "final": "i",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "认知"
+      ],
+      "measureWord": "件"
+    },
+    {
+      "char": "情",
+      "pinyin": "qíng",
+      "emoji": "💗",
+      "meaning": "情况",
+      "initial": "q",
+      "final": "ing",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "题",
+      "pinyin": "tí",
+      "emoji": "📝",
+      "meaning": "题目",
+      "initial": "t",
+      "final": "i",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "量词",
+        "认知"
+      ],
+      "measureWord": "道"
+    },
+    {
+      "char": "正",
+      "pinyin": "zhèng",
+      "emoji": "✔️",
+      "meaning": "正确",
+      "initial": "zh",
+      "final": "eng",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "误"
+    },
+    {
+      "char": "误",
+      "pinyin": "wù",
+      "emoji": "❌",
+      "meaning": "错误",
+      "initial": "w",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "正"
+    },
+    {
+      "char": "清",
+      "pinyin": "qīng",
+      "emoji": "💧",
+      "meaning": "清",
+      "initial": "q",
+      "final": "ing",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "浊"
+    },
+    {
+      "char": "浊",
+      "pinyin": "zhuó",
+      "emoji": "🟤",
+      "meaning": "浊",
+      "initial": "zh",
+      "final": "uo",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "清"
+    },
+    {
+      "char": "楚",
+      "pinyin": "chǔ",
+      "emoji": "💡",
+      "meaning": "楚",
+      "initial": "ch",
+      "final": "u",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "认知"
+      ]
+    },
+    {
+      "char": "东",
+      "pinyin": "dōng",
+      "emoji": "⬅️",
+      "meaning": "东",
+      "initial": "d",
+      "final": "ong",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "西"
+    },
+    {
+      "char": "西",
+      "pinyin": "xī",
+      "emoji": "➡️",
+      "meaning": "西",
+      "initial": "x",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "东"
+    },
+    {
+      "char": "南",
+      "pinyin": "nán",
+      "emoji": "⬇️",
+      "meaning": "南",
+      "initial": "n",
+      "final": "an",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "北"
+    },
+    {
+      "char": "北",
+      "pinyin": "běi",
+      "emoji": "⬆️",
+      "meaning": "北",
+      "initial": "b",
+      "final": "ei",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "南"
+    },
+    {
+      "char": "内",
+      "pinyin": "nèi",
+      "emoji": "📥",
+      "meaning": "内",
+      "initial": "n",
+      "final": "ei",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "外"
+    },
+    {
+      "char": "间",
+      "pinyin": "jiān",
+      "emoji": "🎯",
+      "meaning": "中间",
+      "initial": "j",
+      "final": "ian",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "方位"
+      ]
+    },
+    {
+      "char": "始",
+      "pinyin": "shǐ",
+      "emoji": "🚀",
+      "meaning": "开始",
+      "initial": "sh",
+      "final": "i",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "终"
+    },
+    {
+      "char": "终",
+      "pinyin": "zhōng",
+      "emoji": "🏁",
+      "meaning": "终",
+      "initial": "zh",
+      "final": "ong",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "始"
+    },
+    {
+      "char": "尾",
+      "pinyin": "wěi",
+      "emoji": "🐇",
+      "meaning": "尾",
+      "initial": "w",
+      "final": "ei",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "首"
+    },
+    {
+      "char": "先",
+      "pinyin": "xiān",
+      "emoji": "⏪",
+      "meaning": "先",
+      "initial": "x",
+      "final": "ian",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "后"
+    },
+    {
+      "char": "末",
+      "pinyin": "mò",
+      "emoji": "🔚",
+      "meaning": "末",
+      "initial": "m",
+      "final": "o",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "本"
+    },
+    {
+      "char": "表",
+      "pinyin": "biǎo",
+      "emoji": "⌚",
+      "meaning": "表",
+      "initial": "b",
+      "final": "iao",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "量词",
+        "用品"
+      ],
+      "measureWord": "块"
+    },
+    {
+      "char": "墨",
+      "pinyin": "mò",
+      "emoji": "🖋️",
+      "meaning": "墨",
+      "initial": "m",
+      "final": "o",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "学习"
+      ],
+      "measureWord": "瓶"
+    },
+    {
+      "char": "砚",
+      "pinyin": "yàn",
+      "emoji": "🪨",
+      "meaning": "砚",
+      "initial": "y",
+      "final": "an",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "量词",
+        "学习"
+      ],
+      "measureWord": "方"
+    },
+    {
+      "char": "诗",
+      "pinyin": "shī",
+      "emoji": "📜",
+      "meaning": "诗",
+      "initial": "sh",
+      "final": "i",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "量词",
+        "文学"
+      ],
+      "measureWord": "首"
+    },
+    {
+      "char": "算",
+      "pinyin": "suàn",
+      "emoji": "🧮",
+      "meaning": "算",
+      "initial": "s",
+      "final": "uan",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "数",
+      "pinyin": "shù",
+      "emoji": "🔢",
+      "meaning": "数",
+      "initial": "sh",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "加",
+      "pinyin": "jiā",
+      "emoji": "➕",
+      "meaning": "加",
+      "initial": "j",
+      "final": "ia",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "减"
+    },
+    {
+      "char": "减",
+      "pinyin": "jiǎn",
+      "emoji": "➖",
+      "meaning": "减",
+      "initial": "j",
+      "final": "ian",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "加"
+    },
+    {
+      "char": "乘",
+      "pinyin": "chéng",
+      "emoji": "✖️",
+      "meaning": "乘",
+      "initial": "ch",
+      "final": "eng",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "除"
+    },
+    {
+      "char": "除",
+      "pinyin": "chú",
+      "emoji": "➗",
+      "meaning": "除",
+      "initial": "ch",
+      "final": "u",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "乘"
+    },
+    {
+      "char": "等于",
+      "pinyin": "děngyu",
+      "emoji": "🟰",
+      "meaning": "等于",
+      "initial": "d",
+      "final": "engyu",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "比",
+      "pinyin": "bǐ",
+      "emoji": "⚖️",
+      "meaning": "比",
+      "initial": "b",
+      "final": "i",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "差",
+      "pinyin": "chā",
+      "emoji": "➖",
+      "meaning": "差",
+      "initial": "ch",
+      "final": "a",
+      "tone": 1,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "共",
+      "pinyin": "gòng",
+      "emoji": "🤝",
+      "meaning": "共",
+      "initial": "g",
+      "final": "ong",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "余",
+      "pinyin": "yú",
+      "emoji": "📐",
+      "meaning": "余",
+      "initial": "y",
+      "final": "u",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "倍",
+      "pinyin": "bèi",
+      "emoji": "✨",
+      "meaning": "倍",
+      "initial": "b",
+      "final": "ei",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "整",
+      "pinyin": "zhěng",
+      "emoji": "🔢",
+      "meaning": "整",
+      "initial": "zh",
+      "final": "eng",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "奇",
+      "pinyin": "qí",
+      "emoji": "1️⃣",
+      "meaning": "奇",
+      "initial": "q",
+      "final": "i",
+      "tone": 2,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "偶"
+    },
+    {
+      "char": "偶",
+      "pinyin": "ǒu",
+      "emoji": "2️⃣",
+      "meaning": "偶",
+      "initial": "",
+      "final": "ou",
+      "tone": 3,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "奇"
+    },
+    {
+      "char": "负",
+      "pinyin": "fù",
+      "emoji": "➖",
+      "meaning": "负数",
+      "initial": "f",
+      "final": "u",
+      "tone": 4,
+      "level": 2,
+      "tags": [
+        "反义词",
+        "反义词"
+      ],
+      "antonym": "正"
+    },
+    {
+      "char": "围",
+      "pinyin": "wéi",
+      "emoji": "⭕",
+      "meaning": "围",
+      "initial": "w",
+      "final": "ei",
+      "tone": 2,
+      "level": 3,
+      "tags": [
+        "形状"
+      ]
+    },
+    {
+      "char": "圈",
+      "pinyin": "quān",
+      "emoji": "⭕",
+      "meaning": "圈",
+      "initial": "q",
+      "final": "uan",
+      "tone": 1,
+      "level": 3,
+      "tags": [
+        "量词",
+        "形状"
+      ],
+      "measureWord": "个"
+    },
+    {
+      "char": "线",
+      "pinyin": "xiàn",
+      "emoji": "➖",
+      "meaning": "线",
+      "initial": "x",
+      "final": "ian",
+      "tone": 4,
+      "level": 3,
+      "tags": [
+        "量词",
+        "形状"
+      ],
+      "measureWord": "条"
+    },
+    {
+      "char": "积",
+      "pinyin": "jī",
+      "emoji": "📦",
+      "meaning": "积",
+      "initial": "j",
+      "final": "i",
+      "tone": 1,
+      "level": 3,
+      "tags": [
+        "数学"
+      ]
+    },
+    {
+      "char": "速",
+      "pinyin": "sù",
+      "emoji": "💨",
+      "meaning": "速度",
+      "initial": "s",
+      "final": "u",
+      "tone": 4,
+      "level": 3,
+      "tags": [
+        "物理"
+      ]
+    },
+    {
+      "char": "力",
+      "pinyin": "lì",
+      "emoji": "💪",
+      "meaning": "力",
+      "initial": "l",
+      "final": "i",
+      "tone": 4,
+      "level": 3,
+      "tags": [
+        "物理"
+      ]
+    },
+    {
+      "char": "功",
+      "pinyin": "gōng",
+      "emoji": "🏆",
+      "meaning": "功",
+      "initial": "g",
+      "final": "ong",
+      "tone": 1,
+      "level": 3,
+      "tags": [
+        "物理"
+      ]
+    },
+    {
+      "char": "磁",
+      "pinyin": "cí",
+      "emoji": "🧲",
+      "meaning": "磁",
+      "initial": "c",
+      "final": "i",
+      "tone": 2,
+      "level": 3,
+      "tags": [
+        "物理"
+      ]
+    },
+    {
+      "char": "辰",
+      "pinyin": "chén",
+      "emoji": "🌟",
+      "meaning": "星辰",
+      "initial": "ch",
+      "final": "en",
+      "tone": 2,
+      "level": 3,
+      "tags": [
+        "量词",
+        "天文"
+      ],
+      "measureWord": "颗"
+    },
+    {
+      "char": "霜",
+      "pinyin": "shuāng",
+      "emoji": "❄️",
+      "meaning": "霜",
+      "initial": "sh",
+      "final": "uang",
+      "tone": 1,
+      "level": 3,
+      "tags": [
+        "天文"
+      ]
+    },
+    {
+      "char": "露",
+      "pinyin": "lù",
+      "emoji": "💧",
+      "meaning": "露",
+      "initial": "l",
+      "final": "u",
+      "tone": 4,
+      "level": 3,
+      "tags": [
+        "量词",
+        "天文"
+      ],
+      "measureWord": "滴"
+    },
+    {
+      "char": "虹",
+      "pinyin": "hóng",
+      "emoji": "🌈",
+      "meaning": "彩虹",
+      "initial": "h",
+      "final": "ong",
+      "tone": 2,
+      "level": 3,
+      "tags": [
+        "量词",
+        "天文"
+      ],
+      "measureWord": "道"
+    }
+  ]
+}

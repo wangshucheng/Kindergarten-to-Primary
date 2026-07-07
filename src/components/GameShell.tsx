@@ -23,7 +23,7 @@ function GameInner({
   onRestart: () => void;
 }) {
   const navigate = useNavigate();
-  const { score, combo } = useScore();
+  const { score, combo, knowledgePoints, medals } = useScore();
   const { saveResult } = useProgress();
 
   const [finished, setFinished] = useState(false);
@@ -43,9 +43,10 @@ function GameInner({
       setResult(r);
       setFinished(true);
       sound.play(r.passed ? 'win' : 'wrong');
-      saveResult({ ...r, gameId: config.id });
+      // 收割本局收集的知识点 / 勋章，随结果一并落盘
+      saveResult({ ...r, gameId: config.id, knowledgePoints, medals });
     },
-    [sound, saveResult, config.id],
+    [sound, saveResult, config.id, knowledgePoints, medals],
   );
 
   const handleExit = useCallback(() => {

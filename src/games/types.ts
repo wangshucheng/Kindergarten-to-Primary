@@ -1,6 +1,7 @@
 import type { ComponentType } from 'react';
 import type { SoundManager } from '../sound/SoundManager';
 import type { TtsManager } from '../sound/TtsManager';
+import type { SubjectKey } from '../data/types';
 
 /** 四大模块标识 */
 export type ModuleKey = 'math' | 'pinyin' | 'hanzi' | 'english';
@@ -27,6 +28,13 @@ export interface GameConfig {
   icon: string;
   priority: Priority;
   component: ComponentType<GameProps>;
+  /**
+   * 学科键（可选）：标注该游戏对应的题库池，供生成器门面按 subject 分发。
+   * 内容迭代新增玩法（消消乐/砖块/地雷/华容道/赶鹅）会用到。
+   */
+  subject?: SubjectKey;
+  /** 玩法模式（可选）：同一学科下的细分模式，如 'match-3' / 'brick-match' / 'number-mines' */
+  mode?: string;
 }
 
 /** 注入给具体游戏组件的属性 */
