@@ -6,6 +6,7 @@ import { SudokuGame } from './sudoku/SudokuGame';
 import { LetterSudokuGame } from './LetterSudoku/LetterSudokuGame';
 import { ArithmeticSudokuGame } from './ArithmeticSudoku/ArithmeticSudokuGame';
 import { NumberMinesGame } from './NumberMines/NumberMinesGame';
+import { KlotskiGame } from './klotski/KlotskiGame';
 
 export const games: GameConfig[] = [
   { id: 'make-ten', module: 'math', title: '凑十法', icon: '🍎', priority: 'P0', component: MakeTenGame },
@@ -51,5 +52,15 @@ export const games: GameConfig[] = [
     component: NumberMinesGame,
     subject: 'math',
     mode: 'number-mines',
+  },
+  {
+    id: 'klotski',
+    module: 'math',
+    title: '华容道',
+    icon: '🀄',
+    priority: 'P1',
+    component: KlotskiGame,
+    subject: 'math',
+    mode: 'klotski',
   },
 ];

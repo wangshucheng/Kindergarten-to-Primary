@@ -3,6 +3,7 @@ import { FlipMemoryGame } from './FlipMemory/FlipMemoryGame';
 import { ConnectMatchGame } from './ConnectMatch/ConnectMatchGame';
 import { MoreHanziGame } from './MoreHanzi/MoreHanziGame';
 import { Match3Game } from '../_shared/match3/Match3Game';
+import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
 
 export const games: GameConfig[] = [
   { id: 'flip-memory', module: 'hanzi', title: '翻牌记忆', icon: '🃏', priority: 'P0', component: FlipMemoryGame },
@@ -24,5 +25,15 @@ export const games: GameConfig[] = [
     component: Match3Game,
     subject: 'hanzi',
     mode: 'match-3',
+  },
+  {
+    id: 'brick-match-hanzi',
+    module: 'hanzi',
+    title: '砖块配对',
+    icon: '🧱',
+    priority: 'P1',
+    component: BrickMatchGame,
+    subject: 'hanzi',
+    mode: 'brick-match',
   },
 ];

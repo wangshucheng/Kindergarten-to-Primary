@@ -4,6 +4,7 @@ import { WordImageGame } from './WordImage/WordImageGame';
 import { SentenceFillGame } from './SentenceFill/SentenceFillGame';
 import { BattleQuizGame } from './BattleQuiz/BattleQuizGame';
 import { Match3Game } from '../_shared/match3/Match3Game';
+import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
 
 export const games: GameConfig[] = [
   {
@@ -40,5 +41,15 @@ export const games: GameConfig[] = [
     component: Match3Game,
     subject: 'english',
     mode: 'match-3',
+  },
+  {
+    id: 'brick-match',
+    module: 'english',
+    title: '砖块配对',
+    icon: '🧱',
+    priority: 'P1',
+    component: BrickMatchGame,
+    subject: 'english',
+    mode: 'brick-match',
   },
 ];
