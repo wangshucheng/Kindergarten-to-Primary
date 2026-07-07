@@ -103,12 +103,16 @@ function makeExpr(level: 1 | 2 | 3, rng: Rng, seed: number): MathExpr {
   return genExpression({ level, rule, seed: seed >>> 0 });
 }
 
-/** 生成作答选项：正确答案 + 3 个不重复、非负、且与正确答案不同的干扰项 */
+/** 选项主题上界：数字扫雷统一为「20 以内加减」，干扰项不得超过 20 */
+const OPTION_MAX = 20;
+
+/** 生成作答选项：正确答案 + 3 个不重复、非负、且与正确答案不同的干扰项。
+ *  干扰项额外约束严格落在 [0, OPTION_MAX] 内，避免大答案（如 20）产生 21~24 等超界项。 */
 export function makeOptions(answer: number, rng: Rng): number[] {
   const cands: number[] = [];
   for (const d of [1, -1, 2, -2, 3, -3]) {
     const v = answer + d;
-    if (v >= 0 && v !== answer && !cands.includes(v)) cands.push(v);
+    if (v >= 0 && v <= OPTION_MAX && v !== answer && !cands.includes(v)) cands.push(v);
   }
   const distract = shuffle(cands, rng).slice(0, 3);
   return shuffle([answer, ...distract], rng);
