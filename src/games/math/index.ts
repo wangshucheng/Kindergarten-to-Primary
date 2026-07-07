@@ -5,6 +5,7 @@ import { NumberMergeGame } from './NumberMerge/NumberMergeGame';
 import { SudokuGame } from './sudoku/SudokuGame';
 import { LetterSudokuGame } from './LetterSudoku/LetterSudokuGame';
 import { ArithmeticSudokuGame } from './ArithmeticSudoku/ArithmeticSudokuGame';
+import { NumberMinesGame } from './NumberMines/NumberMinesGame';
 
 export const games: GameConfig[] = [
   { id: 'make-ten', module: 'math', title: '凑十法', icon: '🍎', priority: 'P0', component: MakeTenGame },
@@ -40,5 +41,15 @@ export const games: GameConfig[] = [
     icon: '➕',
     priority: 'P1',
     component: ArithmeticSudokuGame,
+  },
+  {
+    id: 'number-mines',
+    module: 'math',
+    title: '数字地雷',
+    icon: '💣',
+    priority: 'P1',
+    component: NumberMinesGame,
+    subject: 'math',
+    mode: 'number-mines',
   },
 ];

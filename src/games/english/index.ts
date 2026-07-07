@@ -3,6 +3,7 @@ import { LetterCaseGame } from './LetterCase/LetterCaseGame';
 import { WordImageGame } from './WordImage/WordImageGame';
 import { SentenceFillGame } from './SentenceFill/SentenceFillGame';
 import { BattleQuizGame } from './BattleQuiz/BattleQuizGame';
+import { Match3Game } from '../_shared/match3/Match3Game';
 
 export const games: GameConfig[] = [
   {
@@ -29,5 +30,15 @@ export const games: GameConfig[] = [
     icon: '⚔️',
     priority: 'P1',
     component: BattleQuizGame,
+  },
+  {
+    id: 'match-3-en',
+    module: 'english',
+    title: '英语消消乐',
+    icon: '🌈',
+    priority: 'P1',
+    component: Match3Game,
+    subject: 'english',
+    mode: 'match-3',
   },
 ];

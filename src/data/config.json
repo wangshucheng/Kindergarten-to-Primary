@@ -51,6 +51,7 @@
         { "id": "sentence-fill", "title": "句子填空", "icon": "📝", "priority": "P1" },
         { "id": "battle-quiz", "title": "答题大作战", "icon": "⚔️", "priority": "P1" },
         { "id": "brick-match", "title": "砖块配对", "icon": "🧱", "priority": "P1", "subject": "english", "mode": "brick-match" },
+        { "id": "match-3-en", "title": "英语消消乐", "icon": "🌈", "priority": "P1", "subject": "english", "mode": "match-3" },
         { "id": "goose-catch", "title": "赶鹅配对", "icon": "🪿", "priority": "P1", "subject": "english", "mode": "goose-catch" }
       ]
     }
