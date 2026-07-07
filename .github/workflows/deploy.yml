@@ -1,0 +1,62 @@
+# Deploy to GitHub Pages
+#
+# 用法说明：
+#   - 推送代码到 main 或 master 分支时会自动触发部署。
+#   - 也可在仓库的 Actions 标签页手动点击 "Run workflow"（workflow_dispatch）触发。
+#   - 需先在仓库 Settings → Pages → "Build and deployment" → Source 选择 "GitHub Actions"，
+#     否则部署步骤（deploy-pages@v4）会失败。
+#   - 构建产物由 vite.config.ts 的 base: './' 设为相对路径，可适配任意 Pages 子路径。
+#   - 部署前会运行 `npm test`（vitest run）作为质量门禁，测试不通过则不会部署。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Test
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4

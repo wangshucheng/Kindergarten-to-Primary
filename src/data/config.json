@@ -1,0 +1,57 @@
+{
+  "appName": "幼升小游戏合集",
+  "modules": [
+    {
+      "key": "math",
+      "title": "数学乐园",
+      "icon": "🔢",
+      "description": "凑十法 · 加减连连看 · 数字合成",
+      "games": [
+        { "id": "make-ten", "title": "凑十法", "icon": "🍎", "priority": "P0" },
+        { "id": "plus-minus-link", "title": "加减连连看", "icon": "➕", "priority": "P0" },
+        { "id": "number-merge", "title": "数字合成", "icon": "🔢", "priority": "P1" }
+      ]
+    },
+    {
+      "key": "pinyin",
+      "title": "拼音王国",
+      "icon": "🔤",
+      "description": "声母韵母 · 拼读练习 · 听音选拼音",
+      "games": [
+        { "id": "pinyin-match", "title": "声母韵母拼读", "icon": "🔡", "priority": "P0" },
+        { "id": "pinyin-variants", "title": "拼读变体", "icon": "🎯", "priority": "P1" },
+        { "id": "pinyin-listen", "title": "听音选拼音", "icon": "🎧", "priority": "P1" }
+      ]
+    },
+    {
+      "key": "hanzi",
+      "title": "汉字天地",
+      "icon": "📚",
+      "description": "翻牌记忆 · 连线匹配 · 识字玩法",
+      "games": [
+        { "id": "flip-memory", "title": "翻牌记忆", "icon": "🃏", "priority": "P0" },
+        { "id": "connect-match", "title": "连线匹配", "icon": "🔗", "priority": "P0" },
+        { "id": "more-hanzi", "title": "趣味识字", "icon": "✏️", "priority": "P1" }
+      ]
+    },
+    {
+      "key": "english",
+      "title": "英语小镇",
+      "icon": "🔤",
+      "description": "字母 · 单词 · 句子 · 对战",
+      "games": [
+        { "id": "letter-case", "title": "大小写配对", "icon": "🔠", "priority": "P0" },
+        { "id": "word-image", "title": "单词图文", "icon": "🖼️", "priority": "P1" },
+        { "id": "sentence-fill", "title": "句子填空", "icon": "📝", "priority": "P1" },
+        { "id": "battle-quiz", "title": "答题大作战", "icon": "⚔️", "priority": "P1" }
+      ]
+    }
+  ],
+  "achievements": [
+    { "id": "first-win", "title": "初次通关", "icon": "🌟", "description": "完成任意一局游戏" },
+    { "id": "star-three", "title": "三颗星", "icon": "⭐", "description": "获得一次三星评价" },
+    { "id": "explorer", "title": "小探险家", "icon": "🧭", "description": "游玩至少 12 个不同游戏" },
+    { "id": "persistent", "title": "坚持不懈", "icon": "💪", "description": "累计游玩 30 局" },
+    { "id": "perfect", "title": "完美主义", "icon": "🏆", "description": "获得三星评价" }
+  ]
+}

@@ -1,0 +1,34 @@
+sequenceDiagram
+    actor 儿童 as 小朋友
+    participant HP as HomePage
+    participant MP as ModulePage
+    participant GP as GamePage
+    participant SH as GameShell
+    participant G as 具体游戏(如MakeTen)
+    participant SM as SoundManager
+    participant SC as ScoreContext
+    participant PS as ProgressStore
+
+    儿童->>HP: 打开网页(首页)
+    HP->>HP: 读取 config.json 渲染 4 模块入口
+    儿童->>HP: 点击「数学乐园」
+    HP->>MP: navigate(/module/math)
+    MP->>MP: 列出该模块游戏卡片
+    儿童->>MP: 点击「凑十法」
+    MP->>GP: navigate(/game/make-ten)
+    GP->>GP: 按 id 查 GameConfig
+    GP->>SH: <GameShell config=.../>
+    SH->>SH: 初始化 ScoreContext / 读取 PS 历史最佳
+    SH->>G: 渲染 <MakeTenGame props/>  (注入 sound/onComplete/onExit)
+    loop 游戏交互
+        儿童->>G: 点击/拖动瓷砖
+        G->>SM: play('click'/'correct'/'wrong')
+        G->>SC: addScore() / comboUp()
+        G->>G: 校验过关条件
+    end
+    G->>SH: onComplete({score,passed,stars})
+    SH->>SM: play('win')
+    SH->>PS: saveResult('make-ten', result)  // localStorage 存档(A-005)
+    SH->>SH: 显示过关 Modal(星级/再玩/返回)
+    儿童->>SH: 点击「返回首页」
+    SH->>HP: navigate(/)

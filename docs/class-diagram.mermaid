@@ -1,0 +1,143 @@
+classDiagram
+    %% ---------- 共享接口 ----------
+    class GameConfig {
+        +string id
+        +ModuleKey module
+        +string title
+        +string icon
+        +Priority priority
+        +ComponentType~GameProps~ component
+    }
+    class GameProps {
+        +GameConfig config
+        +SoundManager sound
+        +onComplete(result: GameResult): void
+        +onExit(): void
+    }
+    class GameResult {
+        +number score
+        +boolean passed
+        +number stars
+        +number durationMs
+    }
+    class ModuleKey {
+        <<enumeration>>
+        math
+        pinyin
+        hanzi
+        english
+    }
+
+    %% ---------- 音效 ----------
+    class SoundManager {
+        -AudioContext ctx
+        -boolean enabled
+        +play(type: SoundType): void
+        +setEnabled(b: boolean): void
+        +toggle(): boolean
+    }
+    class SoundType {
+        <<enumeration>>
+        click
+        correct
+        wrong
+        win
+        levelup
+    }
+
+    %% ---------- 状态 ----------
+    class ScoreContext {
+        -ScoreState state
+        +addScore(n: number): void
+        +comboUp(): void
+        +levelUp(): void
+        +reset(): void
+    }
+    class ScoreState {
+        +number current
+        +number best
+        +number level
+        +number combo
+    }
+    class ProgressStore {
+        -Record~string,GameProgress~ progress
+        +saveResult(id: string, r: GameResult): void
+        +getProgress(id: string): GameProgress
+        +getAchievements(): Achievement[]
+        +exportReport(): ParentReport
+    }
+    class GameProgress {
+        +number bestScore
+        +number stars
+        +number plays
+        +boolean cleared
+    }
+
+    %% ---------- 共享 UI ----------
+    class GameShell {
+        +GameConfig config
+        +render(): void
+    }
+    class HUD {
+        +score: number
+        +level: number
+        +onExit(): void
+        +onToggleSound(): void
+    }
+    class CardGrid {
+        +CardItem[] items
+        +onMatch(a: CardItem, b: CardItem): void
+        +render(): void
+    }
+    class Card {
+        +CardItem data
+        +selected: boolean
+        +matched: boolean
+        +onClick(): void
+    }
+    class CardItem {
+        +string id
+        +string label
+        +string pinyin
+        +string emoji
+        +string group
+    }
+
+    %% ---------- 各游戏逻辑(节选) ----------
+    class MakeTenLogic {
+        +Tile[][] layers
+        +popTile(t: Tile): boolean
+        +isCleared(): boolean
+        +genLevel(cfg: object): Tile[][]
+    }
+    class LinkLogic {
+        +Node[] nodes
+        +canLink(a: Node, b: Node): boolean
+        +removePair(a: Node, b: Node): void
+    }
+    class FlipLogic {
+        +CardItem[] deck
+        +flip(id: string): void
+        +checkMatch(): boolean
+    }
+    class MergeLogic {
+        +number[][] board
+        +move(dir: Dir): boolean
+        +spawn(): void
+    }
+
+    %% ---------- 关系 ----------
+    GameProps "1" *-- "1" GameConfig
+    GameProps "1" *-- "1" SoundManager
+    GameProps ..> GameResult : onComplete
+    GameShell "1" *-- "1" HUD
+    GameShell "1" *-- "1" ScoreContext
+    GameShell ..> ProgressStore : saveResult
+    CardGrid "1" *-- "0..*" Card
+    Card "1" *-- "1" CardItem
+    MakeTenGame ..> MakeTenLogic
+    PlusMinusLinkGame ..> LinkLogic
+    FlipMemoryGame ..> FlipLogic
+    NumberMergeGame ..> MergeLogic
+    ScoreContext "1" *-- "1" ScoreState
+    ProgressStore ..> GameProgress

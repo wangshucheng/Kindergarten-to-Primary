@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #fff9f0;
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #6b5544;
+  overscroll-behavior: none;
+}
+
+/* 去掉数字输入框的上下箭头（部分玩法用到） */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* 让进度条颜色变量可用 */
+:root {
+  --accent: #ffb3c6;
+  --bar: #95e1c9;
+}
