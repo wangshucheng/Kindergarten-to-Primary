@@ -8,3 +8,5 @@ Thumbs.db
 .vscode/
 .idea/
 .workbuddy/
+# vite / vitest 临时配置文件
+*.timestamp-*.mjs
