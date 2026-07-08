@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { SoundManager } from '../sound/SoundManager';
 import type { TtsManager } from '../sound/TtsManager';
+import { getTtsLang, setTtsLang, onTtsLangChange, type TtsLang } from '../sound/ttsLang';
 import { moduleColors } from '../theme/tokens';
 import type { ModuleKey } from '../games/types';
 
@@ -21,7 +22,10 @@ interface HUDProps {
 export function HUD({ title, module, score, combo, sound, tts, onExit }: HUDProps) {
   const [on, setOn] = useState<boolean>(sound.isEnabled());
   const [ttsOn, setTtsOn] = useState<boolean>(tts.isEnabled());
+  const [ttsLang, setTtlLang] = useState<TtsLang>(getTtsLang());
   const accent = moduleColors[module];
+
+  useEffect(() => onTtsLangChange(() => setTtlLang(getTtsLang())), []);
 
   const toggleSound = (): void => {
     const next = sound.toggle();
@@ -67,6 +71,27 @@ export function HUD({ title, module, score, combo, sound, tts, onExit }: HUDProp
           🔥 {combo}
         </div>
       )}
+
+      <div className="shrink-0 flex items-center gap-1 px-1">
+        {(['zh-CN', 'zh-HK', 'en-US'] as TtsLang[]).map((l) => (
+          <button
+            key={l}
+            type="button"
+            onClick={() => {
+              setTtsLang(l);
+              setTtlLang(l);
+            }}
+            className={[
+              'w-9 h-9 rounded-xl text-sm font-bold active:scale-95',
+              ttsLang === l ? 'bg-mint text-ink' : 'bg-white text-inkSoft shadow-press',
+            ].join(' ')}
+            style={{ touchAction: 'manipulation' }}
+            aria-label={l === 'zh-CN' ? '普通话' : l === 'zh-HK' ? '粤语' : '英语'}
+          >
+            {l === 'zh-CN' ? '中' : l === 'zh-HK' ? '粤' : '英'}
+          </button>
+        ))}
+      </div>
 
       <button
         type="button"

@@ -1,5 +1,6 @@
-import { useCallback, useRef } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { TtsManager } from './TtsManager';
+import { getTtsLang, onTtsLangChange, type TtsLang } from './ttsLang';
 
 /**
  * useTTS —— TtsManager 的 React Hook 薄封装（接口 §3.7）。
@@ -36,11 +37,14 @@ export function useTTS(manager?: TtsManager): TtsApi {
   }
   const mgr = mgrRef.current;
 
+  const [lang, setLang] = useState<TtsLang>(getTtsLang());
+  useEffect(() => onTtsLangChange(() => setLang(getTtsLang())), []);
+
   const speakZh = useCallback(
     (text: string, opts?: { rate?: number; onEnd?: () => void }) => {
-      mgr.speak(text, { lang: 'zh-CN', rate: opts?.rate ?? 0.9, onEnd: opts?.onEnd });
+      mgr.speak(text, { lang, rate: opts?.rate ?? 0.9, onEnd: opts?.onEnd });
     },
-    [mgr],
+    [mgr, lang],
   );
 
   const speakEn = useCallback(

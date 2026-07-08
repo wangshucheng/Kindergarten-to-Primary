@@ -11,7 +11,7 @@
  */
 export class TtsManager {
   private enabled = true;
-  private voice: SpeechSynthesisVoice | null = null;
+  private voices: SpeechSynthesisVoice[] = [];
   private disposed = false;
 
   constructor() {
@@ -21,11 +21,42 @@ export class TtsManager {
     }
   }
 
-  /** 加载可用音色，优先选中文音色，否则回退到第一个 */
+  /** 加载全部可用音色 */
   private loadVoices(): void {
     if (!('speechSynthesis' in window)) return;
-    const vs = window.speechSynthesis.getVoices();
-    this.voice = vs.find((v) => v.lang.toLowerCase().startsWith('zh')) ?? vs[0] ?? null;
+    this.voices = window.speechSynthesis.getVoices();
+  }
+
+  /**
+   * 按语言标签挑选最匹配的音色。
+   * - zh-hk / zh-yue → 粤语音色；
+   * - en → 英语音色；
+   * - zh（其他，含 zh-CN）→ 普通话/中文音色；
+   * 找不到则返回 null（调用方据此让浏览器按 lang 自动回退，粤语无音色时使用）。
+   */
+  private pickVoice(lang?: string): SpeechSynthesisVoice | null {
+    if (!lang) return null;
+    const key = lang.toLowerCase();
+    if (key.startsWith('zh-hk') || key.startsWith('zh-yue')) {
+      return (
+        this.voices.find(
+          (v) =>
+            v.lang.toLowerCase().startsWith('zh-hk') ||
+            v.lang.toLowerCase().startsWith('zh-yue'),
+        ) ?? null
+      );
+    }
+    if (key.startsWith('en')) {
+      return this.voices.find((v) => v.lang.toLowerCase().startsWith('en')) ?? null;
+    }
+    if (key.startsWith('zh')) {
+      return (
+        this.voices.find((v) => v.lang.toLowerCase().startsWith('zh-cn')) ??
+        this.voices.find((v) => v.lang.toLowerCase().startsWith('zh')) ??
+        null
+      );
+    }
+    return null;
   }
 
   /** 切换朗读开关，返回切换后的状态；关闭时立即停止当前朗读 */
@@ -67,7 +98,8 @@ export class TtsManager {
     const u = new SpeechSynthesisUtterance(text);
     u.lang = opts?.lang ?? 'zh-CN';
     u.rate = opts?.rate ?? 0.9;
-    if (this.voice) u.voice = this.voice;
+    const v = this.pickVoice(opts?.lang);
+    if (v) u.voice = v;
     if (opts?.onEnd) u.onend = () => opts.onEnd!();
     window.speechSynthesis.speak(u);
   }
