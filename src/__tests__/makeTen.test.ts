@@ -3,6 +3,7 @@ import {
   generateBoard,
   isCovered,
   freeTileIds,
+  hasTenPair,
   type MakeTenTile,
   type MakeTenLevel,
 } from '../games/math/MakeTen/makeTenLogic';
@@ -67,5 +68,30 @@ describe('MakeTen 凑十法逻辑', () => {
     const free = freeTileIds(tiles, new Set());
     expect(free.has(1)).toBe(true); // 顶层可点
     expect(free.has(0)).toBe(false); // 底层被遮挡
+  });
+
+  it('hasTenPair：两张 value 都是 3（无遮挡）无匹配对', () => {
+    const tiles: MakeTenTile[] = [
+      { id: 0, value: 3, emoji: '3️⃣', layer: 0, x: 1, y: 1 },
+      { id: 1, value: 3, emoji: '3️⃣', layer: 0, x: 2, y: 1 },
+    ];
+    expect(hasTenPair(tiles, new Set())).toBe(false);
+  });
+
+  it('hasTenPair：value 为 3 和 7 的两张存在匹配对', () => {
+    const tiles: MakeTenTile[] = [
+      { id: 0, value: 3, emoji: '3️⃣', layer: 0, x: 1, y: 1 },
+      { id: 1, value: 7, emoji: '7️⃣', layer: 0, x: 2, y: 1 },
+    ];
+    expect(hasTenPair(tiles, new Set())).toBe(true);
+  });
+
+  it('hasTenPair：上层遮挡导致 free 中无匹配对', () => {
+    // 底层 3 被遮挡（不可点），仅剩顶层 7 → 无匹配对
+    const tiles: MakeTenTile[] = [
+      { id: 0, value: 3, emoji: '3️⃣', layer: 0, x: 1, y: 1 },
+      { id: 1, value: 7, emoji: '7️⃣', layer: 1, x: 1.2, y: 1.1 },
+    ];
+    expect(hasTenPair(tiles, new Set())).toBe(false);
   });
 });

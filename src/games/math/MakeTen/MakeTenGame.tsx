@@ -5,6 +5,7 @@ import { computeStars } from '../../../utils/gameLoop';
 import {
   generateBoard,
   freeTileIds,
+  hasTenPair,
   type MakeTenLevel,
   type MakeTenTile,
 } from './makeTenLogic';
@@ -38,13 +39,13 @@ export function MakeTenGame({ sound, tts, onComplete }: GameProps) {
   const width = (maxX + 1) * CELL;
   const height = (maxY + 1) * CELL;
 
-  const finish = (): void => {
+  const finish = (passed = true): void => {
     if (endedRef.current) return;
     endedRef.current = true;
     setEnded(true);
     const durationMs = Date.now() - startRef.current;
-    const stars = computeStars({ passed: true, mistakes, durationMs });
-    onComplete({ score: 0, passed: true, stars, durationMs });
+    const stars = computeStars({ passed, mistakes, durationMs });
+    onComplete({ score: 0, passed, stars, durationMs });
   };
 
   const handleTile = (tile: MakeTenTile): void => {
@@ -86,14 +87,21 @@ export function MakeTenGame({ sound, tts, onComplete }: GameProps) {
           setRemoved(new Set());
           setSelected(null);
         } else {
-          finish();
+          finish(true);
         }
+      } else if (!hasTenPair(board.tiles, nr)) {
+        // 死局：剩余可点击卡片中已无任何两张能凑成 10
+        finish(false);
       }
     } else {
       addMistake();
       resetCombo();
       sound.play('wrong');
       setSelected(null);
+      if (!hasTenPair(board.tiles, removed)) {
+        // 死局：错误点击后剩余可点击卡片中已无任何两张能凑成 10
+        finish(false);
+      }
     }
   };
 

@@ -91,3 +91,16 @@ export function freeTileIds(tiles: MakeTenTile[], removed: Set<number>): Set<num
   }
   return free;
 }
+
+/** 判断当前可点击（未被遮挡）卡片中是否还存在能凑成 10 的两个不同卡片 */
+export function hasTenPair(tiles: MakeTenTile[], removed: Set<number>): boolean {
+  const freeIds = freeTileIds(tiles, removed);
+  const free = tiles.filter((t) => freeIds.has(t.id));
+  const seen = new Set<number>();
+  for (const t of free) {
+    const need = 10 - t.value;
+    if (seen.has(need)) return true;
+    seen.add(t.value);
+  }
+  return false;
+}
