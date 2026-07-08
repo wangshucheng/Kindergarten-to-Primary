@@ -168,6 +168,12 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
         } else {
           finish(true);
         }
+        return;
+      }
+
+      // 步数上限检查（否则玩家卡死后无反馈）
+      if (movesRef.current >= level.moveLimit) {
+        finish(false);
       }
     },
     [phase, board, ended, sound, addScore, bumpCombo, levelIndex, advanceLevel, finish],
@@ -283,7 +289,7 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
   return (
     <div className="flex flex-col items-center gap-3 w-full">
       <div className="text-center text-ink font-bold">
-        {level.title} · {phase === 'question' ? '先答小题' : `已走 ${moves} 步`}
+        {level.title} · {phase === 'question' ? '先答小题' : `${moves}/${level.moveLimit} 步`}
       </div>
 
       {hint && <div className="px-4 py-2 rounded-3xl bg-lemon shadow-soft text-ink font-bold">{hint}</div>}
@@ -327,6 +333,13 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
               );
             })}
           </div>
+          <button
+            type="button"
+            className="px-4 py-2 rounded-3xl bg-lemon shadow-soft text-ink font-bold text-sm"
+            onClick={() => advanceLevel(levelIndex)}
+          >
+            🔄 重试本关
+          </button>
         </>
       )}
 
