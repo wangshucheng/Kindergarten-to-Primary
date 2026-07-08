@@ -4,7 +4,7 @@ import type { TtsManager } from '../sound/TtsManager';
 import type { SubjectKey } from '../data/types';
 
 /** 四大模块标识 */
-export type ModuleKey = 'math' | 'pinyin' | 'hanzi' | 'english' | 'poetry';
+export type ModuleKey = 'math' | 'pinyin' | 'hanzi' | 'english' | 'poetry' | 'geometry';
 
 /** 优先级：P0 首版全量，P1 紧随，P2 末尾 */
 export type Priority = 'P0' | 'P1' | 'P2';

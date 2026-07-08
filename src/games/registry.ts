@@ -3,6 +3,7 @@ import * as pinyin from './pinyin';
 import * as hanzi from './hanzi';
 import * as english from './english';
 import * as poetry from './poetry';
+import * as geometry from './geometry';
 import type { GameConfig, ModuleKey, ModuleMeta } from './types';
 
 // ---------------------------------------------------------------------------
@@ -40,6 +41,12 @@ const MODULE_META: ModuleMeta[] = [
     icon: '📜',
     description: '18 首必背古诗文 · 咏鹅/村居/咏柳/望庐山瀑布…',
   },
+  {
+    key: 'geometry',
+    title: '图形与几何',
+    icon: '📐',
+    description: '认图形 · 拼搭计数 · 找对称 · 角分类',
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -52,6 +59,7 @@ export const allGames: GameConfig[] = [
   ...hanzi.games,
   ...english.games,
   ...poetry.games,
+  ...geometry.games,
 ];
 
 export const gameMap: Record<string, GameConfig> = Object.fromEntries(
@@ -64,6 +72,7 @@ export const moduleGames: Record<ModuleKey, GameConfig[]> = {
   hanzi: hanzi.games,
   english: english.games,
   poetry: poetry.games,
+  geometry: geometry.games,
 };
 
 // ---------------------------------------------------------------------------

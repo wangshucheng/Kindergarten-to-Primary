@@ -24,6 +24,7 @@ export const moduleColors: Record<string, ColorKey> = {
   hanzi: 'sky',
   english: 'lemon',
   poetry: 'cream',
+  geometry: 'sky',
 };
 
 /** 通用圆角与按压回弹参数 */
