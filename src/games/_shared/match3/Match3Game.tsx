@@ -11,6 +11,7 @@ import {
   buildPool,
   detectMatches,
   ensurePlayable,
+  hasAdjacentPair,
   hasPossibleMove,
   MATCH3_LEVELS,
   resolveGrid,
@@ -22,8 +23,8 @@ import type { Coord } from '../matchDetector';
 
 /**
  * 消消乐（汉字 / 英语双学科统一组件）。
- * - 汉字（subject=hanzi）：同「拼音」三连，消除时 TTS 朗读该字并展示释义；知识点收集 `pinyin:xx`。
- * - 英语（subject=english）：同「category」三连，消除时 TTS 朗读单词与释义；知识点收集 `category:xx`。
+ * - 汉字（subject=hanzi）：同「拼音」二连消除（点选相邻同键方块即可配对消除），知识点 `pinyin:xx`。
+ * - 英语（subject=english）：同「category」三连消除（相邻交换凑成三连），知识点 `category:xx`。
  * 组件本身不重复造轮子：复用 GameShell 注入的 ScoreContext / TTS，以及共享 matchDetector / GridBoard / Card。
  */
 export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameProps) {
@@ -51,7 +52,7 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
 
   useEffect(() => {
     if (subject === 'english') tts.speakEn('Match the same group!');
-    else tts.speakZh('找出拼音相同的字，连成三个就消除！');
+    else tts.speakZh('找出拼音相同的字，两两配对消除！');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -185,6 +186,91 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
     ],
   );
 
+  /** 汉字模式「二连消除」：点选两个相邻同 key 方块，直接配对消除 */
+  const handlePair = useCallback(
+    async (a: Coord, b: Coord) => {
+      if (busyRef.current || endedRef.current) return;
+      const ta = grid[a.row][a.col];
+      const tb = grid[b.row][b.col];
+      if (!ta || !tb || ta.key !== tb.key) {
+        // 不同 key → 切换选中，不消耗步数
+        setSelected(b);
+        sound.play('wrong');
+        return;
+      }
+
+      busyRef.current = true;
+      const matched: Coord[] = [a, b];
+      setSelected(null);
+      setFlash(matched);
+      sound.play('correct');
+
+      // TTS 朗读被消除的汉字/单词
+      if (subject === 'english') tts.speakEn(`${ta.label}. ${ta.sub ?? ''}`);
+      else {
+        tts.speakZh(ta.label);
+        if (ta.meaning) showFlashBanner(`${ta.label} · ${ta.meaning}`);
+      }
+      await delay(260);
+
+      const rng = (() => {
+        let s = (seedRef.current + matched.length * 31) >>> 0;
+        return () => {
+          s = (s * 1664525 + 1013904223) >>> 0;
+          return s / 0xffffffff;
+        };
+      })();
+      const res = resolveGrid(grid, matched, pool, rng);
+      addScore(res.points);
+      bumpCombo();
+      res.knowledgePoints.forEach((kp) => collectKnowledge(kp));
+      levelScoreRef.current += res.points;
+      setLevelScore(levelScoreRef.current);
+      movesRef.current -= 1;
+      setMovesLeft(movesRef.current);
+
+      let cur = res.grid;
+      setFlash([]);
+      setGrid(cur);
+
+      // 死局重排（无可配对相邻对）
+      if (!hasAdjacentPair(cur)) {
+        cur = buildGrid(MATCH3_LEVELS[levelIndex], pool, (seedRef.current + 777) >>> 0);
+        setGrid(cur);
+      }
+
+      busyRef.current = false;
+
+      const lv = MATCH3_LEVELS[levelIndex];
+      if (levelScoreRef.current >= lv.targetScore) {
+        if (levelIndex < MATCH3_LEVELS.length - 1) {
+          sound.play('levelup');
+          startLevel(levelIndex + 1);
+        } else {
+          finish(true);
+        }
+      } else if (movesRef.current <= 0) {
+        finish(false);
+      }
+    },
+    [
+      grid,
+      ended,
+      endedRef,
+      subject,
+      sound,
+      tts,
+      pool,
+      levelIndex,
+      addScore,
+      bumpCombo,
+      collectKnowledge,
+      showFlashBanner,
+      startLevel,
+      finish,
+    ],
+  );
+
   const onCellClick = useCallback(
     (pos: { row: number; col: number }) => {
       if (busyRef.current || endedRef.current) return;
@@ -198,6 +284,21 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
         setSelected(null);
         return;
       }
+
+      // 汉字模式：二连消除（点击两个相邻同 key 方块配对）
+      if (subject === 'hanzi') {
+        const adjacent =
+          Math.abs(selected.row - coord.row) + Math.abs(selected.col - coord.col) === 1;
+        if (!adjacent) {
+          setSelected(coord);
+          sound.play('click');
+          return;
+        }
+        void handlePair(selected, coord);
+        return;
+      }
+
+      // 英语模式：三连消除（交换后检测三连）
       const adjacent =
         Math.abs(selected.row - coord.row) + Math.abs(selected.col - coord.col) === 1;
       if (!adjacent) {
@@ -207,7 +308,7 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       }
       void handleSwap(selected, coord);
     },
-    [selected, sound, handleSwap],
+    [selected, sound, handleSwap, handlePair, subject],
   );
 
   const isFlashing = (r: number, c: number) => flash.some((f) => f.row === r && f.col === c);
@@ -256,7 +357,7 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       <p className="text-inkSoft text-sm">
         {subject === 'english'
           ? '把相同类别的单词连成三个消除～'
-          : '把拼音相同的汉字连成三个消除～'}
+          : '把拼音相同的汉字两两配对消除～'}
       </p>
     </div>
   );

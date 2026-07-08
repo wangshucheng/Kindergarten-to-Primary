@@ -207,6 +207,22 @@ export function hasPossibleMove(grid: TileGrid): boolean {
   return false;
 }
 
+/** 是否存在任意两个相邻且同 key 的 tile（「二连消除」模式：无需交换，直接点选配对） */
+export function hasAdjacentPair(grid: TileGrid): boolean {
+  const rows = grid.length;
+  if (rows === 0) return false;
+  const cols = grid[0].length;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const t = grid[r][c];
+      if (!t) continue;
+      if (c + 1 < cols && grid[r][c + 1]?.key === t.key) return true;
+      if (r + 1 < rows && grid[r + 1][c]?.key === t.key) return true;
+    }
+  }
+  return false;
+}
+
 /** 若棋盘死局则重排（保持无开局三连） */
 export function ensurePlayable(level: Match3Level, grid: TileGrid, pool: MatchTile[], seed: number): TileGrid {
   if (hasPossibleMove(grid)) return grid;

@@ -8,6 +8,7 @@ import {
   buildGrid,
   applySwap,
   detectMatches,
+  hasAdjacentPair,
   resolveGrid,
   hasPossibleMove,
   MATCH3_LEVELS,
@@ -133,6 +134,34 @@ describe('hasPossibleMove', () => {
       [tile(keys[6]), tile(keys[7]), tile(keys[8])],
     ];
     expect(hasPossibleMove(grid)).toBe(false);
+  });
+});
+
+describe('hasAdjacentPair', () => {
+  it('存在相邻同 key 对 → true（水平）', () => {
+    const grid: TileGrid = [
+      [tile('a'), tile('a'), tile('b')],
+      [tile('c'), tile('d'), tile('e')],
+    ];
+    expect(hasAdjacentPair(grid)).toBe(true);
+  });
+
+  it('存在相邻同 key 对 → true（垂直）', () => {
+    const grid: TileGrid = [
+      [tile('a'), tile('b')],
+      [tile('a'), tile('c')],
+    ];
+    expect(hasAdjacentPair(grid)).toBe(true);
+  });
+
+  it('无相邻同 key 对 → false', () => {
+    const keys = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+    const grid: TileGrid = [
+      [tile(keys[0]), tile(keys[1]), tile(keys[2])],
+      [tile(keys[3]), tile(keys[4]), tile(keys[5])],
+      [tile(keys[6]), tile(keys[7]), tile(keys[8])],
+    ];
+    expect(hasAdjacentPair(grid)).toBe(false);
   });
 });
 
