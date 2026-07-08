@@ -10,7 +10,8 @@ import type { CardTone } from '../../../components/Card';
 import type { Rng } from '../../../utils/rng';
 import { createRng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
-import { QuestionGenerator, type EnglishQuestion, type HanziQuestion } from '../../../data/generators';
+import { QuestionGenerator, type HanziQuestion } from '../../../data/generators';
+import { vocabThemeTiles } from '../../english/vocabTiles';
 
 /** 棋盘上的一块鹅 */
 export interface GooseTile {
@@ -68,24 +69,12 @@ function toneFor(key: string): CardTone {
 export function buildPool(subject: GooseSubject, seed: number): GooseTile[] {
   const rng = createRng(seed);
   if (subject === 'english') {
-    const qs: EnglishQuestion[] = QuestionGenerator.english({ level: 1, count: 50, seed });
-    const seen = new Set<string>();
-    const tiles: GooseTile[] = [];
-    for (const q of shuffle(qs, rng)) {
-      const cat = q.category ?? 'misc';
-      if (seen.has(cat)) continue;
-      seen.add(cat);
-      tiles.push({
-        key: cat,
-        label: q.word,
-        sub: q.meaning,
-        emoji: q.emoji,
-        meaning: q.meaning,
-        knowledgePoint: `category:${cat}`,
-        tone: toneFor(cat),
-      });
-    }
-    return tiles;
+    // 统一从 VOCAB 取词：按 theme 去重，word/meaning 来自 VOCAB，
+    // emoji 回退至 english.json 原图或主题 emoji。
+    return shuffle(
+      vocabThemeTiles(50, seed).map((t) => ({ ...t, meaning: t.sub, tone: toneFor(t.key) })),
+      rng,
+    );
   }
   const qs: HanziQuestion[] = QuestionGenerator.hanzi({ level: 1, mode: 'char-pinyin', count: 50, seed });
   const seen = new Set<string>();

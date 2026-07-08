@@ -4,6 +4,7 @@ import { useScore } from '../../../state/ScoreContext';
 import { computeStars } from '../../../utils/gameLoop';
 import { shuffle } from '../../../utils/shuffle';
 import eng from '../../../data/english.json';
+import { VOCAB, THEME_EMOJI } from '../vocabData';
 
 interface Word {
   word: string;
@@ -16,7 +17,15 @@ interface WordItem {
   emoji: string;
 }
 
-const words = (eng as { words: Word[] }).words;
+// 优先从核心词汇 VOCAB 取词出题；emoji 优先用原图，缺图回退主题代表 emoji。
+const emojiByWord: Record<string, string> = Object.fromEntries(
+  (eng as { words: Word[] }).words.map((w) => [w.word, w.emoji]),
+);
+const words: Word[] = VOCAB.map((v) => ({
+  word: v.en,
+  emoji: emojiByWord[v.en] ?? THEME_EMOJI[v.theme] ?? '📘',
+  meaning: v.zh,
+}));
 const PER_ROUND = 6;
 const ROUNDS = 3;
 

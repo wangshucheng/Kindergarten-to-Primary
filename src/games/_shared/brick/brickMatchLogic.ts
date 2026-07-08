@@ -9,7 +9,8 @@
  */
 import type { CardTone } from '../../../components/Card';
 import { createRng } from '../../../utils/rng';
-import { QuestionGenerator, type EnglishQuestion, type HanziQuestion } from '../../../data/generators';
+import { QuestionGenerator, type HanziQuestion } from '../../../data/generators';
+import { vocabThemeTiles } from '../../english/vocabTiles';
 import type { Coord } from '../matchDetector';
 
 /** 棋盘上的一块砖 */
@@ -74,23 +75,10 @@ export function buildPool(subject: BrickSubject, seed: number, count: number): B
 
   const want = Math.max(count, 8); // 至少 8 个不同 key 保证调色板多样性，但不强制 24
   if (subject === 'english') {
-    for (let attempt = 0; attempt < 24 && map.size < want; attempt++) {
-      const qs: EnglishQuestion[] = QuestionGenerator.english({
-        level: 1,
-        count: 40,
-        seed: seed + attempt * 97,
-      });
-      for (const q of qs) {
-        const cat = q.category ?? 'misc';
-        addTile({
-          key: cat,
-          label: q.word,
-          sub: q.meaning,
-          emoji: q.emoji,
-          knowledgePoint: `category:${cat}`,
-          tone: toneFor(cat),
-        });
-      }
+    // 统一从 VOCAB 取词：按 theme 去重，word/meaning 来自 VOCAB，
+    // emoji 回退至 english.json 原图或主题 emoji。
+    for (const t of vocabThemeTiles(want, seed)) {
+      addTile({ ...t, tone: toneFor(t.key) });
     }
   } else {
     for (let attempt = 0; attempt < 24 && map.size < want; attempt++) {

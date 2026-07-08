@@ -6,6 +6,7 @@ import { BattleQuizGame } from './BattleQuiz/BattleQuizGame';
 import { Match3Game } from '../_shared/match3/Match3Game';
 import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
 import { GooseCatchGame } from '../_shared/goose/GooseCatchGame';
+import { VocabDrillGame } from './VocabDrill/VocabDrillGame';
 
 export const games: GameConfig[] = [
   {
@@ -62,5 +63,13 @@ export const games: GameConfig[] = [
     component: GooseCatchGame,
     subject: 'english',
     mode: 'goose-catch',
+  },
+  {
+    id: 'vocab-drill',
+    module: 'english',
+    title: '核心词汇',
+    icon: '📚',
+    priority: 'P0',
+    component: VocabDrillGame,
   },
 ];

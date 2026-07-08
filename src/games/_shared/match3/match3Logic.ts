@@ -13,7 +13,8 @@ import type { Rng } from '../../../utils/rng';
 import { createRng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
 import { detectMatch3, type Coord } from '../matchDetector';
-import { QuestionGenerator, type EnglishQuestion, type HanziQuestion } from '../../../data/generators';
+import { QuestionGenerator, type HanziQuestion } from '../../../data/generators';
+import { vocabWordTiles } from '../../english/vocabTiles';
 
 /** 棋盘上的一块 tile */
 export interface MatchTile {
@@ -66,18 +67,8 @@ function toneFor(key: string): CardTone {
 /** 依据 subject 构建 tile 池（从题库/生成器取素材，key 即匹配维度） */
 export function buildPool(subject: Match3Subject, seed: number, count: number): MatchTile[] {
   if (subject === 'english') {
-    const qs: EnglishQuestion[] = QuestionGenerator.english({ level: 1, count, seed });
-    return qs.map((q) => {
-      const cat = q.category ?? 'misc';
-      return {
-        key: cat,
-        label: q.word,
-        sub: q.meaning,
-        emoji: q.emoji,
-        knowledgePoint: `category:${cat}`,
-        tone: toneFor(cat),
-      };
-    });
+    // 英语实例统一从「核心词汇 VOCAB」取词（word/meaning 来自 VOCAB，emoji 回退原图/主题色）
+    return vocabWordTiles(count, seed).map((t) => ({ ...t, tone: toneFor(t.key) }));
   }
   const qs: HanziQuestion[] = QuestionGenerator.hanzi({
     level: 1,
