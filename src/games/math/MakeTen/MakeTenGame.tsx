@@ -119,7 +119,7 @@ export function MakeTenGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleTile(t)}
               className={[
                 'absolute flex flex-col items-center justify-center rounded-3xl font-bold transition-all duration-150',
-                isFree ? 'bg-mint shadow-soft active:scale-95 cursor-pointer' : 'bg-mint/40 cursor-default',
+                isFree ? 'bg-emerald-500 shadow-soft active:scale-95 cursor-pointer' : 'bg-mint/15 cursor-default',
                 isSel ? 'ring-4 ring-white scale-110 z-10' : '',
               ].join(' ')}
               style={{
