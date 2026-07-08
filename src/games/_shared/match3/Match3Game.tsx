@@ -76,7 +76,13 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
   const startLevel = useCallback(
     (idx: number) => {
       const lv = MATCH3_LEVELS[idx];
-      const g = buildGrid(lv, pool, seedRef.current + idx * 101);
+      let g = buildGrid(lv, pool, seedRef.current + idx * 101);
+      // 汉字二连模式：确保开局至少有一对可配对
+      if (subject === 'hanzi' && !hasAdjacentPair(g)) {
+        for (let retry = 0; retry < 10 && !hasAdjacentPair(g); retry++) {
+          g = buildGrid(lv, pool, (seedRef.current + idx * 101 + retry * 37) >>> 0);
+        }
+      }
       setLevelIndex(idx);
       setGrid(g);
       setMovesLeft(lv.moves);
@@ -86,7 +92,7 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       levelScoreRef.current = 0;
       movesRef.current = lv.moves;
     },
-    [pool],
+    [pool, subject],
   );
 
   const handleSwap = useCallback(
@@ -235,7 +241,12 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
 
       // 死局重排（无可配对相邻对）
       if (!hasAdjacentPair(cur)) {
+        showFlashBanner('重新洗牌～');
         cur = buildGrid(MATCH3_LEVELS[levelIndex], pool, (seedRef.current + 777) >>> 0);
+        // 兜底：最多重试 10 次直到出现可配对对
+        for (let retry = 0; retry < 10 && !hasAdjacentPair(cur); retry++) {
+          cur = buildGrid(MATCH3_LEVELS[levelIndex], pool, (seedRef.current + 777 + retry) >>> 0);
+        }
         setGrid(cur);
       }
 
