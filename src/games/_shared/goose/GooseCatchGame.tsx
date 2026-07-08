@@ -52,7 +52,7 @@ export function GooseCatchGame({ config, sound, tts: ttsManager, onComplete }: G
 
   useEffect(() => {
     if (subject === 'english') tts.speakEn('Catch the goose! Find the matching word.');
-    else tts.speakZh('赶大鹅咯！找一找拼音相同的那只鹅！');
+    else tts.speakZh('来赶鹅咯！找出拼音对应的字～');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -287,7 +287,9 @@ export function GooseCatchGame({ config, sound, tts: ttsManager, onComplete }: G
         <div className="flex items-center gap-2 px-5 py-2 bg-white/60 rounded-3xl shadow-soft">
           <span className="text-xl">{targetTile.emoji}</span>
           <span className="text-lg font-bold text-ink">
-            {subject === 'english' ? `找找类别相同的单词：${targetKey}` : `找找拼音一样的大鹅：${targetKey}`}
+            {subject === 'english'
+              ? `找找类别相同的：${targetKey}`
+              : `找找拼音一样的：${targetKey}`}
           </span>
         </div>
       )}
@@ -308,8 +310,8 @@ export function GooseCatchGame({ config, sound, tts: ttsManager, onComplete }: G
 
       <p className="text-inkSoft text-sm">
         {subject === 'english'
-          ? '找到和目标类别相同的大鹅，点击它～'
-          : '找到和目标拼音相同的大鹅，点击它～'}
+          ? '找到和目标类别相同的单词，点击它～'
+          : '找到和目标拼音相同的字，点击它～'}
       </p>
     </div>
   );
