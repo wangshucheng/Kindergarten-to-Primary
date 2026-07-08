@@ -2,6 +2,7 @@ import * as math from './math';
 import * as pinyin from './pinyin';
 import * as hanzi from './hanzi';
 import * as english from './english';
+import * as poetry from './poetry';
 import type { GameConfig, ModuleKey, ModuleMeta } from './types';
 
 // ---------------------------------------------------------------------------
@@ -33,6 +34,12 @@ const MODULE_META: ModuleMeta[] = [
     icon: '🔤',
     description: '字母 · 单词 · 句子 · 对战 · 砖块 · 赶鹅',
   },
+  {
+    key: 'poetry',
+    title: '必背古诗文',
+    icon: '📜',
+    description: '18 首必背古诗文 · 咏鹅/村居/咏柳/望庐山瀑布…',
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -44,6 +51,7 @@ export const allGames: GameConfig[] = [
   ...pinyin.games,
   ...hanzi.games,
   ...english.games,
+  ...poetry.games,
 ];
 
 export const gameMap: Record<string, GameConfig> = Object.fromEntries(
@@ -55,6 +63,7 @@ export const moduleGames: Record<ModuleKey, GameConfig[]> = {
   pinyin: pinyin.games,
   hanzi: hanzi.games,
   english: english.games,
+  poetry: poetry.games,
 };
 
 // ---------------------------------------------------------------------------

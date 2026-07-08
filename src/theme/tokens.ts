@@ -23,6 +23,7 @@ export const moduleColors: Record<string, ColorKey> = {
   pinyin: 'mint',
   hanzi: 'sky',
   english: 'lemon',
+  poetry: 'cream',
 };
 
 /** 通用圆角与按压回弹参数 */
