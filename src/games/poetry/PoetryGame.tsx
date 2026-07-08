@@ -47,6 +47,18 @@ export function PoetryGame({ config, tts: ttsManager }: GameProps) {
         <p className="text-inkSoft text-base font-bold">
           {poem.dynasty}·{poem.author}
         </p>
+        {poem.themes.length > 0 && (
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-2">
+            {poem.themes.map((theme) => (
+              <span
+                key={theme}
+                className="bg-mint/20 text-ink rounded-full px-3 py-1 text-xs font-bold"
+              >
+                #{theme}
+              </span>
+            ))}
+          </div>
+        )}
       </header>
 
       {/* 正文卡片 */}

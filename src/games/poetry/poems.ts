@@ -12,6 +12,8 @@ export interface Poem {
   author: string;
   /** 朝代，如 '唐' */
   dynasty: string;
+  /** 核心主题标签（来自 content/poetry-themes.md） */
+  themes: string[];
   lines: PoemLine[];
   /** 儿童释义（口语化、易懂） */
   explanation: string;
@@ -23,6 +25,7 @@ export const poems: Poem[] = [
     title: '咏鹅',
     author: '骆宾王',
     dynasty: '唐',
+    themes: ['咏物', '童趣'],
     lines: [
       { text: '鹅，鹅，鹅，', pinyin: 'é, é, é,' },
       { text: '曲项向天歌。', pinyin: 'qū xiàng xiàng tiān gē.' },
@@ -33,41 +36,56 @@ export const poems: Poem[] = [
       '小白鹅弯着脖子朝天上唱歌，白羽毛漂在绿水上，红红的脚掌划开清清的水波。',
   },
   {
-    id: 'jiang-nan',
-    title: '江南',
-    author: '汉乐府',
-    dynasty: '汉',
+    id: 'jing-ye-si',
+    title: '静夜思',
+    author: '李白',
+    dynasty: '唐',
+    themes: ['思乡'],
     lines: [
-      { text: '江南可采莲，', pinyin: 'jiāng nán kě cǎi lián,' },
-      { text: '莲叶何田田。', pinyin: 'lián yè hé tián tián.' },
-      { text: '鱼戏莲叶间。', pinyin: 'yú xì lián yè jiān.' },
-      { text: '鱼戏莲叶东，', pinyin: 'yú xì lián yè dōng,' },
-      { text: '鱼戏莲叶西，', pinyin: 'yú xì lián yè xī,' },
-      { text: '鱼戏莲叶南，', pinyin: 'yú xì lián yè nán,' },
-      { text: '鱼戏莲叶北。', pinyin: 'yú xì lián yè běi.' },
+      { text: '床前明月光，', pinyin: 'chuáng qián míng yuè guāng,' },
+      { text: '疑是地上霜。', pinyin: 'yí shì dì shàng shuāng.' },
+      { text: '举头望明月，', pinyin: 'jǔ tóu wàng míng yuè,' },
+      { text: '低头思故乡。', pinyin: 'dī tóu sī gù xiāng.' },
     ],
     explanation:
-      '江南水乡可以采莲啦，莲叶长得多么茂盛。小鱼在莲叶间玩耍，一会儿游到东，一会儿游到西，一会儿南，一会儿北。',
+      '床前洒满明亮的月光，好像地上结了一层霜。抬起头望着天上的明月，低下头想起了远方的家乡。',
   },
   {
-    id: 'hua',
-    title: '画',
-    author: '王维',
+    id: 'chun-xiao',
+    title: '春晓',
+    author: '孟浩然',
     dynasty: '唐',
+    themes: ['写景', '惜时'],
     lines: [
-      { text: '远看山有色，', pinyin: 'yuǎn kàn shān yǒu sè,' },
-      { text: '近听水无声。', pinyin: 'jìn tīng shuǐ wú shēng.' },
-      { text: '春去花还在，', pinyin: 'chūn qù huā hái zài,' },
-      { text: '人来鸟不惊。', pinyin: 'rén lái niǎo bù jīng.' },
+      { text: '春眠不觉晓，', pinyin: 'chūn mián bù jué xiǎo,' },
+      { text: '处处闻啼鸟。', pinyin: 'chǔ chù wén tí niǎo.' },
+      { text: '夜来风雨声，', pinyin: 'yè lái fēng yǔ shēng,' },
+      { text: '花落知多少。', pinyin: 'huā luò zhī duō shǎo.' },
     ],
     explanation:
-      '远远看山有颜色，走近听水却没有声音。春天过去了花还在开，人走过来小鸟也不害怕。',
+      '春夜睡得香，不知不觉天就亮了，到处听见小鸟在叫。昨夜刮风又下雨，不知道吹落了多少花。',
+  },
+  {
+    id: 'deng-guan-que-lou',
+    title: '登鹳雀楼',
+    author: '王之涣',
+    dynasty: '唐',
+    themes: ['励志', '写景'],
+    lines: [
+      { text: '白日依山尽，', pinyin: 'bái rì yī shān jìn,' },
+      { text: '黄河入海流。', pinyin: 'huáng hé rù hǎi liú.' },
+      { text: '欲穷千里目，', pinyin: 'yù qióng qiān lǐ mù,' },
+      { text: '更上一层楼。', pinyin: 'gèng shàng yī céng lóu.' },
+    ],
+    explanation:
+      '太阳挨着山慢慢落下，黄河向着大海奔流。想要看到更远的地方，就要再登上一层楼——多努力，就多看更广的风景。',
   },
   {
     id: 'min-nong',
     title: '悯农（其二）',
     author: '李绅',
     dynasty: '唐',
+    themes: ['爱农', '惜时'],
     lines: [
       { text: '锄禾日当午，', pinyin: 'chú hé rì dāng wǔ,' },
       { text: '汗滴禾下土。', pinyin: 'hàn dī hé xià tǔ.' },
@@ -82,6 +100,7 @@ export const poems: Poem[] = [
     title: '古朗月行（节选）',
     author: '李白',
     dynasty: '唐',
+    themes: ['写景', '童趣'],
     lines: [
       { text: '小时不识月，', pinyin: 'xiǎo shí bù shí yuè,' },
       { text: '呼作白玉盘。', pinyin: 'hū zuò bái yù pán.' },
@@ -96,6 +115,7 @@ export const poems: Poem[] = [
     title: '风',
     author: '李峤',
     dynasty: '唐',
+    themes: ['咏物', '写景'],
     lines: [
       { text: '解落三秋叶，', pinyin: 'jiě luò sān qiū yè,' },
       { text: '能开二月花。', pinyin: 'néng kāi èr yuè huā.' },
@@ -106,66 +126,56 @@ export const poems: Poem[] = [
       '风能把秋天的树叶吹落，能吹开二月的鲜花。吹过江面掀起千尺浪，吹进竹林万根竹子都歪斜。',
   },
   {
-    id: 'chun-xiao',
-    title: '春晓',
-    author: '孟浩然',
+    id: 'chi-shang',
+    title: '池上',
+    author: '白居易',
     dynasty: '唐',
+    themes: ['童趣'],
     lines: [
-      { text: '春眠不觉晓，', pinyin: 'chūn mián bù jué xiǎo,' },
-      { text: '处处闻啼鸟。', pinyin: 'chǔ chù wén tí niǎo.' },
-      { text: '夜来风雨声，', pinyin: 'yè lái fēng yǔ shēng,' },
-      { text: '花落知多少。', pinyin: 'huā luò zhī duō shǎo.' },
+      { text: '小娃撑小艇，', pinyin: 'xiǎo wá chēng xiǎo tǐng,' },
+      { text: '偷采白莲回。', pinyin: 'tōu cǎi bái lián huí.' },
+      { text: '不解藏踪迹，', pinyin: 'bù jiě cáng zōng jì,' },
+      { text: '浮萍一道开。', pinyin: 'fú píng yī dào kāi.' },
     ],
     explanation:
-      '春夜睡得香，不知不觉天就亮了，到处听见小鸟在叫。昨夜刮风又下雨，不知道吹落了多少花。',
+      '小孩子偷偷撑着小船，去采了白莲回来。他还不懂得藏起自己的踪迹，水面上的浮萍被小船分开，留下了一道水痕。',
   },
   {
-    id: 'zeng-wang-lun',
-    title: '赠汪伦',
-    author: '李白',
-    dynasty: '唐',
+    id: 'xiao-chi',
+    title: '小池',
+    author: '杨万里',
+    dynasty: '宋',
+    themes: ['写景', '童趣'],
     lines: [
-      { text: '李白乘舟将欲行，', pinyin: 'lǐ bái chéng zhōu jiāng yù xíng,' },
-      { text: '忽闻岸上踏歌声。', pinyin: 'hū wén àn shàng tà gē shēng.' },
-      { text: '桃花潭水深千尺，', pinyin: 'táo huā tán shuǐ shēn qiān chǐ,' },
-      { text: '不及汪伦送我情。', pinyin: 'bù jí wāng lún sòng wǒ qíng.' },
+      { text: '泉眼无声惜细流，', pinyin: 'quán yǎn wú shēng xī xì liú,' },
+      { text: '树阴照水爱晴柔。', pinyin: 'shù yīn zhào shuǐ ài qíng róu.' },
+      { text: '小荷才露尖尖角，', pinyin: 'xiǎo hé cái lù jiān jiān jiǎo,' },
+      { text: '早有蜻蜓立上头。', pinyin: 'zǎo yǒu qīng tíng lì shàng tóu.' },
     ],
     explanation:
-      '李白坐船正要出发，忽然听到岸上有人边走边唱歌来送他。桃花潭水有千尺深，也比不上汪伦送我的情意深。',
+      '泉眼悄悄流水，舍不得细细的水流；树荫映在水里，爱这晴天柔柔的风光。小小的荷叶才露出尖尖的角，早有一只蜻蜓立在上头。',
   },
   {
-    id: 'jing-ye-si',
-    title: '静夜思',
-    author: '李白',
+    id: 'hua',
+    title: '画',
+    author: '王维',
     dynasty: '唐',
+    themes: ['写景'],
     lines: [
-      { text: '床前明月光，', pinyin: 'chuáng qián míng yuè guāng,' },
-      { text: '疑是地上霜。', pinyin: 'yí shì dì shàng shuāng.' },
-      { text: '举头望明月，', pinyin: 'jǔ tóu wàng míng yuè,' },
-      { text: '低头思故乡。', pinyin: 'dī tóu sī gù xiāng.' },
+      { text: '远看山有色，', pinyin: 'yuǎn kàn shān yǒu sè,' },
+      { text: '近听水无声。', pinyin: 'jìn tīng shuǐ wú shēng.' },
+      { text: '春去花还在，', pinyin: 'chūn qù huā hái zài,' },
+      { text: '人来鸟不惊。', pinyin: 'rén lái niǎo bù jīng.' },
     ],
     explanation:
-      '床前洒满明亮的月光，好像地上结了一层霜。抬起头望着天上的明月，低下头想起了远方的家乡。',
-  },
-  {
-    id: 'xun-yin-zhe-bu-yu',
-    title: '寻隐者不遇',
-    author: '贾岛',
-    dynasty: '唐',
-    lines: [
-      { text: '松下问童子，', pinyin: 'sōng xià wèn tóng zǐ,' },
-      { text: '言师采药去。', pinyin: 'yán shī cǎi yào qù.' },
-      { text: '只在此山中，', pinyin: 'zhǐ zài cǐ shān zhōng,' },
-      { text: '云深不知处。', pinyin: 'yún shēn bù zhī chù.' },
-    ],
-    explanation:
-      '在松树下问一位小徒弟，他说师父上山采药去了。就在这座山里，只是云太厚太深，不知道到底在哪儿。',
+      '远远看山有颜色，走近听水却没有声音。春天过去了花还在开，人走过来小鸟也不害怕。',
   },
   {
     id: 'cun-ju',
     title: '村居',
     author: '高鼎',
     dynasty: '清',
+    themes: ['写景', '童趣'],
     lines: [
       { text: '草长莺飞二月天，', pinyin: 'cǎo zhǎng yīng fēi èr yuè tiān,' },
       { text: '拂堤杨柳醉春烟。', pinyin: 'fú dī yáng liǔ zuì chūn yān.' },
@@ -180,6 +190,7 @@ export const poems: Poem[] = [
     title: '咏柳',
     author: '贺知章',
     dynasty: '唐',
+    themes: ['咏物', '写景'],
     lines: [
       { text: '碧玉妆成一树高，', pinyin: 'bì yù zhuāng chéng yī shù gāo,' },
       { text: '万条垂下绿丝绦。', pinyin: 'wàn tiáo chuí xià lǜ sī tāo.' },
@@ -194,6 +205,7 @@ export const poems: Poem[] = [
     title: '赋得古原草送别（节选）',
     author: '白居易',
     dynasty: '唐',
+    themes: ['送别', '励志'],
     lines: [
       { text: '离离原上草，', pinyin: 'lí lí yuán shàng cǎo,' },
       { text: '一岁一枯荣。', pinyin: 'yī suì yī kū róng.' },
@@ -208,6 +220,7 @@ export const poems: Poem[] = [
     title: '晓出净慈寺送林子方',
     author: '杨万里',
     dynasty: '宋',
+    themes: ['送别', '写景'],
     lines: [
       { text: '毕竟西湖六月中，', pinyin: 'bì jìng xī hú liù yuè zhōng,' },
       { text: '风光不与四时同。', pinyin: 'fēng guāng bù yǔ sì shí tóng.' },
@@ -222,6 +235,7 @@ export const poems: Poem[] = [
     title: '绝句（两个黄鹂鸣翠柳）',
     author: '杜甫',
     dynasty: '唐',
+    themes: ['写景'],
     lines: [
       { text: '两个黄鹂鸣翠柳，', pinyin: 'liǎng gè huáng lí míng cuì liǔ,' },
       { text: '一行白鹭上青天。', pinyin: 'yī háng bái lù shàng qīng tiān.' },
@@ -236,6 +250,7 @@ export const poems: Poem[] = [
     title: '悯农（其一）',
     author: '李绅',
     dynasty: '唐',
+    themes: ['爱农', '惜时'],
     lines: [
       { text: '春种一粒粟，', pinyin: 'chūn zhòng yī lì sù,' },
       { text: '秋收万颗子。', pinyin: 'qiū shōu wàn kē zǐ.' },
@@ -250,6 +265,7 @@ export const poems: Poem[] = [
     title: '舟夜书所见',
     author: '查慎行',
     dynasty: '清',
+    themes: ['写景'],
     lines: [
       { text: '月黑见渔灯，', pinyin: 'yuè hēi jiàn yú dēng,' },
       { text: '孤光一点萤。', pinyin: 'gū guāng yī diǎn yíng.' },
@@ -264,6 +280,7 @@ export const poems: Poem[] = [
     title: '望庐山瀑布',
     author: '李白',
     dynasty: '唐',
+    themes: ['写景'],
     lines: [
       { text: '日照香炉生紫烟，', pinyin: 'rì zhào xiāng lú shēng zǐ yān,' },
       { text: '遥看瀑布挂前川。', pinyin: 'yáo kàn pù bù guà qián chuān.' },
