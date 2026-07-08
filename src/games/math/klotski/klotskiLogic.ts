@@ -158,15 +158,23 @@ const GOAL_TARGET: { r: number; c: number }[] = [
 /** 每关保留的空格数（越多越易；本设计取 4 保证目标块可滑动） */
 const EMPTY_COUNT = 4;
 
-/** 生成「已解」布局：目标块在出口，其余填 1×1 填充块，尾部留若干空格 */
+/** 生成「已解」布局：目标块在出口上方两行的偏移位置（确保 isSolved=false），
+ *  其余填 1×1 填充块，尾部留若干空格。
+ *  目标块至少需移动两行才可抵达 goalTarget，保证不可一步通关。 */
 function solvedLayout(level: KlotskiLevel): KlotskiState {
   const { rows, cols } = level;
   const gt = GOAL_TARGET[level.index] ?? { r: rows - 2, c: 1 };
+
+  // 目标块放在 goalTarget 上方两行（偏离出口，保证 buildLevel 产生 isSolved=false
+  // 且任意单步移动均不可直接通关）
+  const goalR = gt.r >= 2 ? gt.r - 2 : gt.r > 0 ? gt.r - 1 : gt.r + 1;
+  const goalC = gt.c;
+
   const blocks: KlotskiBlock[] = [];
   blocks.push({
     id: 'goal',
-    r: gt.r,
-    c: gt.c,
+    r: goalR,
+    c: goalC,
     w: 2,
     h: 2,
     label: '🚪',
@@ -174,14 +182,38 @@ function solvedLayout(level: KlotskiLevel): KlotskiState {
     isGoal: true,
   });
 
-  // 选定空格：取棋盘前 EMPTY_COUNT 个不与目标块冲突的格子（自左上扫描）
+  // 空格分配：2×2 目标块须有至少一组完整的邻接空隙对才能滑入
+  // （上/下各需连续 2 列，左/右各需连续 2 行）；尽量预留多个方向
+  const goalCells = new Set(cellsOf(goalR, goalC, 2, 2).map((p) => `${p.r},${p.c}`));
+
   const empties = new Set<string>();
-  const goalCells = new Set(cellsOf(gt.r, gt.c, 2, 2).map((p) => `${p.r},${p.c}`));
   let placed = 0;
+
+  // 上 (r-1, c),(r-1, c+1) / 下 (r+2, c),(r+2, c+1) / 左 (r, c-1),(r+1, c-1) / 右 (r, c+2),(r+1, c+2)
+  const dirPairs: [number, number, number, number][] = [
+    [goalR - 1, goalC,     goalR - 1, goalC + 1], // up
+    [goalR + 2, goalC,     goalR + 2, goalC + 1], // down
+    [goalR,     goalC - 1, goalR + 1, goalC - 1], // left
+    [goalR,     goalC + 2, goalR + 1, goalC + 2], // right
+  ];
+  // 尽可能为每个合法方向各预留一对空格，填满 EMPTY_COUNT
+  for (const [r1, c1, r2, c2] of dirPairs) {
+    if (placed >= EMPTY_COUNT) break;
+    if (
+      r1 >= 0 && r1 < rows && c1 >= 0 && c1 < cols &&
+      r2 >= 0 && r2 < rows && c2 >= 0 && c2 < cols
+    ) {
+      empties.add(`${r1},${c1}`);
+      empties.add(`${r2},${c2}`);
+      placed += 2;
+    }
+  }
+
+  // 如仍有空余名额（极小 grid 方向不够），自左上扫描补足
   for (let r = 0; r < rows && placed < EMPTY_COUNT; r++) {
     for (let c = 0; c < cols && placed < EMPTY_COUNT; c++) {
       const id = `${r},${c}`;
-      if (goalCells.has(id)) continue;
+      if (goalCells.has(id) || empties.has(id)) continue;
       empties.add(id);
       placed++;
     }
@@ -203,7 +235,32 @@ export function buildLevel(level: KlotskiLevel, seed: number): KlotskiLevelData 
   const solved = solvedLayout(level);
   const rng = createRng(seed);
   let state = scramble(solved, level.scramble, rng);
-  if (isSolved(state)) state = scramble(state, 1, createRng((seed + 1) >>> 0));
+  // 兜底：若目标块仍在出口，优先定向移动目标块使其脱离
+  let loopCount = 0;
+  while (isSolved(state)) {
+    loopCount++;
+    if (loopCount > 10) break; // safety
+    const goal = state.blocks.find((b) => b.isGoal)!;
+    const dirs = movableDirs(state, goal.id);
+    if (dirs.length > 0) {
+      state = applyMove(state, goal.id, dirs[Math.floor(rng() * dirs.length)]);
+    } else {
+      // 目标块卡死：尝试最多 5 次 1-step 随机移动间接创造空隙
+      let unstuck = false;
+      for (let a = 0; a < 5 && !unstuck; a++) {
+        const altRng = createRng((seed + a + 1) >>> 0);
+        state = scramble(state, 1, altRng);
+        if (!isSolved(state)) break;
+        const g = state.blocks.find((b) => b.isGoal)!;
+        const gDirs = movableDirs(state, g.id);
+        if (gDirs.length > 0) {
+          state = applyMove(state, g.id, gDirs[Math.floor(rng() * gDirs.length)]);
+          if (!isSolved(state)) unstuck = true;
+        }
+      }
+      if (isSolved(state)) break;
+    }
+  }
   const puzzle = QuestionGenerator.logic({
     kind: level.kind,
     level: ((level.index + 1) as 1 | 2 | 3),
