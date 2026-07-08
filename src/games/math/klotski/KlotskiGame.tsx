@@ -81,6 +81,9 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
       setHint(null);
       setMoves(0);
       movesRef.current = 0;
+      setEnded(false);
+      endedRef.current = false;
+      startRef.current = Date.now();
     },
     [buildFor],
   );
