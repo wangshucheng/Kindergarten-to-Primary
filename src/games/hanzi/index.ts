@@ -4,6 +4,7 @@ import { ConnectMatchGame } from './ConnectMatch/ConnectMatchGame';
 import { MoreHanziGame } from './MoreHanzi/MoreHanziGame';
 import { Match3Game } from '../_shared/match3/Match3Game';
 import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
+import { GooseCatchGame } from '../_shared/goose/GooseCatchGame';
 
 export const games: GameConfig[] = [
   { id: 'flip-memory', module: 'hanzi', title: '翻牌记忆', icon: '🃏', priority: 'P0', component: FlipMemoryGame },
@@ -35,5 +36,15 @@ export const games: GameConfig[] = [
     component: BrickMatchGame,
     subject: 'hanzi',
     mode: 'brick-match',
+  },
+  {
+    id: 'goose-catch-hanzi',
+    module: 'hanzi',
+    title: '赶鹅配对',
+    icon: '🪿',
+    priority: 'P1',
+    component: GooseCatchGame,
+    subject: 'hanzi',
+    mode: 'goose-catch',
   },
 ];

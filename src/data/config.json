@@ -38,7 +38,8 @@
         { "id": "connect-match", "title": "连线匹配", "icon": "🔗", "priority": "P0" },
         { "id": "more-hanzi", "title": "趣味识字", "icon": "✏️", "priority": "P1" },
         { "id": "match-3", "title": "汉字消消乐", "icon": "🌈", "priority": "P1", "subject": "hanzi", "mode": "match-3" },
-        { "id": "brick-match-hanzi", "title": "砖块配对", "icon": "🧱", "priority": "P1", "subject": "hanzi", "mode": "brick-match" }
+        { "id": "brick-match-hanzi", "title": "砖块配对", "icon": "🧱", "priority": "P1", "subject": "hanzi", "mode": "brick-match" },
+        { "id": "goose-catch-hanzi", "title": "赶鹅配对", "icon": "🪿", "priority": "P1", "subject": "hanzi", "mode": "goose-catch" }
       ]
     },
     {

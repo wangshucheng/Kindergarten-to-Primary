@@ -5,6 +5,7 @@ import { SentenceFillGame } from './SentenceFill/SentenceFillGame';
 import { BattleQuizGame } from './BattleQuiz/BattleQuizGame';
 import { Match3Game } from '../_shared/match3/Match3Game';
 import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
+import { GooseCatchGame } from '../_shared/goose/GooseCatchGame';
 
 export const games: GameConfig[] = [
   {
@@ -51,5 +52,15 @@ export const games: GameConfig[] = [
     component: BrickMatchGame,
     subject: 'english',
     mode: 'brick-match',
+  },
+  {
+    id: 'goose-catch',
+    module: 'english',
+    title: '赶鹅配对',
+    icon: '🪿',
+    priority: 'P1',
+    component: GooseCatchGame,
+    subject: 'english',
+    mode: 'goose-catch',
   },
 ];
