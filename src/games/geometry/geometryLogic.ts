@@ -250,3 +250,126 @@ export function makeAngleQuestion(rng: () => number = Math.random): AngleQuestio
     answer: ANGLE_INFO[kind].name,
   };
 }
+
+// ---------------------------------------------------------------------------
+// 三视图：由堆叠的列（自下而上层数）推导「从上面看占几格」或「从正面看最高几层」
+// （对应 content：从前面、上面看，形状可能不一样）
+// ---------------------------------------------------------------------------
+
+export type ThreeViewKind = 'top' | 'front';
+
+export interface ThreeViewQuestion {
+  /** 每一列的小正方体层数（自下而上堆叠），与 makeCountCubesQuestion 同思路 */
+  columns: number[];
+  kind: ThreeViewKind;
+  prompt: string;
+  answer: number;
+  options: number[];
+}
+
+export function makeThreeViewQuestion(rng: () => number = Math.random): ThreeViewQuestion {
+  const cols = 2 + Math.floor(rng() * 3); // 2~4 列
+  const columns = Array.from({ length: cols }, () => 1 + Math.floor(rng() * 4)); // 每列 1~4 层
+
+  const kind = pick<ThreeViewKind>(['top', 'front'], rng);
+  if (kind === 'top') {
+    const answer = columns.length;
+    const distractors = sampleInts(answer, 3, rng);
+    const options = shuffle([answer, ...distractors], rng);
+    return {
+      kind,
+      columns,
+      prompt: '从上面看，一共占了几个格子？',
+      answer,
+      options,
+    };
+  }
+
+  // kind === 'front'：从正面看，最高的地方有几层
+  const answer = Math.max(...columns);
+  const distractors = sampleInts(answer, 3, rng);
+  const options = shuffle([answer, ...distractors], rng);
+  return {
+    kind,
+    columns,
+    prompt: '从正面看，最高的地方有几层？',
+    answer,
+    options,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// 图形的运动：平移 / 旋转 / 轴对称（对应 content 三视图运动表）
+// ---------------------------------------------------------------------------
+
+export type MotionKind = 'translation' | 'rotation' | 'axisSymmetry';
+
+export const MOTION_LABEL: Record<MotionKind, string> = {
+  translation: '平移',
+  rotation: '旋转',
+  axisSymmetry: '轴对称',
+};
+
+export interface MotionQuestion {
+  kind: MotionKind;
+  prompt: string;
+  answer: string;
+  options: string[];
+}
+
+export function makeMotionQuestion(rng: () => number = Math.random): MotionQuestion {
+  const kind = pick<MotionKind>(['translation', 'rotation', 'axisSymmetry'], rng);
+  const prompt = '这是哪种运动？';
+  const answer = MOTION_LABEL[kind];
+  const options = shuffle(['平移', '旋转', '轴对称'], rng);
+  return { kind, prompt, answer, options };
+}
+
+// ---------------------------------------------------------------------------
+// 长度单位：厘米与米（对应 content：1 米 = 100 厘米；短用厘米、长用米）
+// ---------------------------------------------------------------------------
+
+export type LengthKind = 'choose' | 'convert';
+
+export interface LengthQuestion {
+  kind: LengthKind;
+  objectName?: string;
+  prompt: string;
+  answer: string;
+  options: string[];
+}
+
+/** 物体名 → 常用长度单位（贴 content 常识：铅笔/书本短用厘米，教室/黑板长用米） */
+const LENGTH_OBJECTS: { name: string; unit: '厘米' | '米' }[] = [
+  { name: '铅笔', unit: '厘米' },
+  { name: '书本', unit: '厘米' },
+  { name: '小朋友身高', unit: '厘米' },
+  { name: '橡皮', unit: '厘米' },
+  { name: '教室', unit: '米' },
+  { name: '黑板', unit: '米' },
+  { name: '大树', unit: '米' },
+];
+
+export function makeLengthQuestion(rng: () => number = Math.random): LengthQuestion {
+  const kind = pick<LengthKind>(['choose', 'convert'], rng);
+
+  if (kind === 'choose') {
+    const obj = pick(LENGTH_OBJECTS, rng);
+    const prompt = `${obj.name}的长度用 厘米 还是 米？`;
+    return {
+      kind,
+      objectName: obj.name,
+      prompt,
+      answer: obj.unit,
+      options: ['厘米', '米'],
+    };
+  }
+
+  // kind === 'convert'：1 米 = ? 厘米
+  return {
+    kind,
+    prompt: '1 米 = ? 厘米',
+    answer: '100',
+    options: ['10', '50', '100'],
+  };
+}

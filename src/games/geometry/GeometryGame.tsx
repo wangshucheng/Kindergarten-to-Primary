@@ -9,22 +9,32 @@ import {
   ANGLE_INFO,
   makeAngleQuestion,
   makeCountCubesQuestion,
+  makeLengthQuestion,
+  makeMotionQuestion,
   makeRecognizeQuestion,
   makeSymmetryQuestion,
+  makeThreeViewQuestion,
   type AngleQuestion,
   type CubeStackQuestion,
+  type LengthQuestion,
+  type MotionQuestion,
+  type MotionKind,
   type RecognizeQuestion,
   type ShapeId,
   type SymmetryQuestion,
+  type ThreeViewQuestion,
 } from './geometryLogic';
 
-type Mode = 'recognize' | 'count' | 'symmetry' | 'angle';
+type Mode = 'recognize' | 'count' | 'symmetry' | 'angle' | 'threeView' | 'motion' | 'length';
 
 const MODES: { key: Mode; label: string; icon: string }[] = [
   { key: 'recognize', label: '认图形', icon: '🔍' },
   { key: 'count', label: '数方块', icon: '🧊' },
   { key: 'symmetry', label: '找对称', icon: '🦋' },
   { key: 'angle', label: '角分类', icon: '📐' },
+  { key: 'threeView', label: '三视图', icon: '🧊' },
+  { key: 'motion', label: '图形运动', icon: '🔄' },
+  { key: 'length', label: '长度单位', icon: '📏' },
 ];
 
 const TOTAL_QUESTIONS = 8;
@@ -56,7 +66,7 @@ export function GeometryGame({ sound, tts: ttsManager, onComplete }: GameProps) 
 
   // ---------------- 渲染：模式菜单 ----------------
   const menu = (
-    <div className="grid grid-cols-2 gap-3 w-full max-w-md">
+    <div className="grid grid-cols-3 gap-3 w-full max-w-md">
       {MODES.map((m) => (
         <button
           key={m.key}
@@ -138,6 +148,45 @@ export function GeometryGame({ sound, tts: ttsManager, onComplete }: GameProps) 
       )}
       {mode === 'angle' && (
         <AngleMode
+          sound={sound}
+          tts={tts}
+          addScore={addScore}
+          bumpCombo={bumpCombo}
+          addMistake={addMistake}
+          combo={combo}
+          score={score}
+          mistakes={mistakes}
+          onFinish={finish}
+        />
+      )}
+      {mode === 'threeView' && (
+        <ThreeViewMode
+          sound={sound}
+          tts={tts}
+          addScore={addScore}
+          bumpCombo={bumpCombo}
+          addMistake={addMistake}
+          combo={combo}
+          score={score}
+          mistakes={mistakes}
+          onFinish={finish}
+        />
+      )}
+      {mode === 'motion' && (
+        <MotionMode
+          sound={sound}
+          tts={tts}
+          addScore={addScore}
+          bumpCombo={bumpCombo}
+          addMistake={addMistake}
+          combo={combo}
+          score={score}
+          mistakes={mistakes}
+          onFinish={finish}
+        />
+      )}
+      {mode === 'length' && (
+        <LengthMode
           sound={sound}
           tts={tts}
           addScore={addScore}
@@ -356,6 +405,112 @@ function AngleMode(deps: ModeDeps) {
 }
 
 // ===========================================================================
+// 模式五：三视图
+// ===========================================================================
+
+function ThreeViewMode(deps: ModeDeps) {
+  const [q, setQ] = useState<ThreeViewQuestion>(() => makeThreeViewQuestion());
+  const { idx, wrong, locked, handle } = useQuestionRunner(deps, TOTAL_QUESTIONS);
+  const regen = useCallback(() => setQ(makeThreeViewQuestion()), []);
+
+  return (
+    <div className="flex flex-col items-center gap-4 w-full max-w-md">
+      <Hud idx={idx} score={deps.score} />
+      <div className="w-full rounded-4xl bg-cream shadow-soft p-6 flex flex-col items-center gap-3">
+        <div className="text-inkSoft text-sm">看一看，想一想</div>
+        <CubeStackView columns={q.columns} />
+        <button
+          onClick={() => deps.tts.speakZh(q.prompt)}
+          className="text-2xl font-bold text-ink font-round"
+        >
+          {q.prompt}
+        </button>
+        <Button variant="ghost" size="sm" onClick={() => deps.tts.speakZh(q.prompt)}>
+          🔊 听题目
+        </Button>
+      </div>
+      <OptionGrid
+        options={q.options.map(String)}
+        wrong={wrong}
+        locked={locked}
+        onPick={(opt) => handle(opt, String(q.answer), q.kind === 'top' ? '从上面看占了几个格子' : '最高的地方有几层', regen)}
+      />
+    </div>
+  );
+}
+
+// ===========================================================================
+// 模式六：图形运动
+// ===========================================================================
+
+function MotionMode(deps: ModeDeps) {
+  const [q, setQ] = useState<MotionQuestion>(() => makeMotionQuestion());
+  const { idx, wrong, locked, handle } = useQuestionRunner(deps, TOTAL_QUESTIONS);
+  const regen = useCallback(() => setQ(makeMotionQuestion()), []);
+
+  return (
+    <div className="flex flex-col items-center gap-4 w-full max-w-md">
+      <Hud idx={idx} score={deps.score} />
+      <div className="w-full rounded-4xl bg-cream shadow-soft p-6 flex flex-col items-center gap-3">
+        <div className="text-inkSoft text-sm">它是哪种运动？</div>
+        <MotionView kind={q.kind} size={130} />
+        <button
+          onClick={() => deps.tts.speakZh(q.prompt)}
+          className="text-2xl font-bold text-ink font-round"
+        >
+          {q.prompt}
+        </button>
+        <Button variant="ghost" size="sm" onClick={() => deps.tts.speakZh(q.prompt)}>
+          🔊 听题目
+        </Button>
+      </div>
+      <OptionGrid
+        options={q.options}
+        wrong={wrong}
+        locked={locked}
+        cols={3}
+        onPick={(opt) => handle(opt, q.answer, opt, regen)}
+      />
+    </div>
+  );
+}
+
+// ===========================================================================
+// 模式七：长度单位
+// ===========================================================================
+
+function LengthMode(deps: ModeDeps) {
+  const [q, setQ] = useState<LengthQuestion>(() => makeLengthQuestion());
+  const { idx, wrong, locked, handle } = useQuestionRunner(deps, TOTAL_QUESTIONS);
+  const regen = useCallback(() => setQ(makeLengthQuestion()), []);
+
+  return (
+    <div className="flex flex-col items-center gap-4 w-full max-w-md">
+      <Hud idx={idx} score={deps.score} />
+      <div className="w-full rounded-4xl bg-cream shadow-soft p-6 flex flex-col items-center gap-3">
+        <div className="text-inkSoft text-sm">量一量</div>
+        <button
+          onClick={() => deps.tts.speakZh(q.prompt)}
+          className="text-2xl font-bold text-ink font-round text-center"
+        >
+          {q.prompt}
+        </button>
+        <Button variant="ghost" size="sm" onClick={() => deps.tts.speakZh(q.prompt)}>
+          🔊 听题目
+        </Button>
+      </div>
+      <OptionGrid
+        options={q.options}
+        wrong={wrong}
+        locked={locked}
+        cols={q.kind === 'convert' ? 3 : 2}
+        onPick={(opt) => handle(opt, q.answer, opt, regen)}
+      />
+    </div>
+  );
+}
+
+// ===========================================================================
 // 共享小组件
 // ===========================================================================
 
@@ -375,14 +530,16 @@ function OptionGrid({
   wrong,
   locked,
   onPick,
+  cols = 2,
 }: {
   options: string[];
   wrong: Set<string>;
   locked: boolean;
   onPick: (opt: string) => void;
+  cols?: number;
 }) {
   return (
-    <div className="grid grid-cols-2 gap-3 w-full">
+    <div className={`grid gap-3 w-full`} style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
       {options.map((opt) => {
         const isWrong = wrong.has(opt);
         const base = 'w-full py-5 rounded-3xl font-bold text-2xl text-ink shadow-press';
@@ -525,6 +682,52 @@ function AngleView({ kind, size = 120 }: { kind: keyof typeof ANGLE_INFO; size?:
       {kind === 'right' && (
         <polyline points={`${cx + 12},${cy} ${cx + 12},${cy - 12} ${cx},${cy - 12}`} fill="none" stroke={stroke} strokeWidth={3} />
       )}
+    </svg>
+  );
+}
+
+function MotionView({ kind, size = 120 }: { kind: MotionKind; size?: number }) {
+  const stroke = '#6B5544';
+  const fill = '#A0D2FF';
+
+  if (kind === 'translation') {
+    // 水平基线 + 向右箭头（沿直线移动）
+    return (
+      <svg width={size} height={size} viewBox="0 0 120 120" role="img">
+        <line x1={15} y1={80} x2={105} y2={80} stroke={stroke} strokeWidth={4} strokeLinecap="round" />
+        <rect x={25} y={50} width={28} height={28} rx={4} fill={fill} stroke={stroke} strokeWidth={4} />
+        <rect x={70} y={50} width={28} height={28} rx={4} fill={fill} stroke={stroke} strokeWidth={4} opacity={0.5} />
+        <path d="M95,64 L105,64 L95,74 Z" fill={stroke} />
+      </svg>
+    );
+  }
+
+  if (kind === 'rotation') {
+    // 圆形 + 弧形带箭头（绕点转动）
+    return (
+      <svg width={size} height={size} viewBox="0 0 120 120" role="img">
+        <circle cx={60} cy={60} r={38} fill="none" stroke={stroke} strokeWidth={4} />
+        <circle cx={60} cy={60} r={5} fill={stroke} />
+        <path
+          d="M95,60 A35,35 0 1 1 60,25"
+          fill="none"
+          stroke={stroke}
+          strokeWidth={4}
+          strokeLinecap="round"
+        />
+        <path d="M60,21 L60,31 L69,26 Z" fill={stroke} />
+        <line x1={60} y1={60} x2={95} y2={60} stroke={stroke} strokeWidth={4} strokeLinecap="round" />
+      </svg>
+    );
+  }
+
+  // axisSymmetry：图形一半 + 竖直虚线对折轴
+  return (
+    <svg width={size} height={size} viewBox="0 0 120 120" role="img">
+      {/* 左侧房子一半，右侧镜像一半 */}
+      <polygon points="60,30 60,90 30,90" fill={fill} stroke={stroke} strokeWidth={4} strokeLinejoin="round" />
+      <polygon points="60,30 60,90 90,90" fill={fill} stroke={stroke} strokeWidth={4} strokeLinejoin="round" opacity={0.5} />
+      <line x1={60} y1={15} x2={60} y2={105} stroke="#9C8775" strokeWidth={3} strokeDasharray="5 5" />
     </svg>
   );
 }

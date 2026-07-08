@@ -15,7 +15,7 @@ const MODULE_META: ModuleMeta[] = [
     key: 'math',
     title: '数学乐园',
     icon: '🔢',
-    description: '凑十法 · 加减连连看 · 数字合成 · 数独 · 华容道',
+    description: '凑十法 · 加减连连看 · 数字合成 · 数独 · 华容道 · 速算擂台 · 应用题闯关',
   },
   {
     key: 'pinyin',
@@ -45,7 +45,7 @@ const MODULE_META: ModuleMeta[] = [
     key: 'geometry',
     title: '图形与几何',
     icon: '📐',
-    description: '认图形 · 拼搭计数 · 找对称 · 角分类',
+    description: '认图形 · 拼搭计数 · 找对称 · 角分类 · 三视图 · 图形运动 · 长度单位',
   },
 ];
 
