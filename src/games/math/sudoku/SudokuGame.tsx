@@ -7,9 +7,8 @@
  * 注：因 Windows 文件系统大小写不敏感，原规格的 Sudoku/ 与 sudoku/ 目录会冲突，
  * 故将 SudokuGame 并入小写 sudoku/ 目录，避免同目录双名碰撞导致 tsc 失败。
  */
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Board as BoardType, Cage, SudokuMode, SudokuSize } from './types';
-import { BOX } from './types';
 import type { GameProps } from '../../types';
 import { useScore } from '../../../state/ScoreContext';
 import { computeStars } from '../../../utils/gameLoop';
@@ -142,28 +141,6 @@ export function SudokuCore(props: SudokuCoreProps) {
     if (isComplete(nb)) finish();
   };
 
-  // 当前选中格所在行/列/宫已用数字 → 候选面板置灰。
-  const disabledValues = useMemo<Set<number>>(() => {
-    const s = new Set<number>();
-    if (!selected) return s;
-    const [r, c] = selected;
-    for (let i = 0; i < size; i++) {
-      if (i !== c && board[r][i].value !== null) s.add(board[r][i].value as number);
-      if (i !== r && board[i][c].value !== null) s.add(board[i][c].value as number);
-    }
-    const { rows, cols } = BOX[size];
-    const br = Math.floor(r / rows) * rows;
-    const bc = Math.floor(c / cols) * cols;
-    for (let rr = br; rr < br + rows; rr++) {
-      for (let cc = bc; cc < bc + cols; cc++) {
-        if ((rr !== r || cc !== c) && board[rr][cc].value !== null) {
-          s.add(board[rr][cc].value as number);
-        }
-      }
-    }
-    return s;
-  }, [selected, board, size]);
-
   if (phase === 'select') {
     return (
       <div className="flex flex-col items-center gap-4">
@@ -245,7 +222,6 @@ export function SudokuCore(props: SudokuCoreProps) {
         size={size}
         letterMode={mode === 'letter'}
         onPick={handlePick}
-        disabled={disabledValues}
       />
     </div>
   );
