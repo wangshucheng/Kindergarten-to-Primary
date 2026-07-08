@@ -20,23 +20,25 @@ function tile(key: string, kp = `pinyin:${key}`): BrickTile {
 }
 
 describe('buildPool', () => {
-  it('汉字模式：key 唯一，知识点 = pinyin:xx', () => {
+  it('汉字模式：key 唯一，全部真实拼音无合成', () => {
     const pool = buildPool('hanzi', 123, 6);
-    expect(pool.length).toBeGreaterThanOrEqual(24);
-    // key 全唯一
-    const keys = new Set(pool.map((t) => t.key));
-    expect(keys.size).toBe(pool.length);
-    for (const t of pool) expect(t.knowledgePoint).toBe(`pinyin:${t.key}`);
-  });
-
-  it('英语模式：key 唯一，知识点 = category:xx', () => {
-    const pool = buildPool('english', 123, 6);
-    expect(pool.length).toBeGreaterThanOrEqual(24);
+    expect(pool.length).toBeGreaterThanOrEqual(8);
     const keys = new Set(pool.map((t) => t.key));
     expect(keys.size).toBe(pool.length);
     for (const t of pool) {
-      const kp = t.knowledgePoint;
-      expect(kp === `category:${t.key}` || kp.startsWith('fill:')).toBe(true);
+      expect(t.knowledgePoint).toBe(`pinyin:${t.key}`);
+      expect(t.label).not.toMatch(/^k\d+$/); // 无 k0/k1 等合成方块
+    }
+  });
+
+  it('英语模式：key 唯一，全部真实类别无合成', () => {
+    const pool = buildPool('english', 123, 6);
+    expect(pool.length).toBeGreaterThanOrEqual(2);
+    const keys = new Set(pool.map((t) => t.key));
+    expect(keys.size).toBe(pool.length);
+    for (const t of pool) {
+      expect(t.knowledgePoint).toBe(`category:${t.key}`);
+      expect(t.label).not.toMatch(/^k\d+$/);
     }
   });
 });

@@ -64,7 +64,7 @@ function toneFor(key: string): CardTone {
  * 构建 tile 池（按 key 去重）。
  * - 汉字：取若干不同拼音（label=代表字，sub=拼音，meaning=释义，knowledgePoint=`pinyin:拼音`）。
  * - 英语：取若干不同 category（label=代表词，sub=释义，knowledgePoint=`category:类别`）。
- * 返回去重后的 tile 列表（长度 >= 24，保证内容足够丰富）。
+ * 返回去重后仅含真实题库数据的 tile 列表（无合成兜底，宁可少也不滥造无意义 k0/k1）。
  */
 export function buildPool(subject: BrickSubject, seed: number, count: number): BrickTile[] {
   const map = new Map<string, BrickTile>();
@@ -72,9 +72,9 @@ export function buildPool(subject: BrickSubject, seed: number, count: number): B
     if (!map.has(t.key)) map.set(t.key, t);
   };
 
-  const want = Math.max(24, count);
+  const want = Math.max(count, 8); // 至少 8 个不同 key 保证调色板多样性，但不强制 24
   if (subject === 'english') {
-    for (let attempt = 0; attempt < 16 && map.size < want; attempt++) {
+    for (let attempt = 0; attempt < 24 && map.size < want; attempt++) {
       const qs: EnglishQuestion[] = QuestionGenerator.english({
         level: 1,
         count: 40,
@@ -93,7 +93,7 @@ export function buildPool(subject: BrickSubject, seed: number, count: number): B
       }
     }
   } else {
-    for (let attempt = 0; attempt < 16 && map.size < want; attempt++) {
+    for (let attempt = 0; attempt < 24 && map.size < want; attempt++) {
       const qs: HanziQuestion[] = QuestionGenerator.hanzi({
         level: 1,
         mode: 'char-pinyin',
@@ -114,12 +114,7 @@ export function buildPool(subject: BrickSubject, seed: number, count: number): B
     }
   }
 
-  // 兜底：极端情况下生成器不足 24 个，用序号补齐，保证每个 key 唯一且可消除
-  let i = 0;
-  while (map.size < want) {
-    const k = `k${i++}`;
-    addTile({ key: k, label: k, sub: k, knowledgePoint: `fill:${k}`, tone: toneFor(k) });
-  }
+  return Array.from(map.values());
   return Array.from(map.values());
 }
 
