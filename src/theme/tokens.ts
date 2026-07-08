@@ -42,4 +42,3 @@ export function color(key: ColorKey, alpha = 1): string {
 }
 
 export const tokens = { palette, moduleColors, radii, color };
-export default tokens;

@@ -1,5 +1,5 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import tokens, { type ColorKey } from './tokens';
+import { tokens, type ColorKey } from './tokens';
 
 interface ThemeValue {
   /** 直接取色板颜色 */

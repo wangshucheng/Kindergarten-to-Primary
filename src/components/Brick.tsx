@@ -45,5 +45,3 @@ export function Brick({
     />
   );
 }
-
-export default Brick;

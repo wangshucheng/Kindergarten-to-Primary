@@ -56,5 +56,3 @@ export function useTTS(manager?: TtsManager): TtsApi {
 
   return { speakZh, speakEn, toggle, isEnabled, stop };
 }
-
-export default useTTS;

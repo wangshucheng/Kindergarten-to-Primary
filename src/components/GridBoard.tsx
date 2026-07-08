@@ -38,5 +38,3 @@ export function GridBoard({
     </div>
   );
 }
-
-export default GridBoard;

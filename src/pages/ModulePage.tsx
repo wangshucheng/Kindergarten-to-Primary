@@ -1,28 +1,19 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import configData from '../data/config.json';
+import { getModules, getModuleGames, toGameEntry } from '../games/registry';
 import { moduleColors, palette } from '../theme/tokens';
 import { useProgress } from '../state/ProgressStore';
 import type { ModuleKey } from '../games/types';
 
-interface ModuleEntry {
-  key: string;
-  title: string;
-  icon: string;
-  description?: string;
-  games: { id: string; title: string; icon: string; priority: string }[];
-}
-
-const modules = (configData as { modules: ModuleEntry[] }).modules;
-
 /**
  * ModulePage —— 模块页：列出该模块下的游戏卡片，点击进入游戏。
+ * 数据源统一来自 registry，不再依赖 config.json。
  */
 export function ModulePage() {
   const { module } = useParams();
   const navigate = useNavigate();
   const { getRecord } = useProgress();
 
-  const entry = modules.find((m) => m.key === module);
+  const entry = getModules().find((m) => m.key === module);
   if (!entry) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center gap-4">
@@ -39,6 +30,7 @@ export function ModulePage() {
 
   const colorKey = moduleColors[entry.key] ?? 'peach';
   const bg = palette[colorKey];
+  const games = getModuleGames(entry.key as ModuleKey).map(toGameEntry);
 
   return (
     <div className="min-h-screen px-4 pt-6 pb-10">
@@ -59,7 +51,7 @@ export function ModulePage() {
       </header>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {entry.games.map((g) => {
+        {games.map((g) => {
           const rec = getRecord(g.id);
           return (
             <Link

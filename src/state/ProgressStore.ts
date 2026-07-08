@@ -1,38 +1,30 @@
-import { useCallback, useEffect, useState } from 'react';
+/**
+ * ProgressStore —— 游戏进度全局状态管理。
+ *
+ * 基于 zustand + persist 中间件实现：
+ * - localStorage 持久化，附带 schema version，支持自动迁移；
+ * - 跨标签页 storage 事件同步；
+ * - 成就数据通过 Zod 校验 config.json，替代 `as unknown as`；
+ * - API 完全向后兼容原有 useProgress() hook。
+ */
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import type { GameResult } from '../games/types';
 import configData from '../data/config.json';
+import {
+  ConfigSchema,
+  type AchievementDef,
+  type GameProgressRecord,
+  type ProgressState,
+  ProgressStateSchema,
+  SAVE_VERSION,
+} from '../data/schemas';
 
-const STORAGE_KEY = 'yyx.progress.v1';
+// ---------------------------------------------------------------------------
+// 类型导出（向后兼容）
+// ---------------------------------------------------------------------------
 
-export interface GameProgressRecord {
-  gameId: string;
-  bestScore: number;
-  stars: number;
-  plays: number;
-  lastPlayed: number;
-  /** 该游戏累计收集的知识点 id */
-  knowledgePoints?: string[];
-  /** 该游戏累计解锁的勋章 id */
-  medals?: string[];
-}
-
-export interface AchievementDef {
-  id: string;
-  title: string;
-  icon: string;
-  description: string;
-}
-
-export interface ProgressState {
-  records: Record<string, GameProgressRecord>;
-  unlocked: string[];
-  totalStars: number;
-  recent: string[];
-  /** 跨游戏累计收集的知识点 id（去重） */
-  knowledgePoints: string[];
-  /** 跨游戏累计解锁的勋章 id（去重，如 "final:a"） */
-  medals: string[];
-}
+export type { GameProgressRecord, AchievementDef, ProgressState };
 
 export interface SaveInput extends GameResult {
   gameId: string;
@@ -40,70 +32,39 @@ export interface SaveInput extends GameResult {
   medals?: string[];
 }
 
-interface ConfigShape {
-  achievements?: AchievementDef[];
-}
+// ---------------------------------------------------------------------------
+// 成就定义（从 config.json 加载，经 Zod 校验）
+// ---------------------------------------------------------------------------
 
-const config = configData as unknown as ConfigShape;
-export const ACHIEVEMENTS: AchievementDef[] = config.achievements ?? [];
+const config = ConfigSchema.parse(configData);
+export const ACHIEVEMENTS: AchievementDef[] = config.achievements;
+
+// ---------------------------------------------------------------------------
+// 内部工具函数
+// ---------------------------------------------------------------------------
+
+const STORAGE_KEY = 'yyx.progress.v2';
 
 function emptyState(): ProgressState {
   return { records: {}, unlocked: [], totalStars: 0, recent: [], knowledgePoints: [], medals: [] };
 }
 
-function load(): ProgressState {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return emptyState();
-    const parsed = JSON.parse(raw) as ProgressState;
-    return {
-      records: parsed.records ?? {},
-      unlocked: parsed.unlocked ?? [],
-      totalStars: parsed.totalStars ?? 0,
-      recent: parsed.recent ?? [],
-      knowledgePoints: parsed.knowledgePoints ?? [],
-      medals: parsed.medals ?? [],
-    };
-  } catch {
-    return emptyState();
-  }
-}
+function evaluateAchievements(s: ProgressState): string[] {
+  const unlocked = new Set(s.unlocked);
+  const recs = Object.values(s.records);
 
-function persist(state: ProgressState): void {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  } catch {
-    /* 忽略 */
-  }
-}
+  if (recs.some((r) => r.stars >= 1)) unlocked.add('first-win');
+  if (recs.some((r) => r.stars >= 3)) unlocked.add('star-three');
+  if (recs.length >= 12) unlocked.add('explorer');
 
-/**
- * 根据已有记录评估应解锁的成就（数据驱动 + 规则求值）。
- * 成就定义在 data/config.json，具体解锁条件在此集中实现。
- */
-function evaluateAchievements(state: ProgressState): string[] {
-  const unlocked = new Set(state.unlocked);
-  const records = Object.values(state.records);
-
-  const wonAny = records.some((r) => r.stars >= 1);
-  if (wonAny) unlocked.add('first-win');
-
-  const threeStarAny = records.some((r) => r.stars >= 3);
-  if (threeStarAny) unlocked.add('star-three');
-
-  const allPlayed = records.length >= 12;
-  if (allPlayed) unlocked.add('explorer');
-
-  const totalPlays = records.reduce((s, r) => s + r.plays, 0);
+  const totalPlays = recs.reduce((sum, r) => sum + r.plays, 0);
   if (totalPlays >= 30) unlocked.add('persistent');
 
-  const perfect = records.some((r) => r.stars >= 3 && r.plays >= 1);
-  if (perfect) unlocked.add('perfect');
+  if (recs.some((r) => r.stars >= 3 && r.plays >= 1)) unlocked.add('perfect');
 
-  // 勋章类成就：基于跨游戏累计的 medals / knowledgePoints
-  if (state.medals.length >= 1) unlocked.add('medal-first');
-  if (state.medals.length >= 5) unlocked.add('medal-collector');
-  if (state.knowledgePoints.length >= 10) unlocked.add('scholar');
+  if (s.medals.length >= 1) unlocked.add('medal-first');
+  if (s.medals.length >= 5) unlocked.add('medal-collector');
+  if (s.knowledgePoints.length >= 10) unlocked.add('scholar');
 
   return Array.from(unlocked);
 }
@@ -114,72 +75,130 @@ function uniqueConcat(a: readonly string[] = [], b: readonly string[] = []): str
   return Array.from(set);
 }
 
-function applyResult(state: ProgressState, input: SaveInput): ProgressState {
-  const prev = state.records[input.gameId];
-  const nextRecord: GameProgressRecord = {
-    gameId: input.gameId,
-    bestScore: Math.max(prev?.bestScore ?? 0, input.score),
-    stars: Math.max(prev?.stars ?? 0, input.stars),
-    plays: (prev?.plays ?? 0) + 1,
-    lastPlayed: Date.now(),
-    knowledgePoints: uniqueConcat(prev?.knowledgePoints, input.knowledgePoints),
-    medals: uniqueConcat(prev?.medals, input.medals),
-  };
-  const records = { ...state.records, [input.gameId]: nextRecord };
-  const recent = [input.gameId, ...state.recent.filter((g) => g !== input.gameId)].slice(0, 6);
-  const totalStars = Object.values(records).reduce((s, r) => s + r.stars, 0);
+// ---------------------------------------------------------------------------
+// Zustand Store（含 persist + 跨标签页同步）
+// ---------------------------------------------------------------------------
 
-  const knowledgePoints = uniqueConcat(state.knowledgePoints, input.knowledgePoints);
-  const medals = uniqueConcat(state.medals, input.medals);
-
-  let next: ProgressState = {
-    records,
-    unlocked: state.unlocked,
-    totalStars,
-    recent,
-    knowledgePoints,
-    medals,
-  };
-  next = { ...next, unlocked: evaluateAchievements(next) };
-  return next;
+interface ProgressStoreState extends ProgressState {
+  saveResult: (input: SaveInput) => void;
+  getRecord: (gameId: string) => GameProgressRecord | undefined;
+  isUnlocked: (id: string) => boolean;
 }
+
+export const useProgressStore = create<ProgressStoreState>()(
+  persist(
+    (set, get) => ({
+      ...emptyState(),
+
+      saveResult: (input: SaveInput) => {
+        set((prev) => {
+          const p = prev as ProgressState;
+          const existing = p.records[input.gameId];
+          const next: GameProgressRecord = {
+            gameId: input.gameId,
+            bestScore: Math.max(existing?.bestScore ?? 0, input.score),
+            stars: Math.max(existing?.stars ?? 0, input.stars),
+            plays: (existing?.plays ?? 0) + 1,
+            lastPlayed: Date.now(),
+            knowledgePoints: uniqueConcat(existing?.knowledgePoints, input.knowledgePoints),
+            medals: uniqueConcat(existing?.medals, input.medals),
+          };
+          const records = { ...p.records, [input.gameId]: next };
+          const recent = [input.gameId, ...p.recent.filter((g) => g !== input.gameId)].slice(0, 6);
+          const totalStars = Object.values(records).reduce((s, r) => s + r.stars, 0);
+          const knowledgePoints = uniqueConcat(p.knowledgePoints, input.knowledgePoints);
+          const medals = uniqueConcat(p.medals, input.medals);
+
+          const base: ProgressState = { records, unlocked: p.unlocked, totalStars, recent, knowledgePoints, medals };
+          return { ...base, unlocked: evaluateAchievements(base) };
+        });
+      },
+
+      getRecord: (gameId: string) => get().records[gameId],
+
+      isUnlocked: (id: string) => get().unlocked.includes(id),
+    }),
+    {
+      name: STORAGE_KEY,
+      version: SAVE_VERSION,
+      // 自定义 storage 适配器：集成 Zod 校验 + 跨标签页同步
+      storage: {
+        getItem: () => {
+          try {
+            const raw = window.localStorage.getItem(STORAGE_KEY);
+            if (!raw) return null;
+            const parsed = JSON.parse(raw);
+            const result = ProgressStateSchema.safeParse(parsed);
+            if (result.success) {
+              const { version: _v, ...state } = result.data;
+              return { state, version: SAVE_VERSION };
+            }
+            return null;
+          } catch {
+            return null;
+          }
+        },
+        setItem: (_name, value) => {
+          try {
+            window.localStorage.setItem(
+              STORAGE_KEY,
+              JSON.stringify({ ...value.state, version: SAVE_VERSION }),
+            );
+          } catch {
+            /* quota exceeded 静默降级 */
+          }
+        },
+        removeItem: () => {
+          try {
+            window.localStorage.removeItem(STORAGE_KEY);
+          } catch {
+            /* ignore */
+          }
+        },
+      },
+      // 版本迁移：旧数据无 version 字段时，Zod 默认值填充
+      migrate: (persisted: unknown, _version: number) => {
+        const result = ProgressStateSchema.safeParse(persisted);
+        if (result.success) {
+          const { version: _v, ...state } = result.data;
+          return state as ProgressStoreState;
+        }
+        return emptyState() as ProgressStoreState;
+      },
+      // 跨标签页同步
+      onRehydrateStorage: () => {
+        const handler = (e: StorageEvent) => {
+          if (e.key === STORAGE_KEY && e.newValue) {
+            try {
+              const parsed = JSON.parse(e.newValue);
+              const result = ProgressStateSchema.safeParse(parsed);
+              if (result.success) {
+                const { version: _v, ...state } = result.data;
+                useProgressStore.setState(state);
+              }
+            } catch {
+              /* ignore */
+            }
+          }
+        };
+        if (typeof window !== 'undefined') {
+          window.addEventListener('storage', handler);
+        }
+        return (_state, error) => {
+          if (typeof window !== 'undefined') {
+            window.removeEventListener('storage', handler);
+          }
+        };
+      },
+    },
+  ),
+);
 
 /**
- * useProgress —— 轻量存档 Hook（P2）。
- * 读取/保存游戏结果到 localStorage，并提供星星总数、最近游玩与成就。
+ * useProgress —— 游戏进度 Hook。
+ *
+ * API 与原实现完全向后兼容。
  */
 export function useProgress() {
-  const [state, setState] = useState<ProgressState>(() => load());
-
-  useEffect(() => {
-    // 首次挂载时再评估一次（处理直接写入的情况）
-    setState((s) => ({ ...s, unlocked: evaluateAchievements(s) }));
-  }, []);
-
-  const saveResult = useCallback((input: SaveInput) => {
-    setState((prev) => {
-      const next = applyResult(prev, input);
-      persist(next);
-      return next;
-    });
-  }, []);
-
-  const getRecord = useCallback(
-    (gameId: string): GameProgressRecord | undefined => state.records[gameId],
-    [state.records],
-  );
-
-  const isUnlocked = useCallback(
-    (id: string): boolean => state.unlocked.includes(id),
-    [state.unlocked],
-  );
-
-  return {
-    ...state,
-    saveResult,
-    getRecord,
-    isUnlocked,
-  };
+  return useProgressStore();
 }
-
-export default useProgress;

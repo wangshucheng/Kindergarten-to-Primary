@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { GameConfig, GameResult } from '../games/types';
 import { SoundManager } from '../sound/SoundManager';
@@ -43,7 +43,6 @@ function GameInner({
       setResult(r);
       setFinished(true);
       sound.play(r.passed ? 'win' : 'wrong');
-      // 收割本局收集的知识点 / 勋章，随结果一并落盘
       saveResult({ ...r, gameId: config.id, knowledgePoints, medals });
     },
     [sound, saveResult, config.id, knowledgePoints, medals],
@@ -104,15 +103,31 @@ function GameInner({
 
 /**
  * GameShell —— 游戏外壳：
- * - 提供 SoundManager 实例与 ScoreProvider（运行期分数/连击）；
+ * - 提供 SoundManager 与 TtsManager 实例及 ScoreProvider（运行期分数/连击）；
  * - 首次 pointer 事件解锁音频；
  * - 接收游戏 onComplete，统一落盘 localStorage 并弹出结算；
- * - 支持“再玩一次”（通过 key 重挂载实现彻底重置）。
+ * - 支持"再玩一次"（通过 key 重挂载实现彻底重置）；
+ * - 组件卸载时自动清理 AudioContext 与 SpeechSynthesis，防止资源泄漏。
  */
 export function GameShell({ config }: { config: GameConfig }) {
-  const sound = useRef(new SoundManager()).current;
-  const tts = useRef(new TtsManager()).current;
+  const soundRef = useRef<SoundManager | null>(null);
+  if (!soundRef.current) soundRef.current = new SoundManager();
+  const sound = soundRef.current;
+
+  const ttsRef = useRef<TtsManager | null>(null);
+  if (!ttsRef.current) ttsRef.current = new TtsManager();
+  const tts = ttsRef.current;
+
   const [runId, setRunId] = useState(0);
+
+  // 组件卸载时清理音频/TTS 资源，防止泄漏
+  useEffect(() => {
+    return () => {
+      sound.dispose();
+      tts.dispose();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const restart = useCallback(() => setRunId((r) => r + 1), []);
 
@@ -122,5 +137,3 @@ export function GameShell({ config }: { config: GameConfig }) {
     </ScoreProvider>
   );
 }
-
-export default GameShell;

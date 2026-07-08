@@ -24,5 +24,3 @@ export function CardGrid({ children, cols = 3, className = '' }: CardGridProps) 
     <div className={['grid gap-3', colClass, className].join(' ')}>{children}</div>
   );
 }
-
-export default CardGrid;

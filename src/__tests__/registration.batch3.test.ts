@@ -1,7 +1,8 @@
 /**
  * 第 3 批注册与集成回归（B3-1 砖了个砖 / B3-2 华容道）。
- * 确认：english/brick-match、hanzi/brick-match-hanzi、math/klotski 注册正确，
- * 且 config.json 菜单条目与 registry id 自洽。
+ * 确认：english/brick-match、hanzi/brick-match-hanzi、math/klotski 注册正确。
+ *
+ * v2 重构：registry 为唯一真相来源，测试直接校验 registry 自洽。
  */
 import { describe, expect, it } from 'vitest';
 import { getGame, allGames } from '../games/registry';
@@ -10,7 +11,6 @@ import { KlotskiGame } from '../games/math/klotski/KlotskiGame';
 import { games as mathGames } from '../games/math/index';
 import { games as hanziGames } from '../games/hanzi/index';
 import { games as englishGames } from '../games/english/index';
-import config from '../data/config.json';
 
 describe('B3 游戏注册', () => {
   it('english 模块含 brick-match 且 subject=english、组件=BrickMatchGame', () => {
@@ -48,13 +48,11 @@ describe('B3 游戏注册', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('config.json 菜单条目与 registry id 自洽', () => {
-    const en = config.modules.find((m) => m.key === 'english');
-    const hz = config.modules.find((m) => m.key === 'hanzi');
-    const ma = config.modules.find((m) => m.key === 'math');
-    expect(en?.games.some((x) => x.id === 'brick-match')).toBe(true);
-    expect(hz?.games.some((x) => x.id === 'brick-match-hanzi')).toBe(true);
-    expect(ma?.games.some((x) => x.id === 'klotski')).toBe(true);
+  it('registry 模块游戏列表与 id 自洽', () => {
+    const allIds = new Set(allGames.map((g) => g.id));
+    expect(allIds.has('brick-match')).toBe(true);
+    expect(allIds.has('brick-match-hanzi')).toBe(true);
+    expect(allIds.has('klotski')).toBe(true);
   });
 
   it('三大模块索引均含对应新游戏（与 registry 指向同一组件）', () => {

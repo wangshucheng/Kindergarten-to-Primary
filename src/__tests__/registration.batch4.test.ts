@@ -1,14 +1,14 @@
 /**
  * 第 4 批注册与集成回归（B4 抓大鹅）。
- * 确认：english/goose-catch、hanzi/goose-catch-hanzi 注册正确，
- * 且 config.json 菜单条目与 registry id 自洽。
+ * 确认：english/goose-catch、hanzi/goose-catch-hanzi 注册正确。
+ *
+ * v2 重构：registry 为唯一真相来源，测试直接校验 registry 自洽。
  */
 import { describe, expect, it } from 'vitest';
 import { getGame, allGames } from '../games/registry';
 import { GooseCatchGame } from '../games/_shared/goose/GooseCatchGame';
 import { games as hanziGames } from '../games/hanzi/index';
 import { games as englishGames } from '../games/english/index';
-import config from '../data/config.json';
 
 describe('B4 游戏注册', () => {
   it('english 模块含 goose-catch 且 subject=english、组件=GooseCatchGame', () => {
@@ -36,11 +36,10 @@ describe('B4 游戏注册', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('config.json 菜单条目与 registry id 自洽', () => {
-    const en = config.modules.find((m) => m.key === 'english');
-    const hz = config.modules.find((m) => m.key === 'hanzi');
-    expect(en?.games.some((x) => x.id === 'goose-catch')).toBe(true);
-    expect(hz?.games.some((x) => x.id === 'goose-catch-hanzi')).toBe(true);
+  it('registry 模块游戏列表与 id 自洽', () => {
+    const allIds = new Set(allGames.map((g) => g.id));
+    expect(allIds.has('goose-catch')).toBe(true);
+    expect(allIds.has('goose-catch-hanzi')).toBe(true);
   });
 
   it('两大模块索引均含对应新游戏（与 registry 指向同一组件）', () => {

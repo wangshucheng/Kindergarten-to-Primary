@@ -2,9 +2,43 @@ import * as math from './math';
 import * as pinyin from './pinyin';
 import * as hanzi from './hanzi';
 import * as english from './english';
-import type { GameConfig, ModuleKey } from './types';
+import type { GameConfig, ModuleKey, ModuleMeta } from './types';
 
-/** 聚合四大模块的游戏注册表（组件映射在此完成，config.json 仅存目录元数据） */
+// ---------------------------------------------------------------------------
+// 模块元数据（描述信息，作为模块目录的唯一真相来源）
+// ---------------------------------------------------------------------------
+
+const MODULE_META: ModuleMeta[] = [
+  {
+    key: 'math',
+    title: '数学乐园',
+    icon: '🔢',
+    description: '凑十法 · 加减连连看 · 数字合成 · 数独 · 华容道',
+  },
+  {
+    key: 'pinyin',
+    title: '拼音王国',
+    icon: '🔤',
+    description: '声母韵母 · 拼读练习 · 听音选拼音',
+  },
+  {
+    key: 'hanzi',
+    title: '汉字天地',
+    icon: '📚',
+    description: '翻牌记忆 · 连线匹配 · 识字玩法 · 消消乐',
+  },
+  {
+    key: 'english',
+    title: '英语小镇',
+    icon: '🔤',
+    description: '字母 · 单词 · 句子 · 对战 · 砖块 · 赶鹅',
+  },
+];
+
+// ---------------------------------------------------------------------------
+// 游戏注册表（组件映射 + 元数据，添加游戏只需在此处修改）
+// ---------------------------------------------------------------------------
+
 export const allGames: GameConfig[] = [
   ...math.games,
   ...pinyin.games,
@@ -23,8 +57,37 @@ export const moduleGames: Record<ModuleKey, GameConfig[]> = {
   english: english.games,
 };
 
+// ---------------------------------------------------------------------------
+// 查询 API
+// ---------------------------------------------------------------------------
+
 /** 按 gameId 查找 GameConfig（含渲染组件） */
 export function getGame(id: string | undefined): GameConfig | undefined {
   if (!id) return undefined;
   return gameMap[id];
+}
+
+/** 获取所有模块元数据（用于页面渲染导航/目录） */
+export function getModules(): ModuleMeta[] {
+  return MODULE_META;
+}
+
+/** 获取某模块下的游戏列表（浅拷贝，按 priority 排序：P0 优先） */
+export function getModuleGames(module: ModuleKey): GameConfig[] {
+  return [...(moduleGames[module] ?? [])].sort((a, b) => {
+    const rank = { P0: 0, P1: 1, P2: 2 };
+    return (rank[a.priority] ?? 1) - (rank[b.priority] ?? 1);
+  });
+}
+
+/** 从 GameConfig[] 导出轻量目录项（id/title/icon/priority）供页面渲染 */
+export function toGameEntry(g: GameConfig) {
+  return {
+    id: g.id,
+    title: g.title,
+    icon: g.icon,
+    priority: g.priority,
+    subject: g.subject,
+    mode: g.mode,
+  };
 }

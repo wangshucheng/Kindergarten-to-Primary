@@ -78,5 +78,3 @@ export function Card({
     </button>
   );
 }
-
-export default Card;

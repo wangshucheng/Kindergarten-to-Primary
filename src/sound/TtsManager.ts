@@ -6,11 +6,13 @@
  * - 与 SoundManager（程序化音效）彼此独立，开关互不影响；
  * - 游戏只允许通过 `speak(text, opts)` 触发朗读，HUD 通过 `toggle()` 控制开关；
  * - 在无 window / 无 speechSynthesis 的环境下全部安全降级为 no-op，不抛错；
- * - speak 前会 cancel 上一条，避免语音堆积。
+ * - speak 前会 cancel 上一条，避免语音堆积；
+ * - dispose() 在组件卸载时停止朗读并标记已释放。
  */
 export class TtsManager {
   private enabled = true;
   private voice: SpeechSynthesisVoice | null = null;
+  private disposed = false;
 
   constructor() {
     if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
@@ -21,6 +23,7 @@ export class TtsManager {
 
   /** 加载可用音色，优先选中文音色，否则回退到第一个 */
   private loadVoices(): void {
+    if (!('speechSynthesis' in window)) return;
     const vs = window.speechSynthesis.getVoices();
     this.voice = vs.find((v) => v.lang.toLowerCase().startsWith('zh')) ?? vs[0] ?? null;
   }
@@ -34,21 +37,21 @@ export class TtsManager {
 
   /** 当前朗读是否开启 */
   isEnabled(): boolean {
-    return this.enabled;
+    return this.enabled && !this.disposed;
   }
 
   /**
    * 朗读文本。
    * @param text 要朗读的文本
    * @param opts.lang 语言标签，默认 'zh-CN'；英文传 'en-US'
-   * @param opts.rate 语速，默认 0.9（儿童稍慢）；英文可传 0.9~1.0
-   * @param opts.onEnd 朗读结束后回调（关闭语音/环境不支持时也会立即触发，保证流程前进）
+   * @param opts.rate 语速，默认 0.9（儿童稍慢）
+   * @param opts.onEnd 朗读结束后回调
    */
   speak(
     text: string,
     opts?: { lang?: string; rate?: number; onEnd?: () => void },
   ): void {
-    if (!this.enabled) {
+    if (!this.enabled || this.disposed) {
       opts?.onEnd?.();
       return;
     }
@@ -75,6 +78,13 @@ export class TtsManager {
       window.speechSynthesis.cancel();
     }
   }
-}
 
-export default TtsManager;
+  /** 释放资源：停止朗读并标记已释放 */
+  dispose(): void {
+    this.disposed = true;
+    this.stop();
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = null;
+    }
+  }
+}

@@ -33,5 +33,3 @@ export function StarRating({ value, max = 3, size = 36 }: StarRatingProps) {
     </div>
   );
 }
-
-export default StarRating;

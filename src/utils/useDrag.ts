@@ -58,5 +58,3 @@ export function useDrag(opts: {
 
   return { bind: { onPointerDown }, state };
 }
-
-export default useDrag;

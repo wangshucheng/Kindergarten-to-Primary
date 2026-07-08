@@ -38,5 +38,3 @@ export function Modal({ title, emoji, children, actions, onClose }: ModalProps) 
     </div>
   );
 }
-
-export default Modal;

@@ -2,6 +2,8 @@
  * 第 2 批注册与集成回归（仅新增用例、不改源码）。
  * 确认：math/number-mines、hanzi/match-3、english/match-3-en 注册正确，
  * 且 ArithmeticSudoku 导入路径已还原（见 src/games/math/index.ts）。
+ *
+ * v2 重构：数据源改为 registry 自洽校验，不再依赖 config.json。
  */
 import { describe, expect, it } from 'vitest';
 import { Match3Game } from '../games/_shared/match3/Match3Game';
@@ -9,8 +11,7 @@ import { NumberMinesGame } from '../games/math/NumberMines/NumberMinesGame';
 import { games as mathGames } from '../games/math/index';
 import { games as hanziGames } from '../games/hanzi/index';
 import { games as englishGames } from '../games/english/index';
-// 配置数据自洽：english 模块含 match-3-en 条目
-import config from '../data/config.json';
+import { getModules } from '../games/registry';
 
 describe('游戏注册', () => {
   it('math 模块含 number-mines 且组件为 NumberMinesGame', () => {
@@ -35,10 +36,12 @@ describe('游戏注册', () => {
     expect(g?.subject).toBe('english');
   });
 
-  it('config.json 的 english 模块包含 match-3-en 条目', () => {
-    const en = config.modules.find((m) => m.key === 'english');
+  it('english 模块在 registry 中存在且含 match-3-en 游戏', () => {
+    const mods = getModules();
+    const en = mods.find((m) => m.key === 'english');
     expect(en).toBeDefined();
-    expect(en?.games.some((x) => x.id === 'match-3-en')).toBe(true);
+    const enGames = englishGames.filter((g) => g.module === 'english');
+    expect(enGames.some((x) => x.id === 'match-3-en')).toBe(true);
   });
 
   it('math 模块仍含既有玩法（sudoku/make-ten 等未被破坏）', () => {

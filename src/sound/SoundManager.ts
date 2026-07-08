@@ -8,15 +8,18 @@ import { SOUND_PRESETS, type ToneNote } from './soundPresets';
  * - 不依赖任何音频素材文件，全部用 OscillatorNode 合成；
  * - AudioContext 须在用户首次交互后 resume（浏览器自动播放策略），
  *   因此游戏内首次 pointer 事件会调用 `resume()` 解锁；
- * - 游戏只允许通过 `play(type)` 触发音效，HUD 通过 `toggle()` 控制开关。
+ * - 游戏只允许通过 `play(type)` 触发音效，HUD 通过 `toggle()` 控制开关；
+ * - dispose() 在组件卸载时关闭 AudioContext，防止资源泄漏。
  */
 export class SoundManager {
   private ctx: AudioContext | null = null;
   private master: GainNode | null = null;
   private enabled = true;
+  private disposed = false;
 
   /** 懒创建并解锁 AudioContext（必须在用户手势中调用一次） */
   resume(): void {
+    if (this.disposed) return;
     const ctx = this.ensureCtx();
     if (ctx && ctx.state === 'suspended') {
       void ctx.resume();
@@ -30,12 +33,12 @@ export class SoundManager {
   }
 
   isEnabled(): boolean {
-    return this.enabled;
+    return this.enabled && !this.disposed;
   }
 
   /** 播放指定类型音效 */
   play(type: SoundType): void {
-    if (!this.enabled) return;
+    if (!this.enabled || this.disposed) return;
     const ctx = this.ensureCtx();
     if (!ctx || !this.master) return;
     if (ctx.state === 'suspended') void ctx.resume();
@@ -44,6 +47,19 @@ export class SoundManager {
     const base = ctx.currentTime + 0.001;
     for (const note of preset.notes) {
       this.playTone(ctx, this.master, note, base);
+    }
+  }
+
+  /**
+   * 释放 AudioContext 资源。
+   * 应在组件卸载时调用，避免 AudioContext 实例泄漏。
+   */
+  dispose(): void {
+    this.disposed = true;
+    if (this.ctx) {
+      void this.ctx.close();
+      this.ctx = null;
+      this.master = null;
     }
   }
 
@@ -68,7 +84,7 @@ export class SoundManager {
   }
 
   private ensureCtx(): AudioContext | null {
-    if (typeof window === 'undefined') return null;
+    if (typeof window === 'undefined' || this.disposed) return null;
     if (!this.ctx) {
       const Ctor: typeof AudioContext | undefined =
         window.AudioContext ||
@@ -83,5 +99,3 @@ export class SoundManager {
     return this.ctx;
   }
 }
-
-export default SoundManager;

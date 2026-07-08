@@ -1,32 +1,17 @@
 import { Link } from 'react-router-dom';
-import configData from '../data/config.json';
+import { getModules, getModuleGames, allGames, toGameEntry } from '../games/registry';
 import { moduleColors, palette } from '../theme/tokens';
 import { useProgress } from '../state/ProgressStore';
 import { getGame } from '../games/registry';
-import type { ModuleMeta } from '../games/types';
 import { StarRating } from '../components/StarRating';
-
-interface ModuleEntry {
-  key: string;
-  title: string;
-  icon: string;
-  description?: string;
-  games: { id: string; title: string; icon: string; priority: string }[];
-}
-
-const modules = (configData as { modules: ModuleEntry[] }).modules;
-const moduleMeta: ModuleMeta[] = modules.map((m) => ({
-  key: m.key as ModuleMeta['key'],
-  title: m.title,
-  icon: m.icon,
-  description: m.description,
-}));
 
 /**
  * HomePage —— 首页：四大模块入口 + 星星总数 + 最近游玩。
+ * 数据源统一来自 registry，不再依赖 config.json modules。
  */
 export function HomePage() {
   const { totalStars, recent } = useProgress();
+  const modules = getModules();
 
   const recentTitles = recent
     .map((id) => getGame(id)?.title)
@@ -64,6 +49,7 @@ export function HomePage() {
         {modules.map((m) => {
           const colorKey = moduleColors[m.key] ?? 'peach';
           const bg = palette[colorKey];
+          const games = getModuleGames(m.key).slice(0, 3).map(toGameEntry);
           return (
             <Link
               key={m.key}
@@ -81,7 +67,7 @@ export function HomePage() {
                 </div>
               </div>
               <div className="mt-3 flex gap-2">
-                {m.games.slice(0, 3).map((g) => (
+                {games.map((g) => (
                   <span
                     key={g.id}
                     className="px-2.5 py-1 rounded-full bg-white/70 text-ink text-xs font-bold"

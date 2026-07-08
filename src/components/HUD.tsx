@@ -90,5 +90,3 @@ export function HUD({ title, module, score, combo, sound, tts, onExit }: HUDProp
     </header>
   );
 }
-
-export default HUD;
