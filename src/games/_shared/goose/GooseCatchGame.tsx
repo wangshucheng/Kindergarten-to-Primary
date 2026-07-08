@@ -52,7 +52,7 @@ export function GooseCatchGame({ config, sound, tts: ttsManager, onComplete }: G
 
   useEffect(() => {
     if (subject === 'english') tts.speakEn('Catch the goose! Find the matching word.');
-    else tts.speakZh('来赶鹅咯！找出拼音对应的字～');
+    else tts.speakZh('来配对咯！找出拼音对应的字～');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -250,7 +250,7 @@ export function GooseCatchGame({ config, sound, tts: ttsManager, onComplete }: G
           key={`goose-${roundIndex}-${idx}`}
           emoji={tile.emoji}
           label={tile.label}
-          sub={tile.sub}
+          sub={tile.sub ? <span className="text-sm">{tile.sub}</span> : undefined}
           tone={tile.tone}
           matched={isFlashing && isMatch(tile, targetKey)}
           wrong={isWrongFlash}
