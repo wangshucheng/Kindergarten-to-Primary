@@ -1,5 +1,6 @@
 import type { GameConfig } from '../types';
 import { MakeTenGame } from './MakeTen/MakeTenGame';
+import { MultiplicationGame } from './Multiplication/MultiplicationGame';
 import { PlusMinusLinkGame } from './PlusMinusLink/PlusMinusLinkGame';
 import { NumberMergeGame } from './NumberMerge/NumberMergeGame';
 import { SudokuGame } from './sudoku/SudokuGame';
@@ -63,4 +64,5 @@ export const games: GameConfig[] = [
     subject: 'math',
     mode: 'klotski',
   },
+  { id: 'multiplication', module: 'math', title: '乘法口诀', icon: '✖️', priority: 'P1', component: MultiplicationGame },
 ];
