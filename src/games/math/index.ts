@@ -8,6 +8,8 @@ import { LetterSudokuGame } from './LetterSudoku/LetterSudokuGame';
 import { ArithmeticSudokuGame } from './ArithmeticSudoku/ArithmeticSudokuGame';
 import { NumberMinesGame } from './NumberMines/NumberMinesGame';
 import { KlotskiGame } from './klotski/KlotskiGame';
+import { SpeedDrillGame } from './SpeedDrill/SpeedDrillGame';
+import { WordProblemGame } from './WordProblem/WordProblemGame';
 
 export const games: GameConfig[] = [
   { id: 'make-ten', module: 'math', title: '凑十法', icon: '🍎', priority: 'P0', component: MakeTenGame },
@@ -65,4 +67,6 @@ export const games: GameConfig[] = [
     mode: 'klotski',
   },
   { id: 'multiplication', module: 'math', title: '乘法口诀', icon: '✖️', priority: 'P1', component: MultiplicationGame },
+  { id: 'mult-speed', module: 'math', title: '速算擂台', icon: '⚡', priority: 'P1', component: SpeedDrillGame },
+  { id: 'mult-word', module: 'math', title: '应用题闯关', icon: '🧩', priority: 'P1', component: WordProblemGame },
 ];
