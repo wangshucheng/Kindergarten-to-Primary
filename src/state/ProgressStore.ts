@@ -133,7 +133,8 @@ export const useProgressStore = create<ProgressStoreState>()(
               const { version: _v, ...state } = result.data;
               return { state, version: SAVE_VERSION };
             }
-            return null;
+            // 解析失败不直接清空：把原始对象交给 migrate 尽力抢救
+            return { state: parsed, version: -1 };
           } catch {
             return null;
           }
@@ -156,14 +157,68 @@ export const useProgressStore = create<ProgressStoreState>()(
           }
         },
       },
-      // 版本迁移：旧数据无 version 字段时，Zod 默认值填充
+      // 版本迁移：旧数据无 version 字段时，Zod 默认值填充；
+      // 结构损坏时尽力抢救（而非静默清空全部进度）。
       migrate: (persisted: unknown, _version: number) => {
         const result = ProgressStateSchema.safeParse(persisted);
         if (result.success) {
           const { version: _v, ...state } = result.data;
           return state as ProgressStoreState;
         }
-        return emptyState() as ProgressStoreState;
+        // 抢救路径：逐条剥离可识别的记录与集合，丢弃无法解析的字段
+        try {
+          const raw = (persisted ?? {}) as Record<string, unknown>;
+          const recordsRaw = (raw.records ?? {}) as Record<string, unknown>;
+          const records: Record<string, GameProgressRecord> = {};
+          let totalStars = 0;
+          const knowledgePoints: string[] = [];
+          const medals: string[] = [];
+          const kpSet = new Set<string>();
+          const mSet = new Set<string>();
+
+          for (const [gameId, rec] of Object.entries(recordsRaw)) {
+            if (!rec || typeof rec !== 'object') continue;
+            const r = rec as Record<string, unknown>;
+            const bestScore = Number(r.bestScore) || 0;
+            const stars = Math.min(3, Math.max(0, Number(r.stars) || 0));
+            const plays = Math.max(0, Number(r.plays) || 0);
+            const kps = Array.isArray(r.knowledgePoints)
+              ? (r.knowledgePoints as unknown[]).filter((x): x is string => typeof x === 'string')
+              : [];
+            const ms = Array.isArray(r.medals)
+              ? (r.medals as unknown[]).filter((x): x is string => typeof x === 'string')
+              : [];
+            for (const k of kps) if (!kpSet.has(k)) { kpSet.add(k); knowledgePoints.push(k); }
+            for (const m of ms) if (!mSet.has(m)) { mSet.add(m); medals.push(m); }
+            totalStars += stars;
+            records[gameId] = {
+              gameId,
+              bestScore,
+              stars,
+              plays,
+              lastPlayed: Number(r.lastPlayed) || 0,
+              knowledgePoints: kps,
+              medals: ms,
+            };
+          }
+
+          const base: ProgressState = {
+            records,
+            unlocked: Array.isArray(raw.unlocked)
+              ? (raw.unlocked as unknown[]).filter((x): x is string => typeof x === 'string')
+              : [],
+            totalStars,
+            recent: Array.isArray(raw.recent)
+              ? (raw.recent as unknown[]).filter((x): x is string => typeof x === 'string')
+              : [],
+            knowledgePoints,
+            medals,
+          };
+          return { ...base, unlocked: evaluateAchievements(base) } as ProgressStoreState;
+        } catch {
+          // 极端损坏（非对象）才降级为空白态，绝大多数场景已抢救
+          return emptyState() as ProgressStoreState;
+        }
       },
       // 跨标签页同步
       onRehydrateStorage: () => {

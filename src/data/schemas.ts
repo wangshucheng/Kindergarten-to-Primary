@@ -242,7 +242,15 @@ export const AchievementDefSchema = z.object({
   description: z.string(),
 });
 
+export const ModuleMetaSchema = z.object({
+  key: z.enum(['math', 'pinyin', 'hanzi', 'english', 'poetry', 'geometry']),
+  title: z.string(),
+  icon: z.string(),
+  description: z.string().optional(),
+});
+
 export const ConfigSchema = z.object({
   appName: z.string().optional().default('幼升小游戏合集'),
+  modules: z.array(ModuleMetaSchema).optional().default([]),
   achievements: z.array(AchievementDefSchema).optional().default([]),
 });

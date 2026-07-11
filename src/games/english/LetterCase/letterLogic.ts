@@ -1,4 +1,4 @@
-import { VOCAB } from '../vocabData';
+import { VOCAB } from '../../../data/vocabData';
 import { createRng, type Rng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
 

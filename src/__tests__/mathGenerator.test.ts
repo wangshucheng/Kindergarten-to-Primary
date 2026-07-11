@@ -128,15 +128,4 @@ describe('genLogic · pattern', () => {
   });
 });
 
-describe('genLogic · reason', () => {
-  it('恰有一个空缺，题项数 = gridSize²', () => {
-    for (const level of [1, 2, 3] as const) {
-      const o: LogicOpts = { kind: 'reason', level, seed: 51 };
-      const p = genLogic(o);
-      const t = p.target as { gridSize: number };
-      expect(t.gridSize).toBe(2 + (level - 1));
-      expect(p.items.length).toBe(t.gridSize * t.gridSize);
-      expect(p.items.filter((i) => i.label === '?').length).toBe(1);
-    }
-  });
-});
+

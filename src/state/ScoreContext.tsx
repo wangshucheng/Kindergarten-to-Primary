@@ -4,7 +4,9 @@ import {
   useContext,
   useMemo,
   useReducer,
+  useRef,
   useState,
+  type MutableRefObject,
   type ReactNode,
 } from 'react';
 
@@ -50,6 +52,15 @@ export interface ScoreContextValue extends ScoreState {
   collectKnowledge: (id: string) => void;
   /** 去重解锁勋章 */
   unlockMedal: (id: string) => void;
+  /**
+   * 同步镜像 refs：reducer 状态在事件处理中滞后于最新 dispatch，
+   * finish() 时直接读取这些 ref 可获取当前真实累计值（分数/失误/知识点/勋章），
+   * 避免“落盘 0 分”与知识点/勋章漏存（见 CODE_REVIEW_REPORT H2/H3/M6）。
+   */
+  scoreRef: MutableRefObject<number>;
+  mistakesRef: MutableRefObject<number>;
+  knowledgeRef: MutableRefObject<string[]>;
+  medalsRef: MutableRefObject<string[]>;
 }
 
 export function createInitialScoreState(): ScoreState {
@@ -99,17 +110,35 @@ const ScoreContext = createContext<ScoreContextValue | null>(null);
 export function ScoreProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(scoreReducer, undefined, createInitialScoreState);
 
-  const addScore = useCallback((n: number) => dispatch({ type: 'addScore', n }), []);
+  // 同步镜像：在回调中随 dispatch 一并更新，保证 finish() 时能读到最新累计值。
+  const scoreRef = useRef<number>(0);
+  const mistakesRef = useRef<number>(0);
+  const knowledgeRef = useRef<string[]>([]);
+  const medalsRef = useRef<string[]>([]);
+
+  const addScore = useCallback((n: number) => {
+    scoreRef.current += n;
+    dispatch({ type: 'addScore', n });
+  }, []);
   const bumpCombo = useCallback(() => dispatch({ type: 'bumpCombo' }), []);
   const resetCombo = useCallback(() => dispatch({ type: 'resetCombo' }), []);
-  const addMistake = useCallback(() => dispatch({ type: 'addMistake' }), []);
+  const addMistake = useCallback(() => {
+    mistakesRef.current += 1;
+    dispatch({ type: 'addMistake' });
+  }, []);
   const addRound = useCallback(() => dispatch({ type: 'addRound' }), []);
-  const reset = useCallback(() => dispatch({ type: 'reset' }), []);
-  const collectKnowledge = useCallback(
-    (id: string) => dispatch({ type: 'collectKnowledge', id }),
-    [],
-  );
-  const unlockMedal = useCallback((id: string) => dispatch({ type: 'unlockMedal', id }), []);
+  const reset = useCallback(() => dispatch({ type: 'reset' }), []); // 运行期经 ScoreProvider 重挂载，refs 自然重置
+  const collectKnowledge = useCallback((id: string) => {
+    if (!knowledgeRef.current.includes(id)) {
+      knowledgeRef.current = [...knowledgeRef.current, id];
+      scoreRef.current += KNOWLEDGE_BONUS;
+    }
+    dispatch({ type: 'collectKnowledge', id });
+  }, []);
+  const unlockMedal = useCallback((id: string) => {
+    if (!medalsRef.current.includes(id)) medalsRef.current = [...medalsRef.current, id];
+    dispatch({ type: 'unlockMedal', id });
+  }, []);
 
   const value = useMemo<ScoreContextValue>(
     () => ({
@@ -122,6 +151,10 @@ export function ScoreProvider({ children }: { children: ReactNode }) {
       reset,
       collectKnowledge,
       unlockMedal,
+      scoreRef,
+      mistakesRef,
+      knowledgeRef,
+      medalsRef,
     }),
     [
       state,
@@ -133,6 +166,10 @@ export function ScoreProvider({ children }: { children: ReactNode }) {
       reset,
       collectKnowledge,
       unlockMedal,
+      scoreRef,
+      mistakesRef,
+      knowledgeRef,
+      medalsRef,
     ],
   );
 

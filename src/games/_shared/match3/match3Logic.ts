@@ -14,7 +14,7 @@ import { createRng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
 import { detectMatch3, type Coord } from '../matchDetector';
 import { QuestionGenerator, type HanziQuestion } from '../../../data/generators';
-import { vocabWordTiles } from '../../english/vocabTiles';
+import { vocabWordTiles } from '../../../data/vocabTiles';
 
 /** 棋盘上的一块 tile */
 export interface MatchTile {
@@ -82,7 +82,8 @@ export function buildPool(subject: Match3Subject, seed: number, count: number): 
     sub: q.pinyin,
     emoji: q.emoji,
     meaning: q.meaning,
-    knowledgePoint: `pinyin:${q.pinyin}`,
+    // M4：知识点统一为 `hanzi:字`（与 genHanzi 契约一致，避免同音字合并失真）
+    knowledgePoint: `hanzi:${q.char}`,
     tone: toneFor(q.pinyin),
   }));
 }

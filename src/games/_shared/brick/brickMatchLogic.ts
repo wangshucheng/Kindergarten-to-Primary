@@ -10,7 +10,7 @@
 import type { CardTone } from '../../../components/Card';
 import { createRng } from '../../../utils/rng';
 import { QuestionGenerator, type HanziQuestion } from '../../../data/generators';
-import { vocabThemeTiles } from '../../english/vocabTiles';
+import { vocabThemeTiles } from '../../../data/vocabTiles';
 import type { Coord } from '../matchDetector';
 
 /** 棋盘上的一块砖 */
@@ -95,14 +95,14 @@ export function buildPool(subject: BrickSubject, seed: number, count: number): B
           sub: q.pinyin,
           emoji: q.emoji,
           meaning: q.meaning,
-          knowledgePoint: `pinyin:${q.pinyin}`,
+          // M4：知识点统一为 `hanzi:字`（与 genHanzi 契约一致，避免同音字合并失真）
+          knowledgePoint: `hanzi:${q.char}`,
           tone: toneFor(q.pinyin),
         });
       }
     }
   }
 
-  return Array.from(map.values());
   return Array.from(map.values());
 }
 

@@ -30,7 +30,17 @@ import type { Coord } from '../matchDetector';
 export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameProps) {
   const subject: Match3Subject = config.subject === 'english' ? 'english' : 'hanzi';
   const tts = useTTS(ttsManager);
-  const { addScore, bumpCombo, collectKnowledge, mistakes } = useScore();
+  const {
+    addScore,
+    bumpCombo,
+    collectKnowledge,
+    addMistake,
+    unlockMedal,
+    scoreRef,
+    mistakesRef,
+    knowledgeRef,
+    medalsRef,
+  } = useScore();
 
   const seedRef = useRef<number>(Date.now());
   const pool = useMemo(() => buildPool(subject, seedRef.current, 48), [subject]);
@@ -67,10 +77,18 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       endedRef.current = true;
       setEnded(true);
       const durationMs = Date.now() - startRef.current;
-      const stars = computeStars({ passed, mistakes, durationMs });
-      onComplete({ score: 0, passed, stars, durationMs });
+      const stars = computeStars({ passed, mistakes: mistakesRef.current, durationMs });
+      if (passed) unlockMedal(`clear:${config.id}`);
+      onComplete({
+        score: scoreRef.current,
+        passed,
+        stars,
+        durationMs,
+        knowledgePoints: knowledgeRef.current,
+        medals: medalsRef.current,
+      });
     },
-    [mistakes, onComplete],
+    [onComplete, unlockMedal, config.id, scoreRef, mistakesRef, knowledgeRef, medalsRef],
   );
 
   const startLevel = useCallback(
@@ -102,8 +120,9 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       const matches = detectMatches(swapped);
 
       if (matches.length === 0) {
-        // 无效交换：不消耗步数，轻微反馈
+        // 无效交换：不消耗步数，记为一次失误（M6）
         sound.play('wrong');
+        addMistake();
         return;
       }
 
@@ -186,6 +205,7 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       addScore,
       bumpCombo,
       collectKnowledge,
+      addMistake,
       showFlashBanner,
       startLevel,
       finish,
@@ -199,9 +219,10 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       const ta = grid[a.row][a.col];
       const tb = grid[b.row][b.col];
       if (!ta || !tb || ta.key !== tb.key) {
-        // 不同 key → 切换选中，不消耗步数
+        // 不同 key → 切换选中，不消耗步数，记为一次失误（M6）
         setSelected(b);
         sound.play('wrong');
+        addMistake();
         return;
       }
 
@@ -276,6 +297,7 @@ export function Match3Game({ config, sound, tts: ttsManager, onComplete }: GameP
       addScore,
       bumpCombo,
       collectKnowledge,
+      addMistake,
       showFlashBanner,
       startLevel,
       finish,

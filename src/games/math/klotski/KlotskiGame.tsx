@@ -5,6 +5,7 @@ import { useScore } from '../../../state/ScoreContext';
 import { useTTS } from '../../../sound/useTTS';
 import { computeStars } from '../../../utils/gameLoop';
 import {
+  applyMove,
   buildLevel,
   checkClassify,
   checkPattern,
@@ -26,7 +27,17 @@ type Phase = 'question' | 'slide' | 'done';
  * 复用 GameShell 注入的 ScoreContext / TTS，以及共享 Card / computeStars。
  */
 export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: GameProps) {
-  const { addScore, bumpCombo, collectKnowledge, mistakes, addMistake } = useScore();
+  const {
+    addScore,
+    bumpCombo,
+    collectKnowledge,
+    addMistake,
+    unlockMedal,
+    mistakesRef,
+    scoreRef,
+    knowledgeRef,
+    medalsRef,
+  } = useScore();
   const tts = useTTS(ttsManager);
   const seedRef = useRef<number>(Date.now());
 
@@ -61,10 +72,18 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
       endedRef.current = true;
       setEnded(true);
       const durationMs = Date.now() - startRef.current;
-      const stars = computeStars({ passed, mistakes, durationMs });
-      onComplete({ score: 0, passed, stars, durationMs });
+      const stars = computeStars({ passed, mistakes: mistakesRef.current, durationMs });
+      if (passed) unlockMedal(`clear:${config.id}`);
+      onComplete({
+        score: scoreRef.current,
+        passed,
+        stars,
+        durationMs,
+        knowledgePoints: knowledgeRef.current,
+        medals: medalsRef.current,
+      });
     },
-    [mistakes, onComplete],
+    [onComplete, unlockMedal, config.id, mistakesRef, scoreRef, knowledgeRef, medalsRef],
   );
 
   const advanceLevel = useCallback(
@@ -142,21 +161,13 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
       if (!b) return;
       const d = bestDir(board, b.id);
       if (!d) {
+        // 该方块无法移动（无相邻空格）→ 视为一次失误（M6）
         sound.play('wrong');
+        addMistake();
         return;
       }
-      const next: KlotskiState = {
-        ...board,
-        blocks: board.blocks.map((x) =>
-          x.id === b.id
-            ? {
-                ...x,
-                r: d === 'up' ? x.r - 1 : d === 'down' ? x.r + 1 : x.r,
-                c: d === 'left' ? x.c - 1 : d === 'right' ? x.c + 1 : x.c,
-              }
-            : x,
-        ),
-      };
+      // L4：复用 logic 层 applyMove 完成合法滑动，避免与 logic 重复实现漂移
+      const next = applyMove(board, b.id, d);
       setBoard(next);
       movesRef.current += 1;
       setMoves(movesRef.current);
@@ -179,7 +190,7 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
         finish(false);
       }
     },
-    [phase, board, ended, sound, addScore, bumpCombo, levelIndex, advanceLevel, finish],
+    [phase, board, ended, sound, addScore, bumpCombo, addMistake, levelIndex, advanceLevel, finish],
   );
 
   // ---------------- 小题 UI ----------------

@@ -5,7 +5,7 @@
  * - genLogic：生成 排序 / 分类 / 规律 / 推理 题面。
  * 规则来自 loadMathContent().addSubtract / .logic，缺失时回退内置 FALLBACK。
  */
-import type { MathContent, AddSubtractRule, GenOpts } from '../types';
+import type { MathContent, AddSubtractRule } from '../types';
 import { loadMathContent } from '../loader';
 import { createRng, randomInt } from '../../utils/rng';
 import { shuffle, pick } from '../../utils/shuffle';
@@ -146,6 +146,61 @@ export function genExpression(opts: {
   };
 }
 
+/**
+ * 反推算式：生成一道答案恰好等于 `target` 的 20 以内加减式。
+ *
+ * 用于数字扫雷「周围雷数 = 算式答案」的推理机制（M1）：每格先算出真实邻居雷数
+ * `neighborMines ∈ [0,8]`，再据此生成一道同值算式，使「算出答案即知雷数」成立。
+ * - target 为 0/1：10 以内减法（如 `1-1`、`2-1`）。
+ * - target ∈ [2,8]：L1 用 10 以内加法（如 `3+4`）；L2/L3 用退位减(破十)（如 `12-9`）以制造区分度。
+ * 所有结果均落在 [0,8]，符合「20 以内加减」且答案恒等于 target。
+ */
+export function genExpressionForTarget(opts: {
+  target: number;
+  level: 1 | 2 | 3;
+  seed?: number;
+}): MathExpr {
+  const rng = createRng(opts.seed ?? Date.now());
+  const target = Math.max(0, Math.min(8, opts.target)); // 邻居雷数上限为 8
+
+  if (target <= 1) {
+    const b = target === 0 ? 1 : randomInt(rng, 2, 9);
+    const a = b - target; // a-b = target
+    return {
+      text: `${b}-${a}`,
+      answer: target,
+      strategy: 'within-ten',
+      hint: '10 以内减法',
+      knowledgePoint: 'math:within10',
+    };
+  }
+
+  if (opts.level >= 2) {
+    // 退位减(破十)：a - b = target，其中 a = 10 + aOnes，b = 10 + aOnes - target
+    const aOnes = randomInt(rng, 1, target - 1); // 1..target-1
+    const a = 10 + aOnes;
+    const b = 10 + aOnes - target;
+    const tens = a - 10;
+    return {
+      text: `${a}-${b}`,
+      answer: target,
+      strategy: 'break-ten',
+      hint: `破十法：${a}=10+${tens}，先算 10-${b}=${10 - b}，再算 ${10 - b}+${tens}=${target}`,
+      knowledgePoint: 'math:borrow20',
+    };
+  }
+
+  const a = randomInt(rng, 1, target - 1);
+  const b = target - a; // a+b = target
+  return {
+    text: `${a}+${b}`,
+    answer: target,
+    strategy: 'within-ten',
+    hint: '10 以内加法',
+    knowledgePoint: 'math:within10',
+  };
+}
+
 // ---------------- 逻辑题 ----------------
 
 interface SortItem {
@@ -154,8 +209,19 @@ interface SortItem {
   sortKey: number;
 }
 
+/** 6 档尺寸，供「按大小排序」维度使用（L3 需要 count=6 个不同项） */
+const SIZES = [
+  { l: '极小', k: 1 },
+  { l: '小', k: 2 },
+  { l: '中', k: 3 },
+  { l: '大', k: 4 },
+  { l: '极大', k: 5 },
+  { l: '超大', k: 6 },
+];
+
 function genSort(rng: () => number, level: 1 | 2 | 3, content: MathContent): LogicPuzzle {
-  const type = (level === 1 ? 'number' : level === 2 ? 'letter' : 'number') as string;
+  // M7：L3 使用「按大小排序」维度（size 分支），修复死代码并落实 PRD「按大小排序」
+  const type = (level === 1 ? 'number' : level === 2 ? 'letter' : 'size') as string;
   const order = (level === 1 ? 'asc' : level === 2 ? 'asc' : 'desc') as string;
   const count = 3 + level; // L1:4, L2:5, L3:6
 
@@ -164,14 +230,8 @@ function genSort(rng: () => number, level: 1 | 2 | 3, content: MathContent): Log
     const letters = shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''), rng).slice(0, count);
     values = letters.map((l, i) => ({ id: `l${i}`, label: l, sortKey: l.charCodeAt(0) }));
   } else if (type === 'size') {
-    const sizes = shuffle(
-      [
-        { l: '小', k: 1 },
-        { l: '中', k: 2 },
-        { l: '大', k: 3 },
-      ],
-      rng,
-    ).slice(0, Math.min(count, 3));
+    // M7：按大小排序，用 SIZES 全量打乱取 count 项（L3 取满 6 档）
+    const sizes = shuffle(SIZES, rng).slice(0, count);
     values = sizes.map((s, i) => ({ id: `s${i}`, label: s.l, sortKey: s.k }));
   } else {
     const nums = shuffle(
@@ -228,32 +288,6 @@ function genPattern(rng: () => number, level: 1 | 2 | 3, content: MathContent): 
   return { kind: 'pattern', items, target, knowledgePoint: 'logic:pattern' };
 }
 
-function genReason(rng: () => number, level: 1 | 2 | 3, content: MathContent): LogicPuzzle {
-  const gridSize = Math.max(2, content.logic.reason.gridSize + (level - 1));
-  const shapes = content.logic.pattern.shapes;
-  const cols: string[][] = [];
-  for (let c = 0; c < gridSize; c++) {
-    const shape = pick(shapes, rng);
-    cols.push(Array.from({ length: gridSize }, () => shape));
-  }
-  const gapR = randomInt(rng, 0, gridSize - 1);
-  const gapC = randomInt(rng, 0, gridSize - 1);
-  const missing = cols[gapC][gapR];
-  const items: { id: string; label: string }[] = [];
-  for (let r = 0; r < gridSize; r++) {
-    for (let c = 0; c < gridSize; c++) {
-      items.push({ id: `r${r}c${c}`, label: r === gapR && c === gapC ? '?' : cols[c][r] });
-    }
-  }
-  const target = {
-    gridSize,
-    gapId: `r${gapR}c${gapC}`,
-    missingLabel: missing,
-    rule: 'column-consistent',
-  };
-  return { kind: 'reason', items, target, knowledgePoint: 'logic:reason' };
-}
-
 export function genLogic(opts: { kind: string; level: 1 | 2 | 3; seed?: number }): LogicPuzzle {
   const rng = createRng(opts.seed ?? Date.now());
   const content: MathContent = loadMathContent();
@@ -262,15 +296,8 @@ export function genLogic(opts: { kind: string; level: 1 | 2 | 3; seed?: number }
       return genClassify(rng, content);
     case 'pattern':
       return genPattern(rng, opts.level, content);
-    case 'reason':
-      return genReason(rng, opts.level, content);
     case 'sort':
     default:
       return genSort(rng, opts.level, content);
   }
-}
-
-/** 兼容 GenOpts 的便捷封装（供门面统一调用） */
-export function genMath(opts: GenOpts): MathExpr {
-  return genExpression({ level: opts.level, rule: opts.mode, seed: opts.seed });
 }

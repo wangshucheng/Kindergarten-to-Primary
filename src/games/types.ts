@@ -18,6 +18,10 @@ export interface GameResult {
   passed: boolean;
   stars: number;
   durationMs: number;
+  /** 本局收集的知识点 id（可选；由分数驱动玩法在 finish 时同步附带，便于落盘） */
+  knowledgePoints?: string[];
+  /** 本局解锁的勋章 id（可选；同上） */
+  medals?: string[];
 }
 
 /** 游戏注册信息（含渲染组件） */

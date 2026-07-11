@@ -14,14 +14,14 @@ import {
 import { createRng } from '../utils/rng';
 
 describe('buildPool', () => {
-  it('汉字模式：key = 拼音，知识点 = pinyin:xx，每个拼音唯一', () => {
+  it('汉字模式：key = 拼音，知识点 = hanzi:xx（与生成器契约一致），每个拼音唯一', () => {
     const pool = buildPool('hanzi', 123);
     expect(pool.length).toBeGreaterThan(0);
     const keys = pool.map((t) => t.key);
     expect(new Set(keys).size).toBe(keys.length); // distinct keys
     for (const t of pool) {
       expect(t.key).toBeTruthy();
-      expect(t.knowledgePoint).toBe(`pinyin:${t.key}`);
+      expect(t.knowledgePoint).toBe(`hanzi:${t.label}`);
       expect(t.label).toBeTruthy();
       expect(t.tone).toBeDefined();
     }
@@ -112,7 +112,9 @@ describe('GOOSE_LEVELS', () => {
     const lv = GOOSE_LEVELS[0];
     expect(lv.rounds).toBe(6);
     expect(lv.tilesPerRound).toBe(4);
-    expect(lv.targetScore).toBe(180);
+    // H1 修复：targetScore 必须 ≤ rounds×10（满分 60），否则不可通关
+    expect(lv.targetScore).toBeLessThanOrEqual(lv.rounds * 10);
+    expect(lv.targetScore).toBe(40);
     expect(lv.mistakeLimit).toBe(3);
   });
 
@@ -120,7 +122,8 @@ describe('GOOSE_LEVELS', () => {
     const lv = GOOSE_LEVELS[2];
     expect(lv.rounds).toBe(10);
     expect(lv.tilesPerRound).toBe(8);
-    expect(lv.targetScore).toBe(500);
+    expect(lv.targetScore).toBeLessThanOrEqual(lv.rounds * 10);
+    expect(lv.targetScore).toBe(80);
     expect(lv.mistakeLimit).toBe(5);
   });
 });

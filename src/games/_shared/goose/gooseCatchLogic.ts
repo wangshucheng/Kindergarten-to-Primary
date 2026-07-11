@@ -11,7 +11,7 @@ import type { Rng } from '../../../utils/rng';
 import { createRng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
 import { QuestionGenerator, type HanziQuestion } from '../../../data/generators';
-import { vocabThemeTiles } from '../../english/vocabTiles';
+import { vocabThemeTiles } from '../../../data/vocabTiles';
 
 /** 棋盘上的一块鹅 */
 export interface GooseTile {
@@ -46,11 +46,14 @@ export interface GooseLevel {
   title: string;
 }
 
-/** 三关难度梯度 */
+/** 三关难度梯度。
+ *  H1 修复：targetScore 必须 ≤ rounds×10（每轮正确 +10），否则数学上永远无法通关。
+ *  这里取 40/60/80（分别对应 6/8/10 轮满分 60/80/100 的 2/3 阈值），保证任意一关、
+ *  任意一轮在失误未超上限时均可达成「全轮答对 → 总分 ≥ 目标分」而通关。 */
 export const GOOSE_LEVELS: GooseLevel[] = [
-  { index: 0, rounds: 6, tilesPerRound: 4, targetScore: 180, mistakeLimit: 3, title: '第 1 关 · 启蒙' },
-  { index: 1, rounds: 8, tilesPerRound: 6, targetScore: 320, mistakeLimit: 4, title: '第 2 关 · 进阶' },
-  { index: 2, rounds: 10, tilesPerRound: 8, targetScore: 500, mistakeLimit: 5, title: '第 3 关 · 挑战' },
+  { index: 0, rounds: 6, tilesPerRound: 4, targetScore: 40, mistakeLimit: 3, title: '第 1 关 · 启蒙' },
+  { index: 1, rounds: 8, tilesPerRound: 6, targetScore: 60, mistakeLimit: 4, title: '第 2 关 · 进阶' },
+  { index: 2, rounds: 10, tilesPerRound: 8, targetScore: 80, mistakeLimit: 5, title: '第 3 关 · 挑战' },
 ];
 
 const TONES: CardTone[] = ['peach', 'mint', 'sky', 'lemon', 'cream'];
@@ -89,7 +92,8 @@ export function buildPool(subject: GooseSubject, seed: number): GooseTile[] {
       sub: q.pinyin,
       emoji: q.emoji,
       meaning: q.meaning,
-      knowledgePoint: `pinyin:${py}`,
+      // M4：知识点统一为 `hanzi:字`（与 genHanzi 契约一致，避免同音字合并失真）
+      knowledgePoint: `hanzi:${q.char}`,
       tone: toneFor(py),
     });
   }

@@ -7,10 +7,13 @@
  * - emoji 优先用 english.json 原图，缺图回退主题代表 emoji（THEME_EMOJI）；
  * - 匹配键 key = VOCAB 的 theme（如「颜色」「动物」），知识点统一为 `category:主题`；
  * - 纯函数 + 注入 seed，可复现、可单测。
+ *
+ * 本文件位于数据层（src/data），使共享内核 _shared/* 不再依赖 games/english/*，
+ * 解除跨模块分层耦合（见 CODE_REVIEW_REPORT M2）。
  */
-import { createRng } from '../../utils/rng';
-import { shuffle } from '../../utils/shuffle';
-import engWords from '../../data/english.json';
+import { createRng } from '../utils/rng';
+import { shuffle } from '../utils/shuffle';
+import engWords from './english.json';
 import { VOCAB, THEME_EMOJI } from './vocabData';
 
 /** 原 english.json 单词 → emoji 查找表（作 emoji 回退） */

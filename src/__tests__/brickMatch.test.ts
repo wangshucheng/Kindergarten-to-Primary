@@ -26,7 +26,7 @@ describe('buildPool', () => {
     const keys = new Set(pool.map((t) => t.key));
     expect(keys.size).toBe(pool.length);
     for (const t of pool) {
-      expect(t.knowledgePoint).toBe(`pinyin:${t.key}`);
+      expect(t.knowledgePoint).toBe(`hanzi:${t.label}`);
       expect(t.label).not.toMatch(/^k\d+$/); // 无 k0/k1 等合成方块
     }
   });

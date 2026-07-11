@@ -82,7 +82,6 @@ export function GooseCatchGame({ config, sound, tts: ttsManager, onComplete }: G
 
       // 从池中选择 distinct key 作为候选
       const keys = [...new Set(currentPool.map((t) => t.key))];
-      const shuffled = keys.sort(() => 0); // 先不动，用 shuffle
       const shuffledKeys = keys.slice();
       // Fisher-Yates shuffle with rng
       for (let i = shuffledKeys.length - 1; i > 0; i--) {

@@ -29,7 +29,17 @@ import type { Coord } from '../matchDetector';
 export function BrickMatchGame({ config, sound, tts: ttsManager, onComplete }: GameProps) {
   const subject: BrickSubject = config.subject === 'english' ? 'english' : 'hanzi';
   const tts = useTTS(ttsManager);
-  const { addScore, bumpCombo, collectKnowledge, mistakes } = useScore();
+  const {
+    addScore,
+    bumpCombo,
+    collectKnowledge,
+    addMistake,
+    unlockMedal,
+    mistakesRef,
+    scoreRef,
+    knowledgeRef,
+    medalsRef,
+  } = useScore();
 
   const seedRef = useRef<number>(Date.now());
   const pool = useMemoPool(subject, seedRef);
@@ -65,10 +75,18 @@ export function BrickMatchGame({ config, sound, tts: ttsManager, onComplete }: G
       endedRef.current = true;
       setEnded(true);
       const durationMs = Date.now() - startRef.current;
-      const stars = computeStars({ passed, mistakes, durationMs });
-      onComplete({ score: 0, passed, stars, durationMs });
+      const stars = computeStars({ passed, mistakes: mistakesRef.current, durationMs });
+      if (passed) unlockMedal(`clear:${config.id}`);
+      onComplete({
+        score: scoreRef.current,
+        passed,
+        stars,
+        durationMs,
+        knowledgePoints: knowledgeRef.current,
+        medals: medalsRef.current,
+      });
     },
-    [mistakes, onComplete],
+    [onComplete, unlockMedal, config.id, mistakesRef, scoreRef, knowledgeRef, medalsRef],
   );
 
   const startLevel = useCallback(
@@ -92,9 +110,10 @@ export function BrickMatchGame({ config, sound, tts: ttsManager, onComplete }: G
       const lv = BRICK_LEVELS[levelIndex];
       const group = findGroup(grid, { row: pos.row, col: pos.col });
 
-      // 连通块 <2：不可消除，轻微反馈，不消耗步数
+      // 连通块 <2：不可消除，轻微反馈，不消耗步数，记为一次失误（M6）
       if (group.length < 2) {
         sound.play('wrong');
+        addMistake();
         return;
       }
 
@@ -148,7 +167,7 @@ export function BrickMatchGame({ config, sound, tts: ttsManager, onComplete }: G
         finish(false);
       }
     },
-    [grid, ended, subject, sound, tts, pool, levelIndex, addScore, bumpCombo, collectKnowledge, showFlashBanner, startLevel, finish],
+    [grid, ended, subject, sound, tts, pool, levelIndex, addScore, bumpCombo, collectKnowledge, addMistake, showFlashBanner, startLevel, finish],
   );
 
   const isFlashing = (r: number, c: number) => flash.some((f) => f.row === r && f.col === c);

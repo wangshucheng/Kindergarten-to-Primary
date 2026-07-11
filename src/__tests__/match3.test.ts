@@ -21,12 +21,12 @@ function tile(key: string, kp = `pinyin:${key}`): MatchTile {
 }
 
 describe('buildPool', () => {
-  it('汉字模式：匹配键 = 拼音，知识点 = pinyin:xx', () => {
+  it('汉字模式：匹配键 = 拼音，知识点 = hanzi:xx（与生成器契约一致）', () => {
     const pool = buildPool('hanzi', 123, 20);
     expect(pool.length).toBe(20);
     for (const t of pool) {
       expect(t.key).toBeTruthy();
-      expect(t.knowledgePoint).toBe(`pinyin:${t.key}`);
+      expect(t.knowledgePoint).toBe(`hanzi:${t.label}`);
     }
   });
 

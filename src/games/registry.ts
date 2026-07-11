@@ -5,12 +5,16 @@ import * as english from './english';
 import * as poetry from './poetry';
 import * as geometry from './geometry';
 import type { GameConfig, ModuleKey, ModuleMeta } from './types';
+import configData from '../data/config.json';
+import { ConfigSchema } from '../data/schemas';
 
 // ---------------------------------------------------------------------------
-// 模块元数据（描述信息，作为模块目录的唯一真相来源）
+// 模块元数据（描述信息）
+// 唯一真相来源为 src/data/config.json 的 modules 字段；
+// 以下 FALLBACK 仅在 config.json 缺失 modules 或校验失败时使用，避免页面崩溃。
 // ---------------------------------------------------------------------------
 
-const MODULE_META: ModuleMeta[] = [
+const FALLBACK_MODULE_META: ModuleMeta[] = [
   {
     key: 'math',
     title: '数学乐园',
@@ -48,6 +52,15 @@ const MODULE_META: ModuleMeta[] = [
     description: '认图形 · 拼搭计数 · 找对称 · 角分类 · 三视图 · 图形运动 · 长度单位',
   },
 ];
+
+const MODULE_META: ModuleMeta[] = (() => {
+  try {
+    const parsed = ConfigSchema.parse(configData);
+    return parsed.modules.length > 0 ? parsed.modules : FALLBACK_MODULE_META;
+  } catch {
+    return FALLBACK_MODULE_META;
+  }
+})();
 
 // ---------------------------------------------------------------------------
 // 游戏注册表（组件映射 + 元数据，添加游戏只需在此处修改）

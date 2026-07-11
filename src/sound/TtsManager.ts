@@ -30,33 +30,38 @@ export class TtsManager {
   /**
    * 按语言标签挑选最匹配的音色。
    * - zh-hk / zh-yue → 粤语音色；
-   * - en → 英语音色；
+   * - en → 英语音色（优先 en-US → en-GB → 任意 en*，均缺失时回退首个可用音色，
+   *   而非返回 null 让浏览器默认音色错配语言）；
    * - zh（其他，含 zh-CN）→ 普通话/中文音色；
-   * 找不到则返回 null（调用方据此让浏览器按 lang 自动回退，粤语无音色时使用）。
+   * 任何情况下都尽量显式选中一个音色，保证有声音且 lang 已设为目标语言。
    */
   private pickVoice(lang?: string): SpeechSynthesisVoice | null {
     if (!lang) return null;
     const key = lang.toLowerCase();
+    const findByPrefix = (prefix: string): SpeechSynthesisVoice | null =>
+      this.voices.find((v) => v.lang.toLowerCase().startsWith(prefix)) ?? null;
+
     if (key.startsWith('zh-hk') || key.startsWith('zh-yue')) {
-      return (
-        this.voices.find(
-          (v) =>
-            v.lang.toLowerCase().startsWith('zh-hk') ||
-            v.lang.toLowerCase().startsWith('zh-yue'),
-        ) ?? null
-      );
+      return findByPrefix('zh-hk') ?? findByPrefix('zh-yue');
     }
     if (key.startsWith('en')) {
-      return this.voices.find((v) => v.lang.toLowerCase().startsWith('en')) ?? null;
-    }
-    if (key.startsWith('zh')) {
       return (
-        this.voices.find((v) => v.lang.toLowerCase().startsWith('zh-cn')) ??
-        this.voices.find((v) => v.lang.toLowerCase().startsWith('zh')) ??
+        findByPrefix('en-us') ??
+        findByPrefix('en-gb') ??
+        findByPrefix('en') ??
+        this.voices[0] ??
         null
       );
     }
-    return null;
+    if (key.startsWith('zh')) {
+      return (
+        findByPrefix('zh-cn') ??
+        findByPrefix('zh') ??
+        this.voices[0] ??
+        null
+      );
+    }
+    return this.voices[0] ?? null;
   }
 
   /** 切换朗读开关，返回切换后的状态；关闭时立即停止当前朗读 */

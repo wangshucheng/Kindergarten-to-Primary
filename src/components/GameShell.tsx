@@ -40,10 +40,17 @@ function GameInner({
 
   const handleComplete = useCallback(
     (r: GameResult) => {
-      setResult(r);
+      // 优先采用游戏 finish 时同步附带的知识点/勋章（避免运行期 reducer 闭包滞后导致漏存）；
+      // 旧玩法若未附带，则回退到 GameShell 自身从 ScoreContext 读取的快照。
+      const merged: GameResult = {
+        ...r,
+        knowledgePoints: r.knowledgePoints ?? knowledgePoints,
+        medals: r.medals ?? medals,
+      };
+      setResult(merged);
       setFinished(true);
       sound.play(r.passed ? 'win' : 'wrong');
-      saveResult({ ...r, gameId: config.id, knowledgePoints, medals });
+      saveResult({ ...merged, gameId: config.id });
     },
     [sound, saveResult, config.id, knowledgePoints, medals],
   );
@@ -94,6 +101,38 @@ function GameInner({
             <StarRating value={result.stars} />
             <div className="text-lg font-bold text-ink">得分：{result.score}</div>
             <div className="text-sm">用时：{formatTime(result.durationMs)}</div>
+
+            {result.knowledgePoints && result.knowledgePoints.length > 0 && (
+              <div className="mt-1 w-full">
+                <div className="mb-1 text-xs text-ink/60">本局知识点</div>
+                <div className="flex flex-wrap justify-center gap-1">
+                  {result.knowledgePoints.map((kp) => (
+                    <span
+                      key={kp}
+                      className="rounded-full bg-sky-100 px-2 py-0.5 text-xs text-sky-700"
+                    >
+                      {kp}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {result.medals && result.medals.length > 0 && (
+              <div className="mt-1 w-full">
+                <div className="mb-1 text-xs text-ink/60">本局解锁勋章</div>
+                <div className="flex flex-wrap justify-center gap-1">
+                  {result.medals.map((m) => (
+                    <span
+                      key={m}
+                      className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-semibold text-amber-700"
+                    >
+                      🏅 {m}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </Modal>
       )}

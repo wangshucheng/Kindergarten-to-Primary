@@ -13,8 +13,8 @@
  */
 import type { Rng } from '../../../utils/rng';
 import { createRng } from '../../../utils/rng';
-import { shuffle, pick } from '../../../utils/shuffle';
-import { genExpression, type MathExpr } from '../../../data/generators/mathGenerator';
+import { shuffle } from '../../../utils/shuffle';
+import { genExpressionForTarget, type MathExpr } from '../../../data/generators/mathGenerator';
 import type { Coord } from '../../_shared/matchDetector';
 export type { Coord } from '../../_shared/matchDetector';
 
@@ -62,8 +62,6 @@ export const MINES_LEVELS: MinesLevel[] = [
   { index: 2, rows: 8, cols: 8, mines: 14, title: '第 3 关 · 挑战', level: 3 },
 ];
 
-const RULES = ['within10', 'carry20', 'borrow20', 'mixedChain'] as const;
-
 function key(r: number, c: number): string {
   return `${r},${c}`;
 }
@@ -97,10 +95,12 @@ export function countNeighborMines(
   return n;
 }
 
-/** 为某格生成一道 20 以内加减算式（随机算理规则，便于收集进位加/退位减等知识点） */
-function makeExpr(level: 1 | 2 | 3, rng: Rng, seed: number): MathExpr {
-  const rule = pick(RULES as unknown as string[], rng) as string;
-  return genExpression({ level, rule, seed: seed >>> 0 });
+/**
+ * 为某格生成一道答案 = 周围雷数的算式（M1：算出答案即知雷数）。
+ * 先传入已经算好的真实邻居雷数，反推一道同值 20 以内加减式。
+ */
+function makeExpr(level: 1 | 2 | 3, seed: number, neighborMines: number): MathExpr {
+  return genExpressionForTarget({ target: neighborMines, level, seed: seed >>> 0 });
 }
 
 /** 选项主题上界：数字扫雷统一为「20 以内加减」，干扰项不得超过 20 */
@@ -136,7 +136,11 @@ export function buildBoard(level: MinesLevel, seed: number, mineSet?: Coord[]): 
     for (let c = 0; c < level.cols; c++) {
       const isMine = mines.has(key(r, c));
       const neighborMines = countNeighborMines(level.rows, level.cols, mines, r, c);
-      const expr = makeExpr(level.level, rng, (seed * 2654435761 + idx * 40503) >>> 0);
+      const expr = makeExpr(
+        level.level,
+        (seed * 2654435761 + idx * 40503) >>> 0,
+        neighborMines,
+      );
       row.push({
         row: r,
         col: c,

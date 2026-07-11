@@ -3,7 +3,7 @@ import {
   VOCAB,
   VOCAB_BY_THEME,
   THEME_EMOJI,
-} from '../games/english/vocabData';
+} from '../data/vocabData';
 import { SENTENCES } from '../games/english/sentenceData';
 import {
   makeListenQuestion,

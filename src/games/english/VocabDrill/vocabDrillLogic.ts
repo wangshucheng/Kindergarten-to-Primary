@@ -12,7 +12,7 @@
  */
 import { createRng, type Rng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
-import { VOCAB, THEME_EMOJI, type WordEntry } from '../vocabData';
+import { VOCAB, THEME_EMOJI, type WordEntry } from '../../../data/vocabData';
 
 export interface VocabQuestion {
   /** 本题对应的词条（含 en/zh/pos/example/theme） */

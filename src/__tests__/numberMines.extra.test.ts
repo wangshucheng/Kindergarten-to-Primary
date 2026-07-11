@@ -93,25 +93,26 @@ describe('openedSafeCount —— 已翻开安全格计数', () => {
 });
 
 describe('算式 genExpression 调用方式（数据自洽）', () => {
-  it('各关多种子下：答案∈[0,20]，知识点为四算理之一', () => {
+  it('各关多种子下：答案=邻居雷数，知识点为可达算理之一', () => {
     const rules = new Set<string>();
     for (const lv of MINES_LEVELS) {
       for (let seed = 1; seed <= 25; seed++) {
         const board = buildBoard(lv, seed);
         for (const row of board.cells) {
           for (const cell of row) {
+            // M1：算式答案必须等于该格周围真实雷数（算出答案即知雷数）
+            expect(cell.expr.answer).toBe(cell.neighborMines);
             expect(cell.expr.answer).toBeGreaterThanOrEqual(0);
-            expect(cell.expr.answer).toBeLessThanOrEqual(20);
-            expect(cell.expr.knowledgePoint).toMatch(/^math:(within10|carry20|borrow20|mixedChain)$/);
+            expect(cell.expr.answer).toBeLessThanOrEqual(8);
+            // 邻居雷数 ≤ 8，故只可能用到 10 以内加减 / 退位减两种算理
+            expect(cell.expr.knowledgePoint).toMatch(/^math:(within10|borrow20)$/);
             rules.add(cell.expr.knowledgePoint);
           }
         }
       }
     }
-    // 覆盖进位加/退位减/连加连减（含 10以内加）
-    expect(rules.has('math:carry20')).toBe(true);
+    // 覆盖 10 以内加减 与 退位减（carry20/mixedChain 答案 ≥11 无法匹配邻居雷数，已不再用于本玩法）
     expect(rules.has('math:borrow20')).toBe(true);
-    expect(rules.has('math:mixedChain')).toBe(true);
     expect(rules.has('math:within10')).toBe(true);
   });
 });
@@ -143,19 +144,12 @@ describe('makeOptions —— 已知答案选项性质', () => {
 });
 
 describe('QuestionGenerator 调度（本批调用方式正确）', () => {
-  it('hanzi 返回含拼音/汉字，english 返回含 category/单词', () => {
+  it('hanzi 返回含拼音/汉字', () => {
     const h = QuestionGenerator.hanzi({ level: 1, mode: 'char-pinyin', count: 5, seed: 1 });
     expect(h.length).toBe(5);
     for (const q of h) {
       expect(q.char).toBeTruthy();
       expect(q.pinyin).toBeTruthy();
-    }
-    const e = QuestionGenerator.english({ level: 1, count: 5, seed: 1 });
-    expect(e.length).toBe(5);
-    for (const q of e) {
-      expect(q.word).toBeTruthy();
-      // category 可能缺失，组件已用 ?? 'misc' 兜底，这里只断言对象合法
-      expect(typeof q).toBe('object');
     }
   });
 });

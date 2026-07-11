@@ -21,7 +21,18 @@ import {
  * 复用 GameShell 注入的 ScoreContext / GridBoard / Card，零新增依赖。
  */
 export function NumberMinesGame({ config, sound, onComplete }: GameProps) {
-  const { addScore, bumpCombo, resetCombo, addMistake, collectKnowledge, mistakes } = useScore();
+  const {
+    addScore,
+    bumpCombo,
+    resetCombo,
+    addMistake,
+    collectKnowledge,
+    unlockMedal,
+    scoreRef,
+    mistakesRef,
+    knowledgeRef,
+    medalsRef,
+  } = useScore();
   const seedRef = useRef<number>(Date.now());
 
   const [levelIndex, setLevelIndex] = useState(0);
@@ -61,10 +72,18 @@ export function NumberMinesGame({ config, sound, onComplete }: GameProps) {
       endedRef.current = true;
       setEnded(true);
       const durationMs = Date.now() - startRef.current;
-      const stars = computeStars({ passed, mistakes, durationMs });
-      onComplete({ score: 0, passed, stars, durationMs });
+      const stars = computeStars({ passed, mistakes: mistakesRef.current, durationMs });
+      if (passed) unlockMedal(`clear:${config.id}`);
+      onComplete({
+        score: scoreRef.current,
+        passed,
+        stars,
+        durationMs,
+        knowledgePoints: knowledgeRef.current,
+        medals: medalsRef.current,
+      });
     },
-    [mistakes, onComplete],
+    [onComplete, unlockMedal, config.id, mistakesRef, scoreRef, knowledgeRef, medalsRef],
   );
 
   const chooseCell = useCallback(
@@ -104,7 +123,7 @@ export function NumberMinesGame({ config, sound, onComplete }: GameProps) {
           setOptions([]);
           setHint(null);
         } else {
-          addScore(10 + 1);
+          addScore(10);
           bumpCombo();
           if (res.knowledgePoint) collectKnowledge(res.knowledgePoint);
           sound.play('correct');

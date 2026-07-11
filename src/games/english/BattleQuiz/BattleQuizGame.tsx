@@ -5,7 +5,7 @@ import { computeStars } from '../../../utils/gameLoop';
 import { shuffle } from '../../../utils/shuffle';
 import { pick, createRng, type Rng } from '../../../utils/rng';
 import eng from '../../../data/english.json';
-import { VOCAB, THEME_EMOJI } from '../vocabData';
+import { VOCAB, THEME_EMOJI } from '../../../data/vocabData';
 
 interface Word {
   word: string;
