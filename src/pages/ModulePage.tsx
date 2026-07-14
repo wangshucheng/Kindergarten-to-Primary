@@ -1,12 +1,14 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getModules, getModuleGames, toGameEntry } from '../games/registry';
-import { moduleColors, palette } from '../theme/tokens';
+import { moduleGradient } from '../theme/tokens';
 import { useProgress } from '../state/ProgressStore';
 import type { ModuleKey } from '../games/types';
+import { Reveal } from '../components/Reveal';
+import { Button } from '../components/Button';
 
 /**
  * ModulePage —— 模块页：列出该模块下的游戏卡片，点击进入游戏。
- * 数据源统一来自 registry，不再依赖 config.json。
+ * 高级化：玻璃返回头 + 渐变图标章 + 进度可视化 + 错峰入场。
  */
 export function ModulePage() {
   const { module } = useParams();
@@ -16,74 +18,89 @@ export function ModulePage() {
   const entry = getModules().find((m) => m.key === module);
   if (!entry) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center gap-4">
-        <p className="text-ink text-lg">没有找到这个模块～</p>
-        <button
-          className="px-5 py-3 rounded-3xl bg-peach shadow-press font-bold text-ink"
-          onClick={() => navigate('/')}
-        >
+      <div className="min-h-screen flex flex-col items-center justify-center gap-5 px-6 text-center">
+        <div className="text-6xl animate-floaty">🧭</div>
+        <p className="text-ink text-lg font-bold">没有找到这个模块～</p>
+        <Button variant="peach" size="lg" onClick={() => navigate('/')}>
           回到首页
-        </button>
+        </Button>
       </div>
     );
   }
 
-  const colorKey = moduleColors[entry.key] ?? 'peach';
-  const bg = palette[colorKey];
+  const bg = moduleGradient(entry.key);
   const games = getModuleGames(entry.key as ModuleKey).map(toGameEntry);
 
   return (
-    <div className="min-h-screen px-4 pt-6 pb-10">
-      <header className="flex items-center gap-3 mb-6">
+    <div className="min-h-screen px-5 pt-7 pb-12 max-w-3xl mx-auto">
+      <Reveal as="section" anim="fadeIn" className="flex items-center gap-3 mb-7">
         <button
           onClick={() => navigate('/')}
-          className="w-11 h-11 rounded-2xl bg-white shadow-press text-xl active:scale-95"
+          className="shrink-0 w-11 h-11 rounded-2xl glass shadow-sm text-xl grid place-items-center transition-transform duration-200 ease-spring active:scale-90 hover:shadow-soft"
           style={{ touchAction: 'manipulation' }}
           aria-label="返回首页"
         >
-          ←
+          <span className="-mt-0.5">←</span>
         </button>
-        <span className="text-4xl">{entry.icon}</span>
-        <div>
-          <h1 className="text-2xl font-extrabold text-ink">{entry.title}</h1>
-          {entry.description && <p className="text-inkSoft text-sm">{entry.description}</p>}
+        <span
+          className="w-14 h-14 rounded-3xl grid place-items-center text-3xl shadow-soft shadow-insetTop"
+          style={{ background: bg }}
+        >
+          {entry.icon}
+        </span>
+        <div className="min-w-0">
+          <h1 className="text-2xl font-extrabold text-ink tracking-tightish">{entry.title}</h1>
+          {entry.description && (
+            <p className="text-inkSoft text-sm line-clamp-1">{entry.description}</p>
+          )}
         </div>
-      </header>
+      </Reveal>
 
       <section className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        {games.map((g) => {
+        {games.map((g, i) => {
           const rec = getRecord(g.id);
           return (
-            <Link
-              key={g.id}
-              to={`/${entry.key}/${g.id}`}
-              className="flex items-center gap-3 rounded-4xl p-5 shadow-soft active:scale-95 transition-transform bg-white"
-              style={{ touchAction: 'manipulation' }}
-            >
-              <span
-                className="w-14 h-14 rounded-3xl flex items-center justify-center text-3xl shadow-inner"
-                style={{ background: bg }}
+            <Reveal key={g.id} anim="fadeInUp" index={i} step={45}>
+              <Link
+                to={`/${entry.key}/${g.id}`}
+                className="group flex items-center gap-3.5 rounded-4xl p-4 shadow-soft glass-strong transition-[transform,box-shadow] duration-300 ease-spring hover:-translate-y-1 hover:shadow-lift active:scale-[0.98]"
+                style={{ touchAction: 'manipulation' }}
               >
-                {g.icon}
-              </span>
-              <div className="flex-1">
-                <div className="flex items-center gap-2">
-                  <h3 className="text-xl font-bold text-ink">{g.title}</h3>
-                  <span
-                    className="text-[10px] px-2 py-0.5 rounded-full font-bold text-ink"
-                    style={{ background: g.priority === 'P0' ? '#FFE066' : '#E7DDD0' }}
-                  >
-                    {g.priority}
-                  </span>
+                <span
+                  className="w-14 h-14 rounded-3xl grid place-items-center text-3xl shadow-insetTop shrink-0 transition-transform duration-300 ease-spring group-hover:scale-110 group-hover:-rotate-6"
+                  style={{ background: bg }}
+                >
+                  {g.icon}
+                </span>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-lg font-bold text-ink truncate tracking-tightish">
+                      {g.title}
+                    </h3>
+                    <span
+                      className="text-[10px] px-2 py-0.5 rounded-full font-bold text-ink shrink-0"
+                      style={{ background: g.priority === 'P0' ? '#FFE066' : '#EDE4D8' }}
+                    >
+                      {g.priority}
+                    </span>
+                  </div>
+                  {rec ? (
+                    <p className="text-inkSoft text-xs mt-1 flex items-center gap-1.5">
+                      <span>最高分 {rec.bestScore}</span>
+                      <span className="text-lemon">
+                        {'★'.repeat(rec.stars)}
+                        <span className="text-hairlineStrong">{'★'.repeat(3 - rec.stars)}</span>
+                      </span>
+                    </p>
+                  ) : (
+                    <p className="text-inkSoft/60 text-xs mt-1">未挑战 · 点击开始</p>
+                  )}
                 </div>
-                {rec && (
-                  <p className="text-inkSoft text-xs mt-0.5">
-                    最高分 {rec.bestScore} · {'★'.repeat(rec.stars)}
-                    {'☆'.repeat(3 - rec.stars)}
-                  </p>
-                )}
-              </div>
-            </Link>
+                <span className="text-inkSoft/40 text-lg shrink-0 transition-transform duration-300 ease-spring group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </Reveal>
           );
         })}
       </section>

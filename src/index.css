@@ -2,19 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   全局基座样式 —— 现代极简 · 高级质感
+   ============================================================ */
+
+:root {
+  --accent: #ffb3c6;
+  --bar: #95e1c9;
+  --ink: #5a4636;
+  --surface: #ffffff;
+  /* 页面稳定滚动条槽位，避免弹窗时布局横向抖动 */
+  scrollbar-gutter: stable;
+}
+
 html,
 body,
 #root {
   height: 100%;
 }
 
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
 body {
   margin: 0;
+  color: var(--ink);
+  font-family: 'PingFang SC', 'HarmonyOS Sans SC', 'Microsoft YaHei',
+    'Hiragino Sans GB', system-ui, sans-serif;
+  /* 奶油底 + 三点柔和网格渐变，营造有呼吸感的高级背景 */
   background-color: #fff9f0;
-  font-family: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  color: #6b5544;
+  background-image: radial-gradient(
+      1200px 600px at 12% -8%,
+      rgba(255, 179, 198, 0.26),
+      transparent 55%
+    ),
+    radial-gradient(
+      1000px 560px at 100% 2%,
+      rgba(160, 210, 255, 0.22),
+      transparent 55%
+    ),
+    radial-gradient(
+      900px 640px at 50% 118%,
+      rgba(149, 225, 201, 0.2),
+      transparent 55%
+    );
+  background-attachment: fixed;
   overscroll-behavior: none;
+  /* 更细腻的字体渲染 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'kern' 1, 'liga' 1;
+  letter-spacing: -0.01em;
 }
 
 /* 去掉数字输入框的上下箭头（部分玩法用到） */
@@ -24,8 +65,143 @@ input[type='number']::-webkit-outer-spin-button {
   margin: 0;
 }
 
-/* 让进度条颜色变量可用 */
-:root {
-  --accent: #ffb3c6;
-  --bar: #95e1c9;
+/* —— 无障碍焦点态：仅键盘导航时显示，触屏点击不打扰 —— */
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9),
+    0 0 0 5px rgba(160, 210, 255, 0.85);
+  border-radius: 0.9rem;
+}
+
+/* —— 选区配色 —— */
+::selection {
+  background: rgba(255, 179, 198, 0.4);
+  color: #4a3a2c;
+}
+
+/* —— 精致细滚动条（桌面端）—— */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(90, 70, 54, 0.24) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(90, 70, 54, 0.2);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: rgba(90, 70, 54, 0.34);
+  background-clip: content-box;
+}
+
+/* ============================================================
+   组件层工具类
+   ============================================================ */
+@layer components {
+  /* 玻璃拟态卡片：半透明 + 背景模糊 + 顶部高光描边 */
+  .glass {
+    background: rgba(255, 255, 255, 0.62);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+
+  .glass-strong {
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: saturate(180%) blur(18px);
+    -webkit-backdrop-filter: saturate(180%) blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  /* 骨架屏微光条 */
+  .skeleton {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+      100deg,
+      rgba(243, 236, 226, 0.9) 30%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(243, 236, 226, 0.9) 70%
+    );
+    background-size: 200% 100%;
+    animation: skeletonSlide 1.4s ease-in-out infinite;
+  }
+
+  /* 顶部滑光扫过效果（用于强调卡片） */
+  .sheen-hover {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .sheen-hover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      120deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+  }
+  .sheen-hover:hover::after {
+    transform: translateX(120%);
+  }
+}
+
+@keyframes skeletonSlide {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* —— 涟漪（点击水波）—— */
+.ripple-ink {
+  position: absolute;
+  border-radius: 9999px;
+  transform: scale(0);
+  background: rgba(255, 255, 255, 0.55);
+  pointer-events: none;
+  animation: rippleExpand 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes rippleExpand {
+  to {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+/* GPU 提示：滚动/动画容器 */
+.gpu {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* ============================================================
+   尊重系统「减少动态效果」偏好：一键关闭所有动画
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
