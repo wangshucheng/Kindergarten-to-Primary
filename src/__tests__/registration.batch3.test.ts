@@ -11,33 +11,37 @@ import { KlotskiGame } from '../games/math/klotski/KlotskiGame';
 import { games as mathGames } from '../games/math/index';
 import { games as hanziGames } from '../games/hanzi/index';
 import { games as englishGames } from '../games/english/index';
+import type { PreloadableGame } from '../games/lazyGame';
+
+/** 解析懒游戏组件到底层组件（游戏已改为按需加载） */
+const resolve = (c: unknown) => (c as PreloadableGame).preload();
 
 describe('B3 游戏注册', () => {
-  it('english 模块含 brick-match 且 subject=english、组件=BrickMatchGame', () => {
+  it('english 模块含 brick-match 且 subject=english、组件=BrickMatchGame', async () => {
     const g = getGame('brick-match');
     expect(g).toBeDefined();
     expect(g?.module).toBe('english');
     expect(g?.subject).toBe('english');
     expect(g?.mode).toBe('brick-match');
-    expect(g?.component).toBe(BrickMatchGame);
+    expect(await resolve(g?.component)).toBe(BrickMatchGame);
   });
 
-  it('hanzi 模块含 brick-match-hanzi 且 subject=hanzi、组件=BrickMatchGame', () => {
+  it('hanzi 模块含 brick-match-hanzi 且 subject=hanzi、组件=BrickMatchGame', async () => {
     const g = getGame('brick-match-hanzi');
     expect(g).toBeDefined();
     expect(g?.module).toBe('hanzi');
     expect(g?.subject).toBe('hanzi');
     expect(g?.mode).toBe('brick-match');
-    expect(g?.component).toBe(BrickMatchGame);
+    expect(await resolve(g?.component)).toBe(BrickMatchGame);
   });
 
-  it('math 模块含 klotski 且 subject=math、组件=KlotskiGame', () => {
+  it('math 模块含 klotski 且 subject=math、组件=KlotskiGame', async () => {
     const g = getGame('klotski');
     expect(g).toBeDefined();
     expect(g?.module).toBe('math');
     expect(g?.subject).toBe('math');
     expect(g?.mode).toBe('klotski');
-    expect(g?.component).toBe(KlotskiGame);
+    expect(await resolve(g?.component)).toBe(KlotskiGame);
   });
 
   it('allGames 包含这 3 个 id，且 id 全局唯一', () => {
@@ -55,9 +59,13 @@ describe('B3 游戏注册', () => {
     expect(allIds.has('klotski')).toBe(true);
   });
 
-  it('三大模块索引均含对应新游戏（与 registry 指向同一组件）', () => {
-    expect(englishGames.find((g) => g.id === 'brick-match')?.component).toBe(BrickMatchGame);
-    expect(hanziGames.find((g) => g.id === 'brick-match-hanzi')?.component).toBe(BrickMatchGame);
-    expect(mathGames.find((g) => g.id === 'klotski')?.component).toBe(KlotskiGame);
+  it('三大模块索引均含对应新游戏（解析后指向正确组件）', async () => {
+    expect(await resolve(englishGames.find((g) => g.id === 'brick-match')?.component)).toBe(
+      BrickMatchGame,
+    );
+    expect(
+      await resolve(hanziGames.find((g) => g.id === 'brick-match-hanzi')?.component),
+    ).toBe(BrickMatchGame);
+    expect(await resolve(mathGames.find((g) => g.id === 'klotski')?.component)).toBe(KlotskiGame);
   });
 });

@@ -1,5 +1,7 @@
 import type { GameConfig } from '../types';
-import { GeometryGame } from './GeometryGame';
+import { lazyGame } from '../lazyGame';
+
+const GeometryGame = lazyGame(() => import('./GeometryGame'), 'GeometryGame');
 
 export const games: GameConfig[] = [
   {

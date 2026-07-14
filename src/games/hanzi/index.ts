@@ -1,10 +1,15 @@
 import type { GameConfig } from '../types';
-import { FlipMemoryGame } from './FlipMemory/FlipMemoryGame';
-import { ConnectMatchGame } from './ConnectMatch/ConnectMatchGame';
-import { MoreHanziGame } from './MoreHanzi/MoreHanziGame';
-import { Match3Game } from '../_shared/match3/Match3Game';
-import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
-import { GooseCatchGame } from '../_shared/goose/GooseCatchGame';
+import { lazyGame } from '../lazyGame';
+
+const FlipMemoryGame = lazyGame(() => import('./FlipMemory/FlipMemoryGame'), 'FlipMemoryGame');
+const ConnectMatchGame = lazyGame(
+  () => import('./ConnectMatch/ConnectMatchGame'),
+  'ConnectMatchGame',
+);
+const MoreHanziGame = lazyGame(() => import('./MoreHanzi/MoreHanziGame'), 'MoreHanziGame');
+const Match3Game = lazyGame(() => import('../_shared/match3/Match3Game'), 'Match3Game');
+const BrickMatchGame = lazyGame(() => import('../_shared/brick/BrickMatchGame'), 'BrickMatchGame');
+const GooseCatchGame = lazyGame(() => import('../_shared/goose/GooseCatchGame'), 'GooseCatchGame');
 
 export const games: GameConfig[] = [
   { id: 'flip-memory', module: 'hanzi', title: '翻牌记忆', icon: '🃏', priority: 'P0', component: FlipMemoryGame },

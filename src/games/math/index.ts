@@ -1,15 +1,29 @@
 import type { GameConfig } from '../types';
-import { MakeTenGame } from './MakeTen/MakeTenGame';
-import { MultiplicationGame } from './Multiplication/MultiplicationGame';
-import { PlusMinusLinkGame } from './PlusMinusLink/PlusMinusLinkGame';
-import { NumberMergeGame } from './NumberMerge/NumberMergeGame';
-import { SudokuGame } from './sudoku/SudokuGame';
-import { LetterSudokuGame } from './LetterSudoku/LetterSudokuGame';
-import { ArithmeticSudokuGame } from './ArithmeticSudoku/ArithmeticSudokuGame';
-import { NumberMinesGame } from './NumberMines/NumberMinesGame';
-import { KlotskiGame } from './klotski/KlotskiGame';
-import { SpeedDrillGame } from './SpeedDrill/SpeedDrillGame';
-import { WordProblemGame } from './WordProblem/WordProblemGame';
+import { lazyGame } from '../lazyGame';
+
+const MakeTenGame = lazyGame(() => import('./MakeTen/MakeTenGame'), 'MakeTenGame');
+const MultiplicationGame = lazyGame(
+  () => import('./Multiplication/MultiplicationGame'),
+  'MultiplicationGame',
+);
+const PlusMinusLinkGame = lazyGame(
+  () => import('./PlusMinusLink/PlusMinusLinkGame'),
+  'PlusMinusLinkGame',
+);
+const NumberMergeGame = lazyGame(() => import('./NumberMerge/NumberMergeGame'), 'NumberMergeGame');
+const SudokuGame = lazyGame(() => import('./sudoku/SudokuGame'), 'SudokuGame');
+const LetterSudokuGame = lazyGame(
+  () => import('./LetterSudoku/LetterSudokuGame'),
+  'LetterSudokuGame',
+);
+const ArithmeticSudokuGame = lazyGame(
+  () => import('./ArithmeticSudoku/ArithmeticSudokuGame'),
+  'ArithmeticSudokuGame',
+);
+const NumberMinesGame = lazyGame(() => import('./NumberMines/NumberMinesGame'), 'NumberMinesGame');
+const KlotskiGame = lazyGame(() => import('./klotski/KlotskiGame'), 'KlotskiGame');
+const SpeedDrillGame = lazyGame(() => import('./SpeedDrill/SpeedDrillGame'), 'SpeedDrillGame');
+const WordProblemGame = lazyGame(() => import('./WordProblem/WordProblemGame'), 'WordProblemGame');
 
 export const games: GameConfig[] = [
   { id: 'make-ten', module: 'math', title: '凑十法', icon: '🍎', priority: 'P0', component: MakeTenGame },

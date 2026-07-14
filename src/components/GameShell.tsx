@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import type { GameConfig, GameResult } from '../games/types';
 import { SoundManager } from '../sound/SoundManager';
@@ -9,6 +9,7 @@ import { HUD } from './HUD';
 import { Modal } from './Modal';
 import { StarRating } from './StarRating';
 import { Button } from './Button';
+import { Spinner } from './Spinner';
 import { formatTime } from '../utils/gameLoop';
 
 function GameInner({
@@ -73,13 +74,21 @@ function GameInner({
         onExit={handleExit}
       />
       <main className="flex-1 px-3 pb-8 pt-3">
-        <Component
-          config={config}
-          sound={sound}
-          tts={tts}
-          onComplete={handleComplete}
-          onExit={handleExit}
-        />
+        <Suspense
+          fallback={
+            <div className="min-h-[50vh] flex items-center justify-center animate-fadeIn">
+              <Spinner size={44} label="加载中…" />
+            </div>
+          }
+        >
+          <Component
+            config={config}
+            sound={sound}
+            tts={tts}
+            onComplete={handleComplete}
+            onExit={handleExit}
+          />
+        </Suspense>
       </main>
 
       {finished && result && (

@@ -1,10 +1,19 @@
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { getModules, getModuleGames, toGameEntry } from '../games/registry';
+import { getModules, getModuleGames, toGameEntry, getGame } from '../games/registry';
 import { moduleGradient } from '../theme/tokens';
 import { useProgress } from '../state/ProgressStore';
 import type { ModuleKey } from '../games/types';
+import type { PreloadableGame } from '../games/lazyGame';
 import { Reveal } from '../components/Reveal';
 import { Button } from '../components/Button';
+
+/** 悬停/按下游戏卡片时预取其代码 chunk，进入游戏页几乎无等待 */
+function preloadGame(id: string): void {
+  const comp = getGame(id)?.component as PreloadableGame | undefined;
+  comp?.preload?.().catch(() => {
+    /* 预取失败可忽略，进入页面时会正常懒加载 */
+  });
+}
 
 /**
  * ModulePage —— 模块页：列出该模块下的游戏卡片，点击进入游戏。
@@ -63,6 +72,8 @@ export function ModulePage() {
             <Reveal key={g.id} anim="fadeInUp" index={i} step={45}>
               <Link
                 to={`/${entry.key}/${g.id}`}
+                onMouseEnter={() => preloadGame(g.id)}
+                onPointerDown={() => preloadGame(g.id)}
                 className="group flex items-center gap-3.5 rounded-4xl p-4 shadow-soft glass-strong transition-[transform,box-shadow] duration-300 ease-spring hover:-translate-y-1 hover:shadow-lift active:scale-[0.98]"
                 style={{ touchAction: 'manipulation' }}
               >

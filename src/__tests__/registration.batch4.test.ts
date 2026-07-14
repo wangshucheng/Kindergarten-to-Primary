@@ -9,24 +9,28 @@ import { getGame, allGames } from '../games/registry';
 import { GooseCatchGame } from '../games/_shared/goose/GooseCatchGame';
 import { games as hanziGames } from '../games/hanzi/index';
 import { games as englishGames } from '../games/english/index';
+import type { PreloadableGame } from '../games/lazyGame';
+
+/** 解析懒游戏组件到底层组件（游戏已改为按需加载） */
+const resolve = (c: unknown) => (c as PreloadableGame).preload();
 
 describe('B4 游戏注册', () => {
-  it('english 模块含 goose-catch 且 subject=english、组件=GooseCatchGame', () => {
+  it('english 模块含 goose-catch 且 subject=english、组件=GooseCatchGame', async () => {
     const g = getGame('goose-catch');
     expect(g).toBeDefined();
     expect(g?.module).toBe('english');
     expect(g?.subject).toBe('english');
     expect(g?.mode).toBe('goose-catch');
-    expect(g?.component).toBe(GooseCatchGame);
+    expect(await resolve(g?.component)).toBe(GooseCatchGame);
   });
 
-  it('hanzi 模块含 goose-catch-hanzi 且 subject=hanzi、组件=GooseCatchGame', () => {
+  it('hanzi 模块含 goose-catch-hanzi 且 subject=hanzi、组件=GooseCatchGame', async () => {
     const g = getGame('goose-catch-hanzi');
     expect(g).toBeDefined();
     expect(g?.module).toBe('hanzi');
     expect(g?.subject).toBe('hanzi');
     expect(g?.mode).toBe('goose-catch');
-    expect(g?.component).toBe(GooseCatchGame);
+    expect(await resolve(g?.component)).toBe(GooseCatchGame);
   });
 
   it('allGames 包含 goose-catch 和 goose-catch-hanzi，且 id 全局唯一', () => {
@@ -42,8 +46,12 @@ describe('B4 游戏注册', () => {
     expect(allIds.has('goose-catch-hanzi')).toBe(true);
   });
 
-  it('两大模块索引均含对应新游戏（与 registry 指向同一组件）', () => {
-    expect(englishGames.find((g) => g.id === 'goose-catch')?.component).toBe(GooseCatchGame);
-    expect(hanziGames.find((g) => g.id === 'goose-catch-hanzi')?.component).toBe(GooseCatchGame);
+  it('两大模块索引均含对应新游戏（解析后均指向 GooseCatchGame）', async () => {
+    expect(await resolve(englishGames.find((g) => g.id === 'goose-catch')?.component)).toBe(
+      GooseCatchGame,
+    );
+    expect(
+      await resolve(hanziGames.find((g) => g.id === 'goose-catch-hanzi')?.component),
+    ).toBe(GooseCatchGame);
   });
 });

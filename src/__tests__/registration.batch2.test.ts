@@ -12,27 +12,31 @@ import { games as mathGames } from '../games/math/index';
 import { games as hanziGames } from '../games/hanzi/index';
 import { games as englishGames } from '../games/english/index';
 import { getModules } from '../games/registry';
+import type { PreloadableGame } from '../games/lazyGame';
+
+/** 解析懒游戏组件到底层组件（游戏已改为按需加载） */
+const resolve = (c: unknown) => (c as PreloadableGame).preload();
 
 describe('游戏注册', () => {
-  it('math 模块含 number-mines 且组件为 NumberMinesGame', () => {
+  it('math 模块含 number-mines 且组件为 NumberMinesGame', async () => {
     const g = mathGames.find((x) => x.id === 'number-mines');
     expect(g).toBeDefined();
-    expect(g?.component).toBe(NumberMinesGame);
+    expect(await resolve(g?.component)).toBe(NumberMinesGame);
     expect(g?.subject).toBe('math');
     expect(g?.mode).toBe('number-mines');
   });
 
-  it('hanzi 模块含 match-3 且 subject=hanzi', () => {
+  it('hanzi 模块含 match-3 且 subject=hanzi', async () => {
     const g = hanziGames.find((x) => x.id === 'match-3');
     expect(g).toBeDefined();
-    expect(g?.component).toBe(Match3Game);
+    expect(await resolve(g?.component)).toBe(Match3Game);
     expect(g?.subject).toBe('hanzi');
   });
 
-  it('english 模块含 match-3-en 且 subject=english', () => {
+  it('english 模块含 match-3-en 且 subject=english', async () => {
     const g = englishGames.find((x) => x.id === 'match-3-en');
     expect(g).toBeDefined();
-    expect(g?.component).toBe(Match3Game);
+    expect(await resolve(g?.component)).toBe(Match3Game);
     expect(g?.subject).toBe('english');
   });
 

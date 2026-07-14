@@ -1,7 +1,12 @@
 import type { GameConfig } from '../types';
-import { PinyinMatchGame } from './PinyinMatch/PinyinMatchGame';
-import { PinyinVariantsGame } from './PinyinVariants/PinyinVariantsGame';
-import { ListenPickGame } from './ListenPick/ListenPickGame';
+import { lazyGame } from '../lazyGame';
+
+const PinyinMatchGame = lazyGame(() => import('./PinyinMatch/PinyinMatchGame'), 'PinyinMatchGame');
+const PinyinVariantsGame = lazyGame(
+  () => import('./PinyinVariants/PinyinVariantsGame'),
+  'PinyinVariantsGame',
+);
+const ListenPickGame = lazyGame(() => import('./ListenPick/ListenPickGame'), 'ListenPickGame');
 
 export const games: GameConfig[] = [
   {

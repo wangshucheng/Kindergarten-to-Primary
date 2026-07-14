@@ -1,12 +1,17 @@
 import type { GameConfig } from '../types';
-import { LetterCaseGame } from './LetterCase/LetterCaseGame';
-import { WordImageGame } from './WordImage/WordImageGame';
-import { SentenceFillGame } from './SentenceFill/SentenceFillGame';
-import { BattleQuizGame } from './BattleQuiz/BattleQuizGame';
-import { Match3Game } from '../_shared/match3/Match3Game';
-import { BrickMatchGame } from '../_shared/brick/BrickMatchGame';
-import { GooseCatchGame } from '../_shared/goose/GooseCatchGame';
-import { VocabDrillGame } from './VocabDrill/VocabDrillGame';
+import { lazyGame } from '../lazyGame';
+
+const LetterCaseGame = lazyGame(() => import('./LetterCase/LetterCaseGame'), 'LetterCaseGame');
+const WordImageGame = lazyGame(() => import('./WordImage/WordImageGame'), 'WordImageGame');
+const SentenceFillGame = lazyGame(
+  () => import('./SentenceFill/SentenceFillGame'),
+  'SentenceFillGame',
+);
+const BattleQuizGame = lazyGame(() => import('./BattleQuiz/BattleQuizGame'), 'BattleQuizGame');
+const Match3Game = lazyGame(() => import('../_shared/match3/Match3Game'), 'Match3Game');
+const BrickMatchGame = lazyGame(() => import('../_shared/brick/BrickMatchGame'), 'BrickMatchGame');
+const GooseCatchGame = lazyGame(() => import('../_shared/goose/GooseCatchGame'), 'GooseCatchGame');
+const VocabDrillGame = lazyGame(() => import('./VocabDrill/VocabDrillGame'), 'VocabDrillGame');
 
 export const games: GameConfig[] = [
   {

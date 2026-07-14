@@ -8,6 +8,10 @@ import {
 import { moduleColors } from '../theme/tokens';
 import { PoetryGame } from '../games/poetry/PoetryGame';
 import { poems } from '../games/poetry/poems';
+import type { PreloadableGame } from '../games/lazyGame';
+
+/** 解析懒游戏组件到底层组件（游戏已改为按需加载） */
+const resolve = (c: unknown) => (c as PreloadableGame).preload();
 
 describe('poetry 模块注册链路', () => {
   it('getModules() 含 key=poetry 且 title/icon 正确', () => {
@@ -17,17 +21,17 @@ describe('poetry 模块注册链路', () => {
     expect(m!.icon).toBe('📜');
   });
 
-  it('getModuleGames(poetry) 返回单游戏且字段正确', () => {
+  it('getModuleGames(poetry) 返回单游戏且字段正确', async () => {
     const games = getModuleGames('poetry');
     expect(games).toHaveLength(1);
     expect(games[0].id).toBe('poetry-cards');
-    expect(games[0].component).toBe(PoetryGame);
+    expect(await resolve(games[0].component)).toBe(PoetryGame);
     expect(games[0].module).toBe('poetry');
   });
 
-  it('gameMap[poetry-cards] 存在', () => {
+  it('gameMap[poetry-cards] 存在', async () => {
     expect(gameMap['poetry-cards']).toBeDefined();
-    expect(gameMap['poetry-cards'].component).toBe(PoetryGame);
+    expect(await resolve(gameMap['poetry-cards'].component)).toBe(PoetryGame);
   });
 
   it('moduleColors[poetry] === cream', () => {

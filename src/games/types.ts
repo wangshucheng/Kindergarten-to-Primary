@@ -1,4 +1,4 @@
-import type { ComponentType } from 'react';
+import type { ComponentType, LazyExoticComponent } from 'react';
 import type { SoundManager } from '../sound/SoundManager';
 import type { TtsManager } from '../sound/TtsManager';
 import type { SubjectKey } from '../data/types';
@@ -31,7 +31,12 @@ export interface GameConfig {
   title: string;
   icon: string;
   priority: Priority;
-  component: ComponentType<GameProps>;
+  /**
+   * 渲染组件：支持同步组件或通过 React.lazy 懒加载的组件。
+   * 懒加载时，游戏代码会被独立分包，仅在进入对应游戏页时按需下载，
+   * 显著缩小首屏与列表页体积。渲染方需置于 <Suspense> 边界内。
+   */
+  component: ComponentType<GameProps> | LazyExoticComponent<ComponentType<GameProps>>;
   /**
    * 学科键（可选）：标注该游戏对应的题库池，供生成器门面按 subject 分发。
    * 内容迭代新增玩法（消消乐/砖块/地雷/华容道/赶鹅）会用到。
