@@ -10,3 +10,5 @@ Thumbs.db
 .workbuddy/
 # vite / vitest 临时配置文件
 *.timestamp-*.mjs
+# Taro 构建缓存
+.swc/
