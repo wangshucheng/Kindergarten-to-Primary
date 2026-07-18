@@ -4638,18 +4638,17 @@
     {
       "char": "头",
       "pinyin": "tóu",
-      "emoji": "🐮",
+      "emoji": "🧑",
       "meaning": "头",
       "initial": "t",
       "final": "ou",
       "tone": 2,
       "level": 1,
       "tags": [
-        "量词",
-        "量词",
+        "身体",
         "常用字"
       ],
-      "measureWord": "头"
+      "measureWord": "个"
     },
     {
       "char": "匹",

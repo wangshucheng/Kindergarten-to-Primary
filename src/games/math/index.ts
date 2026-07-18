@@ -74,7 +74,7 @@ export const games: GameConfig[] = [
     id: 'klotski',
     module: 'math',
     title: '华容道',
-    icon: '🀄',
+    icon: '🧩',
     priority: 'P1',
     component: KlotskiGame,
     subject: 'math',

@@ -26,7 +26,7 @@ export const games: GameConfig[] = [
     id: 'match-3',
     module: 'hanzi',
     title: '汉字消消乐',
-    icon: '🌈',
+    icon: '✨',
     priority: 'P1',
     component: Match3Game,
     subject: 'hanzi',
