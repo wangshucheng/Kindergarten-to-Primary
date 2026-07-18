@@ -12,6 +12,10 @@ const Match3Game = lazyGame(() => import('../_shared/match3/Match3Game'), 'Match
 const BrickMatchGame = lazyGame(() => import('../_shared/brick/BrickMatchGame'), 'BrickMatchGame');
 const GooseCatchGame = lazyGame(() => import('../_shared/goose/GooseCatchGame'), 'GooseCatchGame');
 const VocabDrillGame = lazyGame(() => import('./VocabDrill/VocabDrillGame'), 'VocabDrillGame');
+const CategoryLearnGame = lazyGame(
+  () => import('./CategoryLearn/CategoryLearnGame'),
+  'CategoryLearnGame',
+);
 
 export const games: GameConfig[] = [
   {
@@ -43,7 +47,7 @@ export const games: GameConfig[] = [
     id: 'match-3-en',
     module: 'english',
     title: '英语消消乐',
-    icon: '🌈',
+    icon: '✨',
     priority: 'P1',
     component: Match3Game,
     subject: 'english',
@@ -76,5 +80,13 @@ export const games: GameConfig[] = [
     icon: '📚',
     priority: 'P0',
     component: VocabDrillGame,
+  },
+  {
+    id: 'category-learn',
+    module: 'english',
+    title: '分类学习',
+    icon: '🏷️',
+    priority: 'P1',
+    component: CategoryLearnGame,
   },
 ];
