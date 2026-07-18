@@ -60,7 +60,7 @@ export function FlipMemoryGame({ sound, tts, onComplete }: GameProps) {
         resetCombo();
         sound.play('wrong');
         setBusy(true);
-        window.setTimeout(() => {
+        setTimeout(() => {
           setFlipped([]);
           setBusy(false);
         }, 800);

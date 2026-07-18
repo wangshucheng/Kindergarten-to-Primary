@@ -13,16 +13,17 @@
     "strictNullChecks": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "rootDir": ".",
+    "rootDir": "..",
     "jsx": "react-jsx",
     "allowJs": true,
     "resolveJsonModule": true,
     "typeRoots": ["./node_modules/@types"],
     "skipLibCheck": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@web/*": ["../src/*"]
     }
   },
-  "include": ["./src", "./types", "./config"],
+  "include": ["./src", "./types", "./config", "../src"],
   "compileOnSave": false
 }

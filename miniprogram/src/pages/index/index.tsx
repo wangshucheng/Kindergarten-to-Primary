@@ -60,8 +60,8 @@ export default function Index() {
         </View>
       </View>
 
-      {/* 模块入口（示例） */}
-      <View className="grid grid-cols-2 gap-3">
+      {/* 模块入口 */}
+      <View className="grid grid-cols-2 gap-3 mb-6">
         {[
           { id: 'math', title: '数学乐园', icon: '🔢' },
           { id: 'english', title: '英语小镇', icon: '🔤' },
@@ -79,9 +79,37 @@ export default function Index() {
         ))}
       </View>
 
+      {/* P0 游戏快捷入口（真机验证用） */}
+      <View className="bg-white rounded-3xl shadow-soft p-4 mb-6">
+        <Text className="text-ink font-bold text-base">P0 游戏（已迁移）</Text>
+        <View className="mt-3 grid grid-cols-2 gap-2">
+          {[
+            { gameId: 'listen-pick', module: 'pinyin', title: '听音选拼音', icon: '🎧' },
+            { gameId: 'pinyin-match', module: 'pinyin', title: '拼读匹配', icon: '🔤' },
+            { gameId: 'pinyin-variants', module: 'pinyin', title: '拼音变体', icon: '✨' },
+            { gameId: 'flip-memory', module: 'hanzi', title: '翻牌记忆', icon: '🃏' },
+            { gameId: 'connect-match', module: 'hanzi', title: '连线匹配', icon: '🔗' },
+            { gameId: 'more-hanzi', module: 'hanzi', title: '趣味识字', icon: '✏️' },
+          ].map((g) => (
+            <View
+              key={g.gameId}
+              className="flex flex-col items-center gap-1 rounded-2xl bg-cream p-3"
+              onClick={() =>
+                Taro.navigateTo({
+                  url: `/pages/game/index?gameId=${g.gameId}&module=${g.module}`,
+                })
+              }
+            >
+              <Text className="text-2xl">{g.icon}</Text>
+              <Text className="text-xs text-ink font-bold">{g.title}</Text>
+            </View>
+          ))}
+        </View>
+      </View>
+
       {/* TTS 测试按钮 */}
       <View
-        className="mt-6 mx-auto px-6 py-3 rounded-full bg-mint text-white font-bold shadow-soft text-center"
+        className="mt-2 mx-auto px-6 py-3 rounded-full bg-mint text-white font-bold shadow-soft text-center"
         onClick={handleSpeak}
       >
         <Text>🔊 测试 TTS 朗读</Text>

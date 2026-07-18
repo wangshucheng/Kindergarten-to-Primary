@@ -48,7 +48,7 @@ export function ListenPickGame({ sound, tts, onComplete }: GameProps) {
   useEffect(() => {
     if (firstRef.current) {
       firstRef.current = false;
-      window.setTimeout(() => tts.speak(rounds[index].target.char), 1300);
+      setTimeout(() => tts.speak(rounds[index].target.char), 1300);
     } else {
       tts.speak(rounds[index].target.char);
     }

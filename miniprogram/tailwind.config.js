@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{ts,tsx}'],
+  // 同时扫描小程序源码和 Web 端源码（通过 @web alias 引用的游戏组件）
+  content: [
+    './index.html',
+    './src/**/*.{ts,tsx}',
+    '../src/**/*.{ts,tsx}',
+  ],
   theme: {
     extend: {
       colors: {
