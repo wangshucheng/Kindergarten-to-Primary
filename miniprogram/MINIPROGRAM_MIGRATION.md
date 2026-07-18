@@ -10,7 +10,7 @@
 │   └── platform/                 # 平台抽象层（Web/小程序共享）
 │       ├── index.ts              # 平台检测（isMiniProgram / isWeb）
 │       ├── storage.ts            # 存储抽象（localStorage ↔ wx.storage）
-│       ├── tts.ts                # TTS 抽象（Web Speech ↔ 同声传译）
+│       ├── tts.ts                # TTS 抽象（Web Speech ↔ 预生成音频）
 │       ├── audio.ts              # 音频抽象（Web Audio ↔ wx.WebAudio）
 │       ├── pointer.ts            # 指针事件抽象
 │       └── wx.d.ts               # wx 全局类型声明
@@ -52,7 +52,7 @@
 │  (Vite 构建)   │   │  (Taro 构建)   │
 │               │   │               │
 │  localStorage │   │  wx.storage   │
-│  Web Speech    │   │  WechatSI    │
+│  Web Speech    │   │ 预生成音频   │
 │  Web Audio     │   │  wx.WebAudio │
 │  PointerEvent  │   │  touch event │
 └───────────────┘   └───────────────┘
@@ -76,12 +76,28 @@
 
 | 特性 | Web 实现 | 小程序实现 |
 |------|---------|-----------|
-| 后端 | `window.speechSynthesis` | 微信同声传译插件 `WechatSI` |
-| 中文 | `lang: 'zh-CN'` | `lang: 'zh_CN'`（自动转换） |
-| 英文 | `lang: 'en-US'` | `lang: 'en_US'`（自动转换） |
-| 播放 | 直接合成播放 | 云端合成 → 临时文件 → `InnerAudioContext` |
-| 费用 | 免费 | 免费（微信智聆团队提供） |
-| 后端依赖 | 无 | 无 |
+| 后端 | `window.speechSynthesis` | 预生成 MP3 + 三级缓存 |
+| 中文 | `lang: 'zh-CN'` | 预生成音频（如有） |
+| 英文 | `lang: 'en-US'` | 预生成音频（504 词已生成） |
+| 播放 | 直接合成播放 | `wx.createInnerAudioContext()` |
+| 费用 | 免费 | 免费（有道词典 TTS 生成） |
+| 后端依赖 | 无 | 无（无需插件） |
+| 缓存策略 | N/A | L1 内存 → L2 本地文件 → L3 云存储 |
+
+**小程序端三级缓存流程**：
+1. `speak(text)` 被调用
+2. 查 `word-audios.json` 映射，若未命中则静默跳过
+3. L1 内存缓存命中 → 直接播放
+4. L2 本地文件（`wx.env.USER_DATA_PATH/audio/{word}.mp3`）命中 → 缓存路径并播放
+5. L3 从云存储下载到 L2 → 缓存并播放
+6. 同一 word 并发下载自动去重
+
+**配置云存储 URL**：
+```typescript
+import { setCloudAudioBaseUrl } from '../platform/tts';
+// 小程序初始化时调用
+setCloudAudioBaseUrl('https://your-cdn.com/audio/words/');
+```
 
 调用方式：`import { createTtsBackend } from '../platform/tts'`
 
@@ -120,31 +136,30 @@ npm run build:weapp
 
 ## 4. 微信小程序后台配置
 
-### 4.1 添加同声传译插件
+### 4.1 TTS 方案说明（无需插件）
 
-1. 登录 [微信公众平台](https://mp.weixin.qq.com)
-2. 设置 → 第三方设置 → 插件管理
-3. 搜索「微信同声传译」并添加
-4. 插件 AppID：`wx069ba97219f66d99`
-5. 已在 `app.config.ts` 中配置：
+本项目**不使用 WechatSI 插件**（避免类目/主体限制问题），改用预生成音频方案：
 
+1. 开发阶段用 `scripts/genWordAudios.mjs` 批量生成单词 MP3（有道词典 TTS，免费）
+2. 将 `public/audio/words/*.mp3`（504 个文件，约 11.3MB）上传到云存储
+3. 小程序运行时按需下载并缓存到本地（`wx.env.USER_DATA_PATH/audio/`）
+4. 三级缓存：内存 → 本地文件 → 云存储，避免重复下载
+
+**配置云存储 URL**（小程序初始化时）：
 ```typescript
-plugins: {
-  WechatSI: {
-    version: '0.3.7',
-    provider: 'wx069ba97219f66d99',
-  },
-},
+import { setCloudAudioBaseUrl } from './platform/tts';
+setCloudAudioBaseUrl('https://your-cdn.com/audio/words/');
 ```
 
-### 4.2 服务器域名配置（图片云存储）
+### 4.2 服务器域名配置（图片+音频云存储）
 
-504 张图片（84.9MB）无法打包进小程序，需上传到云存储：
+504 张图片（84.9MB）+ 504 个音频（11.3MB）无法打包进小程序，需上传到云存储：
 
 **方案 A：微信云开发（推荐）**
 1. 开通云开发（在开发者工具中）
-2. 上传图片到云存储
+2. 上传图片和音频到云存储
 3. 代码中用 `cloud://env-id.xxxx/images/words/cat.png` 替换本地路径
+4. 音频走 `setCloudAudioBaseUrl()` 配置
 
 **方案 B：OSS / CDN**
 1. 上传到阿里云 OSS / 腾讯云 COS
@@ -287,7 +302,7 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 
 - `src/platform/index.ts` — 平台检测
 - `src/platform/storage.ts` — 存储抽象
-- `src/platform/tts.ts` — TTS 抽象（含微信同声传译实现）
+- `src/platform/tts.ts` — TTS 抽象（Web Speech + 预生成音频三级缓存）
 - `src/platform/audio.ts` — 音频抽象
 - `src/platform/pointer.ts` — 指针事件抽象
 - `src/platform/wx.d.ts` — wx 全局类型声明
@@ -305,8 +320,7 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 
 - Taro 3 + React 项目结构
 - 3 个示例页面（index/module/game）
-- 同声传译插件配置
-- 6 大模块分包配置
+- 预生成音频 + 三级缓存（无需插件）
 - Tailwind 配置复用
 - platform 抽象层复制
 
@@ -316,9 +330,10 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 
 - [ ] `npm install` 安装依赖
 - [ ] 微信开发者工具打开验证脚手架
-- [ ] 验证 TTS 朗读功能
+- [ ] 上传 504 张图片 + 504 个音频到云存储
+- [ ] 配置 `setCloudAudioBaseUrl()` 指向音频云存储
+- [ ] 验证 TTS 朗读功能（英语单词）
 - [ ] 验证 storage 读写
-- [ ] 上传 504 张图片到云存储
 - [ ] 更新 `word-images.json` 为云端 URL
 
 ### 8.2 短期（1-2 周）
@@ -346,12 +361,13 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 | Tailwind 多层阴影不兼容 | 视觉降级 | 提前验证，必要时简化为单层阴影 |
 | 拖拽游戏（Klotski/NumberMerge） | 交互复杂 | 最后迁移，用 `onTouchMove` 重写 |
 | 图片加载慢 | 用户体验 | 预加载 + 占位图 + CDN |
-| 同声传译插件审核 | 需提前申请 | 提交审核前确认插件已添加 |
+| 音频下载延迟 | 首次播放慢 | 三级缓存 + 预下载常用词 |
+| 未预生成的文本无法朗读 | 功能缺失 | 仅英语单词支持 TTS，中文文本静默跳过 |
 | 主包超 2MB | 构建失败 | 分包配置已就绪 |
 
 ## 10. 参考资料
 
 - [Taro 3 文档](https://docs.taro.zone/)
-- [微信同声传译插件](https://mp.weixin.qq.com/wxopen/pluginbasicprofile?action=intro&appid=wx069ba97219f66d99)
 - [小程序分包加载](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages.html)
 - [Tailwind CSS 小程序适配](https://weapp-tw.icebreaker.top/)
+- [有道词典 TTS API](https://dict.youdao.com/dictvoice)

@@ -7,6 +7,9 @@
 
 /** 微信小程序全局对象 */
 declare const wx: {
+  env: {
+    USER_DATA_PATH: string;
+  };
   getSystemInfoSync(): unknown;
   getStorageSync(key: string): unknown;
   setStorageSync(key: string, value: unknown): void;
@@ -14,6 +17,7 @@ declare const wx: {
   createWebAudioContext(): unknown;
   createInnerAudioContext(): {
     src: string;
+    autoplay: boolean;
     play(): void;
     stop(): void;
     destroy(): void;
@@ -21,6 +25,19 @@ declare const wx: {
     onEnded(cb: () => void): void;
     onError(cb: (err: unknown) => void): void;
   };
+  getFileSystemManager(): {
+    accessSync(path: string): void;
+    mkdirSync(path: string, recursive?: boolean): void;
+    readFileSync(path: string): ArrayBuffer;
+    writeFileSync(path: string, data: ArrayBuffer | string, encoding?: string): void;
+    unlinkSync(path: string): void;
+  };
+  downloadFile(opts: {
+    url: string;
+    filePath?: string;
+    success?: (res: { tempFilePath: string; filePath: string; statusCode: number }) => void;
+    fail?: (err: { errMsg: string }) => void;
+  }): { abort(): void };
 };
 
 /** 微信小程序插件加载函数 */

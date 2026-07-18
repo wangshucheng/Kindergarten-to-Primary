@@ -43,6 +43,23 @@ export default defineConfig(async (merge, { command }) => {
       addChunkPages(pages) {
         // 每个游戏页面独立分包
       },
+      // 修复 webpackbar 选项不兼容 webpack5 的问题 + 捕获编译错误
+      webpackChain(chain) {
+        chain.plugins.delete('webpackbar');
+        chain.plugin('errorLogger').use({
+          apply(compiler) {
+            compiler.hooks.done.tap('ErrorLogger', (stats) => {
+              const info = stats.toJson({ errors: true, warnings: true });
+              if (info.errors && info.errors.length > 0) {
+                console.error('\n[Build Errors]:');
+                info.errors.forEach((e: unknown) =>
+                  console.error(typeof e === 'string' ? e : (e as { message?: string }).message ?? JSON.stringify(e)),
+                );
+              }
+            });
+          },
+        });
+      },
     },
     h5: {},
   };
