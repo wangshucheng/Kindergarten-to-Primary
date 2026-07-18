@@ -1,0 +1,13 @@
+/* 全局样式 - 与 Web 版 index.css 保持一致（Tailwind 指令） */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 小程序专属基础样式 */
+page {
+  background: #FFF9F0;
+  font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+    "HarmonyOS Sans SC", "Microsoft YaHei", sans-serif;
+  color: #5A4636;
+  font-size: 28rpx;
+}
