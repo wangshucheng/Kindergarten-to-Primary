@@ -1,5 +1,6 @@
 import type { SoundType } from '../games/types';
 import { SOUND_PRESETS, type ToneNote } from './soundPresets';
+import { createAudioContext } from '../platform/audio';
 
 /**
  * SoundManager —— 基于 Web Audio API 的程序化音效引擎。
@@ -84,14 +85,11 @@ export class SoundManager {
   }
 
   private ensureCtx(): AudioContext | null {
-    if (typeof window === 'undefined' || this.disposed) return null;
+    if (this.disposed) return null;
     if (!this.ctx) {
-      const Ctor: typeof AudioContext | undefined =
-        window.AudioContext ||
-        (window as unknown as { webkitAudioContext?: typeof AudioContext })
-          .webkitAudioContext;
-      if (!Ctor) return null;
-      this.ctx = new Ctor();
+      const ctx = createAudioContext();
+      if (!ctx) return null;
+      this.ctx = ctx;
       this.master = this.ctx.createGain();
       this.master.gain.value = 0.28;
       this.master.connect(this.ctx.destination);

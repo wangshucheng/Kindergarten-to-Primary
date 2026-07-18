@@ -19,6 +19,7 @@ import {
   ProgressStateSchema,
   SAVE_VERSION,
 } from '../data/schemas';
+import { storage } from '../platform/storage';
 
 // ---------------------------------------------------------------------------
 // 类型导出（向后兼容）
@@ -125,7 +126,7 @@ export const useProgressStore = create<ProgressStoreState>()(
       storage: {
         getItem: () => {
           try {
-            const raw = window.localStorage.getItem(STORAGE_KEY);
+            const raw = storage.getItem(STORAGE_KEY);
             if (!raw) return null;
             const parsed = JSON.parse(raw);
             const result = ProgressStateSchema.safeParse(parsed);
@@ -141,7 +142,7 @@ export const useProgressStore = create<ProgressStoreState>()(
         },
         setItem: (_name, value) => {
           try {
-            window.localStorage.setItem(
+            storage.setItem(
               STORAGE_KEY,
               JSON.stringify({ ...value.state, version: SAVE_VERSION }),
             );
@@ -151,7 +152,7 @@ export const useProgressStore = create<ProgressStoreState>()(
         },
         removeItem: () => {
           try {
-            window.localStorage.removeItem(STORAGE_KEY);
+            storage.removeItem(STORAGE_KEY);
           } catch {
             /* ignore */
           }
@@ -220,8 +221,11 @@ export const useProgressStore = create<ProgressStoreState>()(
           return emptyState() as ProgressStoreState;
         }
       },
-      // 跨标签页同步
+      // 跨标签页同步（仅 Web 端，小程序无 storage 事件）
       onRehydrateStorage: () => {
+        if (typeof window === 'undefined' || typeof window.addEventListener !== 'function') {
+          return () => {};
+        }
         const handler = (e: StorageEvent) => {
           if (e.key === STORAGE_KEY && e.newValue) {
             try {
@@ -236,13 +240,9 @@ export const useProgressStore = create<ProgressStoreState>()(
             }
           }
         };
-        if (typeof window !== 'undefined') {
-          window.addEventListener('storage', handler);
-        }
-        return (_state, error) => {
-          if (typeof window !== 'undefined') {
-            window.removeEventListener('storage', handler);
-          }
+        window.addEventListener('storage', handler);
+        return () => {
+          window.removeEventListener('storage', handler);
         };
       },
     },

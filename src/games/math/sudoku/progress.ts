@@ -1,7 +1,9 @@
 /**
- * 数独进度持久化（localStorage）。
+ * 数独进度持久化（通过 platform/storage 抽象层）。
  * 负责：6×6 通关后解锁 9×9、记录各玩法最佳成绩（星级 / 用时）。
  */
+import { storage } from '../../../platform/storage';
+
 const UNLOCK_KEY = 'youxiao-sudoku-unlock';
 const BEST_KEY = 'youxiao-sudoku-best';
 
@@ -21,14 +23,14 @@ export interface UnlockState {
 export function loadUnlock(): UnlockState {
   let nineUnlocked = false;
   try {
-    nineUnlocked = localStorage.getItem(UNLOCK_KEY) === '1';
+    nineUnlocked = storage.getItem(UNLOCK_KEY) === '1';
   } catch {
     nineUnlocked = false;
   }
 
   let best: Record<string, BestEntry> = {};
   try {
-    const raw = localStorage.getItem(BEST_KEY);
+    const raw = storage.getItem(BEST_KEY);
     if (raw) best = JSON.parse(raw) as Record<string, BestEntry>;
   } catch {
     best = {};
@@ -40,7 +42,7 @@ export function loadUnlock(): UnlockState {
 /** 首次完成 6×6 后调用，写入解锁标记。 */
 export function unlockNine(): void {
   try {
-    localStorage.setItem(UNLOCK_KEY, '1');
+    storage.setItem(UNLOCK_KEY, '1');
   } catch {
     /* 忽略存储异常（如隐私模式） */
   }
@@ -51,12 +53,12 @@ export function unlockNine(): void {
  */
 export function saveBest(gameKey: string, stars: number, durationMs: number): void {
   try {
-    const raw = localStorage.getItem(BEST_KEY);
+    const raw = storage.getItem(BEST_KEY);
     const best: Record<string, BestEntry> = raw ? (JSON.parse(raw) as Record<string, BestEntry>) : {};
     const prev = best[gameKey];
     if (!prev || stars > prev.stars || (stars === prev.stars && durationMs < prev.durationMs)) {
       best[gameKey] = { stars, durationMs };
-      localStorage.setItem(BEST_KEY, JSON.stringify(best));
+      storage.setItem(BEST_KEY, JSON.stringify(best));
     }
   } catch {
     /* 忽略存储异常 */
