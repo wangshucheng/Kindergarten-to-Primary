@@ -12,27 +12,37 @@ export interface StorageAdapter {
 }
 
 // ---------------------------------------------------------------------------
-// Web 实现：直接代理 localStorage
+// Web 实现：代理 globalThis.localStorage
+// 用 globalThis 而非 window，以便在 node 测试环境通过 vi.stubGlobal 注入 mock
 // ---------------------------------------------------------------------------
+
+function getLs(): Storage | null {
+  try {
+    const ls = (globalThis as { localStorage?: Storage }).localStorage;
+    return ls ?? null;
+  } catch {
+    return null;
+  }
+}
 
 const webStorage: StorageAdapter = {
   getItem(key: string): string | null {
     try {
-      return window.localStorage.getItem(key);
+      return getLs()?.getItem(key) ?? null;
     } catch {
       return null;
     }
   },
   setItem(key: string, value: string): void {
     try {
-      window.localStorage.setItem(key, value);
+      getLs()?.setItem(key, value);
     } catch {
       /* quota exceeded 静默降级 */
     }
   },
   removeItem(key: string): void {
     try {
-      window.localStorage.removeItem(key);
+      getLs()?.removeItem(key);
     } catch {
       /* ignore */
     }

@@ -40,7 +40,7 @@ function toWxLang(lang: string): 'zh_CN' | 'en_US' {
 // Web 实现：基于 Web Speech API
 // ---------------------------------------------------------------------------
 
-class WebTtsBackend implements TtsBackend {
+export class WebTtsBackend implements TtsBackend {
   private voices: SpeechSynthesisVoice[] = [];
 
   constructor() {

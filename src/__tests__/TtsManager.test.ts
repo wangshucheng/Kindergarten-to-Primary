@@ -1,5 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { TtsManager } from '../sound/TtsManager';
+import { WebTtsBackend } from '../platform/tts';
 
 function makeVoice(lang: string): SpeechSynthesisVoice {
   return {
@@ -53,7 +54,7 @@ beforeEach(() => {
 
 describe('TtsManager pickVoice 音色选择', () => {
   it('zh-HK → 粤语音色', () => {
-    const mgr = new TtsManager();
+    const mgr = new WebTtsBackend();
     const v = (mgr as unknown as { pickVoice(l: string): SpeechSynthesisVoice | null }).pickVoice(
       'zh-HK',
     );
@@ -63,7 +64,7 @@ describe('TtsManager pickVoice 音色选择', () => {
 
   it('zh-yue 也被识别为粤语音色', () => {
     voices = [makeVoice('zh-yue'), makeVoice('zh-CN'), makeVoice('en-US')];
-    const mgr = new TtsManager();
+    const mgr = new WebTtsBackend();
     const v = (mgr as unknown as { pickVoice(l: string): SpeechSynthesisVoice | null }).pickVoice(
       'zh-yue',
     );
@@ -72,7 +73,7 @@ describe('TtsManager pickVoice 音色选择', () => {
   });
 
   it('en → 英语音色', () => {
-    const mgr = new TtsManager();
+    const mgr = new WebTtsBackend();
     const v = (mgr as unknown as { pickVoice(l: string): SpeechSynthesisVoice | null }).pickVoice(
       'en-US',
     );
@@ -81,7 +82,7 @@ describe('TtsManager pickVoice 音色选择', () => {
   });
 
   it('zh-CN → 普通话音色', () => {
-    const mgr = new TtsManager();
+    const mgr = new WebTtsBackend();
     const v = (mgr as unknown as { pickVoice(l: string): SpeechSynthesisVoice | null }).pickVoice(
       'zh-CN',
     );
@@ -91,7 +92,7 @@ describe('TtsManager pickVoice 音色选择', () => {
 
   it('给定 lang 找不到对应 voice 返回 null', () => {
     voices = [makeVoice('zh-CN'), makeVoice('en-US')];
-    const mgr = new TtsManager();
+    const mgr = new WebTtsBackend();
     const v = (mgr as unknown as { pickVoice(l: string): SpeechSynthesisVoice | null }).pickVoice(
       'zh-HK',
     );
@@ -100,7 +101,7 @@ describe('TtsManager pickVoice 音色选择', () => {
 
   it('无 voices 时 pickVoice 返回 null', () => {
     voices = [];
-    const mgr = new TtsManager();
+    const mgr = new WebTtsBackend();
     const v = (mgr as unknown as { pickVoice(l: string): SpeechSynthesisVoice | null }).pickVoice(
       'zh-CN',
     );
