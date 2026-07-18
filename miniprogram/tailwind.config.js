@@ -1,10 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  // 同时扫描小程序源码和 Web 端源码（通过 @web alias 引用的游戏组件）
+  // 仅扫描小程序源码（已放弃 @web alias，游戏用 Taro 原生组件重写）
   content: [
     './index.html',
     './src/**/*.{ts,tsx}',
-    '../src/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {

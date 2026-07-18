@@ -1,7 +1,6 @@
 import { defineConfig } from '@tarojs/cli';
 import devConfig from './dev';
 import prodConfig from './prod';
-import path from 'node:path';
 import { UnifiedWebpackPluginV5 } from 'weapp-tailwindcss/webpack';
 
 export default defineConfig(async (merge, { command }) => {
@@ -28,10 +27,8 @@ export default defineConfig(async (merge, { command }) => {
       prebundle: { enable: false },
     },
     cache: { enable: false },
-    // 别名：让小程序引用父目录的 Web 端源码（一套代码两端复用）
-    alias: {
-      '@web': path.resolve(__dirname, '../../src'),
-    },
+    // 注：已放弃 @web alias 方案（导致 React 多实例冲突 #327 错误），
+    // 改为小程序内独立实现游戏页面。
     mini: {
       postcss: {
         pxtransform: { enable: true, config: {} },
@@ -54,7 +51,6 @@ export default defineConfig(async (merge, { command }) => {
       // 修复 webpackbar 选项不兼容 webpack5 的问题 + 捕获编译错误 + 处理 Tailwind 转义
       webpackChain(chain) {
         chain.plugins.delete('webpackbar');
-        chain.resolve.alias.set('@web', path.resolve(__dirname, '../../src'));
         // weapp-tailwindcss：处理小程序中 Tailwind 类名的转义字符
         // 自动把 .top-0\.5 → .top-0-5 等合法形式，并同步更新 wxml class 属性
         chain.plugin('weappTailwindcss').use(UnifiedWebpackPluginV5, [{
