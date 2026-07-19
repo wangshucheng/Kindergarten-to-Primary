@@ -29,6 +29,8 @@ export default {
       pages: ['pages/game/index'],
     },
   ],
+  // 组件按需注入：仅注入当前页面用到的自定义组件，减少启动加载
+  lazyCodeLoading: 'requiredComponents',
   // 分包预下载：进入主包页面后预下载所有分包，避免进游戏时延迟
   preloadRule: {
     'pages/index/index': {
