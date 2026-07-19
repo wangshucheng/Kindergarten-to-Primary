@@ -37,35 +37,22 @@ function isCloudAvailable(): boolean {
   );
 }
 
-/** 把 cloud:// 文件 ID 下载为本地临时文件路径 */
+/** 把 cloud:// 文件 ID 下载为本地文件路径（经 cloudProxy 云函数，绕过读权限） */
 function downloadToLocal(fileID: string): Promise<string | null> {
   if (localPathCache[fileID]) return Promise.resolve(localPathCache[fileID]);
   if (!isCloudAvailable()) {
     console.error('[cloud][image] 云不可用，无法下载图片：', fileID);
     return Promise.resolve(null);
   }
-  return new Promise<string | null>((resolve) => {
-    wx.cloud.downloadFile({
-      fileID,
-      success: (res) => {
-        if (res.statusCode === 200 && res.tempFilePath) {
-          localPathCache[fileID] = res.tempFilePath;
-          resolve(res.tempFilePath);
-        } else {
-          console.error('[cloud][image] 图片下载返回非 200：', fileID, JSON.stringify(res));
-          resolve(null);
-        }
-      },
-      fail: (err) => {
-        // 直连受云存储读安全规则拦截（-403003 empty download url），
-        // 改走 cloudProxy 云函数（服务端管理员身份）读取。
-        console.warn('[cloud][image] 直连下载失败，回退云函数代理：', fileID, JSON.stringify(err));
-        fetchViaCloudProxy(fileID).then((p) => {
-          if (p) localPathCache[fileID] = p;
-          resolve(p);
-        });
-      },
-    });
+  // 云存储读安全规则不可改（仅创建者可读写），小程序访客直连必被 -403003 拦截，
+  // 故直接经 cloudProxy 云函数（服务端管理员身份）读取，无需先尝试直连。
+  return fetchViaCloudProxy(fileID).then((p) => {
+    if (p) {
+      localPathCache[fileID] = p;
+    } else {
+      console.error('[cloud][image] 云函数代理取回失败：', fileID);
+    }
+    return p;
   });
 }
 

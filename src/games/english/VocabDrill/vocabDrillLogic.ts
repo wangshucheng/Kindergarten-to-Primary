@@ -12,7 +12,8 @@
  */
 import { createRng, type Rng } from '../../../utils/rng';
 import { shuffle } from '../../../utils/shuffle';
-import { VOCAB, THEME_EMOJI, type WordEntry } from '../../../data/vocabData';
+import { VOCAB, type WordEntry } from '../../../data/vocabData';
+import { getWordEmoji } from '../../../data/wordImages';
 
 export interface VocabQuestion {
   /** 本题对应的词条（含 en/zh/pos/example/theme） */
@@ -71,7 +72,7 @@ export function makePickQuestion(rng: Rng = Math.random): VocabQuestion {
   return { word, options, answer };
 }
 
-/** 取词条的「图」（优先原图 emoji，回退主题代表 emoji） */
+/** 取词条的「图」（优先单词专属 emoji，回退主题代表 emoji） */
 export function emojiFor(word: WordEntry): string {
-  return THEME_EMOJI[word.theme] ?? '📘';
+  return getWordEmoji(word.en, word.theme);
 }

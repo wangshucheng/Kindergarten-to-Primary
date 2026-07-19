@@ -173,7 +173,9 @@ export function CategoryLearnGame({ sound, tts: ttsManager, onComplete }: GamePr
                 loading="lazy"
               />
             ) : (
-              <span className="text-4xl leading-none">{w.emoji}</span>
+              <span className="w-16 h-16 flex items-center justify-center rounded-2xl bg-gradient-to-br from-lemon/30 to-mint/30 text-[44px] leading-none">
+                {w.emoji}
+              </span>
             )}
             <span className="text-ink font-extrabold text-base">{w.en}</span>
             <span className="text-inkSoft text-xs">{w.zh}</span>

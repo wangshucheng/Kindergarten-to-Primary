@@ -190,14 +190,13 @@ class WxTtsBackend implements TtsBackend {
       // 文件不存在，继续远端解析
     }
 
-    this.resolveRemote(key, relPath, localPath, opts, allowSynthesize);
+    this.resolveRemote(key, relPath, opts, allowSynthesize);
   }
 
-  /** L3 远端解析：推定 fileID 下载 →（可选）云函数合成 → 再下载 */
+  /** L3 远端解析：推定 fileID 经云函数代理下载 →（可选）云函数合成 → 再取回 */
   private resolveRemote(
     key: string,
     relPath: string,
-    localPath: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
     allowSynthesize: boolean,
   ): void {
@@ -232,47 +231,33 @@ class WxTtsBackend implements TtsBackend {
       }
     };
 
-    // 文件下载：直连 downloadFile 优先，受读安全规则拦截（-403003）时
-    // 回退 cloudProxy 云函数（服务端管理员身份）读取并写入本地缓存。
-    const downloadWithFallback = (fileID: string, onFinalFail: () => void): void => {
-      wx.cloud.downloadFile({
-        fileID,
-        filePath: localPath,
-        success: (res) => {
-          if (res.statusCode === 200) {
-            this.pathCache.set(key, localPath);
-            finish(localPath);
-          } else {
-            onFinalFail();
-          }
-        },
-        fail: () => {
-          fetchViaCloudProxy(fileID).then((proxyPath) => {
-            if (proxyPath) {
-              this.pathCache.set(key, proxyPath);
-              finish(proxyPath);
-            } else {
-              onFinalFail();
-            }
-          });
-        },
+    // 文件下载：经 cloudProxy 云函数（服务端管理员身份）读取并写入本地缓存。
+    // 云存储读安全规则不可改，小程序访客直连必被 -403003 拦截，故不再尝试直连。
+    const downloadViaProxy = (fileID: string, onFinalFail: () => void): void => {
+      fetchViaCloudProxy(fileID).then((proxyPath) => {
+        if (proxyPath) {
+          this.pathCache.set(key, proxyPath);
+          finish(proxyPath);
+        } else {
+          onFinalFail();
+        }
       });
     };
 
-    // 先按推定路径直接下载：命中（含其他设备已合成的文本）则无需调云函数
-    downloadWithFallback(buildAudioFileId(relPath), () => {
+    // 先按推定路径下载：命中（含其他设备已合成的文本）则无需调云函数
+    downloadViaProxy(buildAudioFileId(relPath), () => {
       if (!allowSynthesize || typeof wx.cloud?.callFunction !== 'function') {
         finish(null);
         return;
       }
-      // 云函数在线合成并上传到同一路径，成功后重新下载（同样带代理回退）
+      // 云函数在线合成并上传到同一路径，成功后经代理重新取回
       wx.cloud.callFunction({
         name: 'tts',
         data: { text: key, lang: 'zh-CN' },
         success: (res) => {
           const result = res.result as { ok?: boolean; fileID?: string } | undefined;
           if (result && result.ok && result.fileID) {
-            downloadWithFallback(result.fileID, () => finish(null));
+            downloadViaProxy(result.fileID, () => finish(null));
           } else {
             finish(null);
           }

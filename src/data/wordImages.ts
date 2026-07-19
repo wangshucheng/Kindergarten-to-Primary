@@ -4,17 +4,22 @@
  * 图片由 scripts/genWordImages.mjs 批量生成到 public/images/words/，
  * 映射关系记录在 word-images.json（运行生成工具后自动更新）。
  *
- * 三级回退策略：
- *   word-images.json[word]  →  english.json 的 emoji  →  主题代表 emoji
+ * 四级回退策略：
+ *   1. word-images.json[word]  → 已生成的 PNG 图片
+ *   2. word-emojis.json[word]  → 单词专属 emoji
+ *   3. english.json 的 emoji   → 旧版 english 数据中的 emoji
+ *   4. THEME_EMOJI[theme]      → 主题代表 emoji
  */
 import wordImagesRaw from './word-images.json';
+import wordEmojisRaw from './word-emojis.json';
 import eng from './english.json';
 import { THEME_EMOJI } from './vocabData';
 
 const wordImages = wordImagesRaw as Record<string, string>;
+const wordEmojis = wordEmojisRaw as Record<string, string | null>;
 
 /** english.json 中的 word → emoji 映射 */
-const emojiByWord: Record<string, string> = Object.fromEntries(
+const emojiByWordLegacy: Record<string, string> = Object.fromEntries(
   (eng as { words: { word: string; emoji: string }[] }).words.map((w) => [w.word, w.emoji]),
 );
 
@@ -28,10 +33,16 @@ export function getWordImage(word: string): string | null {
 
 /**
  * 获取单词的 emoji（用于无图片时回退显示）。
+ * 优先使用单词专属 emoji，其次旧版 english.json，最后主题 emoji。
  * @returns emoji 字符（如 "🐱"）
  */
 export function getWordEmoji(word: string, theme: string): string {
-  return emojiByWord[word] ?? THEME_EMOJI[theme] ?? '📘';
+  return (
+    wordEmojis[word] ??
+    emojiByWordLegacy[word] ??
+    THEME_EMOJI[theme] ??
+    '📘'
+  );
 }
 
 /**

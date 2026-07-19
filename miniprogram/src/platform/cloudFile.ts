@@ -144,7 +144,11 @@ export function fetchViaCloudProxy(fileID: string): Promise<string | null> {
             resolve(null);
           }
         } else {
-          console.error('[cloud][proxy] 云函数返回失败：', fileID, JSON.stringify(res.result));
+          // 文件不存在（not exists）多为命名契约推定路径尚未生成的预期情况
+          // （如中文兜底音频），调用方会走合成/回退，避免告警刷屏。
+          if (!/not exists/i.test(r?.error || '')) {
+            console.error('[cloud][proxy] 云函数返回失败：', fileID, JSON.stringify(res.result));
+          }
           resolve(null);
         }
       },
