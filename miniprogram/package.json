@@ -4,7 +4,7 @@
   "private": true,
   "description": "幼升小游戏合集 - 微信小程序版（Taro 3 + React）",
   "scripts": {
-    "build:weapp": "taro build --type weapp",
+    "build:weapp": "taro build --type weapp && node scripts/inline-wxss.mjs",
     "dev:weapp": "npm run build:weapp -- --watch"
   },
   "dependencies": {
@@ -20,19 +20,25 @@
     "@tarojs/taro": "3.6.20",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "zod": "^4.4.3",
+    "zod": "^3.23.8",
     "zustand": "^5.0.14"
   },
   "devDependencies": {
     "@babel/core": "^7.21.0",
+    "@babel/preset-env": "^7.29.7",
     "@tarojs/cli": "3.6.20",
     "@tarojs/taro-loader": "3.6.20",
     "@tarojs/webpack5-runner": "3.6.20",
+    "@types/jest": "^30.0.0",
     "@types/react": "^18.3.0",
     "autoprefixer": "^10.4.20",
+    "babel-loader": "^10.1.1",
     "babel-preset-taro": "3.6.20",
+    "jest": "^30.4.2",
+    "miniprogram-automator": "^0.12.1",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.13",
+    "ts-jest": "^29.4.11",
     "typescript": "^5.4.0",
     "weapp-tailwindcss": "^3.7.0"
   }

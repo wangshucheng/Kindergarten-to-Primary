@@ -1,0 +1,68 @@
+/**
+ * 此文件从 Web 端 src/games/types.ts 复制而来，用于小程序端。
+ * 类型定义保持与 Web 端一致，确保游戏组件可无需改动直接复用。
+ */
+import type { ComponentType, LazyExoticComponent } from 'react';
+import type { SoundManager } from '../sound/SoundManager';
+import type { TtsManager } from '../sound/TtsManager';
+import type { SubjectKey } from '../data/types';
+
+/** 四大模块标识 */
+export type ModuleKey = 'math' | 'pinyin' | 'hanzi' | 'english' | 'poetry' | 'geometry';
+
+/** 优先级：P0 首版全量，P1 紧随，P2 末尾 */
+export type Priority = 'P0' | 'P1' | 'P2';
+
+/** 可触发的程序化音效类型 */
+export type SoundType = 'click' | 'correct' | 'wrong' | 'win' | 'levelup';
+
+/** 单局结果，由游戏在结束时通过 onComplete 上报 */
+export interface GameResult {
+  score: number;
+  passed: boolean;
+  stars: number;
+  durationMs: number;
+  /** 本局收集的知识点 id（可选；由分数驱动玩法在 finish 时同步附带，便于落盘） */
+  knowledgePoints?: string[];
+  /** 本局解锁的勋章 id（可选；同上） */
+  medals?: string[];
+}
+
+/** 游戏注册信息（含渲染组件） */
+export interface GameConfig {
+  id: string;
+  module: ModuleKey;
+  title: string;
+  icon: string;
+  priority: Priority;
+  /**
+   * 渲染组件：支持同步组件或通过 React.lazy 懒加载的组件。
+   * 懒加载时，游戏代码会被独立分包，仅在进入对应游戏页时按需下载，
+   * 显著缩小首屏与列表页体积。渲染方需置于 <Suspense> 边界内。
+   */
+  component: ComponentType<GameProps> | LazyExoticComponent<ComponentType<GameProps>>;
+  /**
+   * 学科键（可选）：标注该游戏对应的题库池，供生成器门面按 subject 分发。
+   * 内容迭代新增玩法（消消乐/砖块/地雷/华容道/赶鹅）会用到。
+   */
+  subject?: SubjectKey;
+  /** 玩法模式（可选）：同一学科下的细分模式，如 'match-3' / 'brick-match' / 'number-mines' */
+  mode?: string;
+}
+
+/** 注入给具体游戏组件的属性 */
+export interface GameProps {
+  config: GameConfig;
+  sound: SoundManager;
+  tts: TtsManager;
+  onComplete: (r: GameResult) => void;
+  onExit: () => void;
+}
+
+/** 模块元信息（来自 data/config.json） */
+export interface ModuleMeta {
+  key: ModuleKey;
+  title: string;
+  icon: string;
+  description?: string;
+}

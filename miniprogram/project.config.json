@@ -2,7 +2,7 @@
   "miniprogramRoot": "dist/",
   "projectname": "youxiao-games-miniprogram",
   "description": "幼升小游戏合集小程序版",
-  "appid": "your-appid-here",
+  "appid": "wxb8cd3d086b98a817",
   "setting": {
     "urlCheck": true,
     "es6": false,
@@ -10,10 +10,33 @@
     "compileHotReLoad": false,
     "postcss": false,
     "minified": false,
-    "bundle": false
+    "bundle": false,
+    "minifyWXML": true,
+    "compileWorklet": false,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "minifyWXSS": true,
+    "localPlugins": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false,
+    "condition": false,
+    "swc": false,
+    "disableSWC": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
   },
   "compileType": "miniprogram",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "condition": {}
+  "condition": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {}
 }

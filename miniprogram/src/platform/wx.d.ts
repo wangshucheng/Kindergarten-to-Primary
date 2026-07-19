@@ -5,6 +5,37 @@
  * 当迁移到 Taro 时，Taro 会注入完整的类型，此文件可安全移除。
  */
 
+/** wx.env：运行环境常量 */
+declare namespace wx {
+  namespace env {
+    const USER_DATA_PATH: string;
+  }
+}
+
+/** 文件系统管理器（用于 TTS 三级缓存的本地文件读写） */
+interface WxFileSystemManager {
+  mkdirSync(dirPath: string, recursive?: boolean): void;
+  accessSync(path: string): void;
+  readFileSync(filePath: string, encoding?: string): string | ArrayBuffer;
+  writeFileSync(filePath: string, data: string | ArrayBuffer, encoding?: string): void;
+  unlinkSync(filePath: string): void;
+}
+
+/** 下载任务回调 */
+interface WxDownloadFileSuccess {
+  tempFilePath: string;
+  filePath: string;
+  statusCode: number;
+}
+
+interface WxDownloadFileOption {
+  url: string;
+  filePath?: string;
+  success?(res: WxDownloadFileSuccess): void;
+  fail?(err: { errMsg: string }): void;
+  complete?(): void;
+}
+
 /** 微信小程序全局对象 */
 declare const wx: {
   getSystemInfoSync(): unknown;
@@ -21,7 +52,6 @@ declare const wx: {
     onEnded(cb: () => void): void;
     onError(cb: (err: unknown) => void): void;
   };
+  getFileSystemManager(): WxFileSystemManager;
+  downloadFile(option: WxDownloadFileOption): { abort(): void };
 };
-
-/** 微信小程序插件加载函数 */
-declare function requirePlugin(name: string): unknown;

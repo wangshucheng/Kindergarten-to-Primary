@@ -1,0 +1,48 @@
+{
+  "appName": "幼升小游戏合集",
+  "modules": [
+    {
+      "key": "math",
+      "title": "数学乐园",
+      "icon": "🔢",
+      "description": "凑十法 · 加减连连看 · 数字合成 · 数独 · 华容道 · 速算擂台 · 应用题闯关"
+    },
+    {
+      "key": "pinyin",
+      "title": "拼音王国",
+      "icon": "🔤",
+      "description": "声母韵母 · 拼读练习 · 听音选拼音"
+    },
+    {
+      "key": "hanzi",
+      "title": "汉字天地",
+      "icon": "📚",
+      "description": "翻牌记忆 · 连线匹配 · 识字玩法 · 消消乐"
+    },
+    {
+      "key": "english",
+      "title": "英语小镇",
+      "icon": "🔤",
+      "description": "字母 · 单词 · 句子 · 对战 · 砖块 · 赶鹅"
+    },
+    {
+      "key": "poetry",
+      "title": "必背古诗文",
+      "icon": "📜",
+      "description": "18 首必背古诗文 · 咏鹅/村居/咏柳/望庐山瀑布…"
+    },
+    {
+      "key": "geometry",
+      "title": "图形与几何",
+      "icon": "📐",
+      "description": "认图形 · 拼搭计数 · 找对称 · 角分类 · 三视图 · 图形运动 · 长度单位"
+    }
+  ],
+  "achievements": [
+    { "id": "first-win", "title": "初次通关", "icon": "🌟", "description": "完成任意一局游戏" },
+    { "id": "star-three", "title": "三颗星", "icon": "⭐", "description": "获得一次三星评价" },
+    { "id": "explorer", "title": "小探险家", "icon": "🧭", "description": "游玩至少 12 个不同游戏" },
+    { "id": "persistent", "title": "坚持不懈", "icon": "💪", "description": "累计游玩 30 局" },
+    { "id": "perfect", "title": "完美主义", "icon": "🏆", "description": "获得三星评价" }
+  ]
+}

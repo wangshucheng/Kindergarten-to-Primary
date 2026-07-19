@@ -8,7 +8,7 @@
  *
  * 覆盖的能力：
  * - storage：本地持久化（localStorage / wx.storage）
- * - tts：文字转语音（Web Speech API / 微信同声传译插件）
+ * - tts：文字转语音（Web Speech API / 预生成音频 + 三级缓存）
  * - audio：程序化音效（Web Audio API / wx.createWebAudioContext）
  */
 
@@ -33,5 +33,5 @@ export const isWeb: boolean = !isMiniProgram;
 // ---------------------------------------------------------------------------
 
 export { storage } from './storage';
-export { createTtsBackend, type TtsBackend } from './tts';
+export { createTtsBackend, setCloudAudioBaseUrl, type TtsBackend } from './tts';
 export { createAudioContext, type AudioContextLike } from './audio';

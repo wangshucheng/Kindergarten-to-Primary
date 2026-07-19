@@ -1,0 +1,1381 @@
+{
+  "version": 1,
+  "words": [
+    {
+      "word": "cat",
+      "emoji": "🐱",
+      "meaning": "猫",
+      "category": "animal",
+      "sentence": "I have a cat.",
+      "level": 1
+    },
+    {
+      "word": "dog",
+      "emoji": "🐶",
+      "meaning": "狗",
+      "category": "animal",
+      "sentence": "The dog is big.",
+      "level": 1
+    },
+    {
+      "word": "sun",
+      "emoji": "☀️",
+      "meaning": "太阳",
+      "category": "nature",
+      "sentence": "The sun is bright.",
+      "level": 1
+    },
+    {
+      "word": "moon",
+      "emoji": "🌙",
+      "meaning": "月亮",
+      "category": "nature",
+      "sentence": "The moon is round.",
+      "level": 1
+    },
+    {
+      "word": "star",
+      "emoji": "⭐",
+      "meaning": "星星",
+      "category": "nature",
+      "sentence": "I see a star.",
+      "level": 1
+    },
+    {
+      "word": "fish",
+      "emoji": "🐟",
+      "meaning": "鱼",
+      "category": "animal",
+      "sentence": "The fish can swim.",
+      "level": 1
+    },
+    {
+      "word": "bird",
+      "emoji": "🐦",
+      "meaning": "鸟",
+      "category": "animal",
+      "sentence": "A bird can fly.",
+      "level": 1
+    },
+    {
+      "word": "cow",
+      "emoji": "🐮",
+      "meaning": "牛",
+      "category": "animal",
+      "sentence": "The cow is big.",
+      "level": 1
+    },
+    {
+      "word": "pig",
+      "emoji": "🐷",
+      "meaning": "猪",
+      "category": "animal",
+      "sentence": "The pig is pink.",
+      "level": 1
+    },
+    {
+      "word": "duck",
+      "emoji": "🦆",
+      "meaning": "鸭子",
+      "category": "animal",
+      "sentence": "The duck says quack.",
+      "level": 1
+    },
+    {
+      "word": "apple",
+      "emoji": "🍎",
+      "meaning": "苹果",
+      "category": "food",
+      "sentence": "I eat an apple.",
+      "level": 1
+    },
+    {
+      "word": "ball",
+      "emoji": "⚽",
+      "meaning": "球",
+      "category": "toy",
+      "sentence": "I kick the ball.",
+      "level": 1
+    },
+    {
+      "word": "book",
+      "emoji": "📚",
+      "meaning": "书",
+      "category": "school",
+      "sentence": "I read a book.",
+      "level": 1
+    },
+    {
+      "word": "car",
+      "emoji": "🚗",
+      "meaning": "汽车",
+      "category": "vehicle",
+      "sentence": "The car is red.",
+      "level": 1
+    },
+    {
+      "word": "bus",
+      "emoji": "🚌",
+      "meaning": "公交车",
+      "category": "vehicle",
+      "sentence": "I take the bus.",
+      "level": 1
+    },
+    {
+      "word": "red",
+      "emoji": "🔴",
+      "meaning": "红色",
+      "category": "color",
+      "sentence": "I like red.",
+      "level": 1
+    },
+    {
+      "word": "blue",
+      "emoji": "🔵",
+      "meaning": "蓝色",
+      "category": "color",
+      "sentence": "The sky is blue.",
+      "level": 1
+    },
+    {
+      "word": "green",
+      "emoji": "🟢",
+      "meaning": "绿色",
+      "category": "color",
+      "sentence": "Grass is green.",
+      "level": 1
+    },
+    {
+      "word": "yellow",
+      "emoji": "🟡",
+      "meaning": "黄色",
+      "category": "color",
+      "sentence": "The sun is yellow.",
+      "level": 1
+    },
+    {
+      "word": "black",
+      "emoji": "⚫",
+      "meaning": "黑色",
+      "category": "color",
+      "sentence": "The cat is black.",
+      "level": 1
+    },
+    {
+      "word": "white",
+      "emoji": "⚪",
+      "meaning": "白色",
+      "category": "color",
+      "sentence": "Snow is white.",
+      "level": 1
+    },
+    {
+      "word": "one",
+      "emoji": "1️⃣",
+      "meaning": "一",
+      "category": "number",
+      "sentence": "I have one dog.",
+      "level": 1
+    },
+    {
+      "word": "two",
+      "emoji": "2️⃣",
+      "meaning": "二",
+      "category": "number",
+      "sentence": "I have two cats.",
+      "level": 1
+    },
+    {
+      "word": "three",
+      "emoji": "3️⃣",
+      "meaning": "三",
+      "category": "number",
+      "sentence": "Three birds fly.",
+      "level": 1
+    },
+    {
+      "word": "four",
+      "emoji": "4️⃣",
+      "meaning": "四",
+      "category": "number",
+      "sentence": "Four ducks swim.",
+      "level": 1
+    },
+    {
+      "word": "five",
+      "emoji": "5️⃣",
+      "meaning": "五",
+      "category": "number",
+      "sentence": "I see five stars.",
+      "level": 1
+    },
+    {
+      "word": "big",
+      "emoji": "🐘",
+      "meaning": "大",
+      "category": "size",
+      "sentence": "The elephant is big.",
+      "level": 1
+    },
+    {
+      "word": "small",
+      "emoji": "🐭",
+      "meaning": "小",
+      "category": "size",
+      "sentence": "The mouse is small.",
+      "level": 1
+    },
+    {
+      "word": "happy",
+      "emoji": "😊",
+      "meaning": "开心",
+      "category": "feeling",
+      "sentence": "I am happy.",
+      "level": 1
+    },
+    {
+      "word": "sad",
+      "emoji": "😢",
+      "meaning": "伤心",
+      "category": "feeling",
+      "sentence": "The dog is sad.",
+      "level": 1
+    },
+    {
+      "word": "hot",
+      "emoji": "🔥",
+      "meaning": "热",
+      "category": "weather",
+      "sentence": "The soup is hot.",
+      "level": 1
+    },
+    {
+      "word": "cold",
+      "emoji": "❄️",
+      "meaning": "冷",
+      "category": "weather",
+      "sentence": "Ice is cold.",
+      "level": 1
+    },
+    {
+      "word": "water",
+      "emoji": "💧",
+      "meaning": "水",
+      "category": "food",
+      "sentence": "I drink water.",
+      "level": 1
+    },
+    {
+      "word": "milk",
+      "emoji": "🥛",
+      "meaning": "牛奶",
+      "category": "food",
+      "sentence": "I drink milk.",
+      "level": 1
+    },
+    {
+      "word": "egg",
+      "emoji": "🥚",
+      "meaning": "鸡蛋",
+      "category": "food",
+      "sentence": "I eat an egg.",
+      "level": 1
+    },
+    {
+      "word": "rice",
+      "emoji": "🍚",
+      "meaning": "米饭",
+      "category": "food",
+      "sentence": "I eat rice.",
+      "level": 1
+    },
+    {
+      "word": "cake",
+      "emoji": "🍰",
+      "meaning": "蛋糕",
+      "category": "food",
+      "sentence": "I like cake.",
+      "level": 1
+    },
+    {
+      "word": "tree",
+      "emoji": "🌳",
+      "meaning": "树",
+      "category": "nature",
+      "sentence": "The tree is tall.",
+      "level": 1
+    },
+    {
+      "word": "flower",
+      "emoji": "🌸",
+      "meaning": "花",
+      "category": "nature",
+      "sentence": "The flower is pink.",
+      "level": 1
+    },
+    {
+      "word": "house",
+      "emoji": "🏠",
+      "meaning": "房子",
+      "category": "place",
+      "sentence": "This is my house.",
+      "level": 1
+    },
+    {
+      "word": "school",
+      "emoji": "🏫",
+      "meaning": "学校",
+      "category": "place",
+      "sentence": "I go to school.",
+      "level": 1
+    },
+    {
+      "word": "hand",
+      "emoji": "✋",
+      "meaning": "手",
+      "category": "body",
+      "sentence": "I have two hands.",
+      "level": 1
+    },
+    {
+      "word": "foot",
+      "emoji": "🦶",
+      "meaning": "脚",
+      "category": "body",
+      "sentence": "My foot is small.",
+      "level": 1
+    },
+    {
+      "word": "eye",
+      "emoji": "👀",
+      "meaning": "眼睛",
+      "category": "body",
+      "sentence": "I have two eyes.",
+      "level": 1
+    },
+    {
+      "word": "ear",
+      "emoji": "👂",
+      "meaning": "耳朵",
+      "category": "body",
+      "sentence": "I have two ears.",
+      "level": 1
+    },
+    {
+      "word": "nose",
+      "emoji": "👃",
+      "meaning": "鼻子",
+      "category": "body",
+      "sentence": "I have a nose.",
+      "level": 1
+    },
+    {
+      "word": "mouth",
+      "emoji": "👄",
+      "meaning": "嘴巴",
+      "category": "body",
+      "sentence": "Open your mouth.",
+      "level": 1
+    },
+    {
+      "word": "run",
+      "emoji": "🏃",
+      "meaning": "跑",
+      "category": "action",
+      "sentence": "I can run.",
+      "level": 1
+    },
+    {
+      "word": "jump",
+      "emoji": "⤴️",
+      "meaning": "跳",
+      "category": "action",
+      "sentence": "The frog can jump.",
+      "level": 1
+    },
+    {
+      "word": "eat",
+      "emoji": "😋",
+      "meaning": "吃",
+      "category": "action",
+      "sentence": "I eat an apple.",
+      "level": 1
+    },
+    {
+      "word": "drink",
+      "emoji": "🥤",
+      "meaning": "喝",
+      "category": "action",
+      "sentence": "I drink milk.",
+      "level": 1
+    },
+    {
+      "word": "sleep",
+      "emoji": "😴",
+      "meaning": "睡觉",
+      "category": "action",
+      "sentence": "I sleep at night.",
+      "level": 1
+    },
+    {
+      "word": "read",
+      "emoji": "📖",
+      "meaning": "读",
+      "category": "action",
+      "sentence": "I read a book.",
+      "level": 1
+    },
+    {
+      "word": "write",
+      "emoji": "✍️",
+      "meaning": "写",
+      "category": "action",
+      "sentence": "I write a letter.",
+      "level": 1
+    },
+    {
+      "word": "play",
+      "emoji": "🧸",
+      "meaning": "玩",
+      "category": "action",
+      "sentence": "I play with a ball.",
+      "level": 1
+    },
+    {
+      "word": "sing",
+      "emoji": "🎤",
+      "meaning": "唱",
+      "category": "action",
+      "sentence": "I sing a song.",
+      "level": 1
+    },
+    {
+      "word": "mom",
+      "emoji": "👩",
+      "meaning": "妈妈",
+      "category": "family",
+      "sentence": "I love my mom.",
+      "level": 1
+    },
+    {
+      "word": "dad",
+      "emoji": "👨",
+      "meaning": "爸爸",
+      "category": "family",
+      "sentence": "I love my dad.",
+      "level": 1
+    },
+    {
+      "word": "baby",
+      "emoji": "👶",
+      "meaning": "宝宝",
+      "category": "family",
+      "sentence": "The baby is cute.",
+      "level": 1
+    },
+    {
+      "word": "boy",
+      "emoji": "👦",
+      "meaning": "男孩",
+      "category": "people",
+      "sentence": "He is a boy.",
+      "level": 1
+    },
+    {
+      "word": "girl",
+      "emoji": "👧",
+      "meaning": "女孩",
+      "category": "people",
+      "sentence": "She is a girl.",
+      "level": 1
+    },
+    {
+      "word": "friend",
+      "emoji": "👫",
+      "meaning": "朋友",
+      "category": "people",
+      "sentence": "You are my friend.",
+      "level": 1
+    },
+    {
+      "word": "teacher",
+      "emoji": "👩‍🏫",
+      "meaning": "老师",
+      "category": "people",
+      "sentence": "The teacher is kind.",
+      "level": 1
+    },
+    {
+      "word": "orange",
+      "emoji": "🍊",
+      "meaning": "橘子",
+      "category": "food",
+      "sentence": "I eat an orange.",
+      "level": 2
+    },
+    {
+      "word": "banana",
+      "emoji": "🍌",
+      "meaning": "香蕉",
+      "category": "food",
+      "sentence": "I like bananas.",
+      "level": 2
+    },
+    {
+      "word": "grape",
+      "emoji": "🍇",
+      "meaning": "葡萄",
+      "category": "food",
+      "sentence": "Grapes are sweet.",
+      "level": 2
+    },
+    {
+      "word": "pear",
+      "emoji": "🍐",
+      "meaning": "梨",
+      "category": "food",
+      "sentence": "The pear is green.",
+      "level": 2
+    },
+    {
+      "word": "peach",
+      "emoji": "🍑",
+      "meaning": "桃子",
+      "category": "food",
+      "sentence": "The peach is soft.",
+      "level": 2
+    },
+    {
+      "word": "bread",
+      "emoji": "🍞",
+      "meaning": "面包",
+      "category": "food",
+      "sentence": "I eat bread.",
+      "level": 2
+    },
+    {
+      "word": "meat",
+      "emoji": "🍖",
+      "meaning": "肉",
+      "category": "food",
+      "sentence": "I eat meat.",
+      "level": 2
+    },
+    {
+      "word": "soup",
+      "emoji": "🍲",
+      "meaning": "汤",
+      "category": "food",
+      "sentence": "The soup is hot.",
+      "level": 2
+    },
+    {
+      "word": "tea",
+      "emoji": "🍵",
+      "meaning": "茶",
+      "category": "food",
+      "sentence": "I drink tea.",
+      "level": 2
+    },
+    {
+      "word": "juice",
+      "emoji": "🧃",
+      "meaning": "果汁",
+      "category": "food",
+      "sentence": "I drink juice.",
+      "level": 2
+    },
+    {
+      "word": "cookie",
+      "emoji": "🍪",
+      "meaning": "饼干",
+      "category": "food",
+      "sentence": "I eat a cookie.",
+      "level": 2
+    },
+    {
+      "word": "candy",
+      "emoji": "🍬",
+      "meaning": "糖果",
+      "category": "food",
+      "sentence": "I like candy.",
+      "level": 2
+    },
+    {
+      "word": "horse",
+      "emoji": "🐴",
+      "meaning": "马",
+      "category": "animal",
+      "sentence": "The horse runs fast.",
+      "level": 2
+    },
+    {
+      "word": "sheep",
+      "emoji": "🐑",
+      "meaning": "羊",
+      "category": "animal",
+      "sentence": "The sheep is white.",
+      "level": 2
+    },
+    {
+      "word": "goat",
+      "emoji": "🐐",
+      "meaning": "山羊",
+      "category": "animal",
+      "sentence": "The goat eats grass.",
+      "level": 2
+    },
+    {
+      "word": "rabbit",
+      "emoji": "🐰",
+      "meaning": "兔子",
+      "category": "animal",
+      "sentence": "The rabbit is cute.",
+      "level": 2
+    },
+    {
+      "word": "bear",
+      "emoji": "🐻",
+      "meaning": "熊",
+      "category": "animal",
+      "sentence": "The bear is brown.",
+      "level": 2
+    },
+    {
+      "word": "tiger",
+      "emoji": "🐯",
+      "meaning": "老虎",
+      "category": "animal",
+      "sentence": "The tiger is strong.",
+      "level": 2
+    },
+    {
+      "word": "lion",
+      "emoji": "🦁",
+      "meaning": "狮子",
+      "category": "animal",
+      "sentence": "The lion is king.",
+      "level": 2
+    },
+    {
+      "word": "monkey",
+      "emoji": "🐵",
+      "meaning": "猴子",
+      "category": "animal",
+      "sentence": "The monkey is funny.",
+      "level": 2
+    },
+    {
+      "word": "panda",
+      "emoji": "🐼",
+      "meaning": "熊猫",
+      "category": "animal",
+      "sentence": "The panda is cute.",
+      "level": 2
+    },
+    {
+      "word": "snake",
+      "emoji": "🐍",
+      "meaning": "蛇",
+      "category": "animal",
+      "sentence": "The snake is long.",
+      "level": 2
+    },
+    {
+      "word": "frog",
+      "emoji": "🐸",
+      "meaning": "青蛙",
+      "category": "animal",
+      "sentence": "The frog can jump.",
+      "level": 2
+    },
+    {
+      "word": "bee",
+      "emoji": "🐝",
+      "meaning": "蜜蜂",
+      "category": "animal",
+      "sentence": "The bee makes honey.",
+      "level": 2
+    },
+    {
+      "word": "ant",
+      "emoji": "🐜",
+      "meaning": "蚂蚁",
+      "category": "animal",
+      "sentence": "The ant is small.",
+      "level": 2
+    },
+    {
+      "word": "spider",
+      "emoji": "🕷️",
+      "meaning": "蜘蛛",
+      "category": "animal",
+      "sentence": "The spider makes a web.",
+      "level": 2
+    },
+    {
+      "word": "butterfly",
+      "emoji": "🦋",
+      "meaning": "蝴蝶",
+      "category": "animal",
+      "sentence": "The butterfly is pretty.",
+      "level": 2
+    },
+    {
+      "word": "chicken",
+      "emoji": "🐔",
+      "meaning": "鸡",
+      "category": "animal",
+      "sentence": "The chicken says cluck.",
+      "level": 2
+    },
+    {
+      "word": "train",
+      "emoji": "🚂",
+      "meaning": "火车",
+      "category": "vehicle",
+      "sentence": "The train is long.",
+      "level": 2
+    },
+    {
+      "word": "plane",
+      "emoji": "✈️",
+      "meaning": "飞机",
+      "category": "vehicle",
+      "sentence": "The plane can fly.",
+      "level": 2
+    },
+    {
+      "word": "boat",
+      "emoji": "⛵",
+      "meaning": "小船",
+      "category": "vehicle",
+      "sentence": "The boat is on water.",
+      "level": 2
+    },
+    {
+      "word": "bike",
+      "emoji": "🚲",
+      "meaning": "自行车",
+      "category": "vehicle",
+      "sentence": "I ride a bike.",
+      "level": 2
+    },
+    {
+      "word": "ship",
+      "emoji": "🚢",
+      "meaning": "轮船",
+      "category": "vehicle",
+      "sentence": "The ship is big.",
+      "level": 2
+    },
+    {
+      "word": "pink",
+      "emoji": "💗",
+      "meaning": "粉色",
+      "category": "color",
+      "sentence": "The pig is pink.",
+      "level": 2
+    },
+    {
+      "word": "purple",
+      "emoji": "🟣",
+      "meaning": "紫色",
+      "category": "color",
+      "sentence": "I like purple.",
+      "level": 2
+    },
+    {
+      "word": "brown",
+      "emoji": "🟤",
+      "meaning": "棕色",
+      "category": "color",
+      "sentence": "The bear is brown.",
+      "level": 2
+    },
+    {
+      "word": "gray",
+      "emoji": "⬜",
+      "meaning": "灰色",
+      "category": "color",
+      "sentence": "The mouse is gray.",
+      "level": 2
+    },
+    {
+      "word": "six",
+      "emoji": "6️⃣",
+      "meaning": "六",
+      "category": "number",
+      "sentence": "I have six apples.",
+      "level": 2
+    },
+    {
+      "word": "seven",
+      "emoji": "7️⃣",
+      "meaning": "七",
+      "category": "number",
+      "sentence": "Seven stars shine.",
+      "level": 2
+    },
+    {
+      "word": "eight",
+      "emoji": "8️⃣",
+      "meaning": "八",
+      "category": "number",
+      "sentence": "I see eight ducks.",
+      "level": 2
+    },
+    {
+      "word": "nine",
+      "emoji": "9️⃣",
+      "meaning": "九",
+      "category": "number",
+      "sentence": "Nine birds fly.",
+      "level": 2
+    },
+    {
+      "word": "ten",
+      "emoji": "🔟",
+      "meaning": "十",
+      "category": "number",
+      "sentence": "Ten fish swim.",
+      "level": 2
+    },
+    {
+      "word": "tall",
+      "emoji": "📏",
+      "meaning": "高",
+      "category": "size",
+      "sentence": "The tree is tall.",
+      "level": 2
+    },
+    {
+      "word": "short",
+      "emoji": "✂️",
+      "meaning": "矮",
+      "category": "size",
+      "sentence": "The dog is short.",
+      "level": 2
+    },
+    {
+      "word": "fast",
+      "emoji": "⚡",
+      "meaning": "快",
+      "category": "speed",
+      "sentence": "The car is fast.",
+      "level": 2
+    },
+    {
+      "word": "slow",
+      "emoji": "🐢",
+      "meaning": "慢",
+      "category": "speed",
+      "sentence": "The turtle is slow.",
+      "level": 2
+    },
+    {
+      "word": "clean",
+      "emoji": "🧼",
+      "meaning": "干净",
+      "category": "state",
+      "sentence": "The room is clean.",
+      "level": 2
+    },
+    {
+      "word": "dirty",
+      "emoji": "🤢",
+      "meaning": "脏",
+      "category": "state",
+      "sentence": "My hands are dirty.",
+      "level": 2
+    },
+    {
+      "word": "open",
+      "emoji": "🔓",
+      "meaning": "打开",
+      "category": "action",
+      "sentence": "Open the door.",
+      "level": 2
+    },
+    {
+      "word": "close",
+      "emoji": "🔒",
+      "meaning": "关闭",
+      "category": "action",
+      "sentence": "Close the book.",
+      "level": 2
+    },
+    {
+      "word": "come",
+      "emoji": "➡️",
+      "meaning": "来",
+      "category": "action",
+      "sentence": "Come here.",
+      "level": 2
+    },
+    {
+      "word": "go",
+      "emoji": "⬅️",
+      "meaning": "去",
+      "category": "action",
+      "sentence": "Let us go.",
+      "level": 2
+    },
+    {
+      "word": "sit",
+      "emoji": "🪑",
+      "meaning": "坐",
+      "category": "action",
+      "sentence": "Sit down please.",
+      "level": 2
+    },
+    {
+      "word": "stand",
+      "emoji": "🧍",
+      "meaning": "站",
+      "category": "action",
+      "sentence": "Stand up please.",
+      "level": 2
+    },
+    {
+      "word": "walk",
+      "emoji": "🚶",
+      "meaning": "走",
+      "category": "action",
+      "sentence": "I walk to school.",
+      "level": 2
+    },
+    {
+      "word": "swim",
+      "emoji": "🏊",
+      "meaning": "游泳",
+      "category": "action",
+      "sentence": "Fish can swim.",
+      "level": 2
+    },
+    {
+      "word": "fly",
+      "emoji": "✈️",
+      "meaning": "飞",
+      "category": "action",
+      "sentence": "Birds can fly.",
+      "level": 2
+    },
+    {
+      "word": "look",
+      "emoji": "👀",
+      "meaning": "看",
+      "category": "action",
+      "sentence": "Look at the star.",
+      "level": 2
+    },
+    {
+      "word": "listen",
+      "emoji": "👂",
+      "meaning": "听",
+      "category": "action",
+      "sentence": "Listen to me.",
+      "level": 2
+    },
+    {
+      "word": "speak",
+      "emoji": "🗣️",
+      "meaning": "说",
+      "category": "action",
+      "sentence": "I speak English.",
+      "level": 2
+    },
+    {
+      "word": "help",
+      "emoji": "🤝",
+      "meaning": "帮助",
+      "category": "action",
+      "sentence": "I can help you.",
+      "level": 2
+    },
+    {
+      "word": "love",
+      "emoji": "❤️",
+      "meaning": "爱",
+      "category": "feeling",
+      "sentence": "I love my mom.",
+      "level": 2
+    },
+    {
+      "word": "father",
+      "emoji": "👨",
+      "meaning": "父亲",
+      "category": "family",
+      "sentence": "My father is tall.",
+      "level": 2
+    },
+    {
+      "word": "mother",
+      "emoji": "👩",
+      "meaning": "母亲",
+      "category": "family",
+      "sentence": "My mother is kind.",
+      "level": 2
+    },
+    {
+      "word": "sister",
+      "emoji": "👧",
+      "meaning": "姐妹",
+      "category": "family",
+      "sentence": "My sister is small.",
+      "level": 2
+    },
+    {
+      "word": "brother",
+      "emoji": "👦",
+      "meaning": "兄弟",
+      "category": "family",
+      "sentence": "My brother runs fast.",
+      "level": 2
+    },
+    {
+      "word": "grandma",
+      "emoji": "👵",
+      "meaning": "奶奶",
+      "category": "family",
+      "sentence": "Grandma is nice.",
+      "level": 2
+    },
+    {
+      "word": "grandpa",
+      "emoji": "👴",
+      "meaning": "爷爷",
+      "category": "family",
+      "sentence": "Grandpa is funny.",
+      "level": 2
+    },
+    {
+      "word": "doctor",
+      "emoji": "🩺",
+      "meaning": "医生",
+      "category": "people",
+      "sentence": "The doctor helps us.",
+      "level": 2
+    },
+    {
+      "word": "nurse",
+      "emoji": "🧑‍⚕️",
+      "meaning": "护士",
+      "category": "people",
+      "sentence": "The nurse is kind.",
+      "level": 2
+    },
+    {
+      "word": "police",
+      "emoji": "👮",
+      "meaning": "警察",
+      "category": "people",
+      "sentence": "The police keeps us safe.",
+      "level": 2
+    },
+    {
+      "word": "fire",
+      "emoji": "🔥",
+      "meaning": "火",
+      "category": "nature",
+      "sentence": "Fire is hot.",
+      "level": 3
+    },
+    {
+      "word": "wind",
+      "emoji": "🌬️",
+      "meaning": "风",
+      "category": "nature",
+      "sentence": "The wind is strong.",
+      "level": 3
+    },
+    {
+      "word": "rain",
+      "emoji": "🌧️",
+      "meaning": "雨",
+      "category": "nature",
+      "sentence": "The rain is cold.",
+      "level": 3
+    },
+    {
+      "word": "snow",
+      "emoji": "❄️",
+      "meaning": "雪",
+      "category": "nature",
+      "sentence": "Snow is white.",
+      "level": 3
+    },
+    {
+      "word": "cloud",
+      "emoji": "☁️",
+      "meaning": "云",
+      "category": "nature",
+      "sentence": "The cloud is white.",
+      "level": 3
+    },
+    {
+      "word": "mountain",
+      "emoji": "⛰️",
+      "meaning": "山",
+      "category": "nature",
+      "sentence": "The mountain is high.",
+      "level": 3
+    },
+    {
+      "word": "river",
+      "emoji": "🌊",
+      "meaning": "河",
+      "category": "nature",
+      "sentence": "The river is long.",
+      "level": 3
+    },
+    {
+      "word": "sea",
+      "emoji": "🌊",
+      "meaning": "海",
+      "category": "nature",
+      "sentence": "The sea is blue.",
+      "level": 3
+    },
+    {
+      "word": "island",
+      "emoji": "🏝️",
+      "meaning": "岛",
+      "category": "nature",
+      "sentence": "The island is small.",
+      "level": 3
+    },
+    {
+      "word": "forest",
+      "emoji": "🌲",
+      "meaning": "森林",
+      "category": "nature",
+      "sentence": "The forest is green.",
+      "level": 3
+    },
+    {
+      "word": "leaf",
+      "emoji": "🍃",
+      "meaning": "叶子",
+      "category": "nature",
+      "sentence": "The leaf is green.",
+      "level": 3
+    },
+    {
+      "word": "grass",
+      "emoji": "🌿",
+      "meaning": "草",
+      "category": "nature",
+      "sentence": "The grass is green.",
+      "level": 3
+    },
+    {
+      "word": "bridge",
+      "emoji": "🌉",
+      "meaning": "桥",
+      "category": "place",
+      "sentence": "The bridge is long.",
+      "level": 3
+    },
+    {
+      "word": "road",
+      "emoji": "🛣️",
+      "meaning": "路",
+      "category": "place",
+      "sentence": "The road is wide.",
+      "level": 3
+    },
+    {
+      "word": "park",
+      "emoji": "🌳",
+      "meaning": "公园",
+      "category": "place",
+      "sentence": "I play in the park.",
+      "level": 3
+    },
+    {
+      "word": "zoo",
+      "emoji": "🦓",
+      "meaning": "动物园",
+      "category": "place",
+      "sentence": "I see animals at the zoo.",
+      "level": 3
+    },
+    {
+      "word": "farm",
+      "emoji": "🚜",
+      "meaning": "农场",
+      "category": "place",
+      "sentence": "The farm has cows.",
+      "level": 3
+    },
+    {
+      "word": "shop",
+      "emoji": "🏪",
+      "meaning": "商店",
+      "category": "place",
+      "sentence": "I buy food at the shop.",
+      "level": 3
+    },
+    {
+      "word": "library",
+      "emoji": "📚",
+      "meaning": "图书馆",
+      "category": "place",
+      "sentence": "I read at the library.",
+      "level": 3
+    },
+    {
+      "word": "hospital",
+      "emoji": "🏥",
+      "meaning": "医院",
+      "category": "place",
+      "sentence": "The doctor is at the hospital.",
+      "level": 3
+    },
+    {
+      "word": "strong",
+      "emoji": "💪",
+      "meaning": "强壮",
+      "category": "state",
+      "sentence": "The lion is strong.",
+      "level": 3
+    },
+    {
+      "word": "weak",
+      "emoji": "🥀",
+      "meaning": "弱",
+      "category": "state",
+      "sentence": "The baby is weak.",
+      "level": 3
+    },
+    {
+      "word": "heavy",
+      "emoji": "🏋️",
+      "meaning": "重",
+      "category": "state",
+      "sentence": "The box is heavy.",
+      "level": 3
+    },
+    {
+      "word": "light",
+      "emoji": "🪶",
+      "meaning": "轻",
+      "category": "state",
+      "sentence": "The feather is light.",
+      "level": 3
+    },
+    {
+      "word": "round",
+      "emoji": "⚪",
+      "meaning": "圆",
+      "category": "shape",
+      "sentence": "The ball is round.",
+      "level": 3
+    },
+    {
+      "word": "square",
+      "emoji": "⬛",
+      "meaning": "方",
+      "category": "shape",
+      "sentence": "The box is square.",
+      "level": 3
+    },
+    {
+      "word": "triangle",
+      "emoji": "🔺",
+      "meaning": "三角",
+      "category": "shape",
+      "sentence": "The flag is a triangle.",
+      "level": 3
+    },
+    {
+      "word": "long",
+      "emoji": "📏",
+      "meaning": "长",
+      "category": "size",
+      "sentence": "The snake is long.",
+      "level": 3
+    },
+    {
+      "word": "wide",
+      "emoji": "↔️",
+      "meaning": "宽",
+      "category": "size",
+      "sentence": "The road is wide.",
+      "level": 3
+    },
+    {
+      "word": "narrow",
+      "emoji": "↕️",
+      "meaning": "窄",
+      "category": "size",
+      "sentence": "The path is narrow.",
+      "level": 3
+    },
+    {
+      "word": "thick",
+      "emoji": "📚",
+      "meaning": "厚",
+      "category": "size",
+      "sentence": "The book is thick.",
+      "level": 3
+    },
+    {
+      "word": "thin",
+      "emoji": "📄",
+      "meaning": "薄",
+      "category": "size",
+      "sentence": "The paper is thin.",
+      "level": 3
+    },
+    {
+      "word": "quiet",
+      "emoji": "🤫",
+      "meaning": "安静",
+      "category": "state",
+      "sentence": "The library is quiet.",
+      "level": 3
+    },
+    {
+      "word": "loud",
+      "emoji": "🔊",
+      "meaning": "吵",
+      "category": "state",
+      "sentence": "The music is loud.",
+      "level": 3
+    },
+    {
+      "word": "bright",
+      "emoji": "💡",
+      "meaning": "亮",
+      "category": "state",
+      "sentence": "The sun is bright.",
+      "level": 3
+    },
+    {
+      "word": "dark",
+      "emoji": "🌑",
+      "meaning": "暗",
+      "category": "state",
+      "sentence": "The night is dark.",
+      "level": 3
+    },
+    {
+      "word": "warm",
+      "emoji": "🔥",
+      "meaning": "暖",
+      "category": "weather",
+      "sentence": "The soup is warm.",
+      "level": 3
+    },
+    {
+      "word": "cool",
+      "emoji": "❄️",
+      "meaning": "凉",
+      "category": "weather",
+      "sentence": "The wind is cool.",
+      "level": 3
+    }
+  ]
+}

@@ -2,8 +2,47 @@ export default {
   pages: [
     'pages/index/index',
     'pages/module/index',
-    'pages/game/index',
   ],
+  subPackages: [
+    {
+      root: 'packages/math',
+      pages: ['pages/game/index'],
+    },
+    {
+      root: 'packages/english',
+      pages: ['pages/game/index'],
+    },
+    {
+      root: 'packages/hanzi',
+      pages: ['pages/game/index'],
+    },
+    {
+      root: 'packages/pinyin',
+      pages: ['pages/game/index'],
+    },
+    {
+      root: 'packages/poetry',
+      pages: ['pages/game/index'],
+    },
+    {
+      root: 'packages/geometry',
+      pages: ['pages/game/index'],
+    },
+  ],
+  // 分包预下载：进入主包页面后预下载所有分包，避免进游戏时延迟
+  preloadRule: {
+    'pages/index/index': {
+      network: 'all',
+      packages: [
+        'packages/math',
+        'packages/english',
+        'packages/hanzi',
+        'packages/pinyin',
+        'packages/poetry',
+        'packages/geometry',
+      ],
+    },
+  },
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#FFF9F0',
