@@ -33,5 +33,5 @@ export const isWeb: boolean = !isMiniProgram;
 // ---------------------------------------------------------------------------
 
 export { storage } from './storage';
-export { createTtsBackend, setCloudAudioBaseUrl, type TtsBackend } from './tts';
+export { createTtsBackend, type TtsBackend } from './tts';
 export { createAudioContext, type AudioContextLike } from './audio';

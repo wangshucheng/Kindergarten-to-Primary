@@ -52,7 +52,7 @@ export default {
     navigationBarTextStyle: 'black',
   },
   // TTS 方案：预生成音频 + 三级缓存（无需 WechatSI 插件）
-  // 音频文件上传到云存储后，通过 setCloudAudioBaseUrl() 配置 URL
-  // 云开发（用于图片/音频存储，后续启用）
-  // cloud: true,
+  // 音频/图片上传到微信云存储后，运行时由 wx.cloud 签名临时凭证访问，
+  // 需在 app.ts 启动 wx.cloud.init({ env })，文件无需公开读权限。
+  cloud: true,
 };

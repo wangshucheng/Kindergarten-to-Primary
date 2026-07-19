@@ -1,8 +1,9 @@
-import { View, Text, Image, Input, ScrollView, Picker } from '@tarojs/components';
+import { View, Text, Input, ScrollView, Picker } from '@tarojs/components';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { GameProps } from '../../types';
 import { useTTS } from '../../../sound/useTTS';
 import { computeStars } from '../../../utils/gameLoop';
+import { CloudImage } from '../../../components/CloudImage';
 import {
   getCategories,
   getWordsByCategory,
@@ -21,8 +22,6 @@ export function CategoryLearnGame({ sound, tts: ttsManager, onComplete }: GamePr
   const [view, setView] = useState<View>('categories');
   const [activeTheme, setActiveTheme] = useState<string | null>(null);
   const [speakingAll, setSpeakingAll] = useState(false);
-  // 图片加载失败（如云端 403）的单词，回退显示 emoji
-  const [imgFailed, setImgFailed] = useState<Set<string>>(new Set());
   const startRef = useRef<number>(Date.now());
   const speakAllTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -168,23 +167,12 @@ export function CategoryLearnGame({ sound, tts: ttsManager, onComplete }: GamePr
             className="flex flex-col items-center gap-1 rounded-3xl bg-white shadow-soft p-3 transition-all active:scale-95 hover:bg-cream"
             style={{ touchAction: 'manipulation' }}
           >
-            {w.image && !imgFailed.has(w.en) ? (
-              <Image
-                src={w.image}
-                alt={w.en}
-                className="w-16 h-16 object-cover rounded-2xl"
-                loading="lazy"
-                onError={() =>
-                  setImgFailed((prev) => {
-                    const next = new Set(prev);
-                    next.add(w.en);
-                    return next;
-                  })
-                }
-              />
-            ) : (
-              <Text className="text-4xl leading-none">{w.emoji}</Text>
-            )}
+            <CloudImage
+              fileId={w.image}
+              emoji={w.emoji}
+              alt={w.en}
+              className="w-16 h-16 object-cover rounded-2xl"
+            />
             <Text className="text-ink font-extrabold text-base">{w.en}</Text>
             <Text className="text-inkSoft text-xs">{w.zh}</Text>
             {w.example && (

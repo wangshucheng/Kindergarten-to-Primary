@@ -7,8 +7,9 @@
  * 小程序端方案说明：
  *   放弃 WechatSI 插件（受类目/主体限制），改用预生成音频方案。
  *   1. 开发阶段用 scripts/genWordAudios.mjs 批量生成单词 MP3
- *   2. 上传到微信云存储（或 CDN）
- *   3. 小程序运行时按需下载并缓存到本地（wx.env.USER_DATA_PATH）
+ *   2. 上传到微信云存储 audio/words/
+ *   3. 小程序运行时通过 wx.cloud.downloadFile(fileID) 按需下载并缓存到本地
+ *      （wx.cloud 自动签发临时凭证，无需文件公开读权限，规避 403）
  *   4. 播放时优先从缓存读取，避免重复下载
  *
  * 三级缓存查找顺序：
@@ -18,6 +19,7 @@
  */
 
 import wordAudios from '../data/word-audios.json';
+import { CLOUD_FILE_ID_PREFIX } from '../cloud-config';
 
 export interface TtsBackend {
   /** 朗读文本 */
@@ -104,19 +106,17 @@ export class WebTtsBackend implements TtsBackend {
 // 小程序实现：预生成音频 + 三级缓存（内存 → 本地文件 → 云存储）
 // ---------------------------------------------------------------------------
 
-/** 音频映射表：word → 音频路径（如 "one" → "/audio/words/one.mp3"） */
+/** 音频映射表：word → 音频相对路径（如 "one" → "/audio/words/one.mp3"），仅用于判断是否有预生成音频 */
 const audioMap = wordAudios as Record<string, string>;
 
-/** 云存储基础 URL（需在小程序初始化时通过 setCloudAudioBaseUrl 配置） */
-let cloudAudioBaseUrl = '';
-
 /**
- * 配置云存储音频基础 URL。
- * 小程序初始化时调用一次，设置音频文件所在的云端路径。
- * @example setCloudAudioBaseUrl('https://your-cdn.com/audio/words/')
+ * 大小写不敏感的查找表：lowercasedWord → 云存储相对路径（保留 json 中的原始文件名大小写）。
+ * 云存储路径区分大小写（如 Monday.mp3 ≠ monday.mp3），必须用 json 记录的真实文件名拼接 fileID，
+ * 因此这里以小写 key 索引，但值保留原始大小写。
  */
-export function setCloudAudioBaseUrl(url: string): void {
-  cloudAudioBaseUrl = url.endsWith('/') ? url : url + '/';
+const audioRelByWord: Record<string, string> = {};
+for (const [w, rel] of Object.entries(audioMap)) {
+  audioRelByWord[w.toLowerCase().trim()] = rel as string;
 }
 
 class WxTtsBackend implements TtsBackend {
@@ -139,10 +139,10 @@ class WxTtsBackend implements TtsBackend {
     // 停止上一个播放
     this.stop();
 
-    // 查找音频映射（小写化匹配）
+    // 查找音频映射（大小写不敏感），保留 json 中的原始文件名大小写
     const key = text.toLowerCase().trim();
-    const audioPath = audioMap[key];
-    if (!audioPath) {
+    const rel = audioRelByWord[key];
+    if (!rel) {
       // 未预生成的文本：静默跳过（小程序端无法实时 TTS）
       opts?.onEnd?.();
       return;
@@ -157,7 +157,7 @@ class WxTtsBackend implements TtsBackend {
 
     // L2 本地文件检查 + L3 云存储下载
     const localPath = this.getLocalPath(key);
-    this.tryLocalOrDownload(key, localPath, opts);
+    this.tryLocalOrDownload(key, rel, localPath, opts);
   }
 
   /** 获取单词的本地缓存路径 */
@@ -168,6 +168,7 @@ class WxTtsBackend implements TtsBackend {
   /** 检查本地文件是否存在，不存在则从云存储下载 */
   private tryLocalOrDownload(
     word: string,
+    rel: string,
     localPath: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
   ): void {
@@ -191,12 +192,13 @@ class WxTtsBackend implements TtsBackend {
     }
 
     // L3 云存储下载
-    this.downloadFromCloud(word, localPath, opts);
+    this.downloadFromCloud(word, rel, localPath, opts);
   }
 
-  /** 从云存储下载音频到本地 */
+  /** 从云存储下载音频到本地（使用 wx.cloud.downloadFile + cloud:// 文件 ID，自动签名） */
   private downloadFromCloud(
     word: string,
+    rel: string,
     localPath: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
   ): void {
@@ -213,8 +215,8 @@ class WxTtsBackend implements TtsBackend {
       return;
     }
 
-    // 没配置云存储 URL，直接跳过
-    if (!cloudAudioBaseUrl) {
+    // 云开发不可用（未 init）时直接跳过
+    if (typeof wx === 'undefined' || typeof wx.cloud?.downloadFile !== 'function') {
       opts?.onEnd?.();
       return;
     }
@@ -223,9 +225,10 @@ class WxTtsBackend implements TtsBackend {
     const callbacks = new Set<(path: string | null) => void>();
     this.pendingDownloads.set(word, callbacks);
 
-    const cloudUrl = `${cloudAudioBaseUrl}${word}.mp3`;
-    wx.downloadFile({
-      url: cloudUrl,
+    // rel 形如 "/audio/words/Monday.mp3"，保留原始大小写拼接 cloud 文件 ID
+    const fileID = `${CLOUD_FILE_ID_PREFIX}${rel.replace(/^\//, '')}`;
+    wx.cloud.downloadFile({
+      fileID,
       filePath: localPath,
       success: (res) => {
         if (res.statusCode === 200) {

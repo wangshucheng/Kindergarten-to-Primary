@@ -6,8 +6,9 @@
  *
  * 小程序端方案：
  *   由于 504 张图片总体积约 85MB（超过小程序 20MB 总包限制），
- *   图片必须上传到云存储/CDN，运行时通过 setCloudImageBaseUrl() 配置基础 URL。
- *   未配置 baseUrl 时返回相对路径（仅用于 Web 端调试）。
+ *   图片必须上传到微信云存储，运行时通过 cloud:// 文件 ID 访问。
+ *   具体访问见 components/CloudImage —— 用 wx.cloud.getTempFileURL 换取
+ *   临时 URL 后交给 <Image>，无需文件公开读权限。
  *
  * 三级回退策略：
  *   word-images.json[word]  →  english.json 的 emoji  →  主题代表 emoji
@@ -15,6 +16,7 @@
 import wordImagesRaw from './word-images.json';
 import eng from './english.json';
 import { THEME_EMOJI } from './vocabData';
+import { buildImageFileId } from '../cloud-config';
 
 const wordImages = wordImagesRaw as Record<string, string>;
 
@@ -23,29 +25,18 @@ const emojiByWord: Record<string, string> = Object.fromEntries(
   (eng as { words: { word: string; emoji: string }[] }).words.map((w) => [w.word, w.emoji]),
 );
 
-/** 云存储图片基础 URL（需在小程序初始化时通过 setCloudImageBaseUrl 配置） */
-let cloudImageBaseUrl = '';
-
 /**
- * 配置云存储图片基础 URL。
- * 小程序初始化时调用一次，设置图片文件所在的云端路径。
- * @example setCloudImageBaseUrl('https://your-cdn.com/images/words/')
- */
-export function setCloudImageBaseUrl(url: string): void {
-  cloudImageBaseUrl = url.endsWith('/') ? url : url + '/';
-}
-
-/**
- * 获取单词的图片 URL（若已生成）。
- * @returns 完整 URL（如 "https://cdn.com/images/words/cat.png"）或相对路径，或 null
+ * 获取单词的图片 cloud 文件 ID（若已生成）。
+ * 返回形如 "cloud://<env>.<suffix>/images/words/cat.png"，
+ * 由 CloudImage 组件解析为临时 URL；非小程序环境 / 无图时返回 null。
+ * @returns cloud:// 文件 ID 或 null
  */
 export function getWordImage(word: string): string | null {
   const rel = wordImages[word];
   if (!rel) return null;
-  // 拼接云存储 base URL（如配置）；否则返回相对路径
-  if (cloudImageBaseUrl) {
-    // rel 形如 "/images/words/cat.png"，去掉前导斜杠后拼接
-    return cloudImageBaseUrl + rel.replace(/^\//, '');
+  // 仅在微信小程序环境返回云文件 ID；Web 端返回相对路径供 public/ 资源使用
+  if (typeof wx !== 'undefined' && typeof wx.getSystemInfoSync === 'function') {
+    return buildImageFileId(rel);
   }
   return rel;
 }
