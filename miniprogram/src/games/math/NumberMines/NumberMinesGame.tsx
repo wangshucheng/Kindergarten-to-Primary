@@ -222,7 +222,7 @@ export function NumberMinesGame({ config, sound, onComplete }: GameProps) {
                 key={o}
                 type="button"
                 onClick={() => answer(o)}
-                className="rounded-3xl bg-mint shadow-soft font-bold text-ink py-3 active:scale-95 text-xl"
+                className="flex items-center justify-center text-center rounded-3xl bg-mint shadow-soft font-bold text-ink py-3 active:scale-95 text-xl"
               >
                 {o}
               </View>

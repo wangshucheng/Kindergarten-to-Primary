@@ -259,20 +259,30 @@ class WxTtsBackend implements TtsBackend {
     path: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
   ): void {
-    const audio = wx.createInnerAudioContext();
-    audio.src = path;
-    audio.onEnded(() => {
+    // 路径无效时直接结束，避免底层 AudioContext 解码报错
+    if (!path) {
       opts?.onEnd?.();
-      audio.destroy();
-      this.currentAudio = null;
-    });
-    audio.onError(() => {
+      return;
+    }
+    try {
+      const audio = wx.createInnerAudioContext();
+      audio.src = path;
+      audio.onEnded(() => {
+        opts?.onEnd?.();
+        audio.destroy();
+        this.currentAudio = null;
+      });
+      audio.onError(() => {
+        // 解码失败（如文件损坏/为空）时静默结束，不影响主流程
+        opts?.onEnd?.();
+        audio.destroy();
+        this.currentAudio = null;
+      });
+      this.currentAudio = audio;
+      audio.play();
+    } catch {
       opts?.onEnd?.();
-      audio.destroy();
-      this.currentAudio = null;
-    });
-    this.currentAudio = audio;
-    audio.play();
+    }
   }
 
   stop(): void {

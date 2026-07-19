@@ -96,7 +96,7 @@ export function PlusMinusLinkGame({ sound, tts, onComplete }: GameProps) {
       disabled={isMatched(item.id)}
       onClick={() => handleItem(item)}
       className={[
-        'h-16 rounded-3xl font-extrabold text-2xl text-ink select-none transition-all duration-150',
+        'flex items-center justify-center text-center h-16 rounded-3xl font-extrabold text-2xl text-ink select-none transition-all duration-150',
         isMatched(item.id)
           ? 'opacity-30 scale-90 bg-white'
           : isSelected(item.id)

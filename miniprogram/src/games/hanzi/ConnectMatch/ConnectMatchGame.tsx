@@ -103,7 +103,7 @@ export function ConnectMatchGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleLeft(p)}
               disabled={isMat(p.id)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
                 isMat(p.id) ? 'opacity-30 bg-white' : isSel(p.id) ? 'bg-lemon ring-4 ring-white shadow-glow' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}
@@ -119,7 +119,7 @@ export function ConnectMatchGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleRight(p)}
               disabled={isMat(p.id)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-xl text-ink transition-all active:scale-95',
                 isMat(p.id) ? 'opacity-30 bg-white' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}

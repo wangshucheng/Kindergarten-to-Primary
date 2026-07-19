@@ -14,12 +14,14 @@ import { CLOUD_AUDIO_BASE_URL, CLOUD_IMAGE_BASE_URL } from './cloud-config';
  */
 class App extends Component<PropsWithChildren> {
   componentDidMount() {
-    // 配置云存储音频/图片基础 URL
-    if (CLOUD_AUDIO_BASE_URL) {
-      setCloudAudioBaseUrl(CLOUD_AUDIO_BASE_URL);
-    }
-    if (CLOUD_IMAGE_BASE_URL) {
-      setCloudImageBaseUrl(CLOUD_IMAGE_BASE_URL);
+    // 仅在小程序环境配置云端 URL；Web 端使用 public/ 下的本地相对路径
+    if (typeof wx !== 'undefined' && typeof wx.getSystemInfoSync === 'function') {
+      if (CLOUD_AUDIO_BASE_URL) {
+        setCloudAudioBaseUrl(CLOUD_AUDIO_BASE_URL);
+      }
+      if (CLOUD_IMAGE_BASE_URL) {
+        setCloudImageBaseUrl(CLOUD_IMAGE_BASE_URL);
+      }
     }
   }
 

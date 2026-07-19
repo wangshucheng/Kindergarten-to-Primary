@@ -126,26 +126,26 @@ export function NumberMergeGame({ sound, tts, onComplete, onExit }: GameProps) {
       <View className="grid grid-cols-3 gap-2 w-44">
         <Text />
         <View
-          className="h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
+          className="flex items-center justify-center text-center h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
           onClick={() => doMove('up')}
         >
           ↑
         </View>
         <Text />
         <View
-          className="h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
+          className="flex items-center justify-center text-center h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
           onClick={() => doMove('left')}
         >
           ←
         </View>
         <View
-          className="h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
+          className="flex items-center justify-center text-center h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
           onClick={() => doMove('down')}
         >
           ↓
         </View>
         <View
-          className="h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
+          className="flex items-center justify-center text-center h-11 rounded-2xl bg-mint shadow-press active:scale-95 text-xl"
           onClick={() => doMove('right')}
         >
           →

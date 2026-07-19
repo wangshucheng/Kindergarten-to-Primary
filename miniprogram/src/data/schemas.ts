@@ -250,7 +250,7 @@ export const ModuleMetaSchema = z.object({
 });
 
 export const ConfigSchema = z.object({
-  appName: z.string().optional().default('幼升小游戏合集'),
+  appName: z.string().optional().default('幼升小合集'),
   modules: z.array(ModuleMetaSchema).optional().default([]),
   achievements: z.array(AchievementDefSchema).optional().default([]),
 });

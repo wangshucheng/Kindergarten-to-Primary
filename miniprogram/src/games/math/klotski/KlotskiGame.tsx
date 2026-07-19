@@ -218,7 +218,7 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
           </View>
           <View
             type="button"
-            className="px-4 py-2 rounded-3xl bg-mint shadow-soft text-ink font-bold"
+            className="flex items-center justify-center text-center px-4 py-2 rounded-3xl bg-mint shadow-soft text-ink font-bold"
             onClick={submitQuestion}
           >
             提交
@@ -250,7 +250,7 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
           </View>
           <View
             type="button"
-            className="px-4 py-2 rounded-3xl bg-mint shadow-soft text-ink font-bold"
+            className="flex items-center justify-center text-center px-4 py-2 rounded-3xl bg-mint shadow-soft text-ink font-bold"
             onClick={submitQuestion}
           >
             提交
@@ -307,7 +307,7 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
         {level.title} · {phase === 'question' ? '先答小题' : `${moves}/${level.moveLimit} 步`}
       </View>
 
-      {hint && <View className="px-4 py-2 rounded-3xl bg-lemon shadow-soft text-ink font-bold">{hint}</View>}
+      {hint && <View className="flex items-center justify-center text-center px-4 py-2 rounded-3xl bg-lemon shadow-soft text-ink font-bold">{hint}</View>}
 
       {phase === 'question' ? (
         renderQuestion()
@@ -350,7 +350,7 @@ export function KlotskiGame({ config, sound, tts: ttsManager, onComplete }: Game
           </View>
           <View
             type="button"
-            className="px-4 py-2 rounded-3xl bg-lemon shadow-soft text-ink font-bold text-sm"
+            className="flex items-center justify-center text-center px-4 py-2 rounded-3xl bg-lemon shadow-soft text-ink font-bold text-sm"
             onClick={() => advanceLevel(levelIndex)}
           >
             🔄 重试本关

@@ -81,7 +81,7 @@ export function PinyinVariantsGame({ sound, tts, onComplete }: GameProps) {
             key={opt}
             onClick={() => handleOption(opt)}
             className={[
-              'h-16 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
+              'flex items-center justify-center text-center h-16 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
               wrongOpt === opt ? 'bg-peach/60 ring-4 ring-red-300 animate-shake' : 'bg-white shadow-soft',
             ].join(' ')}
             style={{ touchAction: 'manipulation' }}

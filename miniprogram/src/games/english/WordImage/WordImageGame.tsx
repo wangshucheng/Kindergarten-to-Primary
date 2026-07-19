@@ -122,7 +122,7 @@ export function WordImageGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleLeft(p)}
               disabled={isMat(p.id)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-xl text-ink transition-all active:scale-95',
                 isMat(p.id) ? 'opacity-30 bg-white' : isSel(p.id) ? 'bg-lemon ring-4 ring-white shadow-glow' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}
@@ -138,7 +138,7 @@ export function WordImageGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleRight(p)}
               disabled={isMat(p.id)}
               className={[
-                'h-14 rounded-3xl text-3xl transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl text-3xl transition-all active:scale-95',
                 isMat(p.id) ? 'opacity-30 bg-white' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}

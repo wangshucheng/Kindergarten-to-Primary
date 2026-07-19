@@ -113,7 +113,7 @@ export function PinyinMatchGame({ sound, tts, onComplete }: GameProps) {
               key={opt}
               onClick={() => handleInitial(opt)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
                 selInitial === opt ? 'bg-mint ring-4 ring-white shadow-glow' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}
@@ -132,7 +132,7 @@ export function PinyinMatchGame({ sound, tts, onComplete }: GameProps) {
               key={opt}
               onClick={() => handleFinal(opt)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
                 selFinal === opt ? 'bg-sky ring-4 ring-white shadow-glow' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}

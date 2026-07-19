@@ -1,7 +1,7 @@
 {
   "miniprogramRoot": "dist/",
   "projectname": "youxiao-games-miniprogram",
-  "description": "幼升小游戏合集小程序版",
+  "description": "幼升小合集小程序版",
   "appid": "wxb8cd3d086b98a817",
   "setting": {
     "urlCheck": true,

@@ -2,7 +2,7 @@
   "name": "youxiao-games-miniprogram",
   "version": "1.0.0",
   "private": true,
-  "description": "幼升小游戏合集 - 微信小程序版（Taro 3 + React）",
+  "description": "幼升小合集 - 微信小程序版（Taro 3 + React）",
   "scripts": {
     "build:weapp": "taro build --type weapp && node scripts/inline-wxss.mjs",
     "dev:weapp": "npm run build:weapp -- --watch"

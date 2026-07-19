@@ -17,13 +17,19 @@ export class SoundManager {
   private master: GainNode | null = null;
   private enabled = true;
   private disposed = false;
+  /** WebAudio 不可用时静默降级（如小程序环境 createWebAudioContext 异常） */
+  private unavailable = false;
 
   /** 懒创建并解锁 AudioContext（必须在用户手势中调用一次） */
   resume(): void {
-    if (this.disposed) return;
-    const ctx = this.ensureCtx();
-    if (ctx && ctx.state === 'suspended') {
-      void ctx.resume();
+    if (this.disposed || this.unavailable) return;
+    try {
+      const ctx = this.ensureCtx();
+      if (ctx && ctx.state === 'suspended') {
+        void ctx.resume();
+      }
+    } catch {
+      this.unavailable = true;
     }
   }
 
@@ -39,15 +45,20 @@ export class SoundManager {
 
   /** 播放指定类型音效 */
   play(type: SoundType): void {
-    if (!this.enabled || this.disposed) return;
-    const ctx = this.ensureCtx();
-    if (!ctx || !this.master) return;
-    if (ctx.state === 'suspended') void ctx.resume();
+    if (!this.enabled || this.disposed || this.unavailable) return;
+    try {
+      const ctx = this.ensureCtx();
+      if (!ctx || !this.master) return;
+      if (ctx.state === 'suspended') void ctx.resume();
 
-    const preset = SOUND_PRESETS[type];
-    const base = ctx.currentTime + 0.001;
-    for (const note of preset.notes) {
-      this.playTone(ctx, this.master, note, base);
+      const preset = SOUND_PRESETS[type];
+      const base = ctx.currentTime + 0.001;
+      for (const note of preset.notes) {
+        this.playTone(ctx, this.master, note, base);
+      }
+    } catch {
+      // AudioContext 不可用（小程序环境兼容性问题）：静默降级，不再报错
+      this.unavailable = true;
     }
   }
 
@@ -58,7 +69,11 @@ export class SoundManager {
   dispose(): void {
     this.disposed = true;
     if (this.ctx) {
-      void this.ctx.close();
+      try {
+        void this.ctx.close();
+      } catch {
+        /* 忽略关闭异常 */
+      }
       this.ctx = null;
       this.master = null;
     }
@@ -85,14 +100,24 @@ export class SoundManager {
   }
 
   private ensureCtx(): AudioContext | null {
-    if (this.disposed) return null;
+    if (this.disposed || this.unavailable) return null;
     if (!this.ctx) {
-      const ctx = createAudioContext();
-      if (!ctx) return null;
-      this.ctx = ctx;
-      this.master = this.ctx.createGain();
-      this.master.gain.value = 0.28;
-      this.master.connect(this.ctx.destination);
+      try {
+        const ctx = createAudioContext();
+        if (!ctx) {
+          this.unavailable = true;
+          return null;
+        }
+        this.ctx = ctx;
+        this.master = this.ctx.createGain();
+        this.master.gain.value = 0.28;
+        this.master.connect(this.ctx.destination);
+      } catch {
+        this.unavailable = true;
+        this.ctx = null;
+        this.master = null;
+        return null;
+      }
     }
     return this.ctx;
   }

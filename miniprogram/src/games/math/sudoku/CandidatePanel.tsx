@@ -27,7 +27,7 @@ export function CandidatePanel({ size, letterMode, onPick }: CandidatePanelProps
             key={v}
             onClick={() => onPick(v)}
             className={[
-              'w-12 h-12 rounded-2xl font-extrabold text-xl shadow-soft transition-all',
+              'flex items-center justify-center text-center w-12 h-12 rounded-2xl font-extrabold text-xl shadow-soft transition-all',
               'bg-white text-ink active:scale-95 hover:bg-mint/30 cursor-pointer',
             ].join(' ')}
           >

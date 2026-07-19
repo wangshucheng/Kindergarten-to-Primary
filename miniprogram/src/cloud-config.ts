@@ -15,8 +15,13 @@
  *   - 图片：getWordImage 返回相对路径，小程序 <Image> 加载失败会显示回退 emoji
  */
 
-/** 音频 CDN 基础 URL（结尾不含斜杠，会自动补） */
+/** 音频 CDN 基础 URL（结尾不含斜杠，会自动补；相对路径由 tts.ts 拼接 word+".mp3"） */
 export const CLOUD_AUDIO_BASE_URL = 'https://636c-cloud1-d5g2o67hb3101ab8a-1455652056.tcb.qcloud.la/audio/words/';
 
-/** 图片 CDN 基础 URL（结尾不含斜杠，会自动补） */
-export const CLOUD_IMAGE_BASE_URL = 'https://636c-cloud1-d5g2o67hb3101ab8a-1455652056.tcb.qcloud.la/images/words/';
+/**
+ * 图片 CDN 基础 URL（云存储桶根地址，结尾不含斜杠）。
+ * word-images.json 中的 rel 已含完整路径（如 "/images/words/cat.png"），
+ * 拼接后得到 "https://...tcb.qcloud.la/images/words/cat.png"。
+ * 注意：该地址须指向「已开放公开读权限」的云存储，否则会 403。
+ */
+export const CLOUD_IMAGE_BASE_URL = 'https://636c-cloud1-d5g2o67hb3101ab8a-1455652056.tcb.qcloud.la/';

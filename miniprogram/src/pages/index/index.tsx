@@ -59,7 +59,7 @@ export default function Index() {
       <View className="text-center mb-8 animate-fadeIn">
         <Text className="text-3xl font-bold text-ink">{config.appName}</Text>
         <Text className="block text-inkSoft text-sm mt-2">
-          小程序版 · 共 {gameMetas.length} 个游戏
+          小程序版 · 共 {gameMetas.length} 个内容
         </Text>
       </View>
 
@@ -93,7 +93,7 @@ export default function Index() {
 
       {/* P0 游戏快捷入口（从 registry 动态读取，id 与注册表一致） */}
       <View className="bg-white rounded-3xl shadow-soft p-4 mb-6">
-        <Text className="text-ink font-bold text-base">P0 精选游戏</Text>
+        <Text className="text-ink font-bold text-base">P0 精选</Text>
         <View className="mt-3 grid grid-cols-2 gap-2">
           {p0Games.map((g) => (
             <View

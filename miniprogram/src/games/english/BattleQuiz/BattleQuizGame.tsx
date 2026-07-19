@@ -161,7 +161,7 @@ export function BattleQuizGame({ sound, tts, onComplete }: GameProps) {
           <View
             key={opt}
             onClick={() => handle(opt)}
-            className="h-14 rounded-3xl font-extrabold text-xl text-ink bg-white shadow-soft active:scale-95 transition-all"
+            className="flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-xl text-ink bg-white shadow-soft active:scale-95 transition-all"
             style={{ touchAction: 'manipulation' }}
           >
             {opt}

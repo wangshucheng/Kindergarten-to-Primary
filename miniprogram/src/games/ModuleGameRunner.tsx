@@ -124,7 +124,7 @@ export default function ModuleGameRunner({ games }: ModuleGameRunnerProps) {
     return (
       <View className="min-h-screen flex items-center justify-center bg-cream">
         <View className="text-center">
-          <Text className="text-2xl text-ink font-bold">游戏不存在</Text>
+          <Text className="text-2xl text-ink font-bold">内容不存在</Text>
           <Text className="block text-inkSoft mt-2">gameId: {gameId}</Text>
         </View>
       </View>

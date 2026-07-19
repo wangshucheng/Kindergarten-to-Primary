@@ -159,7 +159,7 @@ export function SudokuCore(props: SudokuCoreProps) {
                   setSize(s);
                 }}
                 className={[
-                  'px-5 py-3 rounded-3xl font-bold shadow-soft transition-all',
+                  'flex items-center justify-center text-center px-5 py-3 rounded-3xl font-bold shadow-soft transition-all',
                   active
                     ? 'bg-mint text-ink scale-105'
                     : 'bg-white text-ink hover:bg-mint/30 cursor-pointer',
@@ -183,7 +183,7 @@ export function SudokuCore(props: SudokuCoreProps) {
                   setDensity(d);
                 }}
                 className={[
-                  'px-5 py-3 rounded-3xl font-bold shadow-soft transition-all',
+                  'flex items-center justify-center text-center px-5 py-3 rounded-3xl font-bold shadow-soft transition-all',
                   active
                     ? 'bg-lemon text-ink scale-105'
                     : 'bg-white text-ink hover:bg-lemon/40 cursor-pointer',
@@ -202,7 +202,7 @@ export function SudokuCore(props: SudokuCoreProps) {
           }}
           className="mt-2 px-8 py-3 rounded-4xl bg-peach text-white font-extrabold text-lg shadow-soft active:scale-95"
         >
-          开始游戏
+          开始
         </View>
       </View>
     );

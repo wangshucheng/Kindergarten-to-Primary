@@ -90,7 +90,7 @@ export function LetterCaseGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleUpper(p)}
               disabled={isMat(p.id)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-3xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-3xl text-ink transition-all active:scale-95',
                 isMat(p.id) ? 'opacity-30 bg-white' : isSel(p.id) ? 'bg-lemon ring-4 ring-white shadow-glow' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}
@@ -106,7 +106,7 @@ export function LetterCaseGame({ sound, tts, onComplete }: GameProps) {
               onClick={() => handleLower(p)}
               disabled={isMat(p.id)}
               className={[
-                'h-14 rounded-3xl font-extrabold text-3xl text-ink transition-all active:scale-95',
+                'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-3xl text-ink transition-all active:scale-95',
                 isMat(p.id) ? 'opacity-30 bg-white' : 'bg-white shadow-soft',
               ].join(' ')}
               style={{ touchAction: 'manipulation' }}

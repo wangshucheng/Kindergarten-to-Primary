@@ -141,7 +141,7 @@ export function VocabDrillGame({ sound, tts: ttsManager, onComplete }: GameProps
             key={m.key}
             onClick={() => enterMode(m.key)}
             className={[
-              'px-3 py-2 rounded-2xl font-bold transition-all active:scale-95 text-sm',
+              'px-3 py-2 rounded-2xl font-bold transition-all active:scale-95 text-sm text-center',
               mode === m.key ? 'bg-lemon text-ink shadow-press' : 'text-inkSoft',
             ].join(' ')}
           >
@@ -187,7 +187,7 @@ export function VocabDrillGame({ sound, tts: ttsManager, onComplete }: GameProps
       <View className="grid grid-cols-2 gap-3 w-full">
         {q.options.map((opt, i) => {
           const isWrong = wrongOpts.has(i);
-          const base = 'w-full py-5 rounded-3xl font-bold text-xl text-ink shadow-press';
+          const base = 'w-full py-5 rounded-3xl font-bold text-xl text-ink shadow-press flex items-center justify-center text-center';
           const cls = isWrong
             ? 'bg-white/50 opacity-50 animate-shake'
             : 'bg-mint active:scale-95 transition-transform';

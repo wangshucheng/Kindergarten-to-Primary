@@ -1,5 +1,5 @@
 {
-  "appName": "幼升小游戏合集",
+  "appName": "幼升小合集",
   "modules": [
     {
       "key": "math",
@@ -39,9 +39,9 @@
     }
   ],
   "achievements": [
-    { "id": "first-win", "title": "初次通关", "icon": "🌟", "description": "完成任意一局游戏" },
+    { "id": "first-win", "title": "初次通关", "icon": "🌟", "description": "完成任意一局" },
     { "id": "star-three", "title": "三颗星", "icon": "⭐", "description": "获得一次三星评价" },
-    { "id": "explorer", "title": "小探险家", "icon": "🧭", "description": "游玩至少 12 个不同游戏" },
+    { "id": "explorer", "title": "小探险家", "icon": "🧭", "description": "游玩至少 12 个不同内容" },
     { "id": "persistent", "title": "坚持不懈", "icon": "💪", "description": "累计游玩 30 局" },
     { "id": "perfect", "title": "完美主义", "icon": "🏆", "description": "获得三星评价" }
   ]

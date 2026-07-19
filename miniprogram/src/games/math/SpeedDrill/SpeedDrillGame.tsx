@@ -111,7 +111,7 @@ export function SpeedDrillGame({ sound, tts: ttsManager, onComplete }: GameProps
       <View className="grid grid-cols-2 gap-3 w-full">
         {q.options.map((opt) => {
           const isWrong = wrongOpts.has(opt);
-          const base = 'w-full py-5 rounded-3xl font-bold text-2xl text-ink shadow-press';
+          const base = 'w-full py-5 rounded-3xl font-bold text-2xl text-ink shadow-press flex items-center justify-center text-center';
           const cls = isWrong
             ? 'bg-white/50 opacity-50 animate-shake'
             : 'bg-mint active:scale-95 transition-transform';

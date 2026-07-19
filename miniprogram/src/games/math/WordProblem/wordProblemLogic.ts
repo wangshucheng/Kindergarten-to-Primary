@@ -31,7 +31,7 @@ export const WORD_PROBLEMS: WordProblem[] = [
   { id: 2, stem: '一盒铅笔有 8 支，买 5 盒一共有多少支？', equation: '8×5', answer: 40, unit: '支' },
   { id: 3, stem: '操场上一排有 7 棵树，这样的 4 排一共有多少棵？', equation: '7×4', answer: 28, unit: '棵' },
   { id: 4, stem: '一本书 9 元，买 3 本需要多少元？', equation: '9×3', answer: 27, unit: '元' },
-  { id: 5, stem: '每组 6 人做游戏，9 组一共有多少人？', equation: '6×9', answer: 54, unit: '人' },
+  { id: 5, stem: '每组 6 人做活动，9 组一共有多少人？', equation: '6×9', answer: 54, unit: '人' },
   {
     id: 6,
     stem: '一个书包 7 元，妈妈买了 8 个，付 80 元够吗？',

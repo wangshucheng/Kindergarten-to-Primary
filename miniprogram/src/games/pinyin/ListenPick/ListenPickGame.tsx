@@ -81,7 +81,7 @@ export function ListenPickGame({ sound, tts, onComplete }: GameProps) {
 
       <View
         onClick={() => tts.speak(round.target.char)}
-        className="rounded-3xl bg-mint text-2xl font-extrabold text-ink px-6 py-3 shadow-soft active:scale-95 transition-all"
+        className="flex items-center justify-center text-center rounded-3xl bg-mint text-2xl font-extrabold text-ink px-6 py-3 shadow-soft active:scale-95 transition-all"
         style={{ touchAction: 'manipulation' }}
       >
         🔊 再听一次
@@ -94,7 +94,7 @@ export function ListenPickGame({ sound, tts, onComplete }: GameProps) {
             disabled={ended}
             onClick={() => handle(opt)}
             className={[
-              'h-16 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
+              'flex items-center justify-center text-center h-16 rounded-3xl font-extrabold text-2xl text-ink transition-all active:scale-95',
               sel === opt ? 'bg-mint ring-4 ring-white shadow-glow' : 'bg-white shadow-soft',
             ].join(' ')}
             style={{ touchAction: 'manipulation' }}

@@ -31,7 +31,7 @@ export default {
   ],
   // 组件按需注入：仅注入当前页面用到的自定义组件，减少启动加载
   lazyCodeLoading: 'requiredComponents',
-  // 分包预下载：进入主包页面后预下载所有分包，避免进游戏时延迟
+  // 分包预下载：进入主包页面后预下载所有分包，避免进内容时延迟
   preloadRule: {
     'pages/index/index': {
       network: 'all',
@@ -48,7 +48,7 @@ export default {
   window: {
     backgroundTextStyle: 'light',
     navigationBarBackgroundColor: '#FFF9F0',
-    navigationBarTitleText: '幼升小游戏',
+    navigationBarTitleText: '幼升小',
     navigationBarTextStyle: 'black',
   },
   // TTS 方案：预生成音频 + 三级缓存（无需 WechatSI 插件）

@@ -42,13 +42,13 @@ export default function Module() {
       </View>
 
       <View className="mt-4 mb-6 text-center">
-        <Text className="text-sm text-inkSoft">共 {list.length} 个游戏</Text>
+        <Text className="text-sm text-inkSoft">共 {list.length} 个内容</Text>
       </View>
 
       {list.length === 0 ? (
         <View className="text-center py-12">
           <Text className="text-4xl">🚧</Text>
-          <Text className="block text-inkSoft mt-2">该模块暂未上架游戏</Text>
+          <Text className="block text-inkSoft mt-2">该模块暂未上架内容</Text>
         </View>
       ) : (
         <View className="grid grid-cols-2 gap-3">

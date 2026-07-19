@@ -119,7 +119,7 @@ export function SentenceFillGame({ sound, tts, onComplete }: GameProps) {
       <View
         onClick={() => setMode('cloze')}
         className={[
-          'px-3 py-2 rounded-2xl font-bold transition-all active:scale-95 text-sm',
+          'px-3 py-2 rounded-2xl font-bold transition-all active:scale-95 text-sm text-center',
           mode === 'cloze' ? 'bg-lemon text-ink shadow-press' : 'text-inkSoft',
         ].join(' ')}
       >
@@ -128,7 +128,7 @@ export function SentenceFillGame({ sound, tts, onComplete }: GameProps) {
       <View
         onClick={() => setMode('sentence')}
         className={[
-          'px-3 py-2 rounded-2xl font-bold transition-all active:scale-95 text-sm',
+          'px-3 py-2 rounded-2xl font-bold transition-all active:scale-95 text-sm text-center',
           mode === 'sentence' ? 'bg-lemon text-ink shadow-press' : 'text-inkSoft',
         ].join(' ')}
       >
@@ -156,7 +156,7 @@ export function SentenceFillGame({ sound, tts, onComplete }: GameProps) {
             onClick={() => handle(i)}
             disabled={wrongOpt === i}
             className={[
-              'h-14 rounded-3xl font-extrabold text-xl text-ink transition-all active:scale-95',
+              'flex items-center justify-center text-center h-14 rounded-3xl font-extrabold text-xl text-ink transition-all active:scale-95',
               wrongOpt === i ? 'bg-white/50 opacity-50 animate-shake' : 'bg-white shadow-soft',
             ].join(' ')}
             style={{ touchAction: 'manipulation' }}
