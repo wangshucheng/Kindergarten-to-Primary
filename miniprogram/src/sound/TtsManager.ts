@@ -39,11 +39,12 @@ export class TtsManager {
    * @param text 要朗读的文本
    * @param opts.lang 语言标签，默认 'zh-CN'；英文传 'en-US'
    * @param opts.rate 语速，默认 0.9（儿童稍慢）
+   * @param opts.category 'poetry' 时启用古诗情感音色（仅中文）
    * @param opts.onEnd 朗读结束后回调
    */
   speak(
     text: string,
-    opts?: { lang?: string; rate?: number; onEnd?: () => void },
+    opts?: { lang?: string; rate?: number; category?: 'poetry'; onEnd?: () => void },
   ): void {
     if (!this.enabled || this.disposed) {
       opts?.onEnd?.();

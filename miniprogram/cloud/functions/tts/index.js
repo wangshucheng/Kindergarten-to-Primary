@@ -6,12 +6,14 @@
  *
  * 流程：校验入参 → 调腾讯云 TTS（TextToVoice）→ 上传云存储 → 返回 fileID。
  * 文件命名契约（与构建期脚本 scripts/genZhAudios.mjs 一致）：
- *   cloudPath = audio/zh/<sha1("zh-CN|"+text)>.mp3
+ *   category='general'：cloudPath = audio/zh/<sha1("zh-CN|"+text)>.mp3
+ *   category='poetry' ：cloudPath = audio/zh/<sha1("zh-CN|"+text+"|poetry")>.mp3
  * 同一路径重复合成会直接覆盖，客户端三级缓存保证同一设备不会重复调用。
  *
  * 环境变量（云函数控制台配置，勿写进代码）：
  *   TENCENT_SECRET_ID / TENCENT_SECRET_KEY  腾讯云 API 密钥（必填）
- *   TTS_VOICE                               音色 VoiceType（可选，默认 101016 智甜·女童声）
+ *   TTS_VOICE                               普通文本音色（可选，默认 101016 智甜·女童声）
+ *   TTS_POETRY_VOICE                        古诗专属音色（可选，默认 101007 萌趣女声）
  *   TTS_SPEED                               语速 -2~2（可选，默认 0）
  */
 const cloud = require('wx-server-sdk');
@@ -40,7 +42,7 @@ function hmacHex(key, data) {
 }
 
 /** 调腾讯云 TextToVoice，返回音频 Buffer（mp3） */
-function synthesize(text, secretId, secretKey) {
+function synthesize(text, secretId, secretKey, category) {
   const service = 'tts';
   const host = 'tts.tencentcloudapi.com';
   const region = 'ap-guangzhou';
@@ -50,10 +52,14 @@ function synthesize(text, secretId, secretKey) {
   const timestamp = Math.floor(Date.now() / 1000);
   const date = new Date(timestamp * 1000).toISOString().slice(0, 10);
 
+  const isPoetry = category === 'poetry';
   const params = {
     Text: Buffer.from(text, 'utf8').toString('base64'), // 腾讯要求 base64 编码文本
     SessionId: crypto.randomUUID(),
-    VoiceType: Number(process.env.TTS_VOICE || 101016), // 默认：智甜（女童声）
+    // 古诗用萌趣女声（童趣吟诵），其余用智甜女童声
+    VoiceType: Number(isPoetry
+      ? (process.env.TTS_POETRY_VOICE || 101007)
+      : (process.env.TTS_VOICE || 101016)),
     Codec: 'mp3',
     SampleRate: 16000,
     ModelType: 1, // 精品音色
@@ -133,14 +139,17 @@ exports.main = async (event) => {
   if (!/^zh/i.test(lang)) {
     return { ok: false, error: 'unsupported lang' };
   }
+  const category = event.category === 'poetry' ? 'poetry' : 'general';
   const { TENCENT_SECRET_ID, TENCENT_SECRET_KEY } = process.env;
   if (!TENCENT_SECRET_ID || !TENCENT_SECRET_KEY) {
     return { ok: false, error: 'credentials not configured' };
   }
 
-  const cloudPath = `audio/zh/${crypto.createHash('sha1').update(`zh-CN|${text}`, 'utf8').digest('hex')}.mp3`;
+  // 文件名盐须与构建脚本/运行时一致：古诗追加 "|poetry"
+  const salt = category === 'poetry' ? '|poetry' : '';
+  const cloudPath = `audio/zh/${crypto.createHash('sha1').update(`zh-CN|${text}${salt}`, 'utf8').digest('hex')}.mp3`;
   try {
-    const audio = await synthesize(text, TENCENT_SECRET_ID, TENCENT_SECRET_KEY);
+    const audio = await synthesize(text, TENCENT_SECRET_ID, TENCENT_SECRET_KEY, category);
     const res = await cloud.uploadFile({ cloudPath, fileContent: audio });
     return { ok: true, fileID: res.fileID };
   } catch (e) {

@@ -30,7 +30,7 @@ export function PoetryGame({ config, tts: ttsManager }: GameProps) {
 
   const speakWhole = useCallback(() => {
     const body = poem.lines.map((l) => l.text).join('');
-    tts.speakZh(`${poem.title}。${poem.author}。${body}`);
+    tts.speakZh(`${poem.title}。${poem.author}。${body}`, { category: 'poetry' });
   }, [poem, tts]);
 
   const toggleHide = useCallback(() => {
@@ -79,7 +79,7 @@ export function PoetryGame({ config, tts: ttsManager }: GameProps) {
                 <Button
                   variant="mint"
                   size="sm"
-                  onClick={() => tts.speakZh(line.text)}
+                  onClick={() => tts.speakZh(line.text, { category: 'poetry' })}
                   aria-label={`朗读：${line.text}`}
                 >
                   🔊

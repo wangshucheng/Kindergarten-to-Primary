@@ -12,3 +12,5 @@ Thumbs.db
 *.timestamp-*.mjs
 # Taro 构建缓存
 .swc/
+
+.codebuddy/*

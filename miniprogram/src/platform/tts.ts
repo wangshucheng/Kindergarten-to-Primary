@@ -18,15 +18,16 @@
 
 import wordAudios from '../data/word-audios.json';
 import zhAudios from '../data/zh-audios.json';
+import zhPoetryAudios from '../data/zh-poetry-audios.json';
 import { buildAudioFileId } from '../cloud-config';
 import { fetchViaCloudProxy } from './cloudFile';
-import { lookupMappedAudio, zhAudioPath, type AudioMap } from './ttsText';
+import { lookupMappedAudio, zhAudioPath, type AudioMap, type TtsCategory } from './ttsText';
 
 export interface TtsBackend {
   /** 朗读文本 */
   speak(
     text: string,
-    opts: { lang?: string; rate?: number; onEnd?: () => void },
+    opts: { lang?: string; rate?: number; onEnd?: () => void; category?: TtsCategory },
   ): void;
   /** 立即停止当前朗读 */
   stop(): void;
@@ -111,6 +112,8 @@ export class WebTtsBackend implements TtsBackend {
 const enAudioMap = wordAudios as AudioMap;
 /** 中文音频映射：文本 → "/audio/zh/<hash>.mp3"（genZhAudios.mjs 生成） */
 const zhAudioMap = zhAudios as AudioMap;
+/** 古诗情感版映射：文本 → "/audio/zh/<hash>.mp3"（与 zhAudioMap 文件名带 |poetry 盐，物理不同） */
+const zhPoetryAudioMap = zhPoetryAudios as AudioMap;
 
 class WxTtsBackend implements TtsBackend {
   /** L1 内存缓存：规范化文本键 → 本地文件路径（已下载） */
@@ -123,20 +126,28 @@ class WxTtsBackend implements TtsBackend {
   /** 正在下载/合成中的任务（同一文本键只保留一个在途流程） */
   private pendingDownloads = new Map<string, Set<(path: string | null) => void>>();
 
-  speak(text: string, opts: { lang?: string; rate?: number; onEnd?: () => void }): void {
+  speak(
+    text: string,
+    opts: { lang?: string; rate?: number; onEnd?: () => void; category?: TtsCategory },
+  ): void {
     const key = (text ?? '').trim();
     if (!key) {
       opts?.onEnd?.();
       return;
     }
+    const category = opts?.category ?? 'general';
 
     // 停止上一个播放
     this.stop();
 
-    const mapped = lookupMappedAudio(key, { en: enAudioMap, zh: zhAudioMap });
+    const mapped = lookupMappedAudio(
+      key,
+      { en: enAudioMap, zh: zhAudioMap, zhPoetry: zhPoetryAudioMap },
+      category,
+    );
     if (mapped) {
       // 命中预生成映射：L1 → L2 → L3 云存储下载；中文允许云函数自愈补合成
-      this.playFromCacheOrResolve(key, mapped.path, opts, mapped.kind === 'zh');
+      this.playFromCacheOrResolve(key, mapped.path, opts, mapped.kind === 'zh', category);
       return;
     }
 
@@ -147,7 +158,7 @@ class WxTtsBackend implements TtsBackend {
       opts?.onEnd?.();
       return;
     }
-    this.playFromCacheOrResolve(key, zhAudioPath(key), opts, true);
+    this.playFromCacheOrResolve(key, zhAudioPath(key, category), opts, true, category);
   }
 
   /**
@@ -162,6 +173,7 @@ class WxTtsBackend implements TtsBackend {
     relPath: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
     allowSynthesize: boolean,
+    category: TtsCategory = 'general',
   ): void {
     // L1 内存缓存
     const cachedPath = this.pathCache.get(key);
@@ -190,7 +202,7 @@ class WxTtsBackend implements TtsBackend {
       // 文件不存在，继续远端解析
     }
 
-    this.resolveRemote(key, relPath, opts, allowSynthesize);
+    this.resolveRemote(key, relPath, opts, allowSynthesize, category);
   }
 
   /** L3 远端解析：推定 fileID 经云函数代理下载 →（可选）云函数合成 → 再取回 */
@@ -199,6 +211,7 @@ class WxTtsBackend implements TtsBackend {
     relPath: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
     allowSynthesize: boolean,
+    category: TtsCategory = 'general',
   ): void {
     // 同一文本键已有在途流程 → 挂到同一回调集，避免重复下载/合成
     const pending = this.pendingDownloads.get(key);
@@ -253,7 +266,7 @@ class WxTtsBackend implements TtsBackend {
       // 云函数在线合成并上传到同一路径，成功后经代理重新取回
       wx.cloud.callFunction({
         name: 'tts',
-        data: { text: key, lang: 'zh-CN' },
+        data: { text: key, lang: 'zh-CN', category },
         success: (res) => {
           const result = res.result as { ok?: boolean; fileID?: string } | undefined;
           if (result && result.ok && result.fileID) {

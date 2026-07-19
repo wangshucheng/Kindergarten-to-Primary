@@ -25,7 +25,8 @@
  * 音频来源：腾讯云语音合成 TTS（API 3.0，TC3-HMAC-SHA256 签名，无第三方依赖）
  * 环境变量：
  *   TENCENT_SECRET_ID / TENCENT_SECRET_KEY  —— 必填（--dry-run 除外）
- *   TTS_VOICE                               —— 音色，默认 101016（智甜·女童声）
+ *   TTS_VOICE                               —— 普通文本音色，默认 101016（智甜·女童声）
+ *   TTS_POETRY_VOICE                        —— 古诗专属音色，默认 101007（萌趣女声，区别于普通文本的智甜女童声）
  *   TTS_SPEED                               —— 语速，可选（数字字符串）
  *
  * 增量生成：默认跳过已存在的音频，可用 --force 覆盖。
@@ -290,11 +291,13 @@ function buildCorpus() {
   const stats = [];
   const seen = new Set();
   const unique = [];
+  let poetry = [];
   for (const [name, collect] of sources) {
     const { texts: raw, note } = collect();
     const texts = normalize(raw);
     const chars = texts.reduce((sum, t) => sum + t.length, 0);
     stats.push({ name, note, count: texts.length, chars });
+    if (name.startsWith('古诗')) poetry = texts;
     for (const t of texts) {
       if (!seen.has(t)) {
         seen.add(t);
@@ -302,21 +305,23 @@ function buildCorpus() {
       }
     }
   }
-  return { stats, unique };
+  return { stats, unique, poetry };
 }
 
 // ---------------------------------------------------------------------------
 // 哈希与路径契约（必须与运行时严格一致）
-// hash = sha1_hex("zh-CN|" + key)；key 为 normalizeKey 后的文本
+// 普通：hash = sha1_hex("zh-CN|" + key)
+// 古诗：hash = sha1_hex("zh-CN|" + key + "|poetry")
 // （对齐 miniprogram/src/platform/ttsText.ts 的 normalizeTextKey + zhAudioFileName）
 // 入参均为 buildCorpus 已规范化的文本，此处不再重复规范化。
 // ---------------------------------------------------------------------------
-function hashText(text) {
-  return createHash('sha1').update(`zh-CN|${text}`, 'utf8').digest('hex');
+function hashText(text, category = 'general') {
+  const salt = category === 'poetry' ? '|poetry' : '';
+  return createHash('sha1').update(`zh-CN|${text}${salt}`, 'utf8').digest('hex');
 }
 
-function audioRelPath(text) {
-  return `/audio/zh/${hashText(text)}.mp3`;
+function audioRelPath(text, category = 'general') {
+  return `/audio/zh/${hashText(text, category)}.mp3`;
 }
 
 // ---------------------------------------------------------------------------
@@ -343,21 +348,43 @@ function hmacHex(key, data) {
 }
 
 /**
- * 调腾讯云 TextToVoice 合成语音，返回 MP3 Buffer。
- * @param {string} text 要合成的中文文本
- * @returns {Promise<Buffer>} MP3 音频数据
+ * 带网络重试的合成包装：偶发的 fetch failed（连接被服务端关闭/空闲超时）重试最多 3 次。
  */
-async function synthesize(text) {
+async function synthesizeWithRetry(text, options) {
+  let lastErr;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      return await synthesize(text, options);
+    } catch (err) {
+      lastErr = err;
+      // 仅对网络层瞬时错误重试
+      const msg = String(err.message || err);
+      if (msg.includes('fetch failed') || msg.includes('ECONN') || msg.includes('ETIMEDOUT') || msg.includes('socket')) {
+        console.log(`    [重试 ${attempt + 1}/3] 网络瞬时错误: ${msg}`);
+        await sleep(800 * (attempt + 1));
+        continue;
+      }
+      throw err; // 业务错误（鉴权/超长）不重试，直接抛出
+    }
+  }
+  throw lastErr;
+}
+async function synthesize(text, options = {}) {
   const secretId = process.env.TENCENT_SECRET_ID;
   const secretKey = process.env.TENCENT_SECRET_KEY;
   const timestamp = Math.floor(Date.now() / 1000);
   const date = new Date(timestamp * 1000).toISOString().slice(0, 10); // UTC 日期
 
+  const isPoetry = options.category === 'poetry';
+  const voiceType = isPoetry
+    ? Number(process.env.TTS_POETRY_VOICE || 101007) // 萌趣女声（童趣吟诵）
+    : Number(process.env.TTS_VOICE || 101016); // 默认 101016 智甜·女童声
+
   // 请求体：Text 须 base64(UTF-8) 编码
   const params = {
     Text: Buffer.from(text, 'utf8').toString('base64'),
     SessionId: randomUUID(),
-    VoiceType: Number(process.env.TTS_VOICE || 101016), // 默认 101016 智甜·女童声
+    VoiceType: voiceType,
     Codec: 'mp3',
     SampleRate: 16000,
     ModelType: 1,
@@ -419,7 +446,7 @@ async function synthesize(text) {
 // 主流程
 // ---------------------------------------------------------------------------
 async function main() {
-  const { stats, unique } = buildCorpus();
+  const { stats, unique, poetry } = buildCorpus();
 
   let texts = unique;
   if (opts.limit > 0) {
@@ -479,7 +506,7 @@ async function main() {
     process.exit(1);
   }
 
-  // --- 并发生成 ---
+  // --- 并发生成（普通文本，默认音色） ---
   const results = { success: [], skipped: [], failed: [], warnings: [] };
   const concurrency = 3; // 并发数，避免被限流
 
@@ -507,7 +534,7 @@ async function main() {
         }
 
         try {
-          const mp3Buffer = await synthesize(text);
+          const mp3Buffer = await synthesizeWithRetry(text);
           writeFileSync(fullPath, mp3Buffer);
           results.success.push(text);
           console.log(`  ✅ ${text}`);
@@ -524,37 +551,98 @@ async function main() {
     }
   }
 
+  // --- 生成古诗情感版（不同音色 + 情感韵律，物理文件名带 |poetry 盐） ---
+  const poetryResults = { success: [], skipped: [], failed: [], warnings: [] };
+  let poetryTexts = poetry;
+  if (opts.limit > 0) {
+    poetryTexts = poetryTexts.slice(0, opts.limit);
+  }
+  console.log(`\n=== 古诗情感版（音色 ${process.env.TTS_POETRY_VOICE || 101007}，开启情感韵律） ===`);
+  for (let i = 0; i < poetryTexts.length; i += concurrency) {
+    const batch = poetryTexts.slice(i, i + concurrency);
+    const batchNum = Math.floor(i / concurrency) + 1;
+    const totalBatches = Math.ceil(poetryTexts.length / concurrency);
+    console.log(`\n--- 古诗批次 ${batchNum}/${totalBatches} ---`);
+
+    await Promise.all(
+      batch.map(async (text) => {
+        const fullPath = join(audioDir, `${hashText(text, 'poetry')}.mp3`);
+
+        if (text.length > MAX_TEXT_LEN) {
+          poetryResults.warnings.push(text);
+          console.log(`  [警告] 文本超长（${text.length} 字），跳过: ${text.slice(0, 30)}…`);
+          return;
+        }
+
+        if (!opts.force && existsSync(fullPath)) {
+          poetryResults.skipped.push(text);
+          console.log(`  [跳过] ${text} (已存在)`);
+          return;
+        }
+
+        try {
+          const mp3Buffer = await synthesizeWithRetry(text, { category: 'poetry' });
+          writeFileSync(fullPath, mp3Buffer);
+          poetryResults.success.push(text);
+          console.log(`  ✅ ${text}`);
+        } catch (err) {
+          poetryResults.failed.push({ text, error: err.message });
+          console.log(`  ❌ ${text}: ${err.message}`);
+        }
+      }),
+    );
+
+    if (i + concurrency < poetryTexts.length) {
+      await sleep(500);
+    }
+  }
+
   // --- 生成映射文件（增量：保留已有映射中文件仍存在的条目） ---
-  generateMapping(unique, audioDir);
+  generateMapping(unique, audioDir, { poetry });
 
   // --- 输出总结 ---
-  console.log('\n=== 生成总结 ===');
+  console.log('\n=== 生成总结（普通文本） ===');
   console.log(`成功: ${results.success.length}`);
   console.log(`跳过: ${results.skipped.length}`);
   console.log(`失败: ${results.failed.length}`);
   console.log(`警告: ${results.warnings.length}`);
-  if (results.failed.length > 0) {
+  console.log('\n=== 生成总结（古诗情感版） ===');
+  console.log(`成功: ${poetryResults.success.length}`);
+  console.log(`跳过: ${poetryResults.skipped.length}`);
+  console.log(`失败: ${poetryResults.failed.length}`);
+  console.log(`警告: ${poetryResults.warnings.length}`);
+  const allFailed = [...results.failed, ...poetryResults.failed];
+  if (allFailed.length > 0) {
     console.log('\n失败列表:');
-    for (const f of results.failed) {
+    for (const f of allFailed) {
       console.log(`  - ${f.text}: ${f.error}`);
     }
     console.log('\n可重新运行脚本（增量模式会自动重试失败的）');
   }
-  if (results.warnings.length > 0) {
+  if (results.warnings.length > 0 || poetryResults.warnings.length > 0) {
     console.log('\n警告列表（超长跳过）:');
-    for (const w of results.warnings) {
+    for (const w of [...results.warnings, ...poetryResults.warnings]) {
       console.log(`  - ${w}`);
     }
   }
 }
 
 /**
- * 生成 zh-audios.json 映射文件：{ "<text>": "/audio/zh/<hash>.mp3" }
- * 只包含实际存在的音频文件；增量保留已有映射中文件仍存在的条目。
+ * 生成映射文件：
+ *   miniprogram/src/data/zh-audios.json     —— 普通中文映射 { text: "/audio/zh/<hash>.mp3" }
+ *   miniprogram/src/data/zh-poetry-audios.json —— 古诗情感版映射 { text: "/audio/zh/<hash>.mp3" }
+ * 仅包含实际存在的音频文件；增量保留已有映射中文件仍存在的条目。
  */
-function generateMapping(corpus, audioDir) {
-  const mappingPath = resolve(root, 'miniprogram/src/data/zh-audios.json');
+function generateMapping(corpus, audioDir, options = {}) {
+  const poetry = options.poetry || [];
 
+  // 普通映射
+  generateOneMapping(corpus, audioDir, 'general', resolve(root, 'miniprogram/src/data/zh-audios.json'));
+  // 古诗情感版映射
+  generateOneMapping(poetry, audioDir, 'poetry', resolve(root, 'miniprogram/src/data/zh-poetry-audios.json'));
+}
+
+function generateOneMapping(corpus, audioDir, category, mappingPath) {
   // 读取已有映射（可能不存在，或是 {} 占位）
   let existing = {};
   if (existsSync(mappingPath)) {
@@ -576,14 +664,14 @@ function generateMapping(corpus, audioDir) {
 
   // 加入本次语料中文件已生成的条目
   for (const text of corpus) {
-    const fullPath = join(audioDir, `${hashText(text)}.mp3`);
+    const fullPath = join(audioDir, `${hashText(text, category)}.mp3`);
     if (existsSync(fullPath)) {
-      mapping[text] = audioRelPath(text);
+      mapping[text] = audioRelPath(text, category);
     }
   }
 
   writeFileSync(mappingPath, JSON.stringify(mapping, null, 2) + '\n', 'utf-8');
-  console.log(`\n映射文件已更新: miniprogram/src/data/zh-audios.json (${Object.keys(mapping).length} 条)`);
+  console.log(`\n映射文件已更新: ${mappingPath} (${Object.keys(mapping).length} 条)`);
 }
 
 function sleep(ms) {

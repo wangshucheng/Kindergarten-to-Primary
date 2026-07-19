@@ -19,7 +19,7 @@ import { getTtsLang, onTtsLangChange, type TtsLang } from './ttsLang';
  */
 export interface TtsApi {
   /** 中文朗读 */
-  speakZh: (text: string, opts?: { rate?: number; onEnd?: () => void }) => void;
+  speakZh: (text: string, opts?: { rate?: number; category?: 'poetry'; onEnd?: () => void }) => void;
   /** 英文朗读 */
   speakEn: (text: string, opts?: { rate?: number; onEnd?: () => void }) => void;
   /** 切换开关，返回切换后的状态 */
@@ -41,8 +41,8 @@ export function useTTS(manager?: TtsManager): TtsApi {
   useEffect(() => onTtsLangChange(() => setLang(getTtsLang())), []);
 
   const speakZh = useCallback(
-    (text: string, opts?: { rate?: number; onEnd?: () => void }) => {
-      mgr.speak(text, { lang, rate: opts?.rate ?? 0.9, onEnd: opts?.onEnd });
+    (text: string, opts?: { rate?: number; category?: 'poetry'; onEnd?: () => void }) => {
+      mgr.speak(text, { lang, rate: opts?.rate ?? 0.9, category: opts?.category, onEnd: opts?.onEnd });
     },
     [mgr, lang],
   );
