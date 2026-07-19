@@ -53,10 +53,12 @@ node scripts/check-emojis.mjs      # 校验数据与游戏注册表中的 emoji 
 node scripts/genVocab.mjs          # 从 content/*.md 重新生成英语词汇/句型数据层
 node scripts/genWordAudios.mjs     # 批量生成单词朗读 mp3（有道 TTS，增量，--dry-run 预览）
 node scripts/genWordImages.mjs     # 批量生成单词配图（需 TRAE text_to_image 环境）
+node scripts/genZhAudios.mjs       # 批量生成小程序中文朗读 mp3（腾讯云 TTS，--dry-run 预览，需 TENCENT_SECRET_ID/KEY）
 
 # 小程序版（在 miniprogram/ 目录下，独立 npm 项目）
 cd miniprogram && npm run build:weapp   # Taro 构建 + inline-wxss
 cd miniprogram && npm run dev:weapp     # watch 模式
+cd miniprogram && npm test              # jest 纯逻辑单测（platform/utils，node 环境）
 ```
 
 ## 4. 目录结构与模块划分

@@ -7,8 +7,8 @@
  * 小程序端方案：
  *   由于 504 张图片总体积约 85MB（超过小程序 20MB 总包限制），
  *   图片必须上传到微信云存储，运行时通过 cloud:// 文件 ID 访问。
- *   具体访问见 components/CloudImage —— 用 wx.cloud.getTempFileURL 换取
- *   临时 URL 后交给 <Image>，无需文件公开读权限。
+ *   具体访问见 components/CloudImage —— 用 wx.cloud.downloadFile 把 cloud:// 文件 ID
+ *   下载到本地临时文件后交给 <Image>，无需文件公开读权限、也无需域名白名单。
  *
  * 三级回退策略：
  *   word-images.json[word]  →  english.json 的 emoji  →  主题代表 emoji

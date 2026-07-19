@@ -76,28 +76,28 @@
 
 | 特性 | Web 实现 | 小程序实现 |
 |------|---------|-----------|
-| 后端 | `window.speechSynthesis` | 预生成 MP3 + 三级缓存 |
-| 中文 | `lang: 'zh-CN'` | 预生成音频（如有） |
-| 英文 | `lang: 'en-US'` | 预生成音频（504 词已生成） |
+| 后端 | `window.speechSynthesis` | 预生成 MP3 + 云函数在线合成兜底 |
+| 中文 | `lang: 'zh-CN'` | 预生成音频（`data/zh-audios.json`，由 `scripts/genZhAudios.mjs` 生成）；未命中走云函数 `tts` |
+| 英文 | `lang: 'en-US'` | 预生成音频（504 词，`data/word-audios.json`）；未命中静默跳过 |
 | 播放 | 直接合成播放 | `wx.createInnerAudioContext()` |
-| 费用 | 免费 | 免费（有道词典 TTS 生成） |
-| 后端依赖 | 无 | 无（无需插件） |
-| 缓存策略 | N/A | L1 内存 → L2 本地文件 → L3 云存储 |
+| 费用 | 免费 | 预生成：腾讯云 TTS 免费额度内一次性合成；兜底：按量（见 `docs/tts-miniprogram-research.md`） |
+| 后端依赖 | 无 | 微信云开发（云存储 + 云函数，无需插件） |
+| 缓存策略 | N/A | L1 内存 → L2 本地文件 → L3 云存储/云函数 |
 
-**小程序端三级缓存流程**：
-1. `speak(text)` 被调用
-2. 查 `word-audios.json` 映射，若未命中则静默跳过
+**音频命名契约**（构建期脚本、云函数、小程序运行时三方一致）：
+- 英文：`/audio/words/{word}.mp3`（按单词原名）
+- 中文：`/audio/zh/<sha1("zh-CN|"+规范化文本)>.mp3`（规范化 = trim + 折叠空白，见 `platform/ttsText.ts`）
+
+**小程序端播放流程**：
+1. `speak(text)` 被调用，trim 后作为缓存键
+2. 命中中/英映射表 → 取其云端相对路径；未命中的中文文本 → 按命名契约推定路径（未命中的英文文本静默跳过）
 3. L1 内存缓存命中 → 直接播放
-4. L2 本地文件（`wx.env.USER_DATA_PATH/audio/{word}.mp3`）命中 → 缓存路径并播放
-5. L3 从云存储下载到 L2 → 缓存并播放
-6. 同一 word 并发下载自动去重
+4. L2 本地文件（`wx.env.USER_DATA_PATH` + 云端相对路径）命中 → 缓存路径并播放
+5. L3 按推定 `cloud://` fileID 直接下载（命中说明已生成过，含其他设备合成的结果）
+6. 下载失败且为中文 → `wx.cloud.callFunction('tts')` 在线合成并上传同一路径 → 重新下载播放
+7. 同一文本键并发请求自动去重；全部环节失败则静默跳过（不影响游戏流程）
 
-**配置云存储 URL**：
-```typescript
-import { setCloudAudioBaseUrl } from '../platform/tts';
-// 小程序初始化时调用
-setCloudAudioBaseUrl('https://your-cdn.com/audio/words/');
-```
+**云环境配置**：环境 ID 与 fileID 前缀集中在 `src/cloud-config.ts`（`CLOUD_ENV` / `CLOUD_FILE_ID_PREFIX`），云函数部署见 §4.1。
 
 调用方式：`import { createTtsBackend } from '../platform/tts'`
 
@@ -136,20 +136,27 @@ npm run build:weapp
 
 ## 4. 微信小程序后台配置
 
-### 4.1 TTS 方案说明（无需插件）
+### 4.1 TTS 方案说明（预生成 + 云函数兜底，无需插件）
 
-本项目**不使用 WechatSI 插件**（避免类目/主体限制问题），改用预生成音频方案：
+本项目**不使用 WechatSI 插件**（避免类目/主体限制问题），采用「预生成为主 + 云函数在线合成兜底」（选型依据见 `docs/tts-miniprogram-research.md`）：
 
+**英文单词**（既有方案）：
 1. 开发阶段用 `scripts/genWordAudios.mjs` 批量生成单词 MP3（有道词典 TTS，免费）
-2. 将 `public/audio/words/*.mp3`（504 个文件，约 11.3MB）上传到云存储
-3. 小程序运行时按需下载并缓存到本地（`wx.env.USER_DATA_PATH/audio/`）
-4. 三级缓存：内存 → 本地文件 → 云存储，避免重复下载
+2. 将 `public/audio/words/*.mp3`（504 个文件，约 11.3MB）上传到云存储 `audio/words/`
 
-**配置云存储 URL**（小程序初始化时）：
-```typescript
-import { setCloudAudioBaseUrl } from './platform/tts';
-setCloudAudioBaseUrl('https://your-cdn.com/audio/words/');
-```
+**中文语料**（古诗/汉字/拼音/题干/引导语，约 1000 条、3300 字符）：
+1. 开通腾讯云语音合成并领取免费包（个人实名即可，800 万字符/3 个月，语料量远低于此）
+2. 设置环境变量 `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`（可选 `TTS_VOICE` 音色、默认 101016 智甜·女童声）
+3. 运行 `node scripts/genZhAudios.mjs --dry-run` 预览语料统计，再运行 `node scripts/genZhAudios.mjs` 生成（首次建议 `--limit 2` 小批验证）
+4. 将 `public/audio/zh/*.mp3` 上传到云存储 `audio/zh/`；`miniprogram/src/data/zh-audios.json` 映射表随代码发布
+
+**云函数兜底**（未命中预生成的中文文本在线合成）：
+1. 在 `miniprogram/cloud/functions/tts/` 目录运行 `npm install`
+2. 微信开发者工具中右键该目录「上传并部署：云端安装依赖」
+3. 云函数环境变量配置 `TENCENT_SECRET_ID` / `TENCENT_SECRET_KEY`（可选 `TTS_VOICE` / `TTS_SPEED`）
+4. 运行时命名契约：`audio/zh/<sha1("zh-CN|"+文本)>.mp3`（脚本、云函数、小程序三方一致，见 `src/platform/ttsText.ts`）
+
+**降级行为**：云函数未部署或合成失败时静默跳过（与旧版行为一致），不影响游戏流程。
 
 ### 4.2 服务器域名配置（图片+音频云存储）
 
@@ -330,11 +337,13 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 
 - [ ] `npm install` 安装依赖
 - [ ] 微信开发者工具打开验证脚手架
-- [ ] 上传 504 张图片 + 504 个音频到云存储
-- [ ] 配置 `setCloudAudioBaseUrl()` 指向音频云存储
+- [ ] 上传 504 张图片 + 504 个英文音频到云存储（`images/words/`、`audio/words/`）
+- [ ] 核对 `cloud-config.ts` 的 `CLOUD_ENV` / `CLOUD_FILE_ID_PREFIX` 与云环境一致
 - [ ] 验证 TTS 朗读功能（英语单词）
 - [ ] 验证 storage 读写
-- [ ] 更新 `word-images.json` 为云端 URL
+- [ ] 更新 `word-images.json` 为云端 fileID
+- [ ] 生成中文音频：`node scripts/genZhAudios.mjs`（需腾讯云密钥环境变量）并上传 `audio/zh/`
+- [ ] 部署云函数 `cloud/functions/tts`（含 `npm install` 与环境变量），验证中文兜底朗读
 
 ### 8.2 短期（1-2 周）
 
@@ -362,7 +371,8 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 | 拖拽游戏（Klotski/NumberMerge） | 交互复杂 | 最后迁移，用 `onTouchMove` 重写 |
 | 图片加载慢 | 用户体验 | 预加载 + 占位图 + CDN |
 | 音频下载延迟 | 首次播放慢 | 三级缓存 + 预下载常用词 |
-| 未预生成的文本无法朗读 | 功能缺失 | 仅英语单词支持 TTS，中文文本静默跳过 |
+| 中文朗读依赖云函数/预生成 | 未部署时静默跳过 | 语料全部预生成；云函数兜底动态文本；失败降级不影响游戏 |
+| 腾讯云免费额度到期/耗尽 | 兜底合成失败 | 预生成文件不受额度影响；兜底失败静默跳过并可后续预生成补齐 |
 | 主包超 2MB | 构建失败 | 分包配置已就绪 |
 
 ## 10. 参考资料
@@ -371,3 +381,5 @@ Tailwind 自定义动画（pop/shake/fadeIn 等）需在小程序中验证：
 - [小程序分包加载](https://developers.weixin.qq.com/miniprogram/dev/framework/subpackages.html)
 - [Tailwind CSS 小程序适配](https://weapp-tw.icebreaker.top/)
 - [有道词典 TTS API](https://dict.youdao.com/dictvoice)
+- [中文 TTS 方案调研报告](../docs/tts-miniprogram-research.md)
+- [腾讯云语音合成 TextToVoice API](https://cloud.tencent.com/document/api/1073/37995)

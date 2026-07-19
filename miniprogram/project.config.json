@@ -1,5 +1,6 @@
 {
   "miniprogramRoot": "dist/",
+  "cloudfunctionRoot": "cloud/functions/",
   "projectname": "youxiao-games-miniprogram",
   "description": "幼升小合集小程序版",
   "appid": "wxb8cd3d086b98a817",
@@ -38,5 +39,6 @@
     "ignore": [],
     "include": []
   },
-  "editorSetting": {}
+  "editorSetting": {},
+  "cloudfunctionTemplateRoot": "cloudfunctionTemplate/"
 }

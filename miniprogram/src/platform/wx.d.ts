@@ -36,6 +36,13 @@ interface WxDownloadFileOption {
   complete?(): void;
 }
 
+/** wx.cloud.downloadFile 成功回调（按 fileID 下载云存储文件） */
+interface WxCloudDownloadFileSuccess {
+  tempFilePath: string;
+  filePath: string;
+  statusCode: number;
+}
+
 /** 微信小程序全局对象 */
 declare const wx: {
   getSystemInfoSync(): unknown;
@@ -54,4 +61,27 @@ declare const wx: {
   };
   getFileSystemManager(): WxFileSystemManager;
   downloadFile(option: WxDownloadFileOption): { abort(): void };
+  /** 云开发 API（最小化声明，仅覆盖 platform 层用到的接口） */
+  cloud: {
+    init(options: { env?: string; traceUser?: boolean }): void;
+    downloadFile(option: {
+      fileID: string;
+      filePath?: string;
+      success?(res: WxCloudDownloadFileSuccess): void;
+      fail?(err: { errMsg: string }): void;
+    }): void;
+    getTempFileURL(option: {
+      fileList: string[];
+      success?(res: {
+        fileList: Array<{ fileID: string; tempFileURL: string; status?: number }>;
+      }): void;
+      fail?(err: { errMsg: string }): void;
+    }): void;
+    callFunction(option: {
+      name: string;
+      data?: Record<string, unknown>;
+      success?(res: { result: unknown }): void;
+      fail?(err: { errMsg: string }): void;
+    }): void;
+  };
 };

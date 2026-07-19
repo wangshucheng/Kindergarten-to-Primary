@@ -1,25 +1,26 @@
 /**
- * TTS 抽象层 —— 统一 Web Speech API 与预生成音频方案。
+ * TTS 抽象层 —— 统一 Web Speech API 与小程序预生成音频 + 云函数兜底方案。
  *
  * Web 端：window.speechSynthesis（离线、即时合成播放任意文本）
- * 小程序端：预生成 MP3 音频 + 三级缓存（内存 → 本地文件 → 云存储）
  *
- * 小程序端方案说明：
- *   放弃 WechatSI 插件（受类目/主体限制），改用预生成音频方案。
- *   1. 开发阶段用 scripts/genWordAudios.mjs 批量生成单词 MP3
- *   2. 上传到微信云存储 audio/words/
- *   3. 小程序运行时通过 wx.cloud.downloadFile(fileID) 按需下载并缓存到本地
- *      （wx.cloud 自动签发临时凭证，无需文件公开读权限，规避 403）
- *   4. 播放时优先从缓存读取，避免重复下载
+ * 小程序端（方案详见 docs/tts-miniprogram-research.md）：
+ *   1. 预生成为主：英文单词（504 个）与中文语料（古诗/汉字/拼音/题干/引导语）
+ *      在构建期批量合成 MP3 上传云存储，映射表见 data/word-audios.json 与
+ *      data/zh-audios.json（中文映射由 scripts/genZhAudios.mjs 生成）。
+ *   2. 云函数兜底：中文文本未命中映射时，先按命名契约推定云端路径直接下载
+ *      （/audio/zh/<sha1("zh-CN|"+text)>.mp3，可能已被其他设备合成过）；
+ *      下载失败再调云函数 tts 在线合成、上传后下载播放。
+ *   3. 三级缓存：L1 内存 → L2 本地文件（USER_DATA_PATH）→ L3 云存储/云函数。
  *
- * 三级缓存查找顺序：
- *   L1 内存缓存 → L2 本地文件 → L3 云存储下载
- *
- * 限制：小程序端仅支持预生成音频的文本（如英语单词），未预生成的文本静默跳过。
+ * 限制：未预生成的英文文本仍静默跳过（英文兜底未启用）；中文兜底依赖
+ * 云函数已部署且配置了腾讯云密钥，未部署时行为与之前一致（静默跳过）。
  */
 
 import wordAudios from '../data/word-audios.json';
-import { CLOUD_FILE_ID_PREFIX } from '../cloud-config';
+import zhAudios from '../data/zh-audios.json';
+import { buildAudioFileId } from '../cloud-config';
+import { fetchViaCloudProxy } from './cloudFile';
+import { lookupMappedAudio, zhAudioPath, type AudioMap } from './ttsText';
 
 export interface TtsBackend {
   /** 朗读文本 */
@@ -103,35 +104,28 @@ export class WebTtsBackend implements TtsBackend {
 }
 
 // ---------------------------------------------------------------------------
-// 小程序实现：预生成音频 + 三级缓存（内存 → 本地文件 → 云存储）
+// 小程序实现：预生成音频（中/英映射表）+ 云函数在线合成兜底 + 三级缓存
 // ---------------------------------------------------------------------------
 
-/** 音频映射表：word → 音频相对路径（如 "one" → "/audio/words/one.mp3"），仅用于判断是否有预生成音频 */
-const audioMap = wordAudios as Record<string, string>;
-
-/**
- * 大小写不敏感的查找表：lowercasedWord → 云存储相对路径（保留 json 中的原始文件名大小写）。
- * 云存储路径区分大小写（如 Monday.mp3 ≠ monday.mp3），必须用 json 记录的真实文件名拼接 fileID，
- * 因此这里以小写 key 索引，但值保留原始大小写。
- */
-const audioRelByWord: Record<string, string> = {};
-for (const [w, rel] of Object.entries(audioMap)) {
-  audioRelByWord[w.toLowerCase().trim()] = rel as string;
-}
+/** 英文单词音频映射：word → "/audio/words/xxx.mp3" */
+const enAudioMap = wordAudios as AudioMap;
+/** 中文音频映射：文本 → "/audio/zh/<hash>.mp3"（genZhAudios.mjs 生成） */
+const zhAudioMap = zhAudios as AudioMap;
 
 class WxTtsBackend implements TtsBackend {
-  /** L1 内存缓存：word → 本地文件路径（已下载并解析） */
+  /** L1 内存缓存：规范化文本键 → 本地文件路径（已下载） */
   private pathCache = new Map<string, string>();
   /** 当前播放的音频上下文 */
   private currentAudio: {
     stop?: () => void;
     destroy?: () => void;
   } | null = null;
-  /** 正在下载中的任务（避免重复下载同一个文件） */
+  /** 正在下载/合成中的任务（同一文本键只保留一个在途流程） */
   private pendingDownloads = new Map<string, Set<(path: string | null) => void>>();
 
   speak(text: string, opts: { lang?: string; rate?: number; onEnd?: () => void }): void {
-    if (!text) {
+    const key = (text ?? '').trim();
+    if (!key) {
       opts?.onEnd?.();
       return;
     }
@@ -139,15 +133,36 @@ class WxTtsBackend implements TtsBackend {
     // 停止上一个播放
     this.stop();
 
-    // 查找音频映射（大小写不敏感），保留 json 中的原始文件名大小写
-    const key = text.toLowerCase().trim();
-    const rel = audioRelByWord[key];
-    if (!rel) {
-      // 未预生成的文本：静默跳过（小程序端无法实时 TTS）
-      opts?.onEnd?.();
+    const mapped = lookupMappedAudio(key, { en: enAudioMap, zh: zhAudioMap });
+    if (mapped) {
+      // 命中预生成映射：L1 → L2 → L3 云存储下载；中文允许云函数自愈补合成
+      this.playFromCacheOrResolve(key, mapped.path, opts, mapped.kind === 'zh');
       return;
     }
 
+    // 未命中映射：中文文本按命名契约推定路径，走「下载 → 云函数合成」兜底
+    const lang = opts?.lang ?? 'zh-CN';
+    if (!lang.toLowerCase().startsWith('zh')) {
+      // 未预生成的英文文本：维持原有静默跳过行为
+      opts?.onEnd?.();
+      return;
+    }
+    this.playFromCacheOrResolve(key, zhAudioPath(key), opts, true);
+  }
+
+  /**
+   * 按云端相对路径解析音频并播放：L1 内存 → L2 本地文件 → L3 远端
+   * （先按推定 fileID 直接下载，失败且允许时转云函数在线合成）。
+   * @param key 规范化文本键（缓存与去重的键）
+   * @param relPath 云端相对路径（"/audio/..."），同时用作本地相对路径
+   * @param allowSynthesize 远端下载失败时是否允许调云函数在线合成
+   */
+  private playFromCacheOrResolve(
+    key: string,
+    relPath: string,
+    opts: { lang?: string; rate?: number; onEnd?: () => void },
+    allowSynthesize: boolean,
+  ): void {
     // L1 内存缓存
     const cachedPath = this.pathCache.get(key);
     if (cachedPath) {
@@ -155,55 +170,39 @@ class WxTtsBackend implements TtsBackend {
       return;
     }
 
-    // L2 本地文件检查 + L3 云存储下载
-    const localPath = this.getLocalPath(key);
-    this.tryLocalOrDownload(key, rel, localPath, opts);
-  }
-
-  /** 获取单词的本地缓存路径 */
-  private getLocalPath(word: string): string {
-    return `${wx.env.USER_DATA_PATH}/audio/${word}.mp3`;
-  }
-
-  /** 检查本地文件是否存在，不存在则从云存储下载 */
-  private tryLocalOrDownload(
-    word: string,
-    rel: string,
-    localPath: string,
-    opts: { lang?: string; rate?: number; onEnd?: () => void },
-  ): void {
+    // L2 本地文件检查
+    const localPath = `${wx.env.USER_DATA_PATH}${relPath}`;
     try {
       const fs = wx.getFileSystemManager();
-      // 确保目录存在
-      const dir = `${wx.env.USER_DATA_PATH}/audio`;
+      // 确保目录存在（含 audio/words、audio/zh 等子目录）
+      const dir = localPath.slice(0, localPath.lastIndexOf('/'));
       try {
         fs.mkdirSync(dir, true);
       } catch {
         // 目录可能已存在，忽略
       }
-      // 检查文件是否存在
       fs.accessSync(localPath);
       // 文件存在 → 缓存并播放
-      this.pathCache.set(word, localPath);
+      this.pathCache.set(key, localPath);
       this.playAudio(localPath, opts);
       return;
     } catch {
-      // 文件不存在，继续下载
+      // 文件不存在，继续远端解析
     }
 
-    // L3 云存储下载
-    this.downloadFromCloud(word, rel, localPath, opts);
+    this.resolveRemote(key, relPath, localPath, opts, allowSynthesize);
   }
 
-  /** 从云存储下载音频到本地（使用 wx.cloud.downloadFile + cloud:// 文件 ID，自动签名） */
-  private downloadFromCloud(
-    word: string,
-    rel: string,
+  /** L3 远端解析：推定 fileID 下载 →（可选）云函数合成 → 再下载 */
+  private resolveRemote(
+    key: string,
+    relPath: string,
     localPath: string,
     opts: { lang?: string; rate?: number; onEnd?: () => void },
+    allowSynthesize: boolean,
   ): void {
-    // 检查是否已有相同下载在进行中
-    const pending = this.pendingDownloads.get(word);
+    // 同一文本键已有在途流程 → 挂到同一回调集，避免重复下载/合成
+    const pending = this.pendingDownloads.get(key);
     if (pending) {
       pending.add((path) => {
         if (path) {
@@ -221,39 +220,74 @@ class WxTtsBackend implements TtsBackend {
       return;
     }
 
-    // 创建新的下载任务
     const callbacks = new Set<(path: string | null) => void>();
-    this.pendingDownloads.set(word, callbacks);
+    this.pendingDownloads.set(key, callbacks);
 
-    // rel 形如 "/audio/words/Monday.mp3"，保留原始大小写拼接 cloud 文件 ID
-    const fileID = `${CLOUD_FILE_ID_PREFIX}${rel.replace(/^\//, '')}`;
-    wx.cloud.downloadFile({
-      fileID,
-      filePath: localPath,
-      success: (res) => {
-        if (res.statusCode === 200) {
-          // 下载成功 → 缓存并播放
-          this.pathCache.set(word, localPath);
-          this.notifyPending(word, localPath);
-          this.playAudio(localPath, opts);
-        } else {
-          this.notifyPending(word, null);
-          opts?.onEnd?.();
-        }
-      },
-      fail: () => {
-        this.notifyPending(word, null);
+    const finish = (path: string | null): void => {
+      this.notifyPending(key, path);
+      if (path) {
+        this.playAudio(path, opts);
+      } else {
         opts?.onEnd?.();
-      },
+      }
+    };
+
+    // 文件下载：直连 downloadFile 优先，受读安全规则拦截（-403003）时
+    // 回退 cloudProxy 云函数（服务端管理员身份）读取并写入本地缓存。
+    const downloadWithFallback = (fileID: string, onFinalFail: () => void): void => {
+      wx.cloud.downloadFile({
+        fileID,
+        filePath: localPath,
+        success: (res) => {
+          if (res.statusCode === 200) {
+            this.pathCache.set(key, localPath);
+            finish(localPath);
+          } else {
+            onFinalFail();
+          }
+        },
+        fail: () => {
+          fetchViaCloudProxy(fileID).then((proxyPath) => {
+            if (proxyPath) {
+              this.pathCache.set(key, proxyPath);
+              finish(proxyPath);
+            } else {
+              onFinalFail();
+            }
+          });
+        },
+      });
+    };
+
+    // 先按推定路径直接下载：命中（含其他设备已合成的文本）则无需调云函数
+    downloadWithFallback(buildAudioFileId(relPath), () => {
+      if (!allowSynthesize || typeof wx.cloud?.callFunction !== 'function') {
+        finish(null);
+        return;
+      }
+      // 云函数在线合成并上传到同一路径，成功后重新下载（同样带代理回退）
+      wx.cloud.callFunction({
+        name: 'tts',
+        data: { text: key, lang: 'zh-CN' },
+        success: (res) => {
+          const result = res.result as { ok?: boolean; fileID?: string } | undefined;
+          if (result && result.ok && result.fileID) {
+            downloadWithFallback(result.fileID, () => finish(null));
+          } else {
+            finish(null);
+          }
+        },
+        fail: () => finish(null),
+      });
     });
   }
 
-  /** 通知所有等待该 word 下载的回调 */
-  private notifyPending(word: string, path: string | null): void {
-    const callbacks = this.pendingDownloads.get(word);
+  /** 通知所有等待该文本键的回调 */
+  private notifyPending(key: string, path: string | null): void {
+    const callbacks = this.pendingDownloads.get(key);
     if (callbacks) {
       callbacks.forEach((cb) => cb(path));
-      this.pendingDownloads.delete(word);
+      this.pendingDownloads.delete(key);
     }
   }
 

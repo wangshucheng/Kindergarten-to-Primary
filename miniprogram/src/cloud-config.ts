@@ -5,7 +5,7 @@
  * 必须上传到微信云存储（小程序总包限制 20MB，主包限制 2MB）。
  *
  * 资源访问采用「签名临时凭证」方案，无需把文件设为公开读：
- *   - 图片：wx.cloud.getTempFileURL(fileID) 换取临时 HTTPS URL 给 <Image>
+ *   - 图片：wx.cloud.downloadFile(fileID) 下载到本地临时文件给 <Image>（免域名白名单）
  *   - 音频：wx.cloud.downloadFile(fileID) 直接下载到本地播放
  * 两者都基于 cloud:// 文件 ID，由 wx.cloud 自动签发临时凭证，
  * 因此云存储目录保持「仅创建者可读写」即可，规避 403 问题。
@@ -35,5 +35,10 @@ export const CLOUD_FILE_ID_PREFIX =
 /** 拼接得到某个单词图片的 cloud file ID（如 word-images.json 的 rel 含 /images/words/xxx.png） */
 export function buildImageFileId(rel: string): string {
   // rel 形如 "/images/words/cat.png"，去掉前导斜杠后拼接前缀
+  return CLOUD_FILE_ID_PREFIX + rel.replace(/^\//, '');
+}
+
+/** 拼接得到某个音频的 cloud file ID（rel 形如 "/audio/words/xxx.mp3" 或 "/audio/zh/<hash>.mp3"） */
+export function buildAudioFileId(rel: string): string {
   return CLOUD_FILE_ID_PREFIX + rel.replace(/^\//, '');
 }
