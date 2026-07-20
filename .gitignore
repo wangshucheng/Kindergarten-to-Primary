@@ -17,3 +17,4 @@ Thumbs.db
 scripts/genWordImagesBailian.py
 scripts/genWordImagesHunyuan.py
 scripts/genWordImagesMinimax.py
+scripts/test_final.py
