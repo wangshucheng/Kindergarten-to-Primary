@@ -14,3 +14,6 @@ Thumbs.db
 .swc/
 
 .codebuddy/*
+scripts/genWordImagesBailian.py
+scripts/genWordImagesHunyuan.py
+scripts/genWordImagesMinimax.py
