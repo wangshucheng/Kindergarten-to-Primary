@@ -16,6 +16,14 @@ const CategoryLearnGame = lazyGame(
   () => import('./CategoryLearn/CategoryLearnGame'),
   'CategoryLearnGame',
 );
+const LetterFlashGame = lazyGame(
+  () => import('./LetterFlash/LetterFlashGame'),
+  'LetterFlashGame',
+);
+const TreasureHuntGame = lazyGame(
+  () => import('./TreasureHunt/TreasureHuntGame'),
+  'TreasureHuntGame',
+);
 
 export const games: GameConfig[] = [
   {
@@ -88,5 +96,21 @@ export const games: GameConfig[] = [
     icon: '🏷️',
     priority: 'P1',
     component: CategoryLearnGame,
+  },
+  {
+    id: 'letter-flash',
+    module: 'english',
+    title: '字母音闪电卡',
+    icon: '⚡',
+    priority: 'P0',
+    component: LetterFlashGame,
+  },
+  {
+    id: 'treasure-hunt',
+    module: 'english',
+    title: '主题寻宝',
+    icon: '🗺️',
+    priority: 'P0',
+    component: TreasureHuntGame,
   },
 ];
